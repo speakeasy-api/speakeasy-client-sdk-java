@@ -71,7 +71,7 @@ public class SecurityUtils {
                     throw new IllegalArgumentException("not supported");
             }
         }
-        return new SecurityClient(HttpClient.newHttpClient(), headers, Collections.emptyMap());
+        return new SecurityClient(HttpClient.newHttpClient(), headers, queryParams);
     }
 
     private static void addToHeaders(Map<String, String> headers, String securityTag, Field innerSecurityField, Object innerSecurityObject) throws IllegalAccessException {
