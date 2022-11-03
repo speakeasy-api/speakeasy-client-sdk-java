@@ -15,8 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class QueryParamsTest {
 
     @Test
-    @DisplayName("Create SecurityClient should parse security metadata annotation")
-    void createSecurityClientShouldParseSecurityMetadataAnnotation() throws IllegalAccessException {
+    @DisplayName("populateQueryParams should parse the query params from the queryParams object")
+    void populateQueryParamsShouldParseTheQueryParamsFromTheQueryParamsObject() throws IllegalAccessException {
         GetApiQueryParams getApiQueryParams = new GetApiQueryParams(
             Map.of(
                 "test-label-key",
