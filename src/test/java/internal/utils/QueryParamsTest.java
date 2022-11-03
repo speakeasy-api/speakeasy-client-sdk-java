@@ -20,9 +20,9 @@ class QueryParamsTest {
         GetApiQueryParams getApiQueryParams = new GetApiQueryParams(
             Map.of(
                 "test-label-key",
-                List.of("test-label-value")
+                List.of("test-label-value", "value2")
             ), new GetApisOp(true)
         );
-        assertEquals("metadata[test-label-key]=test-label-value&op[and]=true", populateQueryParams(getApiQueryParams, new HashMap<>()));
+        assertEquals("metadata%5Btest-label-key%5D=test-label-value&metadata%5Btest-label-key%5D=value2&op%5Band%5D=true", populateQueryParams(getApiQueryParams, new HashMap<>()));
     }
 }
