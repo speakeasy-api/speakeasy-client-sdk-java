@@ -1,3 +1,5 @@
+package internal.utils;
+
 import internal.utils.SecurityClient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

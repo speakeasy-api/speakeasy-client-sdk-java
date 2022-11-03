@@ -8,7 +8,8 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface QueryParamsMetadata {
-    String style() default "";
+    String style() default "form";
     boolean explode() default false;
     String name() default "";
+    String serialization() default "";
 }

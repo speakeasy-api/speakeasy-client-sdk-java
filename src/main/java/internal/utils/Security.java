@@ -37,7 +37,7 @@ public class Security {
 
     private static SecurityClient parseSecurityScheme(SecurityTag schemeSecurityTag, Object innerSecurityObject) throws IllegalAccessException {
         Map<String,String> headers = new HashMap<>();
-        Map<String,String> queryParams = new HashMap<>();
+        Map<String, String> queryParams = new HashMap<>();
 
         Field[] innerFields = innerSecurityObject.getClass().getDeclaredFields();
         for (Field innerSecurityField : innerFields) {
