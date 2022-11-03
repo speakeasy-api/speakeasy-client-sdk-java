@@ -1,4 +1,4 @@
-package pkg.models.shared.security;
+package pkg.models.shared;
 
 public class Security {
 

@@ -1,19 +1,16 @@
 package internal.utils;
 
-import pkg.models.shared.security.Security;
+import pkg.models.shared.SecurityMetadata;
 
 import java.lang.reflect.Field;
 import java.net.http.HttpClient;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import pkg.models.shared.security.SecurityMetadata;
-
-public class SecurityUtils {
+public class Security {
 
 
-    public static SecurityClient createSecurityClient(Security security) {
+    public static SecurityClient createSecurityClient(pkg.models.shared.Security security) {
         try {
             return parseSecurityClass(security);
         } catch (IllegalAccessException e) {
@@ -21,7 +18,7 @@ public class SecurityUtils {
         }
     }
 
-    private static SecurityClient parseSecurityClass(Security security) throws IllegalAccessException {
+    private static SecurityClient parseSecurityClass(pkg.models.shared.Security security) throws IllegalAccessException {
         //get Type
         Field[] fields  = security.getClass().getDeclaredFields();
         SecurityTag schemeSecurityTag;
