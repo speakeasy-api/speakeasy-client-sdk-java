@@ -9,6 +9,7 @@
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     id 'java-library'
+    id 'maven-publish'
 }
 
 compileJava.options.encoding = "UTF-8"
@@ -17,6 +18,28 @@ compileTestJava.options.encoding = "UTF-8"
 repositories {
     // Use Maven Central for resolving dependencies.
     mavenCentral()
+}
+
+publishing {
+  repositories {
+    maven {
+      name = "OSSRH"
+      url = 'https://oss.sonatype.org/service/local/staging/deploy/maven2/'
+      credentials {
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
+      }
+    }
+  }
+  publications {
+        maven(MavenPublication) {
+            groupId = 'dev.speakeasyapi'
+            artifactId = 'javaclientsdk'
+            version = '1.4.2'
+
+            from components.java
+        }
+    }
 }
 
 dependencies {
