@@ -32,24 +32,34 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetEmbedAccessTokenRequest req = new GetEmbedAccessTokenRequest(){{
+            dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenRequest req = new GetEmbedAccessTokenRequest(
+){{
                 description = "Versatile asynchronous leverage";
                 duration = 554373L;
-                filters = new Filters(new dev.speakeasyapi.javaclientsdk.models.shared.Filter[]{{
-                    add(new Filter("string", "string", "string"){{
-                        key = "<key>";
-                        operator = "string";
-                        value = "string";
-                    }}),
-                }}, 263313L, 411277L, "string");
-            }};            
+                filters = new Filters(
+                    new dev.speakeasyapi.javaclientsdk.models.shared.Filter[]{{
+                        add(new Filter(
+                        "string",
+                        "string",
+                        "string"){{
+                            key = "<key>";
+                            operator = "string";
+                            value = "string";
+                        }}),
+                    }},
+                    263313L,
+                    411277L,
+                    "string");
 
-            GetEmbedAccessTokenResponse res = sdk.embeds.getEmbedAccessToken(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenResponse res = sdk.embeds.getEmbedAccessToken(req);
 
             if (res.embedAccessTokenResponse != null) {
                 // handle response
@@ -90,12 +100,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetValidEmbedAccessTokensResponse res = sdk.embeds.getValidEmbedAccessTokens();
+            dev.speakeasyapi.javaclientsdk.models.operations.GetValidEmbedAccessTokensResponse res = sdk.embeds.getValidEmbedAccessTokens();
 
             if (res.classes != null) {
                 // handle response
@@ -131,14 +142,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            RevokeEmbedAccessTokenRequest req = new RevokeEmbedAccessTokenRequest("string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest req = new RevokeEmbedAccessTokenRequest(
+                "string");
 
-            RevokeEmbedAccessTokenResponse res = sdk.embeds.revokeEmbedAccessToken(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenResponse res = sdk.embeds.revokeEmbedAccessToken(req);
 
             if (res.statusCode == 200) {
                 // handle response

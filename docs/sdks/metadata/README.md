@@ -29,14 +29,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            DeleteVersionMetadataRequest req = new DeleteVersionMetadataRequest("string", "string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataRequest req = new DeleteVersionMetadataRequest(
+                "string",
+                "string",
+                "string",
+                "string");
 
-            DeleteVersionMetadataResponse res = sdk.metadata.deleteVersionMetadata(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataResponse res = sdk.metadata.deleteVersionMetadata(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -78,14 +83,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetVersionMetadataRequest req = new GetVersionMetadataRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataRequest req = new GetVersionMetadataRequest(
+                "string",
+                "string");
 
-            GetVersionMetadataResponse res = sdk.metadata.getVersionMetadata(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataResponse res = sdk.metadata.getVersionMetadata(req);
 
             if (res.classes != null) {
                 // handle response
@@ -128,14 +136,20 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            InsertVersionMetadataRequest req = new InsertVersionMetadataRequest(new VersionMetadataInput("string", "string"), "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataRequest req = new InsertVersionMetadataRequest(
+                new VersionMetadataInput(
+                    "string",
+                    "string"),
+                "string",
+                "string");
 
-            InsertVersionMetadataResponse res = sdk.metadata.insertVersionMetadata(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataResponse res = sdk.metadata.insertVersionMetadata(req);
 
             if (res.versionMetadata != null) {
                 // handle response

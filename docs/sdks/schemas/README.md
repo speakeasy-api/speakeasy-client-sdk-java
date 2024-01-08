@@ -34,14 +34,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            DeleteSchemaRequest req = new DeleteSchemaRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaRequest req = new DeleteSchemaRequest(
+                "string",
+                "string",
+                "string");
 
-            DeleteSchemaResponse res = sdk.schemas.deleteSchema(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaResponse res = sdk.schemas.deleteSchema(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -83,14 +87,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            DownloadSchemaRequest req = new DownloadSchemaRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRequest req = new DownloadSchemaRequest(
+                "string",
+                "string");
 
-            DownloadSchemaResponse res = sdk.schemas.downloadSchema(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaResponse res = sdk.schemas.downloadSchema(req);
 
             if (res.twoHundredApplicationJsonSchema != null) {
                 // handle response
@@ -132,14 +139,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            DownloadSchemaRevisionRequest req = new DownloadSchemaRevisionRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionRequest req = new DownloadSchemaRevisionRequest(
+                "string",
+                "string",
+                "string");
 
-            DownloadSchemaRevisionResponse res = sdk.schemas.downloadSchemaRevision(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionResponse res = sdk.schemas.downloadSchemaRevision(req);
 
             if (res.twoHundredApplicationJsonSchema != null) {
                 // handle response
@@ -182,14 +193,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetSchemaRequest req = new GetSchemaRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRequest req = new GetSchemaRequest(
+                "string",
+                "string");
 
-            GetSchemaResponse res = sdk.schemas.getSchema(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaResponse res = sdk.schemas.getSchema(req);
 
             if (res.schema != null) {
                 // handle response
@@ -231,14 +245,19 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetSchemaDiffRequest req = new GetSchemaDiffRequest("string", "string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffRequest req = new GetSchemaDiffRequest(
+                "string",
+                "string",
+                "string",
+                "string");
 
-            GetSchemaDiffResponse res = sdk.schemas.getSchemaDiff(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffResponse res = sdk.schemas.getSchemaDiff(req);
 
             if (res.schemaDiff != null) {
                 // handle response
@@ -281,14 +300,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetSchemaRevisionRequest req = new GetSchemaRevisionRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionRequest req = new GetSchemaRevisionRequest(
+                "string",
+                "string",
+                "string");
 
-            GetSchemaRevisionResponse res = sdk.schemas.getSchemaRevision(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionResponse res = sdk.schemas.getSchemaRevision(req);
 
             if (res.schema != null) {
                 // handle response
@@ -331,14 +354,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetSchemasRequest req = new GetSchemasRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasRequest req = new GetSchemasRequest(
+                "string",
+                "string");
 
-            GetSchemasResponse res = sdk.schemas.getSchemas(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasResponse res = sdk.schemas.getSchemas(req);
 
             if (res.classes != null) {
                 // handle response
@@ -383,14 +409,21 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            RegisterSchemaRequest req = new RegisterSchemaRequest(new RegisterSchemaRequestBody(new File("0xCAFCA03e0e".getBytes(), "string")), "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequest req = new RegisterSchemaRequest(
+                new RegisterSchemaRequestBody(
+                    new File(
+                        "0xCAFCA03e0e".getBytes(),
+                        "string")),
+                "string",
+                "string");
 
-            RegisterSchemaResponse res = sdk.schemas.registerSchema(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaResponse res = sdk.schemas.registerSchema(req);
 
             if (res.statusCode == 200) {
                 // handle response

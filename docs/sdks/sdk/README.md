@@ -28,12 +28,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            ValidateApiKeyResponse res = sdk.validateApiKey();
+            dev.speakeasyapi.javaclientsdk.models.operations.ValidateApiKeyResponse res = sdk.validateApiKey();
 
             if (res.statusCode == 200) {
                 // handle response

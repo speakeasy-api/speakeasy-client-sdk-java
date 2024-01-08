@@ -48,12 +48,11 @@ public class Requests {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse(contentType, httpRes.statusCode()) {{
+        
+        dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse(contentType, httpRes.statusCode(), httpRes) {{
             postmanCollection = null;
             error = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (dev.speakeasyapi.javaclientsdk.utils.Utils.matchContentType(contentType, "application/octet-stream")) {
@@ -94,12 +93,11 @@ public class Requests {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse(contentType, httpRes.statusCode()) {{
+        
+        dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse(contentType, httpRes.statusCode(), httpRes) {{
             unboundedRequest = null;
             error = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (dev.speakeasyapi.javaclientsdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -149,12 +147,11 @@ public class Requests {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse(contentType, httpRes.statusCode()) {{
+        
+        dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse(contentType, httpRes.statusCode(), httpRes) {{
             classes = null;
             error = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (dev.speakeasyapi.javaclientsdk.utils.Utils.matchContentType(contentType, "application/json")) {

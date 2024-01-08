@@ -34,14 +34,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            DeleteApiEndpointRequest req = new DeleteApiEndpointRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointRequest req = new DeleteApiEndpointRequest(
+                "string",
+                "string",
+                "string");
 
-            DeleteApiEndpointResponse res = sdk.apiEndpoints.deleteApiEndpoint(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointResponse res = sdk.apiEndpoints.deleteApiEndpoint(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -84,14 +88,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            FindApiEndpointRequest req = new FindApiEndpointRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointRequest req = new FindApiEndpointRequest(
+                "string",
+                "string",
+                "string");
 
-            FindApiEndpointResponse res = sdk.apiEndpoints.findApiEndpoint(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointResponse res = sdk.apiEndpoints.findApiEndpoint(req);
 
             if (res.apiEndpoint != null) {
                 // handle response
@@ -134,14 +142,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GenerateOpenApiSpecForApiEndpointRequest req = new GenerateOpenApiSpecForApiEndpointRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointRequest req = new GenerateOpenApiSpecForApiEndpointRequest(
+                "string",
+                "string",
+                "string");
 
-            GenerateOpenApiSpecForApiEndpointResponse res = sdk.apiEndpoints.generateOpenApiSpecForApiEndpoint(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointResponse res = sdk.apiEndpoints.generateOpenApiSpecForApiEndpoint(req);
 
             if (res.generateOpenApiSpecDiff != null) {
                 // handle response
@@ -183,14 +195,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GeneratePostmanCollectionForApiEndpointRequest req = new GeneratePostmanCollectionForApiEndpointRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointRequest req = new GeneratePostmanCollectionForApiEndpointRequest(
+                "string",
+                "string",
+                "string");
 
-            GeneratePostmanCollectionForApiEndpointResponse res = sdk.apiEndpoints.generatePostmanCollectionForApiEndpoint(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointResponse res = sdk.apiEndpoints.generatePostmanCollectionForApiEndpoint(req);
 
             if (res.postmanCollection != null) {
                 // handle response
@@ -232,14 +248,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetAllApiEndpointsRequest req = new GetAllApiEndpointsRequest("string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsRequest req = new GetAllApiEndpointsRequest(
+                "string");
 
-            GetAllApiEndpointsResponse res = sdk.apiEndpoints.getAllApiEndpoints(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsResponse res = sdk.apiEndpoints.getAllApiEndpoints(req);
 
             if (res.classes != null) {
                 // handle response
@@ -281,14 +299,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetAllForVersionApiEndpointsRequest req = new GetAllForVersionApiEndpointsRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsRequest req = new GetAllForVersionApiEndpointsRequest(
+                "string",
+                "string");
 
-            GetAllForVersionApiEndpointsResponse res = sdk.apiEndpoints.getAllForVersionApiEndpoints(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsResponse res = sdk.apiEndpoints.getAllForVersionApiEndpoints(req);
 
             if (res.classes != null) {
                 // handle response
@@ -330,14 +351,18 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetApiEndpointRequest req = new GetApiEndpointRequest("string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointRequest req = new GetApiEndpointRequest(
+                "string",
+                "string",
+                "string");
 
-            GetApiEndpointResponse res = sdk.apiEndpoints.getApiEndpoint(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointResponse res = sdk.apiEndpoints.getApiEndpoint(req);
 
             if (res.apiEndpoint != null) {
                 // handle response
@@ -380,14 +405,25 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            UpsertApiEndpointRequest req = new UpsertApiEndpointRequest(new ApiEndpointInput("string", "string", "string", "string", "string", "string"), "string", "string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointRequest req = new UpsertApiEndpointRequest(
+                new ApiEndpointInput(
+                    "string",
+                    "string",
+                    "string",
+                    "string",
+                    "string",
+                    "string"),
+                "string",
+                "string",
+                "string");
 
-            UpsertApiEndpointResponse res = sdk.apiEndpoints.upsertApiEndpoint(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointResponse res = sdk.apiEndpoints.upsertApiEndpoint(req);
 
             if (res.apiEndpoint != null) {
                 // handle response

@@ -32,14 +32,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            DeleteApiRequest req = new DeleteApiRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest req = new DeleteApiRequest(
+                "string",
+                "string");
 
-            DeleteApiResponse res = sdk.apis.deleteApi(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse res = sdk.apis.deleteApi(req);
 
             if (res.statusCode == 200) {
                 // handle response
@@ -82,14 +85,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GenerateOpenApiSpecRequest req = new GenerateOpenApiSpecRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecRequest req = new GenerateOpenApiSpecRequest(
+                "string",
+                "string");
 
-            GenerateOpenApiSpecResponse res = sdk.apis.generateOpenApiSpec(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecResponse res = sdk.apis.generateOpenApiSpec(req);
 
             if (res.generateOpenApiSpecDiff != null) {
                 // handle response
@@ -131,14 +137,17 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GeneratePostmanCollectionRequest req = new GeneratePostmanCollectionRequest("string", "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionRequest req = new GeneratePostmanCollectionRequest(
+                "string",
+                "string");
 
-            GeneratePostmanCollectionResponse res = sdk.apis.generatePostmanCollection(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionResponse res = sdk.apis.generatePostmanCollection(req);
 
             if (res.postmanCollection != null) {
                 // handle response
@@ -182,21 +191,26 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetAllApiVersionsRequest req = new GetAllApiVersionsRequest("string"){{
-                metadata = new java.util.HashMap<String, String[]>(){{
+            dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsRequest req = new GetAllApiVersionsRequest(
+                "string"){{
+                metadata = new java.util.HashMap<String, String[]>(
+                ){{
                     put("key", new String[]{{
                         add("string"),
                     }});
                 }};
-                op = new Op(false);
-            }};            
+                op = new Op(
+                    false);
 
-            GetAllApiVersionsResponse res = sdk.apis.getAllApiVersions(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsResponse res = sdk.apis.getAllApiVersions(req);
 
             if (res.classes != null) {
                 // handle response
@@ -240,21 +254,26 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetApisRequest req = new GetApisRequest(){{
-                metadata = new java.util.HashMap<String, String[]>(){{
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest req = new GetApisRequest(
+){{
+                metadata = new java.util.HashMap<String, String[]>(
+                ){{
                     put("key", new String[]{{
                         add("string"),
                     }});
                 }};
-                op = new QueryParamOp(false);
-            }};            
+                op = new QueryParamOp(
+                    false);
 
-            GetApisResponse res = sdk.apis.getApis(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse res = sdk.apis.getApis(req);
 
             if (res.classes != null) {
                 // handle response
@@ -298,20 +317,28 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            UpsertApiRequest req = new UpsertApiRequest(new ApiInput("string", "string", "string"){{
-metaData = new java.util.HashMap<String, String[]>(){{
-    put("key", new String[]{{
-        add("string"),
-    }});
-}};
-}}, "string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiRequest req = new UpsertApiRequest(
+                new ApiInput(
+                    "string",
+                    "string",
+                    "string"){{
+                    metaData = new java.util.HashMap<String, String[]>(
+                    ){{
+                        put("key", new String[]{{
+                            add("string"),
+                        }});
+                    }};
 
-            UpsertApiResponse res = sdk.apis.upsertApi(req);
+                }},
+                "string");
+
+            dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiResponse res = sdk.apis.upsertApi(req);
 
             if (res.api != null) {
                 // handle response

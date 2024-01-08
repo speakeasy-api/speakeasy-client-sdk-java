@@ -1,6 +1,4 @@
-<!-- Start SDK Example Usage -->
-
-
+<!-- Start SDK Example Usage [usage] -->
 ```java
 package hello.world;
 
@@ -14,21 +12,26 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetApisRequest req = new GetApisRequest(){{
-                metadata = new java.util.HashMap<String, String[]>(){{
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest req = new GetApisRequest(
+){{
+                metadata = new java.util.HashMap<String, String[]>(
+                ){{
                     put("key", new String[]{{
                         add("string"),
                     }});
                 }};
-                op = new QueryParamOp(false);
-            }};            
+                op = new QueryParamOp(
+                    false);
 
-            GetApisResponse res = sdk.apis.getApis(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse res = sdk.apis.getApis(req);
 
             if (res.classes != null) {
                 // handle response
@@ -39,4 +42,4 @@ public class Application {
     }
 }
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->

@@ -46,12 +46,11 @@ public class Plugins {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        dev.speakeasyapi.javaclientsdk.models.operations.GetPluginsResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.GetPluginsResponse(contentType, httpRes.statusCode()) {{
+        
+        dev.speakeasyapi.javaclientsdk.models.operations.GetPluginsResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.GetPluginsResponse(contentType, httpRes.statusCode(), httpRes) {{
             classes = null;
             error = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (dev.speakeasyapi.javaclientsdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -99,12 +98,11 @@ public class Plugins {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        dev.speakeasyapi.javaclientsdk.models.operations.RunPluginResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.RunPluginResponse(contentType, httpRes.statusCode()) {{
+        
+        dev.speakeasyapi.javaclientsdk.models.operations.RunPluginResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.RunPluginResponse(contentType, httpRes.statusCode(), httpRes) {{
             classes = null;
             error = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (dev.speakeasyapi.javaclientsdk.utils.Utils.matchContentType(contentType, "application/json")) {
@@ -151,12 +149,11 @@ public class Plugins {
         HttpResponse<byte[]> httpRes = client.send(req);
 
         String contentType = httpRes.headers().firstValue("Content-Type").orElse("application/octet-stream");
-
-        dev.speakeasyapi.javaclientsdk.models.operations.UpsertPluginResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.UpsertPluginResponse(contentType, httpRes.statusCode()) {{
+        
+        dev.speakeasyapi.javaclientsdk.models.operations.UpsertPluginResponse res = new dev.speakeasyapi.javaclientsdk.models.operations.UpsertPluginResponse(contentType, httpRes.statusCode(), httpRes) {{
             plugin = null;
             error = null;
         }};
-        res.rawResponse = httpRes;
         
         if (httpRes.statusCode() == 200) {
             if (dev.speakeasyapi.javaclientsdk.utils.Utils.matchContentType(contentType, "application/json")) {

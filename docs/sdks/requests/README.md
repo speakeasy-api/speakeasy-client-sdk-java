@@ -30,14 +30,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GenerateRequestPostmanCollectionRequest req = new GenerateRequestPostmanCollectionRequest("string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionRequest req = new GenerateRequestPostmanCollectionRequest(
+                "string");
 
-            GenerateRequestPostmanCollectionResponse res = sdk.requests.generateRequestPostmanCollection(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse res = sdk.requests.generateRequestPostmanCollection(req);
 
             if (res.postmanCollection != null) {
                 // handle response
@@ -79,14 +81,16 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetRequestFromEventLogRequest req = new GetRequestFromEventLogRequest("string");            
+            dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogRequest req = new GetRequestFromEventLogRequest(
+                "string");
 
-            GetRequestFromEventLogResponse res = sdk.requests.getRequestFromEventLog(req);
+            dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse res = sdk.requests.getRequestFromEventLog(req);
 
             if (res.unboundedRequest != null) {
                 // handle response
@@ -131,22 +135,32 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            QueryEventLogRequest req = new QueryEventLogRequest(){{
-                filters = new Filters(new dev.speakeasyapi.javaclientsdk.models.shared.Filter[]{{
-                    add(new Filter("string", "string", "string"){{
-                        key = "<key>";
-                        operator = "string";
-                        value = "string";
-                    }}),
-                }}, 241978L, 451388L, "string");
-            }};            
+            dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogRequest req = new QueryEventLogRequest(
+){{
+                filters = new Filters(
+                    new dev.speakeasyapi.javaclientsdk.models.shared.Filter[]{{
+                        add(new Filter(
+                        "string",
+                        "string",
+                        "string"){{
+                            key = "<key>";
+                            operator = "string";
+                            value = "string";
+                        }}),
+                    }},
+                    241978L,
+                    451388L,
+                    "string");
 
-            QueryEventLogResponse res = sdk.requests.queryEventLog(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse res = sdk.requests.queryEventLog(req);
 
             if (res.classes != null) {
                 // handle response

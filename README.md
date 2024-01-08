@@ -1,17 +1,20 @@
 # <no value>
 
-<!-- Start SDK Installation -->
+<!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ### Gradle
 
 ```groovy
-implementation 'dev.speakeasyapi.javaclientsdk:speakeasy-client-sdk-java:2.1.0'
+implementation 'dev.speakeasyapi.javaclientsdk:speakeasy-client-sdk-java:3.0.0'
 ```
-<!-- End SDK Installation -->
+<!-- End SDK Installation [installation] -->
 
+<!-- Start SDK Example Usage [usage] -->
 ## SDK Example Usage
-<!-- Start SDK Example Usage -->
+
+### Example
+
 ```java
 package hello.world;
 
@@ -25,21 +28,26 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetApisRequest req = new GetApisRequest(){{
-                metadata = new java.util.HashMap<String, String[]>(){{
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest req = new GetApisRequest(
+){{
+                metadata = new java.util.HashMap<String, String[]>(
+                ){{
                     put("key", new String[]{{
                         add("string"),
                     }});
                 }};
-                op = new QueryParamOp(false);
-            }};            
+                op = new QueryParamOp(
+                    false);
 
-            GetApisResponse res = sdk.apis.getApis(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse res = sdk.apis.getApis(req);
 
             if (res.classes != null) {
                 // handle response
@@ -50,9 +58,9 @@ public class Application {
     }
 }
 ```
-<!-- End SDK Example Usage -->
+<!-- End SDK Example Usage [usage] -->
 
-<!-- Start SDK Available Operations -->
+<!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
 ### [SDK](docs/sdks/sdk/README.md)
@@ -113,13 +121,29 @@ public class Application {
 * [getEmbedAccessToken](docs/sdks/embeds/README.md#getembedaccesstoken) - Get an embed access token for the current workspace.
 * [getValidEmbedAccessTokens](docs/sdks/embeds/README.md#getvalidembedaccesstokens) - Get all valid embed access tokens for the current workspace.
 * [revokeEmbedAccessToken](docs/sdks/embeds/README.md#revokeembedaccesstoken) - Revoke an embed access EmbedToken.
-<!-- End SDK Available Operations -->
+<!-- End Available Resources and Operations [operations] -->
 
 
 
-<!-- Start Dev Containers -->
+<!-- Start Server Selection [server] -->
+## Server Selection
 
-<!-- End Dev Containers -->
+## Server Selection
+
+### Select Server by Name
+
+You can override the default server globally using the `setServer` option when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+
+| Name | Server | Variables |
+| ----- | ------ | --------- |
+| `prod` | `https://api.prod.speakeasyapi.dev` | None |
+
+
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally using the `setServerURL` option when initializing the SDK client instance. For example:
+<!-- End Server Selection [server] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 

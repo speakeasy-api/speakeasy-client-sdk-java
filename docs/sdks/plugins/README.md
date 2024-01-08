@@ -28,12 +28,13 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            GetPluginsResponse res = sdk.plugins.getPlugins();
+            dev.speakeasyapi.javaclientsdk.models.operations.GetPluginsResponse res = sdk.plugins.getPlugins();
 
             if (res.classes != null) {
                 // handle response
@@ -71,22 +72,32 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            RunPluginRequest req = new RunPluginRequest("string"){{
-                filters = new Filters(new dev.speakeasyapi.javaclientsdk.models.shared.Filter[]{{
-                    add(new Filter("string", "string", "string"){{
-                        key = "<key>";
-                        operator = "string";
-                        value = "string";
-                    }}),
-                }}, 669298L, 94585L, "string");
-            }};            
+            dev.speakeasyapi.javaclientsdk.models.operations.RunPluginRequest req = new RunPluginRequest(
+                "string"){{
+                filters = new Filters(
+                    new dev.speakeasyapi.javaclientsdk.models.shared.Filter[]{{
+                        add(new Filter(
+                        "string",
+                        "string",
+                        "string"){{
+                            key = "<key>";
+                            operator = "string";
+                            value = "string";
+                        }}),
+                    }},
+                    669298L,
+                    94585L,
+                    "string");
 
-            RunPluginResponse res = sdk.plugins.runPlugin(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.RunPluginResponse res = sdk.plugins.runPlugin(req);
 
             if (res.classes != null) {
                 // handle response
@@ -129,18 +140,24 @@ public class Application {
     public static void main(String[] args) {
         try {
             SDK sdk = SDK.builder()
-                .setSecurity(new Security("string"){{
-                    apiKey = "";
+                .setSecurity(new Security(
+                "string"){{
+                    apiKey = "<YOUR_API_KEY_HERE>";
                 }})
                 .build();
 
-            dev.speakeasyapi.javaclientsdk.models.shared.Plugin req = new Plugin("string", "string", "string", "string"){{
-                createdAt = OffsetDateTime.parse("2021-12-29T22:47:21.364Z");
+            dev.speakeasyapi.javaclientsdk.models.shared.Plugin req = new Plugin(
+                "string",
+                "string",
+                "string",
+                "string"){{
+                createdAt = OffsetDateTime.parse("2022-12-30T06:44:39.575Z");
                 evalHash = "string";
-                updatedAt = OffsetDateTime.parse("2023-08-18T05:20:47.765Z");
-            }};            
+                updatedAt = OffsetDateTime.parse("2024-08-18T02:22:14.384Z");
 
-            UpsertPluginResponse res = sdk.plugins.upsertPlugin(req);
+            }};
+
+            dev.speakeasyapi.javaclientsdk.models.operations.UpsertPluginResponse res = sdk.plugins.upsertPlugin(req);
 
             if (res.plugin != null) {
                 // handle response
