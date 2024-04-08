@@ -10,7 +10,7 @@ generation:
   auth:
     oAuth2ClientCredentialsEnabled: false
 java:
-  version: 7.12.3
+  version: 7.12.4
   additionalDependencies: []
   artifactID: javaclientsdk
   companyEmail: chase@speakeasyapi.dev
