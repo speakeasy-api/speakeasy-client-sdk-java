@@ -51,7 +51,7 @@ tasks.withType(Javadoc) {
   options.addStringOption('Xdoclint:none', '-quiet')
 }
 group = "io.github.speakeasy-sdks-staging"
-version = "7.12.1"
+version = "7.12.2"
 
 sourcesJar {
     archiveBaseName = "javaclientsdk"
@@ -88,7 +88,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'io.github.speakeasy-sdks-staging'
             artifactId = 'javaclientsdk'
-            version = '7.12.1'
+            version = '7.12.2'
 
             from components.java
 
