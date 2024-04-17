@@ -165,6 +165,41 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallGetBlob {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobResponse getBlob(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGetManifest {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestResponse getManifest(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGetNamespaces {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetNamespacesResponse getNamespacesDirect() throws Exception;
+    }
+
+
+    public interface MethodCallGetRevisions {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsResponse getRevisions(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGetTags {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsResponse getTags(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallPreflight {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PreflightResponse preflight(
+            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.PreflightRequest> request) throws Exception;
+    }
+
+
     public interface MethodCallGetAccessToken {
         io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAccessTokenResponse getAccessToken(
             io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAccessTokenRequest request) throws Exception;
@@ -208,6 +243,24 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallGetOrganizations {
         io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationsResponse getOrganizationsDirect() throws Exception;
+    }
+
+
+    public interface MethodCallGetChangesReportSignedUrl {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse getChangesReportSignedUrl(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGetLintingReportSignedUrl {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse getLintingReportSignedUrl(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallUploadReport {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportResponse uploadReport(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportRequestBody request) throws Exception;
     }
 
 

@@ -9,7 +9,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'io.github.speakeasy_sdks_staging.javaclientsdk:speakeasy-client-sdk-java:7.12.1'
+implementation 'io.github.speakeasy_sdks_staging.javaclientsdk:speakeasy-client-sdk-java:7.12.2'
 ```
 
 Maven:
@@ -17,7 +17,7 @@ Maven:
 <dependency>
     <groupId>io.github.speakeasy_sdks_staging.javaclientsdk</groupId>
     <artifactId>speakeasy-client-sdk-java</artifactId>
-    <version>7.12.1</version>
+    <version>7.12.2</version>
 </dependency>
 ```
 
@@ -135,6 +135,15 @@ public class Application {
 * [getSchemas](docs/sdks/schemas/README.md#getschemas) - Get information about all schemas associated with a particular apiID.
 * [registerSchema](docs/sdks/schemas/README.md#registerschema) - Register a schema.
 
+### [artifacts()](docs/sdks/artifacts/README.md)
+
+* [getBlob](docs/sdks/artifacts/README.md#getblob) - Get blob for a particular digest
+* [getManifest](docs/sdks/artifacts/README.md#getmanifest) - Get manifest for a particular reference
+* [getNamespaces](docs/sdks/artifacts/README.md#getnamespaces) - Each namespace contains many revisions.
+* [getRevisions](docs/sdks/artifacts/README.md#getrevisions)
+* [getTags](docs/sdks/artifacts/README.md#gettags)
+* [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
+
 ### [auth()](docs/sdks/auth/README.md)
 
 * [getAccessToken](docs/sdks/auth/README.md#getaccesstoken) - Get or refresh an access token for the current workspace.
@@ -151,6 +160,12 @@ public class Application {
 ### [organizations()](docs/sdks/organizations/README.md)
 
 * [getOrganizations](docs/sdks/organizations/README.md#getorganizations) - Get organizations for a user
+
+### [reports()](docs/sdks/reports/README.md)
+
+* [getChangesReportSignedUrl](docs/sdks/reports/README.md#getchangesreportsignedurl) - Get the signed access url for the change reports for a particular document.
+* [getLintingReportSignedUrl](docs/sdks/reports/README.md#getlintingreportsignedurl) - Get the signed access url for the linting reports for a particular document.
+* [uploadReport](docs/sdks/reports/README.md#uploadreport) - Upload a report.
 
 ### [embeds()](docs/sdks/embeds/README.md)
 
