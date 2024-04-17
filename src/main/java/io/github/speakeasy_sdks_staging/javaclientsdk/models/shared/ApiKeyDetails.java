@@ -22,6 +22,9 @@ public class ApiKeyDetails {
     @JsonProperty("account_type")
     private AccountType accountType;
 
+    @JsonProperty("feature_flags")
+    private java.util.List<FeatureFlags> featureFlags;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generation_access_unlimited")
     private Optional<? extends Boolean> generationAccessUnlimited;
@@ -31,18 +34,25 @@ public class ApiKeyDetails {
 
     public ApiKeyDetails(
             @JsonProperty("account_type") AccountType accountType,
+            @JsonProperty("feature_flags") java.util.List<FeatureFlags> featureFlags,
             @JsonProperty("generation_access_unlimited") Optional<? extends Boolean> generationAccessUnlimited,
             @JsonProperty("workspace_id") String workspaceId) {
         Utils.checkNotNull(accountType, "accountType");
+        Utils.checkNotNull(featureFlags, "featureFlags");
         Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.accountType = accountType;
+        this.featureFlags = featureFlags;
         this.generationAccessUnlimited = generationAccessUnlimited;
         this.workspaceId = workspaceId;
     }
 
     public AccountType accountType() {
         return accountType;
+    }
+
+    public java.util.List<FeatureFlags> featureFlags() {
+        return featureFlags;
     }
 
     public Optional<? extends Boolean> generationAccessUnlimited() {
@@ -60,6 +70,12 @@ public class ApiKeyDetails {
     public ApiKeyDetails withAccountType(AccountType accountType) {
         Utils.checkNotNull(accountType, "accountType");
         this.accountType = accountType;
+        return this;
+    }
+
+    public ApiKeyDetails withFeatureFlags(java.util.List<FeatureFlags> featureFlags) {
+        Utils.checkNotNull(featureFlags, "featureFlags");
+        this.featureFlags = featureFlags;
         return this;
     }
 
@@ -92,6 +108,7 @@ public class ApiKeyDetails {
         ApiKeyDetails other = (ApiKeyDetails) o;
         return 
             java.util.Objects.deepEquals(this.accountType, other.accountType) &&
+            java.util.Objects.deepEquals(this.featureFlags, other.featureFlags) &&
             java.util.Objects.deepEquals(this.generationAccessUnlimited, other.generationAccessUnlimited) &&
             java.util.Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
@@ -100,6 +117,7 @@ public class ApiKeyDetails {
     public int hashCode() {
         return java.util.Objects.hash(
             accountType,
+            featureFlags,
             generationAccessUnlimited,
             workspaceId);
     }
@@ -108,6 +126,7 @@ public class ApiKeyDetails {
     public String toString() {
         return Utils.toString(ApiKeyDetails.class,
                 "accountType", accountType,
+                "featureFlags", featureFlags,
                 "generationAccessUnlimited", generationAccessUnlimited,
                 "workspaceId", workspaceId);
     }
@@ -115,6 +134,8 @@ public class ApiKeyDetails {
     public final static class Builder {
  
         private AccountType accountType;
+ 
+        private java.util.List<FeatureFlags> featureFlags;
  
         private Optional<? extends Boolean> generationAccessUnlimited = Optional.empty();
  
@@ -127,6 +148,12 @@ public class ApiKeyDetails {
         public Builder accountType(AccountType accountType) {
             Utils.checkNotNull(accountType, "accountType");
             this.accountType = accountType;
+            return this;
+        }
+
+        public Builder featureFlags(java.util.List<FeatureFlags> featureFlags) {
+            Utils.checkNotNull(featureFlags, "featureFlags");
+            this.featureFlags = featureFlags;
             return this;
         }
 
@@ -151,6 +178,7 @@ public class ApiKeyDetails {
         public ApiKeyDetails build() {
             return new ApiKeyDetails(
                 accountType,
+                featureFlags,
                 generationAccessUnlimited,
                 workspaceId);
         }

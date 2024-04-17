@@ -22,6 +22,9 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
      */
     private String contentType;
 
+    /**
+     * Error
+     */
     private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
 
     /**
@@ -64,6 +67,9 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
         return contentType;
     }
 
+    /**
+     * Error
+     */
     public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
         return error;
     }
@@ -102,12 +108,18 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
         return this;
     }
 
+    /**
+     * Error
+     */
     public GetWorkspaceTargetsResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
     }
 
+    /**
+     * Error
+     */
     public GetWorkspaceTargetsResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
@@ -212,12 +224,18 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
             return this;
         }
 
+        /**
+         * Error
+         */
         public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
         }
 
+        /**
+         * Error
+         */
         public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;

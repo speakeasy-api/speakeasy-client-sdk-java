@@ -20,15 +20,15 @@ import java.math.BigInteger;
 public class RegisterSchemaRequestBody {
 
     @SpeakeasyMetadata("multipartForm:file")
-    private File file;
+    private RegisterSchemaFile file;
 
     public RegisterSchemaRequestBody(
-            File file) {
+            RegisterSchemaFile file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
     }
 
-    public File file() {
+    public RegisterSchemaFile file() {
         return file;
     }
 
@@ -36,7 +36,7 @@ public class RegisterSchemaRequestBody {
         return new Builder();
     }
 
-    public RegisterSchemaRequestBody withFile(File file) {
+    public RegisterSchemaRequestBody withFile(RegisterSchemaFile file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
         return this;
@@ -69,13 +69,13 @@ public class RegisterSchemaRequestBody {
     
     public final static class Builder {
  
-        private File file;  
+        private RegisterSchemaFile file;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder file(File file) {
+        public Builder file(RegisterSchemaFile file) {
             Utils.checkNotNull(file, "file");
             this.file = file;
             return this;

@@ -67,6 +67,8 @@ PROD("prod");
      */
     private final Schemas schemas;
 
+    private final Artifacts artifacts;
+
     /**
      * REST APIs for managing Authentication
      */
@@ -78,6 +80,11 @@ PROD("prod");
     private final Requests requests;
 
     private final Organizations organizations;
+
+    /**
+     * REST APIs for managing reports
+     */
+    private final Reports reports;
 
     /**
      * REST APIs for managing embeds
@@ -117,6 +124,10 @@ PROD("prod");
         return schemas;
     }
 
+    public Artifacts artifacts() {
+        return artifacts;
+    }
+
     /**
      * REST APIs for managing Authentication
      */
@@ -133,6 +144,13 @@ PROD("prod");
 
     public Organizations organizations() {
         return organizations;
+    }
+
+    /**
+     * REST APIs for managing reports
+     */
+    public Reports reports() {
+        return reports;
     }
 
     /**
@@ -290,12 +308,23 @@ PROD("prod");
         this.apiEndpoints = new ApiEndpoints(sdkConfiguration);
         this.metadata = new Metadata(sdkConfiguration);
         this.schemas = new Schemas(sdkConfiguration);
+        this.artifacts = new Artifacts(sdkConfiguration);
         this.auth = new Auth(sdkConfiguration);
         this.requests = new Requests(sdkConfiguration);
         this.organizations = new Organizations(sdkConfiguration);
+        this.reports = new Reports(sdkConfiguration);
         this.embeds = new Embeds(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
     }
+
+
+
+
+
+
+
+
+
 
 
 
