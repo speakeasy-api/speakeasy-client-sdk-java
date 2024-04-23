@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -22,6 +24,7 @@ public class GetAccessTokenRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public GetAccessTokenRequest(
             String workspaceId) {
         Utils.checkNotNull(workspaceId, "workspaceId");
@@ -31,6 +34,7 @@ public class GetAccessTokenRequest {
     /**
      * The workspace ID
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }

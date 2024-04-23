@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -20,15 +22,17 @@ import java.math.BigInteger;
 public class RegisterSchemaRequestBody {
 
     @SpeakeasyMetadata("multipartForm:file")
-    private File file;
+    private RegisterSchemaFile file;
 
+    @JsonCreator
     public RegisterSchemaRequestBody(
-            File file) {
+            RegisterSchemaFile file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
     }
 
-    public File file() {
+    @JsonIgnore
+    public RegisterSchemaFile file() {
         return file;
     }
 
@@ -36,7 +40,7 @@ public class RegisterSchemaRequestBody {
         return new Builder();
     }
 
-    public RegisterSchemaRequestBody withFile(File file) {
+    public RegisterSchemaRequestBody withFile(RegisterSchemaFile file) {
         Utils.checkNotNull(file, "file");
         this.file = file;
         return this;
@@ -69,13 +73,13 @@ public class RegisterSchemaRequestBody {
     
     public final static class Builder {
  
-        private File file;  
+        private RegisterSchemaFile file;  
         
         private Builder() {
           // force use of static builder() method
         }
 
-        public Builder file(File file) {
+        public Builder file(RegisterSchemaFile file) {
             Utils.checkNotNull(file, "file");
             this.file = file;
             return this;

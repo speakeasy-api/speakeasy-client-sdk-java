@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -37,6 +39,7 @@ public class SchemaDiff {
     @JsonProperty("modifications")
     private java.util.Map<String, ValueChange> modifications;
 
+    @JsonCreator
     public SchemaDiff(
             @JsonProperty("additions") java.util.List<String> additions,
             @JsonProperty("deletions") java.util.List<String> deletions,
@@ -52,6 +55,7 @@ public class SchemaDiff {
     /**
      * Holds every addition change in the diff.
      */
+    @JsonIgnore
     public java.util.List<String> additions() {
         return additions;
     }
@@ -59,6 +63,7 @@ public class SchemaDiff {
     /**
      * Holds every deletion change in the diff.
      */
+    @JsonIgnore
     public java.util.List<String> deletions() {
         return deletions;
     }
@@ -66,6 +71,7 @@ public class SchemaDiff {
     /**
      * Holds every modification change in the diff.
      */
+    @JsonIgnore
     public java.util.Map<String, ValueChange> modifications() {
         return modifications;
     }

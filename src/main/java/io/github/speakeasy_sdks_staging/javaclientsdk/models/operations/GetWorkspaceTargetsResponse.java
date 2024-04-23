@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -22,8 +24,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
      */
     private String contentType;
 
-    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
-
     /**
      * HTTP response status code for this operation
      */
@@ -39,38 +39,41 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
      */
     private Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>> targetSDKList;
 
+    @JsonCreator
     public GetWorkspaceTargetsResponse(
             String contentType,
-            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>> targetSDKList) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(targetSDKList, "targetSDKList");
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.targetSDKList = targetSDKList;
+    }
+    
+    public GetWorkspaceTargetsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
-        return error;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -78,6 +81,7 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -85,6 +89,7 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     /**
      * Success
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>> targetSDKList() {
         return targetSDKList;
     }
@@ -99,18 +104,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     public GetWorkspaceTargetsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    public GetWorkspaceTargetsResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    public GetWorkspaceTargetsResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -161,7 +154,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
         GetWorkspaceTargetsResponse other = (GetWorkspaceTargetsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse) &&
             java.util.Objects.deepEquals(this.targetSDKList, other.targetSDKList);
@@ -171,7 +163,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            error,
             statusCode,
             rawResponse,
             targetSDKList);
@@ -181,7 +172,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     public String toString() {
         return Utils.toString(GetWorkspaceTargetsResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "targetSDKList", targetSDKList);
@@ -190,8 +180,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -209,18 +197,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -263,7 +239,6 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
         public GetWorkspaceTargetsResponse build() {
             return new GetWorkspaceTargetsResponse(
                 contentType,
-                error,
                 statusCode,
                 rawResponse,
                 targetSDKList);

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -58,6 +60,7 @@ public class VersionMetadata {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public VersionMetadata(
             @JsonProperty("api_id") String apiId,
             @JsonProperty("created_at") OffsetDateTime createdAt,
@@ -82,6 +85,7 @@ public class VersionMetadata {
     /**
      * The ID of the Api this Metadata belongs to.
      */
+    @JsonIgnore
     public String apiId() {
         return apiId;
     }
@@ -89,6 +93,7 @@ public class VersionMetadata {
     /**
      * Creation timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -96,6 +101,7 @@ public class VersionMetadata {
     /**
      * The key for this metadata.
      */
+    @JsonIgnore
     public String metaKey() {
         return metaKey;
     }
@@ -103,6 +109,7 @@ public class VersionMetadata {
     /**
      * One of the values for this metadata.
      */
+    @JsonIgnore
     public String metaValue() {
         return metaValue;
     }
@@ -110,6 +117,7 @@ public class VersionMetadata {
     /**
      * The version ID of the Api this Metadata belongs to.
      */
+    @JsonIgnore
     public String versionId() {
         return versionId;
     }
@@ -117,6 +125,7 @@ public class VersionMetadata {
     /**
      * The workspace ID this Metadata belongs to.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -35,7 +37,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * Default error response
      */
-    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
+    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error;
 
     /**
      * HTTP response status code for this operation
@@ -47,11 +49,12 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public DownloadSchemaRevisionResponse(
             Optional<? extends InputStream> twoHundredApplicationJsonSchema,
             Optional<? extends InputStream> twoHundredApplicationXYamlSchema,
             String contentType,
-            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error,
+            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(twoHundredApplicationJsonSchema, "twoHundredApplicationJsonSchema");
@@ -67,10 +70,18 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
+    
+    public DownloadSchemaRevisionResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(Optional.empty(), Optional.empty(), contentType, Optional.empty(), statusCode, rawResponse);
+    }
 
     /**
      * OK
      */
+    @JsonIgnore
     public Optional<? extends InputStream> twoHundredApplicationJsonSchema() {
         return twoHundredApplicationJsonSchema;
     }
@@ -78,6 +89,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * OK
      */
+    @JsonIgnore
     public Optional<? extends InputStream> twoHundredApplicationXYamlSchema() {
         return twoHundredApplicationXYamlSchema;
     }
@@ -85,6 +97,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -92,13 +105,15 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * Default error response
      */
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
+    @JsonIgnore
+    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
         return error;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -106,6 +121,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -162,7 +178,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * Default error response
      */
-    public DownloadSchemaRevisionResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
+    public DownloadSchemaRevisionResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
@@ -171,7 +187,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * Default error response
      */
-    public DownloadSchemaRevisionResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
+    public DownloadSchemaRevisionResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -243,7 +259,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
  
         private String contentType;
  
-        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error = Optional.empty();
+        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -301,7 +317,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
         /**
          * Default error response
          */
-        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
+        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
@@ -310,7 +326,7 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
         /**
          * Default error response
          */
-        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
+        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

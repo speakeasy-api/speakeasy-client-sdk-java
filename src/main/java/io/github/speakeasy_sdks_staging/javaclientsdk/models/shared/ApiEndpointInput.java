@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -55,6 +57,7 @@ public class ApiEndpointInput {
     @JsonProperty("version_id")
     private String versionId;
 
+    @JsonCreator
     public ApiEndpointInput(
             @JsonProperty("api_endpoint_id") String apiEndpointId,
             @JsonProperty("description") String description,
@@ -79,6 +82,7 @@ public class ApiEndpointInput {
     /**
      * The ID of this ApiEndpoint. This is a hash of the method and path.
      */
+    @JsonIgnore
     public String apiEndpointId() {
         return apiEndpointId;
     }
@@ -86,6 +90,7 @@ public class ApiEndpointInput {
     /**
      * A detailed description of the ApiEndpoint.
      */
+    @JsonIgnore
     public String description() {
         return description;
     }
@@ -93,6 +98,7 @@ public class ApiEndpointInput {
     /**
      * A human-readable name for the ApiEndpoint.
      */
+    @JsonIgnore
     public String displayName() {
         return displayName;
     }
@@ -100,6 +106,7 @@ public class ApiEndpointInput {
     /**
      * HTTP verb.
      */
+    @JsonIgnore
     public String method() {
         return method;
     }
@@ -107,6 +114,7 @@ public class ApiEndpointInput {
     /**
      * Path that handles this Api.
      */
+    @JsonIgnore
     public String path() {
         return path;
     }
@@ -114,6 +122,7 @@ public class ApiEndpointInput {
     /**
      * The version ID of the Api this ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String versionId() {
         return versionId;
     }

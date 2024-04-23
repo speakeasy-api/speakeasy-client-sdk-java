@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -103,6 +105,7 @@ public class User {
     @JsonProperty("whitelisted")
     private boolean whitelisted;
 
+    @JsonCreator
     public User(
             @JsonProperty("admin") boolean admin,
             @JsonProperty("confirmed") boolean confirmed,
@@ -144,10 +147,25 @@ public class User {
         this.updatedAt = updatedAt;
         this.whitelisted = whitelisted;
     }
+    
+    public User(
+            boolean admin,
+            boolean confirmed,
+            OffsetDateTime createdAt,
+            String displayName,
+            String email,
+            boolean emailVerified,
+            String id,
+            OffsetDateTime lastLoginAt,
+            OffsetDateTime updatedAt,
+            boolean whitelisted) {
+        this(admin, confirmed, createdAt, Optional.empty(), displayName, email, emailVerified, Optional.empty(), id, lastLoginAt, Optional.empty(), updatedAt, whitelisted);
+    }
 
     /**
      * Indicates whether the user is an admin.
      */
+    @JsonIgnore
     public boolean admin() {
         return admin;
     }
@@ -155,6 +173,7 @@ public class User {
     /**
      * Indicates whether the user has been confirmed.
      */
+    @JsonIgnore
     public boolean confirmed() {
         return confirmed;
     }
@@ -162,6 +181,7 @@ public class User {
     /**
      * Timestamp of the user's creation.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -169,6 +189,7 @@ public class User {
     /**
      * Identifier of the default workspace.
      */
+    @JsonIgnore
     public Optional<? extends String> defaultWorkspaceId() {
         return defaultWorkspaceId;
     }
@@ -176,6 +197,7 @@ public class User {
     /**
      * Display name of the user.
      */
+    @JsonIgnore
     public String displayName() {
         return displayName;
     }
@@ -183,6 +205,7 @@ public class User {
     /**
      * Email address of the user.
      */
+    @JsonIgnore
     public String email() {
         return email;
     }
@@ -190,6 +213,7 @@ public class User {
     /**
      * Indicates whether the email address has been verified.
      */
+    @JsonIgnore
     public boolean emailVerified() {
         return emailVerified;
     }
@@ -197,6 +221,7 @@ public class User {
     /**
      * GitHub handle of the user.
      */
+    @JsonIgnore
     public Optional<? extends String> githubHandle() {
         return githubHandle;
     }
@@ -204,6 +229,7 @@ public class User {
     /**
      * Unique identifier for the user.
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
@@ -211,6 +237,7 @@ public class User {
     /**
      * Timestamp of the last login.
      */
+    @JsonIgnore
     public OffsetDateTime lastLoginAt() {
         return lastLoginAt;
     }
@@ -218,6 +245,7 @@ public class User {
     /**
      * URL of the user's photo.
      */
+    @JsonIgnore
     public Optional<? extends String> photoUrl() {
         return photoUrl;
     }
@@ -225,6 +253,7 @@ public class User {
     /**
      * Timestamp of the user's last update.
      */
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
@@ -232,6 +261,7 @@ public class User {
     /**
      * Indicates whether the user has been whitelisted.
      */
+    @JsonIgnore
     public boolean whitelisted() {
         return whitelisted;
     }

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,6 +48,7 @@ public class AccessTokenUser {
     @JsonProperty("id")
     private Optional<? extends String> id;
 
+    @JsonCreator
     public AccessTokenUser(
             @JsonProperty("admin") Optional<? extends Boolean> admin,
             @JsonProperty("created_at") Optional<? extends OffsetDateTime> createdAt,
@@ -66,27 +69,37 @@ public class AccessTokenUser {
         this.emailVerified = emailVerified;
         this.id = id;
     }
+    
+    public AccessTokenUser() {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends Boolean> admin() {
         return admin;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public Optional<? extends String> displayName() {
         return displayName;
     }
 
+    @JsonIgnore
     public Optional<? extends String> email() {
         return email;
     }
 
+    @JsonIgnore
     public Optional<? extends Boolean> emailVerified() {
         return emailVerified;
     }
 
+    @JsonIgnore
     public Optional<? extends String> id() {
         return id;
     }

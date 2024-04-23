@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -22,12 +24,14 @@ public class EmbedAccessTokenResponse {
     @JsonProperty("access_token")
     private String accessToken;
 
+    @JsonCreator
     public EmbedAccessTokenResponse(
             @JsonProperty("access_token") String accessToken) {
         Utils.checkNotNull(accessToken, "accessToken");
         this.accessToken = accessToken;
     }
 
+    @JsonIgnore
     public String accessToken() {
         return accessToken;
     }

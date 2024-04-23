@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -22,35 +24,81 @@ public class ApiKeyDetails {
     @JsonProperty("account_type")
     private AccountType accountType;
 
+    @JsonProperty("feature_flags")
+    private java.util.List<FeatureFlags> featureFlags;
+
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generation_access_unlimited")
     private Optional<? extends Boolean> generationAccessUnlimited;
 
+    @JsonProperty("org_slug")
+    private String orgSlug;
+
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonProperty("workspace_slug")
+    private String workspaceSlug;
+
+    @JsonCreator
     public ApiKeyDetails(
             @JsonProperty("account_type") AccountType accountType,
+            @JsonProperty("feature_flags") java.util.List<FeatureFlags> featureFlags,
             @JsonProperty("generation_access_unlimited") Optional<? extends Boolean> generationAccessUnlimited,
-            @JsonProperty("workspace_id") String workspaceId) {
+            @JsonProperty("org_slug") String orgSlug,
+            @JsonProperty("workspace_id") String workspaceId,
+            @JsonProperty("workspace_slug") String workspaceSlug) {
         Utils.checkNotNull(accountType, "accountType");
+        Utils.checkNotNull(featureFlags, "featureFlags");
         Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
+        Utils.checkNotNull(orgSlug, "orgSlug");
         Utils.checkNotNull(workspaceId, "workspaceId");
+        Utils.checkNotNull(workspaceSlug, "workspaceSlug");
         this.accountType = accountType;
+        this.featureFlags = featureFlags;
         this.generationAccessUnlimited = generationAccessUnlimited;
+        this.orgSlug = orgSlug;
         this.workspaceId = workspaceId;
+        this.workspaceSlug = workspaceSlug;
+    }
+    
+    public ApiKeyDetails(
+            AccountType accountType,
+            java.util.List<FeatureFlags> featureFlags,
+            String orgSlug,
+            String workspaceId,
+            String workspaceSlug) {
+        this(accountType, featureFlags, Optional.empty(), orgSlug, workspaceId, workspaceSlug);
     }
 
+    @JsonIgnore
     public AccountType accountType() {
         return accountType;
     }
 
+    @JsonIgnore
+    public java.util.List<FeatureFlags> featureFlags() {
+        return featureFlags;
+    }
+
+    @JsonIgnore
     public Optional<? extends Boolean> generationAccessUnlimited() {
         return generationAccessUnlimited;
     }
 
+    @JsonIgnore
+    public String orgSlug() {
+        return orgSlug;
+    }
+
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
+    }
+
+    @JsonIgnore
+    public String workspaceSlug() {
+        return workspaceSlug;
     }
 
     public final static Builder builder() {
@@ -60,6 +108,12 @@ public class ApiKeyDetails {
     public ApiKeyDetails withAccountType(AccountType accountType) {
         Utils.checkNotNull(accountType, "accountType");
         this.accountType = accountType;
+        return this;
+    }
+
+    public ApiKeyDetails withFeatureFlags(java.util.List<FeatureFlags> featureFlags) {
+        Utils.checkNotNull(featureFlags, "featureFlags");
+        this.featureFlags = featureFlags;
         return this;
     }
 
@@ -75,9 +129,21 @@ public class ApiKeyDetails {
         return this;
     }
 
+    public ApiKeyDetails withOrgSlug(String orgSlug) {
+        Utils.checkNotNull(orgSlug, "orgSlug");
+        this.orgSlug = orgSlug;
+        return this;
+    }
+
     public ApiKeyDetails withWorkspaceId(String workspaceId) {
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.workspaceId = workspaceId;
+        return this;
+    }
+
+    public ApiKeyDetails withWorkspaceSlug(String workspaceSlug) {
+        Utils.checkNotNull(workspaceSlug, "workspaceSlug");
+        this.workspaceSlug = workspaceSlug;
         return this;
     }
     
@@ -92,33 +158,48 @@ public class ApiKeyDetails {
         ApiKeyDetails other = (ApiKeyDetails) o;
         return 
             java.util.Objects.deepEquals(this.accountType, other.accountType) &&
+            java.util.Objects.deepEquals(this.featureFlags, other.featureFlags) &&
             java.util.Objects.deepEquals(this.generationAccessUnlimited, other.generationAccessUnlimited) &&
-            java.util.Objects.deepEquals(this.workspaceId, other.workspaceId);
+            java.util.Objects.deepEquals(this.orgSlug, other.orgSlug) &&
+            java.util.Objects.deepEquals(this.workspaceId, other.workspaceId) &&
+            java.util.Objects.deepEquals(this.workspaceSlug, other.workspaceSlug);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
             accountType,
+            featureFlags,
             generationAccessUnlimited,
-            workspaceId);
+            orgSlug,
+            workspaceId,
+            workspaceSlug);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ApiKeyDetails.class,
                 "accountType", accountType,
+                "featureFlags", featureFlags,
                 "generationAccessUnlimited", generationAccessUnlimited,
-                "workspaceId", workspaceId);
+                "orgSlug", orgSlug,
+                "workspaceId", workspaceId,
+                "workspaceSlug", workspaceSlug);
     }
     
     public final static class Builder {
  
         private AccountType accountType;
  
+        private java.util.List<FeatureFlags> featureFlags;
+ 
         private Optional<? extends Boolean> generationAccessUnlimited = Optional.empty();
  
-        private String workspaceId;  
+        private String orgSlug;
+ 
+        private String workspaceId;
+ 
+        private String workspaceSlug;  
         
         private Builder() {
           // force use of static builder() method
@@ -127,6 +208,12 @@ public class ApiKeyDetails {
         public Builder accountType(AccountType accountType) {
             Utils.checkNotNull(accountType, "accountType");
             this.accountType = accountType;
+            return this;
+        }
+
+        public Builder featureFlags(java.util.List<FeatureFlags> featureFlags) {
+            Utils.checkNotNull(featureFlags, "featureFlags");
+            this.featureFlags = featureFlags;
             return this;
         }
 
@@ -142,17 +229,32 @@ public class ApiKeyDetails {
             return this;
         }
 
+        public Builder orgSlug(String orgSlug) {
+            Utils.checkNotNull(orgSlug, "orgSlug");
+            this.orgSlug = orgSlug;
+            return this;
+        }
+
         public Builder workspaceId(String workspaceId) {
             Utils.checkNotNull(workspaceId, "workspaceId");
             this.workspaceId = workspaceId;
+            return this;
+        }
+
+        public Builder workspaceSlug(String workspaceSlug) {
+            Utils.checkNotNull(workspaceSlug, "workspaceSlug");
+            this.workspaceSlug = workspaceSlug;
             return this;
         }
         
         public ApiKeyDetails build() {
             return new ApiKeyDetails(
                 accountType,
+                featureFlags,
                 generationAccessUnlimited,
-                workspaceId);
+                orgSlug,
+                workspaceId,
+                workspaceSlug);
         }
     }
 }

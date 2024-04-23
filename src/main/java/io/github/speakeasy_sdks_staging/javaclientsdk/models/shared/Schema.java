@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -58,6 +60,7 @@ public class Schema {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public Schema(
             @JsonProperty("api_id") String apiId,
             @JsonProperty("created_at") OffsetDateTime createdAt,
@@ -82,6 +85,7 @@ public class Schema {
     /**
      * The ID of the Api this Schema belongs to.
      */
+    @JsonIgnore
     public String apiId() {
         return apiId;
     }
@@ -89,6 +93,7 @@ public class Schema {
     /**
      * Creation timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -96,6 +101,7 @@ public class Schema {
     /**
      * A detailed description of the Schema.
      */
+    @JsonIgnore
     public String description() {
         return description;
     }
@@ -103,6 +109,7 @@ public class Schema {
     /**
      * An ID referencing this particular revision of the Schema.
      */
+    @JsonIgnore
     public String revisionId() {
         return revisionId;
     }
@@ -110,6 +117,7 @@ public class Schema {
     /**
      * The version ID of the Api this Schema belongs to.
      */
+    @JsonIgnore
     public String versionId() {
         return versionId;
     }
@@ -117,6 +125,7 @@ public class Schema {
     /**
      * The workspace ID this Schema belongs to.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }

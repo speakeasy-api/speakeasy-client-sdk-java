@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -43,6 +45,7 @@ public class Filters {
     @JsonProperty("operator")
     private String operator;
 
+    @JsonCreator
     public Filters(
             @JsonProperty("filters") java.util.List<Filter> filters,
             @JsonProperty("limit") long limit,
@@ -61,6 +64,7 @@ public class Filters {
     /**
      * A list of filters to apply to the query.
      */
+    @JsonIgnore
     public java.util.List<Filter> filters() {
         return filters;
     }
@@ -68,6 +72,7 @@ public class Filters {
     /**
      * The maximum number of results to return.
      */
+    @JsonIgnore
     public long limit() {
         return limit;
     }
@@ -75,6 +80,7 @@ public class Filters {
     /**
      * The offset to start the query from.
      */
+    @JsonIgnore
     public long offset() {
         return offset;
     }
@@ -82,6 +88,7 @@ public class Filters {
     /**
      * The operator to use when combining filters.
      */
+    @JsonIgnore
     public String operator() {
         return operator;
     }

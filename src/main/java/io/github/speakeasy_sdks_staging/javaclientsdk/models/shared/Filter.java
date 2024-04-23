@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -37,6 +39,7 @@ public class Filter {
     @JsonProperty("value")
     private String value;
 
+    @JsonCreator
     public Filter(
             @JsonProperty("key") String key,
             @JsonProperty("operator") String operator,
@@ -52,6 +55,7 @@ public class Filter {
     /**
      * The key of the filter.
      */
+    @JsonIgnore
     public String key() {
         return key;
     }
@@ -59,6 +63,7 @@ public class Filter {
     /**
      * The operator of the filter.
      */
+    @JsonIgnore
     public String operator() {
         return operator;
     }
@@ -66,6 +71,7 @@ public class Filter {
     /**
      * The value of the filter.
      */
+    @JsonIgnore
     public String value() {
         return value;
     }

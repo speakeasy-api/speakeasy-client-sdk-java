@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -22,6 +24,7 @@ public class File {
     @SpeakeasyMetadata("multipartForm:name=file")
     private String fileName;
 
+    @JsonCreator
     public File(
             byte[] content,
             String fileName) {
@@ -31,10 +34,12 @@ public class File {
         this.fileName = fileName;
     }
 
+    @JsonIgnore
     public byte[] content() {
         return content;
     }
 
+    @JsonIgnore
     public String fileName() {
         return fileName;
     }

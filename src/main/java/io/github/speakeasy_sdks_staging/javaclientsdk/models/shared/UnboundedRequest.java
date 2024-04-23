@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
@@ -52,6 +54,7 @@ public class UnboundedRequest {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public UnboundedRequest(
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("har") String har,
@@ -73,6 +76,7 @@ public class UnboundedRequest {
     /**
      * Creation timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -80,6 +84,7 @@ public class UnboundedRequest {
     /**
      * The HAR content of the request.
      */
+    @JsonIgnore
     public String har() {
         return har;
     }
@@ -87,6 +92,7 @@ public class UnboundedRequest {
     /**
      * The size of the HAR content in bytes.
      */
+    @JsonIgnore
     public long harSizeBytes() {
         return harSizeBytes;
     }
@@ -94,6 +100,7 @@ public class UnboundedRequest {
     /**
      * The ID of this request.
      */
+    @JsonIgnore
     public String requestId() {
         return requestId;
     }
@@ -101,6 +108,7 @@ public class UnboundedRequest {
     /**
      * The workspace ID this request was made to.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }

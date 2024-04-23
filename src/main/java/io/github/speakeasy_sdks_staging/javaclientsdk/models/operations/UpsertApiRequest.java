@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -28,6 +30,7 @@ public class UpsertApiRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=apiID")
     private String apiID;
 
+    @JsonCreator
     public UpsertApiRequest(
             io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiInput api,
             String apiID) {
@@ -40,6 +43,7 @@ public class UpsertApiRequest {
     /**
      * A JSON representation of the Api to upsert
      */
+    @JsonIgnore
     public io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiInput api() {
         return api;
     }
@@ -47,6 +51,7 @@ public class UpsertApiRequest {
     /**
      * The ID of the Api to upsert.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }

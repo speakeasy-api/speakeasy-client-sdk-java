@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -30,6 +32,7 @@ public class GetWorkspaceTargetsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
     private Optional<? extends String> workspaceID;
 
+    @JsonCreator
     public GetWorkspaceTargetsRequest(
             Optional<? extends OffsetDateTime> afterLastEventCreatedAt,
             Optional<? extends String> workspaceID) {
@@ -38,10 +41,15 @@ public class GetWorkspaceTargetsRequest {
         this.afterLastEventCreatedAt = afterLastEventCreatedAt;
         this.workspaceID = workspaceID;
     }
+    
+    public GetWorkspaceTargetsRequest() {
+        this(Optional.empty(), Optional.empty());
+    }
 
     /**
      * Filter to only return targets with events created after this timestamp
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> afterLastEventCreatedAt() {
         return afterLastEventCreatedAt;
     }
@@ -49,6 +57,7 @@ public class GetWorkspaceTargetsRequest {
     /**
      * Unique identifier of the workspace.
      */
+    @JsonIgnore
     public Optional<? extends String> workspaceID() {
         return workspaceID;
     }

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -46,6 +48,7 @@ public class Organization {
     @JsonProperty("updated_at")
     private Optional<? extends OffsetDateTime> updatedAt;
 
+    @JsonCreator
     public Organization(
             @JsonProperty("account_type") OrganizationAccountType accountType,
             @JsonProperty("created)at") Optional<? extends OffsetDateTime> createdAt,
@@ -66,27 +69,40 @@ public class Organization {
         this.slug = slug;
         this.updatedAt = updatedAt;
     }
+    
+    public Organization(
+            OrganizationAccountType accountType,
+            String id,
+            String name) {
+        this(accountType, Optional.empty(), id, name, Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public OrganizationAccountType accountType() {
         return accountType;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> createdAt() {
         return createdAt;
     }
 
+    @JsonIgnore
     public String id() {
         return id;
     }
 
+    @JsonIgnore
     public String name() {
         return name;
     }
 
+    @JsonIgnore
     public Optional<? extends String> slug() {
         return slug;
     }
 
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> updatedAt() {
         return updatedAt;
     }

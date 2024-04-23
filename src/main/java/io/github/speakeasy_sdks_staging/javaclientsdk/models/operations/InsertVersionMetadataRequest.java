@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -34,6 +36,7 @@ public class InsertVersionMetadataRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=versionID")
     private String versionID;
 
+    @JsonCreator
     public InsertVersionMetadataRequest(
             io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.VersionMetadataInput versionMetadata,
             String apiID,
@@ -49,6 +52,7 @@ public class InsertVersionMetadataRequest {
     /**
      * A JSON representation of the metadata to insert.
      */
+    @JsonIgnore
     public io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.VersionMetadataInput versionMetadata() {
         return versionMetadata;
     }
@@ -56,6 +60,7 @@ public class InsertVersionMetadataRequest {
     /**
      * The ID of the Api to insert metadata for.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -63,6 +68,7 @@ public class InsertVersionMetadataRequest {
     /**
      * The version ID of the Api to insert metadata for.
      */
+    @JsonIgnore
     public String versionID() {
         return versionID;
     }

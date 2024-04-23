@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -31,6 +33,7 @@ public class VersionMetadataInput {
     @JsonProperty("meta_value")
     private String metaValue;
 
+    @JsonCreator
     public VersionMetadataInput(
             @JsonProperty("meta_key") String metaKey,
             @JsonProperty("meta_value") String metaValue) {
@@ -43,6 +46,7 @@ public class VersionMetadataInput {
     /**
      * The key for this metadata.
      */
+    @JsonIgnore
     public String metaKey() {
         return metaKey;
     }
@@ -50,6 +54,7 @@ public class VersionMetadataInput {
     /**
      * One of the values for this metadata.
      */
+    @JsonIgnore
     public String metaValue() {
         return metaValue;
     }

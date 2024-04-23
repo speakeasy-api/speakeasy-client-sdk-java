@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -19,6 +21,8 @@ import java.math.BigInteger;
 public enum InteractionType {
     CI_EXEC("CI_EXEC"),
     CLI_EXEC("CLI_EXEC"),
+    LINT("LINT"),
+    OPENAPI_DIFF("OPENAPI_DIFF"),
     TARGET_GENERATE("TARGET_GENERATE"),
     TOMBSTONE("TOMBSTONE"),
     AUTHENTICATE("AUTHENTICATE"),

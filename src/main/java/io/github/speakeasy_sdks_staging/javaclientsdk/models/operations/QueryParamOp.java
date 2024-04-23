@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -25,6 +27,7 @@ public class QueryParamOp {
     @SpeakeasyMetadata("queryParam:name=and")
     private boolean and;
 
+    @JsonCreator
     public QueryParamOp(
             boolean and) {
         Utils.checkNotNull(and, "and");
@@ -34,6 +37,7 @@ public class QueryParamOp {
     /**
      * Whether to AND or OR the filters
      */
+    @JsonIgnore
     public boolean and() {
         return and;
     }

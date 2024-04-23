@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -29,6 +31,7 @@ public class GetApisRequest {
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=op")
     private Optional<? extends QueryParamOp> op;
 
+    @JsonCreator
     public GetApisRequest(
             Optional<? extends java.util.Map<String, java.util.List<String>>> metadata,
             Optional<? extends QueryParamOp> op) {
@@ -37,10 +40,15 @@ public class GetApisRequest {
         this.metadata = metadata;
         this.op = op;
     }
+    
+    public GetApisRequest() {
+        this(Optional.empty(), Optional.empty());
+    }
 
     /**
      * Metadata to filter Apis on
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.List<String>>> metadata() {
         return metadata;
     }
@@ -48,6 +56,7 @@ public class GetApisRequest {
     /**
      * Configuration for filter operations
      */
+    @JsonIgnore
     public Optional<? extends QueryParamOp> op() {
         return op;
     }

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -40,6 +42,7 @@ public class GetSchemaDiffRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=versionID")
     private String versionID;
 
+    @JsonCreator
     public GetSchemaDiffRequest(
             String apiID,
             String baseRevisionID,
@@ -58,6 +61,7 @@ public class GetSchemaDiffRequest {
     /**
      * The ID of the Api to retrieve schemas for.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -65,6 +69,7 @@ public class GetSchemaDiffRequest {
     /**
      * The base revision ID of the schema to retrieve.
      */
+    @JsonIgnore
     public String baseRevisionID() {
         return baseRevisionID;
     }
@@ -72,6 +77,7 @@ public class GetSchemaDiffRequest {
     /**
      * The target revision ID of the schema to retrieve.
      */
+    @JsonIgnore
     public String targetRevisionID() {
         return targetRevisionID;
     }
@@ -79,6 +85,7 @@ public class GetSchemaDiffRequest {
     /**
      * The version ID of the Api to delete metadata for.
      */
+    @JsonIgnore
     public String versionID() {
         return versionID;
     }

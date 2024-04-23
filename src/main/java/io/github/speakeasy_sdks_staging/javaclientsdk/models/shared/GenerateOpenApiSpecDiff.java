@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -22,6 +24,7 @@ public class GenerateOpenApiSpecDiff {
     @JsonProperty("new_schema")
     private String newSchema;
 
+    @JsonCreator
     public GenerateOpenApiSpecDiff(
             @JsonProperty("current_schema") String currentSchema,
             @JsonProperty("new_schema") String newSchema) {
@@ -31,10 +34,12 @@ public class GenerateOpenApiSpecDiff {
         this.newSchema = newSchema;
     }
 
+    @JsonIgnore
     public String currentSchema() {
         return currentSchema;
     }
 
+    @JsonIgnore
     public String newSchema() {
         return newSchema;
     }

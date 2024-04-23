@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -25,7 +27,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
     /**
      * Default error response
      */
-    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
+    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error;
 
     /**
      * OK
@@ -42,9 +44,10 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GeneratePostmanCollectionForApiEndpointResponse(
             String contentType,
-            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error,
+            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error,
             Optional<? extends InputStream> postmanCollection,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
@@ -59,10 +62,18 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
+    
+    public GeneratePostmanCollectionForApiEndpointResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), Optional.empty(), statusCode, rawResponse);
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -70,13 +81,15 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
     /**
      * Default error response
      */
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
+    @JsonIgnore
+    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
         return error;
     }
 
     /**
      * OK
      */
+    @JsonIgnore
     public Optional<? extends InputStream> postmanCollection() {
         return postmanCollection;
     }
@@ -84,6 +97,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -91,6 +105,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -111,7 +126,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
     /**
      * Default error response
      */
-    public GeneratePostmanCollectionForApiEndpointResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
+    public GeneratePostmanCollectionForApiEndpointResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
@@ -120,7 +135,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
     /**
      * Default error response
      */
-    public GeneratePostmanCollectionForApiEndpointResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
+    public GeneratePostmanCollectionForApiEndpointResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -203,7 +218,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
  
         private String contentType;
  
-        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error = Optional.empty();
+        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error = Optional.empty();
  
         private Optional<? extends InputStream> postmanCollection = Optional.empty();
  
@@ -227,7 +242,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
         /**
          * Default error response
          */
-        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
+        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
@@ -236,7 +251,7 @@ public class GeneratePostmanCollectionForApiEndpointResponse implements io.githu
         /**
          * Default error response
          */
-        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
+        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -25,7 +27,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Default error response
      */
-    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
+    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error;
 
     /**
      * HTTP response status code for this operation
@@ -42,9 +44,10 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
      */
     private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User> user;
 
+    @JsonCreator
     public GetUserResponse(
             String contentType,
-            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error,
+            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User> user) {
@@ -59,10 +62,18 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
         this.rawResponse = rawResponse;
         this.user = user;
     }
+    
+    public GetUserResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(contentType, Optional.empty(), statusCode, rawResponse, Optional.empty());
+    }
 
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
@@ -70,13 +81,15 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Default error response
      */
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
+    @JsonIgnore
+    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
         return error;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -84,6 +97,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -91,6 +105,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * OK
      */
+    @JsonIgnore
     public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User> user() {
         return user;
     }
@@ -111,7 +126,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Default error response
      */
-    public GetUserResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
+    public GetUserResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error error) {
         Utils.checkNotNull(error, "error");
         this.error = Optional.ofNullable(error);
         return this;
@@ -120,7 +135,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Default error response
      */
-    public GetUserResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
+    public GetUserResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error) {
         Utils.checkNotNull(error, "error");
         this.error = error;
         return this;
@@ -203,7 +218,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
  
         private String contentType;
  
-        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error = Optional.empty();
+        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -227,7 +242,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
         /**
          * Default error response
          */
-        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
+        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error error) {
             Utils.checkNotNull(error, "error");
             this.error = Optional.ofNullable(error);
             return this;
@@ -236,7 +251,7 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
         /**
          * Default error response
          */
-        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
+        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error) {
             Utils.checkNotNull(error, "error");
             this.error = error;
             return this;

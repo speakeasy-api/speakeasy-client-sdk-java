@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -12,7 +14,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
-import java.util.Optional;
 
 
 public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
@@ -21,8 +22,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
 
     /**
      * HTTP response status code for this operation
@@ -34,17 +33,15 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public PostWorkspaceEventsResponse(
             String contentType,
-            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -52,17 +49,15 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
-        return error;
     }
 
     /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -70,6 +65,7 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -84,18 +80,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
     public PostWorkspaceEventsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    public PostWorkspaceEventsResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    public PostWorkspaceEventsResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -128,7 +112,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
         PostWorkspaceEventsResponse other = (PostWorkspaceEventsResponse) o;
         return 
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -137,7 +120,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
     public int hashCode() {
         return java.util.Objects.hash(
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -146,7 +128,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
     public String toString() {
         return Utils.toString(PostWorkspaceEventsResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -154,8 +135,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -171,18 +150,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -207,7 +174,6 @@ public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_sta
         public PostWorkspaceEventsResponse build() {
             return new PostWorkspaceEventsResponse(
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

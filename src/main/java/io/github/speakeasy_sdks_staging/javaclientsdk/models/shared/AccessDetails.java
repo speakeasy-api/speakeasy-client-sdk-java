@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -29,6 +31,7 @@ public class AccessDetails {
     @JsonProperty("message")
     private String message;
 
+    @JsonCreator
     public AccessDetails(
             @JsonProperty("generation_allowed") boolean generationAllowed,
             @JsonProperty("level") Optional<? extends Level> level,
@@ -40,15 +43,24 @@ public class AccessDetails {
         this.level = level;
         this.message = message;
     }
+    
+    public AccessDetails(
+            boolean generationAllowed,
+            String message) {
+        this(generationAllowed, Optional.empty(), message);
+    }
 
+    @JsonIgnore
     public boolean generationAllowed() {
         return generationAllowed;
     }
 
+    @JsonIgnore
     public Optional<? extends Level> level() {
         return level;
     }
 
+    @JsonIgnore
     public String message() {
         return message;
     }

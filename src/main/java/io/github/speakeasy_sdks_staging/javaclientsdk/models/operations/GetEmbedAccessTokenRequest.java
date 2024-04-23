@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -35,6 +37,7 @@ public class GetEmbedAccessTokenRequest {
     @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
     private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters;
 
+    @JsonCreator
     public GetEmbedAccessTokenRequest(
             Optional<? extends String> description,
             Optional<? extends Long> duration,
@@ -46,10 +49,15 @@ public class GetEmbedAccessTokenRequest {
         this.duration = duration;
         this.filters = filters;
     }
+    
+    public GetEmbedAccessTokenRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * The description of the embed access token.
      */
+    @JsonIgnore
     public Optional<? extends String> description() {
         return description;
     }
@@ -57,6 +65,7 @@ public class GetEmbedAccessTokenRequest {
     /**
      * The duration (in minutes) of the embed access token.
      */
+    @JsonIgnore
     public Optional<? extends Long> duration() {
         return duration;
     }
@@ -64,6 +73,7 @@ public class GetEmbedAccessTokenRequest {
     /**
      * The filter to apply to the query.
      */
+    @JsonIgnore
     public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters() {
         return filters;
     }

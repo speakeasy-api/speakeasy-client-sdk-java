@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -30,6 +32,7 @@ public class RequestMetadata {
     @JsonProperty("value")
     private Optional<? extends String> value;
 
+    @JsonCreator
     public RequestMetadata(
             @JsonProperty("key") Optional<? extends String> key,
             @JsonProperty("value") Optional<? extends String> value) {
@@ -38,11 +41,17 @@ public class RequestMetadata {
         this.key = key;
         this.value = value;
     }
+    
+    public RequestMetadata() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> key() {
         return key;
     }
 
+    @JsonIgnore
     public Optional<? extends String> value() {
         return value;
     }

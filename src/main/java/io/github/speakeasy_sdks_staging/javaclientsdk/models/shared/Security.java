@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -23,6 +25,7 @@ public class Security {
     @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
     private Optional<? extends String> bearer;
 
+    @JsonCreator
     public Security(
             Optional<? extends String> apiKey,
             Optional<? extends String> bearer) {
@@ -31,11 +34,17 @@ public class Security {
         this.apiKey = apiKey;
         this.bearer = bearer;
     }
+    
+    public Security() {
+        this(Optional.empty(), Optional.empty());
+    }
 
+    @JsonIgnore
     public Optional<? extends String> apiKey() {
         return apiKey;
     }
 
+    @JsonIgnore
     public Optional<? extends String> bearer() {
         return bearer;
     }

@@ -4,6 +4,7 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk;
 
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hook.SdkInitData;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.HTTPClient;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.RetryConfig;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
@@ -13,17 +14,43 @@ import java.util.Optional;
 
 class SDKConfiguration {
     public SecuritySource securitySource;
+    
+    public Optional<SecuritySource> securitySource() {
+        return Optional.ofNullable(securitySource);
+    }
     public HTTPClient defaultClient;
-	  public String serverUrl;
-	  public String server;
-  	public String language = "java";
-  	public String openapiDocVersion = "0.4.0";
-  	public String sdkVersion = "7.12.1";
-  	public String genVersion = "2.295.1";
-  	public String userAgent = "speakeasy-sdk/java 7.12.1 2.295.1 0.4.0 io.github.speakeasy_sdks_staging.javaclientsdk";
-  	public Map<String, Map<String, Map<String, java.lang.Object>>> globals = new HashMap<>(){{
-  		put("parameters", new HashMap<>());
-  	}};
-  	
+      public String serverUrl;
+      public String server;
+    public String language = "java";
+    public String openapiDocVersion = "0.4.0 .";
+    public String sdkVersion = "7.13.0";
+    public String genVersion = "2.312.1";
+    public String userAgent = "speakeasy-sdk/java 7.13.0 2.312.1 0.4.0 . io.github.speakeasy_sdks_staging.javaclientsdk";
+
+    private io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hooks _hooks = new io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hooks();
+
+    public io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hooks hooks() {
+        return _hooks;
+    }
+
+    public void setHooks(io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hooks hooks) {
+        this._hooks = hooks;
+    }
+
+    /** 
+     * Initializes state (for example hooks).
+     **/
+    public void initialize() {
+        io.github.speakeasy_sdks_staging.javaclientsdk.hooks.SDKHooks.initialize(_hooks);
+        // apply the sdk init hook immediately
+        SdkInitData data = _hooks.sdkInit(new SdkInitData(serverUrl, defaultClient));
+        this.serverUrl = data.baseUrl();
+        this.defaultClient = data.client();
+    }
+
+    public Map<String, Map<String, Map<String, java.lang.Object>>> globals = new HashMap<>(){{
+        put("parameters", new HashMap<>());
+    }};
+    
     public Optional<RetryConfig> retryConfig = Optional.empty();
 }

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -92,6 +94,7 @@ public class ApiEndpoint {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public ApiEndpoint(
             @JsonProperty("api_endpoint_id") String apiEndpointId,
             @JsonProperty("api_id") String apiId,
@@ -127,10 +130,25 @@ public class ApiEndpoint {
         this.versionId = versionId;
         this.workspaceId = workspaceId;
     }
+    
+    public ApiEndpoint(
+            String apiEndpointId,
+            String apiId,
+            OffsetDateTime createdAt,
+            String description,
+            String displayName,
+            String method,
+            String path,
+            OffsetDateTime updatedAt,
+            String versionId,
+            String workspaceId) {
+        this(apiEndpointId, apiId, createdAt, description, displayName, Optional.empty(), method, path, updatedAt, versionId, workspaceId);
+    }
 
     /**
      * The ID of this ApiEndpoint. This is a hash of the method and path.
      */
+    @JsonIgnore
     public String apiEndpointId() {
         return apiEndpointId;
     }
@@ -138,6 +156,7 @@ public class ApiEndpoint {
     /**
      * The ID of the Api this ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String apiId() {
         return apiId;
     }
@@ -145,6 +164,7 @@ public class ApiEndpoint {
     /**
      * Creation timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -152,6 +172,7 @@ public class ApiEndpoint {
     /**
      * A detailed description of the ApiEndpoint.
      */
+    @JsonIgnore
     public String description() {
         return description;
     }
@@ -159,6 +180,7 @@ public class ApiEndpoint {
     /**
      * A human-readable name for the ApiEndpoint.
      */
+    @JsonIgnore
     public String displayName() {
         return displayName;
     }
@@ -166,6 +188,7 @@ public class ApiEndpoint {
     /**
      * Determines if the endpoint was found in the OpenAPI spec associated with the parent Api.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> matched() {
         return matched;
     }
@@ -173,6 +196,7 @@ public class ApiEndpoint {
     /**
      * HTTP verb.
      */
+    @JsonIgnore
     public String method() {
         return method;
     }
@@ -180,6 +204,7 @@ public class ApiEndpoint {
     /**
      * Path that handles this Api.
      */
+    @JsonIgnore
     public String path() {
         return path;
     }
@@ -187,6 +212,7 @@ public class ApiEndpoint {
     /**
      * Last update timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime updatedAt() {
         return updatedAt;
     }
@@ -194,6 +220,7 @@ public class ApiEndpoint {
     /**
      * The version ID of the Api this ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String versionId() {
         return versionId;
     }
@@ -201,6 +228,7 @@ public class ApiEndpoint {
     /**
      * The workspace ID this ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }

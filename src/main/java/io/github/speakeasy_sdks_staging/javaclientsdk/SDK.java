@@ -7,12 +7,17 @@ package io.github.speakeasy_sdks_staging.javaclientsdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SDKMethodInterfaces.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.HTTPClient;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hook.AfterErrorContextImpl;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hook.AfterSuccessContextImpl;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hook.BeforeRequestContextImpl;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Retries.NonRetryableException;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.RetryConfig;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyHTTPClient;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.net.http.HttpRequest;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
@@ -23,11 +28,13 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * /docs - The Speakeasy Platform Documentation
  */
 public class SDK {
+
+  
     /**
      * AvailableServers contains identifiers for the servers available to the SDK.
      */
     public enum AvailableServers {
-PROD("prod");
+      PROD("prod");
 
         private final String server;
 
@@ -67,6 +74,8 @@ PROD("prod");
      */
     private final Schemas schemas;
 
+    private final Artifacts artifacts;
+
     /**
      * REST APIs for managing Authentication
      */
@@ -78,6 +87,11 @@ PROD("prod");
     private final Requests requests;
 
     private final Organizations organizations;
+
+    /**
+     * REST APIs for managing reports
+     */
+    private final Reports reports;
 
     /**
      * REST APIs for managing embeds
@@ -117,6 +131,10 @@ PROD("prod");
         return schemas;
     }
 
+    public Artifacts artifacts() {
+        return artifacts;
+    }
+
     /**
      * REST APIs for managing Authentication
      */
@@ -133,6 +151,13 @@ PROD("prod");
 
     public Organizations organizations() {
         return organizations;
+    }
+
+    /**
+     * REST APIs for managing reports
+     */
+    public Reports reports() {
+        return reports;
     }
 
     /**
@@ -254,6 +279,11 @@ PROD("prod");
             return this;
         }
         
+        // Visible for testing, will be accessed via reflection
+        void _hooks(io.github.speakeasy_sdks_staging.javaclientsdk.utils.Hooks hooks) {
+            sdkConfiguration.setHooks(hooks);    
+        }
+        
         /**
          * Builds a new instance of the SDK.
          * @return The SDK instance.
@@ -262,9 +292,9 @@ PROD("prod");
             if (sdkConfiguration.defaultClient == null) {
                 sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
             }
-	    if (sdkConfiguration.securitySource == null) {
-	    	sdkConfiguration.securitySource = SecuritySource.of(null);
-	    }
+	        if (sdkConfiguration.securitySource == null) {
+	    	    sdkConfiguration.securitySource = SecuritySource.of(null);
+	        }
             if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
                 sdkConfiguration.serverUrl = SERVERS.get(AvailableServers.PROD);
                 sdkConfiguration.server = AvailableServers.PROD.toString();
@@ -275,7 +305,7 @@ PROD("prod");
             return new SDK(sdkConfiguration);
         }
     }
-
+    
     /**
      * Get a new instance of the SDK builder to configure a new instance of the SDK.
      * @return The SDK builder instance.
@@ -290,48 +320,12 @@ PROD("prod");
         this.apiEndpoints = new ApiEndpoints(sdkConfiguration);
         this.metadata = new Metadata(sdkConfiguration);
         this.schemas = new Schemas(sdkConfiguration);
+        this.artifacts = new Artifacts(sdkConfiguration);
         this.auth = new Auth(sdkConfiguration);
         this.requests = new Requests(sdkConfiguration);
         this.organizations = new Organizations(sdkConfiguration);
+        this.reports = new Reports(sdkConfiguration);
         this.embeds = new Embeds(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+        this.sdkConfiguration.initialize();
+    }}

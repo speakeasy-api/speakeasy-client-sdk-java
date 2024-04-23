@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -35,6 +37,7 @@ public class AccessToken {
     @JsonProperty("workspaces")
     private Optional<? extends java.util.List<Workspaces>> workspaces;
 
+    @JsonCreator
     public AccessToken(
             @JsonProperty("access_token") String accessToken,
             @JsonProperty("claims") Claims claims,
@@ -49,19 +52,30 @@ public class AccessToken {
         this.user = user;
         this.workspaces = workspaces;
     }
+    
+    public AccessToken(
+            String accessToken,
+            Claims claims,
+            AccessTokenUser user) {
+        this(accessToken, claims, user, Optional.empty());
+    }
 
+    @JsonIgnore
     public String accessToken() {
         return accessToken;
     }
 
+    @JsonIgnore
     public Claims claims() {
         return claims;
     }
 
+    @JsonIgnore
     public AccessTokenUser user() {
         return user;
     }
 
+    @JsonIgnore
     public Optional<? extends java.util.List<Workspaces>> workspaces() {
         return workspaces;
     }

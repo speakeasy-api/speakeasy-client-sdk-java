@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -28,11 +30,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
     private String contentType;
 
     /**
-     * Error
-     */
-    private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -42,27 +39,33 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
      */
     private HttpResponse<InputStream> rawResponse;
 
+    @JsonCreator
     public GetWorkspaceEventsResponse(
             Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent>> cliEventBatch,
             String contentType,
-            Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(cliEventBatch, "cliEventBatch");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.cliEventBatch = cliEventBatch;
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
+    }
+    
+    public GetWorkspaceEventsResponse(
+            String contentType,
+            int statusCode,
+            HttpResponse<InputStream> rawResponse) {
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
      * Success
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent>> cliEventBatch() {
         return cliEventBatch;
     }
@@ -70,20 +73,15 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
     /**
      * HTTP response content type for this operation
      */
+    @JsonIgnore
     public String contentType() {
         return contentType;
     }
 
     /**
-     * Error
-     */
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error() {
-        return error;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
+    @JsonIgnore
     public int statusCode() {
         return statusCode;
     }
@@ -91,6 +89,7 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
+    @JsonIgnore
     public HttpResponse<InputStream> rawResponse() {
         return rawResponse;
     }
@@ -127,24 +126,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
     }
 
     /**
-     * Error
-     */
-    public GetWorkspaceEventsResponse withError(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Error
-     */
-    public GetWorkspaceEventsResponse withError(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public GetWorkspaceEventsResponse withStatusCode(int statusCode) {
@@ -174,7 +155,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
         return 
             java.util.Objects.deepEquals(this.cliEventBatch, other.cliEventBatch) &&
             java.util.Objects.deepEquals(this.contentType, other.contentType) &&
-            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.statusCode, other.statusCode) &&
             java.util.Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -184,7 +164,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
         return java.util.Objects.hash(
             cliEventBatch,
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -194,7 +173,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
         return Utils.toString(GetWorkspaceEventsResponse.class,
                 "cliEventBatch", cliEventBatch,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -204,8 +182,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
         private Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent>> cliEventBatch = Optional.empty();
  
         private String contentType;
- 
-        private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -243,24 +219,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
         }
 
         /**
-         * Error
-         */
-        public Builder error(io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Error
-         */
-        public Builder error(Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -282,7 +240,6 @@ public class GetWorkspaceEventsResponse implements io.github.speakeasy_sdks_stag
             return new GetWorkspaceEventsResponse(
                 cliEventBatch,
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

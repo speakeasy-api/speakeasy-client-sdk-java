@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -40,6 +42,7 @@ public class UpsertApiEndpointRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=versionID")
     private String versionID;
 
+    @JsonCreator
     public UpsertApiEndpointRequest(
             io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpointInput apiEndpoint,
             String apiEndpointID,
@@ -58,6 +61,7 @@ public class UpsertApiEndpointRequest {
     /**
      * A JSON representation of the ApiEndpoint to upsert.
      */
+    @JsonIgnore
     public io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpointInput apiEndpoint() {
         return apiEndpoint;
     }
@@ -65,6 +69,7 @@ public class UpsertApiEndpointRequest {
     /**
      * The ID of the ApiEndpoint to upsert.
      */
+    @JsonIgnore
     public String apiEndpointID() {
         return apiEndpointID;
     }
@@ -72,6 +77,7 @@ public class UpsertApiEndpointRequest {
     /**
      * The ID of the Api the ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -79,6 +85,7 @@ public class UpsertApiEndpointRequest {
     /**
      * The version ID of the Api the ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String versionID() {
         return versionID;
     }

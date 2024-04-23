@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -119,6 +121,13 @@ public class CliEvent {
     private Optional<? extends String> generateGenLockPostFeatures;
 
     /**
+     * Blob digest of the Previous Generation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_gen_lock_pre_blob_digest")
+    private Optional<? extends String> generateGenLockPreBlobDigest;
+
+    /**
      * Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -138,6 +147,20 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_gen_lock_pre_features")
     private Optional<? extends String> generateGenLockPreFeatures;
+
+    /**
+     * Namespace name of the Previous Generation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_gen_lock_pre_namespace_name")
+    private Optional<? extends String> generateGenLockPreNamespaceName;
+
+    /**
+     * Revision digest of the Previous Generation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_gen_lock_pre_revision_digest")
+    private Optional<? extends String> generateGenLockPreRevisionDigest;
 
     /**
      * Artifact version for the Previous Generation
@@ -271,6 +294,34 @@ public class CliEvent {
     private InteractionType interactionType;
 
     /**
+     * The checksum of the lint report.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lint_report_digest")
+    private Optional<? extends String> lintReportDigest;
+
+    /**
+     * The number of errors in the lint report.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lint_report_error_count")
+    private Optional<? extends Long> lintReportErrorCount;
+
+    /**
+     * The number of info messages in the lint report.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lint_report_info_count")
+    private Optional<? extends Long> lintReportInfoCount;
+
+    /**
+     * The number of warnings in the lint report.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("lint_report_warning_count")
+    private Optional<? extends Long> lintReportWarningCount;
+
+    /**
      * Timestamp when the event completed, in local time.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -296,6 +347,48 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("management_doc_version")
     private Optional<? extends String> managementDocVersion;
+
+    /**
+     * The blob digest of the base source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("openapi_diff_base_source_blob_digest")
+    private Optional<? extends String> openapiDiffBaseSourceBlobDigest;
+
+    /**
+     * The namespace name of the base source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("openapi_diff_base_source_namespace_name")
+    private Optional<? extends String> openapiDiffBaseSourceNamespaceName;
+
+    /**
+     * The revision digest of the base source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("openapi_diff_base_source_revision_digest")
+    private Optional<? extends String> openapiDiffBaseSourceRevisionDigest;
+
+    /**
+     * The number of breaking changes in the openapi diff report.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("openapi_diff_breaking_changes_count")
+    private Optional<? extends Long> openapiDiffBreakingChangesCount;
+
+    /**
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("openapi_diff_bump_type")
+    private Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType;
+
+    /**
+     * The checksum of the openapi diff report.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("openapi_diff_report_digest")
+    private Optional<? extends String> openapiDiffReportDigest;
 
     /**
      * Name of the published package.
@@ -340,6 +433,27 @@ public class CliEvent {
     private Optional<? extends String> repoLabel;
 
     /**
+     * The blob digest of the source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_blob_digest")
+    private Optional<? extends String> sourceBlobDigest;
+
+    /**
+     * The namespace name of the source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_namespace_name")
+    private Optional<? extends String> sourceNamespaceName;
+
+    /**
+     * The revision digest of the source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_revision_digest")
+    private Optional<? extends String> sourceRevisionDigest;
+
+    /**
      * Identifier of the Speakeasy API key.
      */
     @JsonProperty("speakeasy_api_key_name")
@@ -363,6 +477,7 @@ public class CliEvent {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public CliEvent(
             @JsonProperty("commit_head") Optional<? extends String> commitHead,
             @JsonProperty("continuous_integration_environment") Optional<? extends String> continuousIntegrationEnvironment,
@@ -378,9 +493,12 @@ public class CliEvent {
             @JsonProperty("generate_config_pre_version") Optional<? extends String> generateConfigPreVersion,
             @JsonProperty("generate_gen_lock_id") Optional<? extends String> generateGenLockId,
             @JsonProperty("generate_gen_lock_post_features") Optional<? extends String> generateGenLockPostFeatures,
+            @JsonProperty("generate_gen_lock_pre_blob_digest") Optional<? extends String> generateGenLockPreBlobDigest,
             @JsonProperty("generate_gen_lock_pre_doc_checksum") Optional<? extends String> generateGenLockPreDocChecksum,
             @JsonProperty("generate_gen_lock_pre_doc_version") Optional<? extends String> generateGenLockPreDocVersion,
             @JsonProperty("generate_gen_lock_pre_features") Optional<? extends String> generateGenLockPreFeatures,
+            @JsonProperty("generate_gen_lock_pre_namespace_name") Optional<? extends String> generateGenLockPreNamespaceName,
+            @JsonProperty("generate_gen_lock_pre_revision_digest") Optional<? extends String> generateGenLockPreRevisionDigest,
             @JsonProperty("generate_gen_lock_pre_version") Optional<? extends String> generateGenLockPreVersion,
             @JsonProperty("generate_output_tests") Optional<? extends Boolean> generateOutputTests,
             @JsonProperty("generate_published") Optional<? extends Boolean> generatePublished,
@@ -400,16 +518,29 @@ public class CliEvent {
             @JsonProperty("hostname") Optional<? extends String> hostname,
             @JsonProperty("id") String id,
             @JsonProperty("interaction_type") InteractionType interactionType,
+            @JsonProperty("lint_report_digest") Optional<? extends String> lintReportDigest,
+            @JsonProperty("lint_report_error_count") Optional<? extends Long> lintReportErrorCount,
+            @JsonProperty("lint_report_info_count") Optional<? extends Long> lintReportInfoCount,
+            @JsonProperty("lint_report_warning_count") Optional<? extends Long> lintReportWarningCount,
             @JsonProperty("local_completed_at") Optional<? extends OffsetDateTime> localCompletedAt,
             @JsonProperty("local_started_at") OffsetDateTime localStartedAt,
             @JsonProperty("management_doc_checksum") Optional<? extends String> managementDocChecksum,
             @JsonProperty("management_doc_version") Optional<? extends String> managementDocVersion,
+            @JsonProperty("openapi_diff_base_source_blob_digest") Optional<? extends String> openapiDiffBaseSourceBlobDigest,
+            @JsonProperty("openapi_diff_base_source_namespace_name") Optional<? extends String> openapiDiffBaseSourceNamespaceName,
+            @JsonProperty("openapi_diff_base_source_revision_digest") Optional<? extends String> openapiDiffBaseSourceRevisionDigest,
+            @JsonProperty("openapi_diff_breaking_changes_count") Optional<? extends Long> openapiDiffBreakingChangesCount,
+            @JsonProperty("openapi_diff_bump_type") Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType,
+            @JsonProperty("openapi_diff_report_digest") Optional<? extends String> openapiDiffReportDigest,
             @JsonProperty("publish_package_name") Optional<? extends String> publishPackageName,
             @JsonProperty("publish_package_registry_name") Optional<? extends String> publishPackageRegistryName,
             @JsonProperty("publish_package_url") Optional<? extends String> publishPackageUrl,
             @JsonProperty("publish_package_version") Optional<? extends String> publishPackageVersion,
             @JsonProperty("raw_command") Optional<? extends String> rawCommand,
             @JsonProperty("repo_label") Optional<? extends String> repoLabel,
+            @JsonProperty("source_blob_digest") Optional<? extends String> sourceBlobDigest,
+            @JsonProperty("source_namespace_name") Optional<? extends String> sourceNamespaceName,
+            @JsonProperty("source_revision_digest") Optional<? extends String> sourceRevisionDigest,
             @JsonProperty("speakeasy_api_key_name") String speakeasyApiKeyName,
             @JsonProperty("speakeasy_version") String speakeasyVersion,
             @JsonProperty("success") boolean success,
@@ -428,9 +559,12 @@ public class CliEvent {
         Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(generateGenLockPostFeatures, "generateGenLockPostFeatures");
+        Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
         Utils.checkNotNull(generateGenLockPreDocChecksum, "generateGenLockPreDocChecksum");
         Utils.checkNotNull(generateGenLockPreDocVersion, "generateGenLockPreDocVersion");
         Utils.checkNotNull(generateGenLockPreFeatures, "generateGenLockPreFeatures");
+        Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
+        Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
         Utils.checkNotNull(generateOutputTests, "generateOutputTests");
         Utils.checkNotNull(generatePublished, "generatePublished");
@@ -450,16 +584,29 @@ public class CliEvent {
         Utils.checkNotNull(hostname, "hostname");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(interactionType, "interactionType");
+        Utils.checkNotNull(lintReportDigest, "lintReportDigest");
+        Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
+        Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
+        Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
         Utils.checkNotNull(localCompletedAt, "localCompletedAt");
         Utils.checkNotNull(localStartedAt, "localStartedAt");
         Utils.checkNotNull(managementDocChecksum, "managementDocChecksum");
         Utils.checkNotNull(managementDocVersion, "managementDocVersion");
+        Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
+        Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
+        Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
+        Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
+        Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
+        Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
         Utils.checkNotNull(publishPackageName, "publishPackageName");
         Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
         Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
         Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
         Utils.checkNotNull(rawCommand, "rawCommand");
         Utils.checkNotNull(repoLabel, "repoLabel");
+        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
         Utils.checkNotNull(speakeasyApiKeyName, "speakeasyApiKeyName");
         Utils.checkNotNull(speakeasyVersion, "speakeasyVersion");
         Utils.checkNotNull(success, "success");
@@ -478,9 +625,12 @@ public class CliEvent {
         this.generateConfigPreVersion = generateConfigPreVersion;
         this.generateGenLockId = generateGenLockId;
         this.generateGenLockPostFeatures = generateGenLockPostFeatures;
+        this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
         this.generateGenLockPreDocChecksum = generateGenLockPreDocChecksum;
         this.generateGenLockPreDocVersion = generateGenLockPreDocVersion;
         this.generateGenLockPreFeatures = generateGenLockPreFeatures;
+        this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
+        this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
         this.generateGenLockPreVersion = generateGenLockPreVersion;
         this.generateOutputTests = generateOutputTests;
         this.generatePublished = generatePublished;
@@ -500,25 +650,52 @@ public class CliEvent {
         this.hostname = hostname;
         this.id = id;
         this.interactionType = interactionType;
+        this.lintReportDigest = lintReportDigest;
+        this.lintReportErrorCount = lintReportErrorCount;
+        this.lintReportInfoCount = lintReportInfoCount;
+        this.lintReportWarningCount = lintReportWarningCount;
         this.localCompletedAt = localCompletedAt;
         this.localStartedAt = localStartedAt;
         this.managementDocChecksum = managementDocChecksum;
         this.managementDocVersion = managementDocVersion;
+        this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
+        this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
+        this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
+        this.openapiDiffBreakingChangesCount = openapiDiffBreakingChangesCount;
+        this.openapiDiffBumpType = openapiDiffBumpType;
+        this.openapiDiffReportDigest = openapiDiffReportDigest;
         this.publishPackageName = publishPackageName;
         this.publishPackageRegistryName = publishPackageRegistryName;
         this.publishPackageUrl = publishPackageUrl;
         this.publishPackageVersion = publishPackageVersion;
         this.rawCommand = rawCommand;
         this.repoLabel = repoLabel;
+        this.sourceBlobDigest = sourceBlobDigest;
+        this.sourceNamespaceName = sourceNamespaceName;
+        this.sourceRevisionDigest = sourceRevisionDigest;
         this.speakeasyApiKeyName = speakeasyApiKeyName;
         this.speakeasyVersion = speakeasyVersion;
         this.success = success;
         this.workspaceId = workspaceId;
     }
+    
+    public CliEvent(
+            OffsetDateTime createdAt,
+            String executionId,
+            String id,
+            InteractionType interactionType,
+            OffsetDateTime localStartedAt,
+            String speakeasyApiKeyName,
+            String speakeasyVersion,
+            boolean success,
+            String workspaceId) {
+        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, workspaceId);
+    }
 
     /**
      * Remote commit ID.
      */
+    @JsonIgnore
     public Optional<? extends String> commitHead() {
         return commitHead;
     }
@@ -526,6 +703,7 @@ public class CliEvent {
     /**
      * Name of the CI environment.
      */
+    @JsonIgnore
     public Optional<? extends String> continuousIntegrationEnvironment() {
         return continuousIntegrationEnvironment;
     }
@@ -533,6 +711,7 @@ public class CliEvent {
     /**
      * Timestamp when the event was created in the database.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -540,6 +719,7 @@ public class CliEvent {
     /**
      * Duration of the event in milliseconds.
      */
+    @JsonIgnore
     public Optional<? extends Long> durationMs() {
         return durationMs;
     }
@@ -547,6 +727,7 @@ public class CliEvent {
     /**
      * Unique identifier for each execution of the CLI.
      */
+    @JsonIgnore
     public String executionId() {
         return executionId;
     }
@@ -554,6 +735,7 @@ public class CliEvent {
     /**
      * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
+    @JsonIgnore
     public Optional<? extends GenerateBumpType> generateBumpType() {
         return generateBumpType;
     }
@@ -561,6 +743,7 @@ public class CliEvent {
     /**
      * Checksum of the configuration file (post generation)
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPostChecksum() {
         return generateConfigPostChecksum;
     }
@@ -568,6 +751,7 @@ public class CliEvent {
     /**
      * Rendered configuration file (post generation)
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPostRaw() {
         return generateConfigPostRaw;
     }
@@ -575,6 +759,7 @@ public class CliEvent {
     /**
      * The version of the customer's SDK that we just generated
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPostVersion() {
         return generateConfigPostVersion;
     }
@@ -582,6 +767,7 @@ public class CliEvent {
     /**
      * Checksum of the configuration file (prior to generation)
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPreChecksum() {
         return generateConfigPreChecksum;
     }
@@ -589,6 +775,7 @@ public class CliEvent {
     /**
      * Rendered configuration file (prior to generation)
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPreRaw() {
         return generateConfigPreRaw;
     }
@@ -596,6 +783,7 @@ public class CliEvent {
     /**
      * The version of the customer's SDK before we generated
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPreVersion() {
         return generateConfigPreVersion;
     }
@@ -603,6 +791,7 @@ public class CliEvent {
     /**
      * gen.lock ID (expected to be a uuid).
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockId() {
         return generateGenLockId;
     }
@@ -610,13 +799,23 @@ public class CliEvent {
     /**
      * Features post generation
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPostFeatures() {
         return generateGenLockPostFeatures;
     }
 
     /**
+     * Blob digest of the Previous Generation
+     */
+    @JsonIgnore
+    public Optional<? extends String> generateGenLockPreBlobDigest() {
+        return generateGenLockPreBlobDigest;
+    }
+
+    /**
      * Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPreDocChecksum() {
         return generateGenLockPreDocChecksum;
     }
@@ -624,6 +823,7 @@ public class CliEvent {
     /**
      * info.Version of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPreDocVersion() {
         return generateGenLockPreDocVersion;
     }
@@ -631,13 +831,31 @@ public class CliEvent {
     /**
      * Features prior to generation
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPreFeatures() {
         return generateGenLockPreFeatures;
     }
 
     /**
+     * Namespace name of the Previous Generation
+     */
+    @JsonIgnore
+    public Optional<? extends String> generateGenLockPreNamespaceName() {
+        return generateGenLockPreNamespaceName;
+    }
+
+    /**
+     * Revision digest of the Previous Generation
+     */
+    @JsonIgnore
+    public Optional<? extends String> generateGenLockPreRevisionDigest() {
+        return generateGenLockPreRevisionDigest;
+    }
+
+    /**
      * Artifact version for the Previous Generation
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPreVersion() {
         return generateGenLockPreVersion;
     }
@@ -645,6 +863,7 @@ public class CliEvent {
     /**
      * Indicates whether tests were output.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> generateOutputTests() {
         return generateOutputTests;
     }
@@ -652,6 +871,7 @@ public class CliEvent {
     /**
      * Indicates whether the target was considered published.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> generatePublished() {
         return generatePublished;
     }
@@ -659,6 +879,7 @@ public class CliEvent {
     /**
      * Expected Repo URL, for use in documentation generation.
      */
+    @JsonIgnore
     public Optional<? extends String> generateRepoUrl() {
         return generateRepoUrl;
     }
@@ -666,6 +887,7 @@ public class CliEvent {
     /**
      * The target of the event.
      */
+    @JsonIgnore
     public Optional<? extends String> generateTarget() {
         return generateTarget;
     }
@@ -673,6 +895,7 @@ public class CliEvent {
     /**
      * The version of the target.
      */
+    @JsonIgnore
     public Optional<? extends String> generateTargetVersion() {
         return generateTargetVersion;
     }
@@ -680,6 +903,7 @@ public class CliEvent {
     /**
      * Version of the generation logic used.
      */
+    @JsonIgnore
     public Optional<? extends String> generateVersion() {
         return generateVersion;
     }
@@ -687,6 +911,7 @@ public class CliEvent {
     /**
      * GitHub organization of the action.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionOrganization() {
         return ghActionOrganization;
     }
@@ -694,6 +919,7 @@ public class CliEvent {
     /**
      * GitHub repository of the action.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionRepository() {
         return ghActionRepository;
     }
@@ -701,6 +927,7 @@ public class CliEvent {
     /**
      * Link to the GitHub action run.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionRunLink() {
         return ghActionRunLink;
     }
@@ -708,6 +935,7 @@ public class CliEvent {
     /**
      * Version of the GitHub action.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionVersion() {
         return ghActionVersion;
     }
@@ -715,6 +943,7 @@ public class CliEvent {
     /**
      * Current working directory relative to the git root.
      */
+    @JsonIgnore
     public Optional<? extends String> gitRelativeCwd() {
         return gitRelativeCwd;
     }
@@ -722,6 +951,7 @@ public class CliEvent {
     /**
      * Default owner for git remote.
      */
+    @JsonIgnore
     public Optional<? extends String> gitRemoteDefaultOwner() {
         return gitRemoteDefaultOwner;
     }
@@ -729,6 +959,7 @@ public class CliEvent {
     /**
      * Default repository name for git remote.
      */
+    @JsonIgnore
     public Optional<? extends String> gitRemoteDefaultRepo() {
         return gitRemoteDefaultRepo;
     }
@@ -736,6 +967,7 @@ public class CliEvent {
     /**
      * User email from git configuration.
      */
+    @JsonIgnore
     public Optional<? extends String> gitUserEmail() {
         return gitUserEmail;
     }
@@ -743,6 +975,7 @@ public class CliEvent {
     /**
      * User's name from git configuration. (not GitHub username)
      */
+    @JsonIgnore
     public Optional<? extends String> gitUserName() {
         return gitUserName;
     }
@@ -750,6 +983,7 @@ public class CliEvent {
     /**
      * Remote hostname.
      */
+    @JsonIgnore
     public Optional<? extends String> hostname() {
         return hostname;
     }
@@ -757,6 +991,7 @@ public class CliEvent {
     /**
      * Unique identifier for each event.
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
@@ -764,13 +999,47 @@ public class CliEvent {
     /**
      * Type of interaction.
      */
+    @JsonIgnore
     public InteractionType interactionType() {
         return interactionType;
     }
 
     /**
+     * The checksum of the lint report.
+     */
+    @JsonIgnore
+    public Optional<? extends String> lintReportDigest() {
+        return lintReportDigest;
+    }
+
+    /**
+     * The number of errors in the lint report.
+     */
+    @JsonIgnore
+    public Optional<? extends Long> lintReportErrorCount() {
+        return lintReportErrorCount;
+    }
+
+    /**
+     * The number of info messages in the lint report.
+     */
+    @JsonIgnore
+    public Optional<? extends Long> lintReportInfoCount() {
+        return lintReportInfoCount;
+    }
+
+    /**
+     * The number of warnings in the lint report.
+     */
+    @JsonIgnore
+    public Optional<? extends Long> lintReportWarningCount() {
+        return lintReportWarningCount;
+    }
+
+    /**
      * Timestamp when the event completed, in local time.
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> localCompletedAt() {
         return localCompletedAt;
     }
@@ -778,6 +1047,7 @@ public class CliEvent {
     /**
      * Timestamp when the event started, in local time.
      */
+    @JsonIgnore
     public OffsetDateTime localStartedAt() {
         return localStartedAt;
     }
@@ -785,6 +1055,7 @@ public class CliEvent {
     /**
      * Checksum of the currently Rendered OpenAPI document.
      */
+    @JsonIgnore
     public Optional<? extends String> managementDocChecksum() {
         return managementDocChecksum;
     }
@@ -792,13 +1063,63 @@ public class CliEvent {
     /**
      * Version taken from info.version field of the Rendered OpenAPI document.
      */
+    @JsonIgnore
     public Optional<? extends String> managementDocVersion() {
         return managementDocVersion;
     }
 
     /**
+     * The blob digest of the base source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> openapiDiffBaseSourceBlobDigest() {
+        return openapiDiffBaseSourceBlobDigest;
+    }
+
+    /**
+     * The namespace name of the base source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> openapiDiffBaseSourceNamespaceName() {
+        return openapiDiffBaseSourceNamespaceName;
+    }
+
+    /**
+     * The revision digest of the base source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> openapiDiffBaseSourceRevisionDigest() {
+        return openapiDiffBaseSourceRevisionDigest;
+    }
+
+    /**
+     * The number of breaking changes in the openapi diff report.
+     */
+    @JsonIgnore
+    public Optional<? extends Long> openapiDiffBreakingChangesCount() {
+        return openapiDiffBreakingChangesCount;
+    }
+
+    /**
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
+     */
+    @JsonIgnore
+    public Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType() {
+        return openapiDiffBumpType;
+    }
+
+    /**
+     * The checksum of the openapi diff report.
+     */
+    @JsonIgnore
+    public Optional<? extends String> openapiDiffReportDigest() {
+        return openapiDiffReportDigest;
+    }
+
+    /**
      * Name of the published package.
      */
+    @JsonIgnore
     public Optional<? extends String> publishPackageName() {
         return publishPackageName;
     }
@@ -806,6 +1127,7 @@ public class CliEvent {
     /**
      * Name of the registry where the package was published.
      */
+    @JsonIgnore
     public Optional<? extends String> publishPackageRegistryName() {
         return publishPackageRegistryName;
     }
@@ -813,6 +1135,7 @@ public class CliEvent {
     /**
      * URL of the published package.
      */
+    @JsonIgnore
     public Optional<? extends String> publishPackageUrl() {
         return publishPackageUrl;
     }
@@ -820,6 +1143,7 @@ public class CliEvent {
     /**
      * Version of the published package.
      */
+    @JsonIgnore
     public Optional<? extends String> publishPackageVersion() {
         return publishPackageVersion;
     }
@@ -827,6 +1151,7 @@ public class CliEvent {
     /**
      * Full CLI command.
      */
+    @JsonIgnore
     public Optional<? extends String> rawCommand() {
         return rawCommand;
     }
@@ -834,13 +1159,39 @@ public class CliEvent {
     /**
      * Label of the git repository.
      */
+    @JsonIgnore
     public Optional<? extends String> repoLabel() {
         return repoLabel;
     }
 
     /**
+     * The blob digest of the source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> sourceBlobDigest() {
+        return sourceBlobDigest;
+    }
+
+    /**
+     * The namespace name of the source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> sourceNamespaceName() {
+        return sourceNamespaceName;
+    }
+
+    /**
+     * The revision digest of the source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> sourceRevisionDigest() {
+        return sourceRevisionDigest;
+    }
+
+    /**
      * Identifier of the Speakeasy API key.
      */
+    @JsonIgnore
     public String speakeasyApiKeyName() {
         return speakeasyApiKeyName;
     }
@@ -848,6 +1199,7 @@ public class CliEvent {
     /**
      * Version of the Speakeasy CLI.
      */
+    @JsonIgnore
     public String speakeasyVersion() {
         return speakeasyVersion;
     }
@@ -855,6 +1207,7 @@ public class CliEvent {
     /**
      * Indicates whether the event was successful.
      */
+    @JsonIgnore
     public boolean success() {
         return success;
     }
@@ -862,6 +1215,7 @@ public class CliEvent {
     /**
      * Identifier of the workspace.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }
@@ -1105,6 +1459,24 @@ public class CliEvent {
     }
 
     /**
+     * Blob digest of the Previous Generation
+     */
+    public CliEvent withGenerateGenLockPreBlobDigest(String generateGenLockPreBlobDigest) {
+        Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
+        this.generateGenLockPreBlobDigest = Optional.ofNullable(generateGenLockPreBlobDigest);
+        return this;
+    }
+
+    /**
+     * Blob digest of the Previous Generation
+     */
+    public CliEvent withGenerateGenLockPreBlobDigest(Optional<? extends String> generateGenLockPreBlobDigest) {
+        Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
+        this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
+        return this;
+    }
+
+    /**
      * Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
      */
     public CliEvent withGenerateGenLockPreDocChecksum(String generateGenLockPreDocChecksum) {
@@ -1155,6 +1527,42 @@ public class CliEvent {
     public CliEvent withGenerateGenLockPreFeatures(Optional<? extends String> generateGenLockPreFeatures) {
         Utils.checkNotNull(generateGenLockPreFeatures, "generateGenLockPreFeatures");
         this.generateGenLockPreFeatures = generateGenLockPreFeatures;
+        return this;
+    }
+
+    /**
+     * Namespace name of the Previous Generation
+     */
+    public CliEvent withGenerateGenLockPreNamespaceName(String generateGenLockPreNamespaceName) {
+        Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
+        this.generateGenLockPreNamespaceName = Optional.ofNullable(generateGenLockPreNamespaceName);
+        return this;
+    }
+
+    /**
+     * Namespace name of the Previous Generation
+     */
+    public CliEvent withGenerateGenLockPreNamespaceName(Optional<? extends String> generateGenLockPreNamespaceName) {
+        Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
+        this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
+        return this;
+    }
+
+    /**
+     * Revision digest of the Previous Generation
+     */
+    public CliEvent withGenerateGenLockPreRevisionDigest(String generateGenLockPreRevisionDigest) {
+        Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
+        this.generateGenLockPreRevisionDigest = Optional.ofNullable(generateGenLockPreRevisionDigest);
+        return this;
+    }
+
+    /**
+     * Revision digest of the Previous Generation
+     */
+    public CliEvent withGenerateGenLockPreRevisionDigest(Optional<? extends String> generateGenLockPreRevisionDigest) {
+        Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
+        this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
         return this;
     }
 
@@ -1483,6 +1891,78 @@ public class CliEvent {
     }
 
     /**
+     * The checksum of the lint report.
+     */
+    public CliEvent withLintReportDigest(String lintReportDigest) {
+        Utils.checkNotNull(lintReportDigest, "lintReportDigest");
+        this.lintReportDigest = Optional.ofNullable(lintReportDigest);
+        return this;
+    }
+
+    /**
+     * The checksum of the lint report.
+     */
+    public CliEvent withLintReportDigest(Optional<? extends String> lintReportDigest) {
+        Utils.checkNotNull(lintReportDigest, "lintReportDigest");
+        this.lintReportDigest = lintReportDigest;
+        return this;
+    }
+
+    /**
+     * The number of errors in the lint report.
+     */
+    public CliEvent withLintReportErrorCount(long lintReportErrorCount) {
+        Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
+        this.lintReportErrorCount = Optional.ofNullable(lintReportErrorCount);
+        return this;
+    }
+
+    /**
+     * The number of errors in the lint report.
+     */
+    public CliEvent withLintReportErrorCount(Optional<? extends Long> lintReportErrorCount) {
+        Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
+        this.lintReportErrorCount = lintReportErrorCount;
+        return this;
+    }
+
+    /**
+     * The number of info messages in the lint report.
+     */
+    public CliEvent withLintReportInfoCount(long lintReportInfoCount) {
+        Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
+        this.lintReportInfoCount = Optional.ofNullable(lintReportInfoCount);
+        return this;
+    }
+
+    /**
+     * The number of info messages in the lint report.
+     */
+    public CliEvent withLintReportInfoCount(Optional<? extends Long> lintReportInfoCount) {
+        Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
+        this.lintReportInfoCount = lintReportInfoCount;
+        return this;
+    }
+
+    /**
+     * The number of warnings in the lint report.
+     */
+    public CliEvent withLintReportWarningCount(long lintReportWarningCount) {
+        Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
+        this.lintReportWarningCount = Optional.ofNullable(lintReportWarningCount);
+        return this;
+    }
+
+    /**
+     * The number of warnings in the lint report.
+     */
+    public CliEvent withLintReportWarningCount(Optional<? extends Long> lintReportWarningCount) {
+        Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
+        this.lintReportWarningCount = lintReportWarningCount;
+        return this;
+    }
+
+    /**
      * Timestamp when the event completed, in local time.
      */
     public CliEvent withLocalCompletedAt(OffsetDateTime localCompletedAt) {
@@ -1542,6 +2022,114 @@ public class CliEvent {
     public CliEvent withManagementDocVersion(Optional<? extends String> managementDocVersion) {
         Utils.checkNotNull(managementDocVersion, "managementDocVersion");
         this.managementDocVersion = managementDocVersion;
+        return this;
+    }
+
+    /**
+     * The blob digest of the base source.
+     */
+    public CliEvent withOpenapiDiffBaseSourceBlobDigest(String openapiDiffBaseSourceBlobDigest) {
+        Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
+        this.openapiDiffBaseSourceBlobDigest = Optional.ofNullable(openapiDiffBaseSourceBlobDigest);
+        return this;
+    }
+
+    /**
+     * The blob digest of the base source.
+     */
+    public CliEvent withOpenapiDiffBaseSourceBlobDigest(Optional<? extends String> openapiDiffBaseSourceBlobDigest) {
+        Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
+        this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
+        return this;
+    }
+
+    /**
+     * The namespace name of the base source.
+     */
+    public CliEvent withOpenapiDiffBaseSourceNamespaceName(String openapiDiffBaseSourceNamespaceName) {
+        Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
+        this.openapiDiffBaseSourceNamespaceName = Optional.ofNullable(openapiDiffBaseSourceNamespaceName);
+        return this;
+    }
+
+    /**
+     * The namespace name of the base source.
+     */
+    public CliEvent withOpenapiDiffBaseSourceNamespaceName(Optional<? extends String> openapiDiffBaseSourceNamespaceName) {
+        Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
+        this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
+        return this;
+    }
+
+    /**
+     * The revision digest of the base source.
+     */
+    public CliEvent withOpenapiDiffBaseSourceRevisionDigest(String openapiDiffBaseSourceRevisionDigest) {
+        Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
+        this.openapiDiffBaseSourceRevisionDigest = Optional.ofNullable(openapiDiffBaseSourceRevisionDigest);
+        return this;
+    }
+
+    /**
+     * The revision digest of the base source.
+     */
+    public CliEvent withOpenapiDiffBaseSourceRevisionDigest(Optional<? extends String> openapiDiffBaseSourceRevisionDigest) {
+        Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
+        this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
+        return this;
+    }
+
+    /**
+     * The number of breaking changes in the openapi diff report.
+     */
+    public CliEvent withOpenapiDiffBreakingChangesCount(long openapiDiffBreakingChangesCount) {
+        Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
+        this.openapiDiffBreakingChangesCount = Optional.ofNullable(openapiDiffBreakingChangesCount);
+        return this;
+    }
+
+    /**
+     * The number of breaking changes in the openapi diff report.
+     */
+    public CliEvent withOpenapiDiffBreakingChangesCount(Optional<? extends Long> openapiDiffBreakingChangesCount) {
+        Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
+        this.openapiDiffBreakingChangesCount = openapiDiffBreakingChangesCount;
+        return this;
+    }
+
+    /**
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
+     */
+    public CliEvent withOpenapiDiffBumpType(OpenapiDiffBumpType openapiDiffBumpType) {
+        Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
+        this.openapiDiffBumpType = Optional.ofNullable(openapiDiffBumpType);
+        return this;
+    }
+
+    /**
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
+     */
+    public CliEvent withOpenapiDiffBumpType(Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType) {
+        Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
+        this.openapiDiffBumpType = openapiDiffBumpType;
+        return this;
+    }
+
+    /**
+     * The checksum of the openapi diff report.
+     */
+    public CliEvent withOpenapiDiffReportDigest(String openapiDiffReportDigest) {
+        Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
+        this.openapiDiffReportDigest = Optional.ofNullable(openapiDiffReportDigest);
+        return this;
+    }
+
+    /**
+     * The checksum of the openapi diff report.
+     */
+    public CliEvent withOpenapiDiffReportDigest(Optional<? extends String> openapiDiffReportDigest) {
+        Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
+        this.openapiDiffReportDigest = openapiDiffReportDigest;
         return this;
     }
 
@@ -1654,6 +2242,60 @@ public class CliEvent {
     }
 
     /**
+     * The blob digest of the source.
+     */
+    public CliEvent withSourceBlobDigest(String sourceBlobDigest) {
+        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+        this.sourceBlobDigest = Optional.ofNullable(sourceBlobDigest);
+        return this;
+    }
+
+    /**
+     * The blob digest of the source.
+     */
+    public CliEvent withSourceBlobDigest(Optional<? extends String> sourceBlobDigest) {
+        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+        this.sourceBlobDigest = sourceBlobDigest;
+        return this;
+    }
+
+    /**
+     * The namespace name of the source.
+     */
+    public CliEvent withSourceNamespaceName(String sourceNamespaceName) {
+        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+        this.sourceNamespaceName = Optional.ofNullable(sourceNamespaceName);
+        return this;
+    }
+
+    /**
+     * The namespace name of the source.
+     */
+    public CliEvent withSourceNamespaceName(Optional<? extends String> sourceNamespaceName) {
+        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+        this.sourceNamespaceName = sourceNamespaceName;
+        return this;
+    }
+
+    /**
+     * The revision digest of the source.
+     */
+    public CliEvent withSourceRevisionDigest(String sourceRevisionDigest) {
+        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+        this.sourceRevisionDigest = Optional.ofNullable(sourceRevisionDigest);
+        return this;
+    }
+
+    /**
+     * The revision digest of the source.
+     */
+    public CliEvent withSourceRevisionDigest(Optional<? extends String> sourceRevisionDigest) {
+        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+        this.sourceRevisionDigest = sourceRevisionDigest;
+        return this;
+    }
+
+    /**
      * Identifier of the Speakeasy API key.
      */
     public CliEvent withSpeakeasyApiKeyName(String speakeasyApiKeyName) {
@@ -1713,9 +2355,12 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.generateConfigPreVersion, other.generateConfigPreVersion) &&
             java.util.Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
             java.util.Objects.deepEquals(this.generateGenLockPostFeatures, other.generateGenLockPostFeatures) &&
+            java.util.Objects.deepEquals(this.generateGenLockPreBlobDigest, other.generateGenLockPreBlobDigest) &&
             java.util.Objects.deepEquals(this.generateGenLockPreDocChecksum, other.generateGenLockPreDocChecksum) &&
             java.util.Objects.deepEquals(this.generateGenLockPreDocVersion, other.generateGenLockPreDocVersion) &&
             java.util.Objects.deepEquals(this.generateGenLockPreFeatures, other.generateGenLockPreFeatures) &&
+            java.util.Objects.deepEquals(this.generateGenLockPreNamespaceName, other.generateGenLockPreNamespaceName) &&
+            java.util.Objects.deepEquals(this.generateGenLockPreRevisionDigest, other.generateGenLockPreRevisionDigest) &&
             java.util.Objects.deepEquals(this.generateGenLockPreVersion, other.generateGenLockPreVersion) &&
             java.util.Objects.deepEquals(this.generateOutputTests, other.generateOutputTests) &&
             java.util.Objects.deepEquals(this.generatePublished, other.generatePublished) &&
@@ -1735,16 +2380,29 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.hostname, other.hostname) &&
             java.util.Objects.deepEquals(this.id, other.id) &&
             java.util.Objects.deepEquals(this.interactionType, other.interactionType) &&
+            java.util.Objects.deepEquals(this.lintReportDigest, other.lintReportDigest) &&
+            java.util.Objects.deepEquals(this.lintReportErrorCount, other.lintReportErrorCount) &&
+            java.util.Objects.deepEquals(this.lintReportInfoCount, other.lintReportInfoCount) &&
+            java.util.Objects.deepEquals(this.lintReportWarningCount, other.lintReportWarningCount) &&
             java.util.Objects.deepEquals(this.localCompletedAt, other.localCompletedAt) &&
             java.util.Objects.deepEquals(this.localStartedAt, other.localStartedAt) &&
             java.util.Objects.deepEquals(this.managementDocChecksum, other.managementDocChecksum) &&
             java.util.Objects.deepEquals(this.managementDocVersion, other.managementDocVersion) &&
+            java.util.Objects.deepEquals(this.openapiDiffBaseSourceBlobDigest, other.openapiDiffBaseSourceBlobDigest) &&
+            java.util.Objects.deepEquals(this.openapiDiffBaseSourceNamespaceName, other.openapiDiffBaseSourceNamespaceName) &&
+            java.util.Objects.deepEquals(this.openapiDiffBaseSourceRevisionDigest, other.openapiDiffBaseSourceRevisionDigest) &&
+            java.util.Objects.deepEquals(this.openapiDiffBreakingChangesCount, other.openapiDiffBreakingChangesCount) &&
+            java.util.Objects.deepEquals(this.openapiDiffBumpType, other.openapiDiffBumpType) &&
+            java.util.Objects.deepEquals(this.openapiDiffReportDigest, other.openapiDiffReportDigest) &&
             java.util.Objects.deepEquals(this.publishPackageName, other.publishPackageName) &&
             java.util.Objects.deepEquals(this.publishPackageRegistryName, other.publishPackageRegistryName) &&
             java.util.Objects.deepEquals(this.publishPackageUrl, other.publishPackageUrl) &&
             java.util.Objects.deepEquals(this.publishPackageVersion, other.publishPackageVersion) &&
             java.util.Objects.deepEquals(this.rawCommand, other.rawCommand) &&
             java.util.Objects.deepEquals(this.repoLabel, other.repoLabel) &&
+            java.util.Objects.deepEquals(this.sourceBlobDigest, other.sourceBlobDigest) &&
+            java.util.Objects.deepEquals(this.sourceNamespaceName, other.sourceNamespaceName) &&
+            java.util.Objects.deepEquals(this.sourceRevisionDigest, other.sourceRevisionDigest) &&
             java.util.Objects.deepEquals(this.speakeasyApiKeyName, other.speakeasyApiKeyName) &&
             java.util.Objects.deepEquals(this.speakeasyVersion, other.speakeasyVersion) &&
             java.util.Objects.deepEquals(this.success, other.success) &&
@@ -1768,9 +2426,12 @@ public class CliEvent {
             generateConfigPreVersion,
             generateGenLockId,
             generateGenLockPostFeatures,
+            generateGenLockPreBlobDigest,
             generateGenLockPreDocChecksum,
             generateGenLockPreDocVersion,
             generateGenLockPreFeatures,
+            generateGenLockPreNamespaceName,
+            generateGenLockPreRevisionDigest,
             generateGenLockPreVersion,
             generateOutputTests,
             generatePublished,
@@ -1790,16 +2451,29 @@ public class CliEvent {
             hostname,
             id,
             interactionType,
+            lintReportDigest,
+            lintReportErrorCount,
+            lintReportInfoCount,
+            lintReportWarningCount,
             localCompletedAt,
             localStartedAt,
             managementDocChecksum,
             managementDocVersion,
+            openapiDiffBaseSourceBlobDigest,
+            openapiDiffBaseSourceNamespaceName,
+            openapiDiffBaseSourceRevisionDigest,
+            openapiDiffBreakingChangesCount,
+            openapiDiffBumpType,
+            openapiDiffReportDigest,
             publishPackageName,
             publishPackageRegistryName,
             publishPackageUrl,
             publishPackageVersion,
             rawCommand,
             repoLabel,
+            sourceBlobDigest,
+            sourceNamespaceName,
+            sourceRevisionDigest,
             speakeasyApiKeyName,
             speakeasyVersion,
             success,
@@ -1823,9 +2497,12 @@ public class CliEvent {
                 "generateConfigPreVersion", generateConfigPreVersion,
                 "generateGenLockId", generateGenLockId,
                 "generateGenLockPostFeatures", generateGenLockPostFeatures,
+                "generateGenLockPreBlobDigest", generateGenLockPreBlobDigest,
                 "generateGenLockPreDocChecksum", generateGenLockPreDocChecksum,
                 "generateGenLockPreDocVersion", generateGenLockPreDocVersion,
                 "generateGenLockPreFeatures", generateGenLockPreFeatures,
+                "generateGenLockPreNamespaceName", generateGenLockPreNamespaceName,
+                "generateGenLockPreRevisionDigest", generateGenLockPreRevisionDigest,
                 "generateGenLockPreVersion", generateGenLockPreVersion,
                 "generateOutputTests", generateOutputTests,
                 "generatePublished", generatePublished,
@@ -1845,16 +2522,29 @@ public class CliEvent {
                 "hostname", hostname,
                 "id", id,
                 "interactionType", interactionType,
+                "lintReportDigest", lintReportDigest,
+                "lintReportErrorCount", lintReportErrorCount,
+                "lintReportInfoCount", lintReportInfoCount,
+                "lintReportWarningCount", lintReportWarningCount,
                 "localCompletedAt", localCompletedAt,
                 "localStartedAt", localStartedAt,
                 "managementDocChecksum", managementDocChecksum,
                 "managementDocVersion", managementDocVersion,
+                "openapiDiffBaseSourceBlobDigest", openapiDiffBaseSourceBlobDigest,
+                "openapiDiffBaseSourceNamespaceName", openapiDiffBaseSourceNamespaceName,
+                "openapiDiffBaseSourceRevisionDigest", openapiDiffBaseSourceRevisionDigest,
+                "openapiDiffBreakingChangesCount", openapiDiffBreakingChangesCount,
+                "openapiDiffBumpType", openapiDiffBumpType,
+                "openapiDiffReportDigest", openapiDiffReportDigest,
                 "publishPackageName", publishPackageName,
                 "publishPackageRegistryName", publishPackageRegistryName,
                 "publishPackageUrl", publishPackageUrl,
                 "publishPackageVersion", publishPackageVersion,
                 "rawCommand", rawCommand,
                 "repoLabel", repoLabel,
+                "sourceBlobDigest", sourceBlobDigest,
+                "sourceNamespaceName", sourceNamespaceName,
+                "sourceRevisionDigest", sourceRevisionDigest,
                 "speakeasyApiKeyName", speakeasyApiKeyName,
                 "speakeasyVersion", speakeasyVersion,
                 "success", success,
@@ -1891,11 +2581,17 @@ public class CliEvent {
  
         private Optional<? extends String> generateGenLockPostFeatures = Optional.empty();
  
+        private Optional<? extends String> generateGenLockPreBlobDigest = Optional.empty();
+ 
         private Optional<? extends String> generateGenLockPreDocChecksum = Optional.empty();
  
         private Optional<? extends String> generateGenLockPreDocVersion = Optional.empty();
  
         private Optional<? extends String> generateGenLockPreFeatures = Optional.empty();
+ 
+        private Optional<? extends String> generateGenLockPreNamespaceName = Optional.empty();
+ 
+        private Optional<? extends String> generateGenLockPreRevisionDigest = Optional.empty();
  
         private Optional<? extends String> generateGenLockPreVersion = Optional.empty();
  
@@ -1935,6 +2631,14 @@ public class CliEvent {
  
         private InteractionType interactionType;
  
+        private Optional<? extends String> lintReportDigest = Optional.empty();
+ 
+        private Optional<? extends Long> lintReportErrorCount = Optional.empty();
+ 
+        private Optional<? extends Long> lintReportInfoCount = Optional.empty();
+ 
+        private Optional<? extends Long> lintReportWarningCount = Optional.empty();
+ 
         private Optional<? extends OffsetDateTime> localCompletedAt = Optional.empty();
  
         private OffsetDateTime localStartedAt;
@@ -1942,6 +2646,18 @@ public class CliEvent {
         private Optional<? extends String> managementDocChecksum = Optional.empty();
  
         private Optional<? extends String> managementDocVersion = Optional.empty();
+ 
+        private Optional<? extends String> openapiDiffBaseSourceBlobDigest = Optional.empty();
+ 
+        private Optional<? extends String> openapiDiffBaseSourceNamespaceName = Optional.empty();
+ 
+        private Optional<? extends String> openapiDiffBaseSourceRevisionDigest = Optional.empty();
+ 
+        private Optional<? extends Long> openapiDiffBreakingChangesCount = Optional.empty();
+ 
+        private Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType = Optional.empty();
+ 
+        private Optional<? extends String> openapiDiffReportDigest = Optional.empty();
  
         private Optional<? extends String> publishPackageName = Optional.empty();
  
@@ -1954,6 +2670,12 @@ public class CliEvent {
         private Optional<? extends String> rawCommand = Optional.empty();
  
         private Optional<? extends String> repoLabel = Optional.empty();
+ 
+        private Optional<? extends String> sourceBlobDigest = Optional.empty();
+ 
+        private Optional<? extends String> sourceNamespaceName = Optional.empty();
+ 
+        private Optional<? extends String> sourceRevisionDigest = Optional.empty();
  
         private String speakeasyApiKeyName;
  
@@ -2202,6 +2924,24 @@ public class CliEvent {
         }
 
         /**
+         * Blob digest of the Previous Generation
+         */
+        public Builder generateGenLockPreBlobDigest(String generateGenLockPreBlobDigest) {
+            Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
+            this.generateGenLockPreBlobDigest = Optional.ofNullable(generateGenLockPreBlobDigest);
+            return this;
+        }
+
+        /**
+         * Blob digest of the Previous Generation
+         */
+        public Builder generateGenLockPreBlobDigest(Optional<? extends String> generateGenLockPreBlobDigest) {
+            Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
+            this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
+            return this;
+        }
+
+        /**
          * Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
          */
         public Builder generateGenLockPreDocChecksum(String generateGenLockPreDocChecksum) {
@@ -2252,6 +2992,42 @@ public class CliEvent {
         public Builder generateGenLockPreFeatures(Optional<? extends String> generateGenLockPreFeatures) {
             Utils.checkNotNull(generateGenLockPreFeatures, "generateGenLockPreFeatures");
             this.generateGenLockPreFeatures = generateGenLockPreFeatures;
+            return this;
+        }
+
+        /**
+         * Namespace name of the Previous Generation
+         */
+        public Builder generateGenLockPreNamespaceName(String generateGenLockPreNamespaceName) {
+            Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
+            this.generateGenLockPreNamespaceName = Optional.ofNullable(generateGenLockPreNamespaceName);
+            return this;
+        }
+
+        /**
+         * Namespace name of the Previous Generation
+         */
+        public Builder generateGenLockPreNamespaceName(Optional<? extends String> generateGenLockPreNamespaceName) {
+            Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
+            this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
+            return this;
+        }
+
+        /**
+         * Revision digest of the Previous Generation
+         */
+        public Builder generateGenLockPreRevisionDigest(String generateGenLockPreRevisionDigest) {
+            Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
+            this.generateGenLockPreRevisionDigest = Optional.ofNullable(generateGenLockPreRevisionDigest);
+            return this;
+        }
+
+        /**
+         * Revision digest of the Previous Generation
+         */
+        public Builder generateGenLockPreRevisionDigest(Optional<? extends String> generateGenLockPreRevisionDigest) {
+            Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
+            this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
             return this;
         }
 
@@ -2580,6 +3356,78 @@ public class CliEvent {
         }
 
         /**
+         * The checksum of the lint report.
+         */
+        public Builder lintReportDigest(String lintReportDigest) {
+            Utils.checkNotNull(lintReportDigest, "lintReportDigest");
+            this.lintReportDigest = Optional.ofNullable(lintReportDigest);
+            return this;
+        }
+
+        /**
+         * The checksum of the lint report.
+         */
+        public Builder lintReportDigest(Optional<? extends String> lintReportDigest) {
+            Utils.checkNotNull(lintReportDigest, "lintReportDigest");
+            this.lintReportDigest = lintReportDigest;
+            return this;
+        }
+
+        /**
+         * The number of errors in the lint report.
+         */
+        public Builder lintReportErrorCount(long lintReportErrorCount) {
+            Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
+            this.lintReportErrorCount = Optional.ofNullable(lintReportErrorCount);
+            return this;
+        }
+
+        /**
+         * The number of errors in the lint report.
+         */
+        public Builder lintReportErrorCount(Optional<? extends Long> lintReportErrorCount) {
+            Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
+            this.lintReportErrorCount = lintReportErrorCount;
+            return this;
+        }
+
+        /**
+         * The number of info messages in the lint report.
+         */
+        public Builder lintReportInfoCount(long lintReportInfoCount) {
+            Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
+            this.lintReportInfoCount = Optional.ofNullable(lintReportInfoCount);
+            return this;
+        }
+
+        /**
+         * The number of info messages in the lint report.
+         */
+        public Builder lintReportInfoCount(Optional<? extends Long> lintReportInfoCount) {
+            Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
+            this.lintReportInfoCount = lintReportInfoCount;
+            return this;
+        }
+
+        /**
+         * The number of warnings in the lint report.
+         */
+        public Builder lintReportWarningCount(long lintReportWarningCount) {
+            Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
+            this.lintReportWarningCount = Optional.ofNullable(lintReportWarningCount);
+            return this;
+        }
+
+        /**
+         * The number of warnings in the lint report.
+         */
+        public Builder lintReportWarningCount(Optional<? extends Long> lintReportWarningCount) {
+            Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
+            this.lintReportWarningCount = lintReportWarningCount;
+            return this;
+        }
+
+        /**
          * Timestamp when the event completed, in local time.
          */
         public Builder localCompletedAt(OffsetDateTime localCompletedAt) {
@@ -2639,6 +3487,114 @@ public class CliEvent {
         public Builder managementDocVersion(Optional<? extends String> managementDocVersion) {
             Utils.checkNotNull(managementDocVersion, "managementDocVersion");
             this.managementDocVersion = managementDocVersion;
+            return this;
+        }
+
+        /**
+         * The blob digest of the base source.
+         */
+        public Builder openapiDiffBaseSourceBlobDigest(String openapiDiffBaseSourceBlobDigest) {
+            Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
+            this.openapiDiffBaseSourceBlobDigest = Optional.ofNullable(openapiDiffBaseSourceBlobDigest);
+            return this;
+        }
+
+        /**
+         * The blob digest of the base source.
+         */
+        public Builder openapiDiffBaseSourceBlobDigest(Optional<? extends String> openapiDiffBaseSourceBlobDigest) {
+            Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
+            this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
+            return this;
+        }
+
+        /**
+         * The namespace name of the base source.
+         */
+        public Builder openapiDiffBaseSourceNamespaceName(String openapiDiffBaseSourceNamespaceName) {
+            Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
+            this.openapiDiffBaseSourceNamespaceName = Optional.ofNullable(openapiDiffBaseSourceNamespaceName);
+            return this;
+        }
+
+        /**
+         * The namespace name of the base source.
+         */
+        public Builder openapiDiffBaseSourceNamespaceName(Optional<? extends String> openapiDiffBaseSourceNamespaceName) {
+            Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
+            this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
+            return this;
+        }
+
+        /**
+         * The revision digest of the base source.
+         */
+        public Builder openapiDiffBaseSourceRevisionDigest(String openapiDiffBaseSourceRevisionDigest) {
+            Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
+            this.openapiDiffBaseSourceRevisionDigest = Optional.ofNullable(openapiDiffBaseSourceRevisionDigest);
+            return this;
+        }
+
+        /**
+         * The revision digest of the base source.
+         */
+        public Builder openapiDiffBaseSourceRevisionDigest(Optional<? extends String> openapiDiffBaseSourceRevisionDigest) {
+            Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
+            this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
+            return this;
+        }
+
+        /**
+         * The number of breaking changes in the openapi diff report.
+         */
+        public Builder openapiDiffBreakingChangesCount(long openapiDiffBreakingChangesCount) {
+            Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
+            this.openapiDiffBreakingChangesCount = Optional.ofNullable(openapiDiffBreakingChangesCount);
+            return this;
+        }
+
+        /**
+         * The number of breaking changes in the openapi diff report.
+         */
+        public Builder openapiDiffBreakingChangesCount(Optional<? extends Long> openapiDiffBreakingChangesCount) {
+            Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
+            this.openapiDiffBreakingChangesCount = openapiDiffBreakingChangesCount;
+            return this;
+        }
+
+        /**
+         * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
+         */
+        public Builder openapiDiffBumpType(OpenapiDiffBumpType openapiDiffBumpType) {
+            Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
+            this.openapiDiffBumpType = Optional.ofNullable(openapiDiffBumpType);
+            return this;
+        }
+
+        /**
+         * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
+         */
+        public Builder openapiDiffBumpType(Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType) {
+            Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
+            this.openapiDiffBumpType = openapiDiffBumpType;
+            return this;
+        }
+
+        /**
+         * The checksum of the openapi diff report.
+         */
+        public Builder openapiDiffReportDigest(String openapiDiffReportDigest) {
+            Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
+            this.openapiDiffReportDigest = Optional.ofNullable(openapiDiffReportDigest);
+            return this;
+        }
+
+        /**
+         * The checksum of the openapi diff report.
+         */
+        public Builder openapiDiffReportDigest(Optional<? extends String> openapiDiffReportDigest) {
+            Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
+            this.openapiDiffReportDigest = openapiDiffReportDigest;
             return this;
         }
 
@@ -2751,6 +3707,60 @@ public class CliEvent {
         }
 
         /**
+         * The blob digest of the source.
+         */
+        public Builder sourceBlobDigest(String sourceBlobDigest) {
+            Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+            this.sourceBlobDigest = Optional.ofNullable(sourceBlobDigest);
+            return this;
+        }
+
+        /**
+         * The blob digest of the source.
+         */
+        public Builder sourceBlobDigest(Optional<? extends String> sourceBlobDigest) {
+            Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+            this.sourceBlobDigest = sourceBlobDigest;
+            return this;
+        }
+
+        /**
+         * The namespace name of the source.
+         */
+        public Builder sourceNamespaceName(String sourceNamespaceName) {
+            Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+            this.sourceNamespaceName = Optional.ofNullable(sourceNamespaceName);
+            return this;
+        }
+
+        /**
+         * The namespace name of the source.
+         */
+        public Builder sourceNamespaceName(Optional<? extends String> sourceNamespaceName) {
+            Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+            this.sourceNamespaceName = sourceNamespaceName;
+            return this;
+        }
+
+        /**
+         * The revision digest of the source.
+         */
+        public Builder sourceRevisionDigest(String sourceRevisionDigest) {
+            Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+            this.sourceRevisionDigest = Optional.ofNullable(sourceRevisionDigest);
+            return this;
+        }
+
+        /**
+         * The revision digest of the source.
+         */
+        public Builder sourceRevisionDigest(Optional<? extends String> sourceRevisionDigest) {
+            Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+            this.sourceRevisionDigest = sourceRevisionDigest;
+            return this;
+        }
+
+        /**
          * Identifier of the Speakeasy API key.
          */
         public Builder speakeasyApiKeyName(String speakeasyApiKeyName) {
@@ -2802,9 +3812,12 @@ public class CliEvent {
                 generateConfigPreVersion,
                 generateGenLockId,
                 generateGenLockPostFeatures,
+                generateGenLockPreBlobDigest,
                 generateGenLockPreDocChecksum,
                 generateGenLockPreDocVersion,
                 generateGenLockPreFeatures,
+                generateGenLockPreNamespaceName,
+                generateGenLockPreRevisionDigest,
                 generateGenLockPreVersion,
                 generateOutputTests,
                 generatePublished,
@@ -2824,16 +3837,29 @@ public class CliEvent {
                 hostname,
                 id,
                 interactionType,
+                lintReportDigest,
+                lintReportErrorCount,
+                lintReportInfoCount,
+                lintReportWarningCount,
                 localCompletedAt,
                 localStartedAt,
                 managementDocChecksum,
                 managementDocVersion,
+                openapiDiffBaseSourceBlobDigest,
+                openapiDiffBaseSourceNamespaceName,
+                openapiDiffBaseSourceRevisionDigest,
+                openapiDiffBreakingChangesCount,
+                openapiDiffBumpType,
+                openapiDiffReportDigest,
                 publishPackageName,
                 publishPackageRegistryName,
                 publishPackageUrl,
                 publishPackageVersion,
                 rawCommand,
                 repoLabel,
+                sourceBlobDigest,
+                sourceNamespaceName,
+                sourceRevisionDigest,
                 speakeasyApiKeyName,
                 speakeasyVersion,
                 success,

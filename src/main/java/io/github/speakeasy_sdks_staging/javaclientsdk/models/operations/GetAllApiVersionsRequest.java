@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -35,6 +37,7 @@ public class GetAllApiVersionsRequest {
     @SpeakeasyMetadata("queryParam:style=deepObject,explode=true,name=op")
     private Optional<? extends Op> op;
 
+    @JsonCreator
     public GetAllApiVersionsRequest(
             String apiID,
             Optional<? extends java.util.Map<String, java.util.List<String>>> metadata,
@@ -46,10 +49,16 @@ public class GetAllApiVersionsRequest {
         this.metadata = metadata;
         this.op = op;
     }
+    
+    public GetAllApiVersionsRequest(
+            String apiID) {
+        this(apiID, Optional.empty(), Optional.empty());
+    }
 
     /**
      * The ID of the Api to retrieve.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -57,6 +66,7 @@ public class GetAllApiVersionsRequest {
     /**
      * Metadata to filter Apis on
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.List<String>>> metadata() {
         return metadata;
     }
@@ -64,6 +74,7 @@ public class GetAllApiVersionsRequest {
     /**
      * Configuration for filter operations
      */
+    @JsonIgnore
     public Optional<? extends Op> op() {
         return op;
     }

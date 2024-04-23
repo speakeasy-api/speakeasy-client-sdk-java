@@ -9,7 +9,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'io.github.speakeasy_sdks_staging.javaclientsdk:speakeasy-client-sdk-java:7.12.1'
+implementation 'io.github.speakeasy_sdks_staging.javaclientsdk:speakeasy-client-sdk-java:7.13.0'
 ```
 
 Maven:
@@ -17,7 +17,7 @@ Maven:
 <dependency>
     <groupId>io.github.speakeasy_sdks_staging.javaclientsdk</groupId>
     <artifactId>speakeasy-client-sdk-java</artifactId>
-    <version>7.12.1</version>
+    <version>7.13.0</version>
 </dependency>
 ```
 
@@ -135,6 +135,15 @@ public class Application {
 * [getSchemas](docs/sdks/schemas/README.md#getschemas) - Get information about all schemas associated with a particular apiID.
 * [registerSchema](docs/sdks/schemas/README.md#registerschema) - Register a schema.
 
+### [artifacts()](docs/sdks/artifacts/README.md)
+
+* [getBlob](docs/sdks/artifacts/README.md#getblob) - Get blob for a particular digest
+* [getManifest](docs/sdks/artifacts/README.md#getmanifest) - Get manifest for a particular reference
+* [getNamespaces](docs/sdks/artifacts/README.md#getnamespaces) - Each namespace contains many revisions.
+* [getRevisions](docs/sdks/artifacts/README.md#getrevisions)
+* [getTags](docs/sdks/artifacts/README.md#gettags)
+* [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
+
 ### [auth()](docs/sdks/auth/README.md)
 
 * [getAccessToken](docs/sdks/auth/README.md#getaccesstoken) - Get or refresh an access token for the current workspace.
@@ -152,6 +161,12 @@ public class Application {
 
 * [getOrganizations](docs/sdks/organizations/README.md#getorganizations) - Get organizations for a user
 
+### [reports()](docs/sdks/reports/README.md)
+
+* [getChangesReportSignedUrl](docs/sdks/reports/README.md#getchangesreportsignedurl) - Get the signed access url for the change reports for a particular document.
+* [getLintingReportSignedUrl](docs/sdks/reports/README.md#getlintingreportsignedurl) - Get the signed access url for the linting reports for a particular document.
+* [uploadReport](docs/sdks/reports/README.md#uploadreport) - Upload a report.
+
 ### [embeds()](docs/sdks/embeds/README.md)
 
 * [getEmbedAccessToken](docs/sdks/embeds/README.md#getembedaccesstoken) - Get an embed access token for the current workspace.
@@ -161,6 +176,7 @@ public class Application {
 ### [events()](docs/sdks/events/README.md)
 
 * [getWorkspaceEvents](docs/sdks/events/README.md#getworkspaceevents) - Load recent events for a particular workspace
+* [getWorkspaceEventsBySourceRevisionDigest](docs/sdks/events/README.md#getworkspaceeventsbysourcerevisiondigest) - Load events for a particular workspace and source revision digest
 * [getWorkspaceTargets](docs/sdks/events/README.md#getworkspacetargets) - Load targets for a particular workspace
 * [postWorkspaceEvents](docs/sdks/events/README.md#postworkspaceevents) - Post events for a specific workspace
 <!-- End Available Resources and Operations [operations] -->
@@ -284,9 +300,10 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
 
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | */*                    |
+| Error Object                                                       | Status Code                                                        | Content Type                                                       |
+| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error | 5XX                                                                | application/json                                                   |
+| models/errors/SDKError                                             | 4xx-5xx                                                            | */*                                                                |
 
 ### Example
 
@@ -295,8 +312,8 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiResponse;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
 import java.math.BigDecimal;
@@ -317,16 +334,20 @@ public class Application {
                 .workspaceID("<value>")
                 .build();
 
-            DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
+            GetWorkspaceEventsRequest req = GetWorkspaceEventsRequest.builder()
+                .afterCreatedAt(OffsetDateTime.parse("2024-04-02T06:03:54.204Z"))
+                .generateGenLockId("<value>")
                 .build();
 
-            DeleteApiResponse res = sdk.apis().deleteApi()
+            GetWorkspaceEventsResponse res = sdk.events().getWorkspaceEvents()
                 .request(req)
                 .call();
 
-            // handle response
+            if (res.cliEventBatch().isPresent()) {
+                // handle response
+            }
+        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
+            // handle exception
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {
@@ -455,6 +476,8 @@ public class Application {
             if (res.cliEventBatch().isPresent()) {
                 // handle response
             }
+        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
+            // handle exception
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
         } catch (Exception e) {

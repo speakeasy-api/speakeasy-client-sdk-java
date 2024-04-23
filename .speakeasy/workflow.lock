@@ -1,7 +1,19 @@
-speakeasyVersion: 1.240.0
+speakeasyVersion: 1.269.1
 sources:
     first-source: {}
+    my-source:
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:3da9526650b8d39c65e2efd3453a4c92503bd9b6a86d3f221d6a2e80d6632b24
+        sourceBlobDigest: sha256:be621d8c6307bb77377bf4a28fcfab0a126bb1655fd6e881b5af03b9e9758709
+        tags:
+            - latest
 targets:
+    java-target:
+        source: my-source
+        sourceNamespace: my-source
+        sourceRevisionDigest: sha256:3da9526650b8d39c65e2efd3453a4c92503bd9b6a86d3f221d6a2e80d6632b24
+        sourceBlobDigest: sha256:be621d8c6307bb77377bf4a28fcfab0a126bb1655fd6e881b5af03b9e9758709
+        outLocation: /github/workspace/repo
     py:
         source: first-source
         outLocation: /Users/robertcrumbaugh/code/speakeasy
@@ -12,14 +24,16 @@ workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        first-source:
+        my-source:
             inputs:
-                - location: ../openapi.yaml
+                - location: https://docs.speakeasyapi.dev/openapi.yaml
     targets:
-        py:
-            target: python
-            source: first-source
-        ts:
-            target: typescript
-            source: first-source
-            output: ../test-sdk
+        java-target:
+            target: java
+            source: my-source
+            publish:
+                java:
+                    ossrhUsername: $OSSRH_USERNAME
+                    ossrhPassword: $OSSRH_PASSWORD
+                    gpgSecretKey: $JAVA_GPG_SECRET_KEY
+                    gpgPassPhrase: $JAVA_GPG_PASSPHRASE

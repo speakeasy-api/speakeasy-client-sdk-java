@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -34,6 +36,7 @@ public class DeleteApiEndpointRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=versionID")
     private String versionID;
 
+    @JsonCreator
     public DeleteApiEndpointRequest(
             String apiEndpointID,
             String apiID,
@@ -49,6 +52,7 @@ public class DeleteApiEndpointRequest {
     /**
      * The ID of the ApiEndpoint to delete.
      */
+    @JsonIgnore
     public String apiEndpointID() {
         return apiEndpointID;
     }
@@ -56,6 +60,7 @@ public class DeleteApiEndpointRequest {
     /**
      * The ID of the Api the ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -63,6 +68,7 @@ public class DeleteApiEndpointRequest {
     /**
      * The version ID of the Api the ApiEndpoint belongs to.
      */
+    @JsonIgnore
     public String versionID() {
         return versionID;
     }

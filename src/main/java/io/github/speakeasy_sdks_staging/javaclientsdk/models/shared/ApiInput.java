@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -47,6 +49,7 @@ public class ApiInput {
     @JsonProperty("version_id")
     private String versionId;
 
+    @JsonCreator
     public ApiInput(
             @JsonProperty("api_id") String apiId,
             @JsonProperty("description") String description,
@@ -61,10 +64,18 @@ public class ApiInput {
         this.metaData = metaData;
         this.versionId = versionId;
     }
+    
+    public ApiInput(
+            String apiId,
+            String description,
+            String versionId) {
+        this(apiId, description, Optional.empty(), versionId);
+    }
 
     /**
      * The ID of this Api. This is a human-readable name (subject to change).
      */
+    @JsonIgnore
     public String apiId() {
         return apiId;
     }
@@ -72,6 +83,7 @@ public class ApiInput {
     /**
      * A detailed description of the Api.
      */
+    @JsonIgnore
     public String description() {
         return description;
     }
@@ -79,6 +91,7 @@ public class ApiInput {
     /**
      * A set of values associated with a meta_data key. This field is only set on get requests.
      */
+    @JsonIgnore
     public Optional<? extends java.util.Map<String, java.util.List<String>>> metaData() {
         return metaData;
     }
@@ -86,6 +99,7 @@ public class ApiInput {
     /**
      * The version ID of this Api. This is semantic version identifier.
      */
+    @JsonIgnore
     public String versionId() {
         return versionId;
     }

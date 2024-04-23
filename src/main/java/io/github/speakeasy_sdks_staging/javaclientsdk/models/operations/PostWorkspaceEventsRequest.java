@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -26,6 +28,7 @@ public class PostWorkspaceEventsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
     private Optional<? extends String> workspaceID;
 
+    @JsonCreator
     public PostWorkspaceEventsRequest(
             java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> requestBody,
             Optional<? extends String> workspaceID) {
@@ -34,7 +37,13 @@ public class PostWorkspaceEventsRequest {
         this.requestBody = requestBody;
         this.workspaceID = workspaceID;
     }
+    
+    public PostWorkspaceEventsRequest(
+            java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> requestBody) {
+        this(requestBody, Optional.empty());
+    }
 
+    @JsonIgnore
     public java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> requestBody() {
         return requestBody;
     }
@@ -42,6 +51,7 @@ public class PostWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
+    @JsonIgnore
     public Optional<? extends String> workspaceID() {
         return workspaceID;
     }

@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -22,6 +24,7 @@ public class GetRequestFromEventLogRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=requestID")
     private String requestID;
 
+    @JsonCreator
     public GetRequestFromEventLogRequest(
             String requestID) {
         Utils.checkNotNull(requestID, "requestID");
@@ -31,6 +34,7 @@ public class GetRequestFromEventLogRequest {
     /**
      * The ID of the request to retrieve.
      */
+    @JsonIgnore
     public String requestID() {
         return requestID;
     }

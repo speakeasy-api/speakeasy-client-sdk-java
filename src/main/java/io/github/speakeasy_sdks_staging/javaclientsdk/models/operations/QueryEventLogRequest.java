@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -23,15 +25,21 @@ public class QueryEventLogRequest {
     @SpeakeasyMetadata("queryParam:serialization=json,name=filters")
     private Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters;
 
+    @JsonCreator
     public QueryEventLogRequest(
             Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters) {
         Utils.checkNotNull(filters, "filters");
         this.filters = filters;
     }
+    
+    public QueryEventLogRequest() {
+        this(Optional.empty());
+    }
 
     /**
      * The filter to apply to the query.
      */
+    @JsonIgnore
     public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters() {
         return filters;
     }

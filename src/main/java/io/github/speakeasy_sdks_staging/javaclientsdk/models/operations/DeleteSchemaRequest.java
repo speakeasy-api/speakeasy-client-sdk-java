@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -34,6 +36,7 @@ public class DeleteSchemaRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=versionID")
     private String versionID;
 
+    @JsonCreator
     public DeleteSchemaRequest(
             String apiID,
             String revisionID,
@@ -49,6 +52,7 @@ public class DeleteSchemaRequest {
     /**
      * The ID of the Api to delete schemas for.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -56,6 +60,7 @@ public class DeleteSchemaRequest {
     /**
      * The revision ID of the schema to delete.
      */
+    @JsonIgnore
     public String revisionID() {
         return revisionID;
     }
@@ -63,6 +68,7 @@ public class DeleteSchemaRequest {
     /**
      * The version ID of the Api to delete metadata for.
      */
+    @JsonIgnore
     public String versionID() {
         return versionID;
     }

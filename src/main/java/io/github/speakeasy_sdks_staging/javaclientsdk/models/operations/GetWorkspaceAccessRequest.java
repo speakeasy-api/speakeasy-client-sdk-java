@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -35,6 +37,7 @@ public class GetWorkspaceAccessRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=targetType")
     private Optional<? extends String> targetType;
 
+    @JsonCreator
     public GetWorkspaceAccessRequest(
             Optional<? extends String> genLockId,
             Optional<? extends Boolean> passive,
@@ -46,10 +49,15 @@ public class GetWorkspaceAccessRequest {
         this.passive = passive;
         this.targetType = targetType;
     }
+    
+    public GetWorkspaceAccessRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Unique identifier of the generation target.
      */
+    @JsonIgnore
     public Optional<? extends String> genLockId() {
         return genLockId;
     }
@@ -57,6 +65,7 @@ public class GetWorkspaceAccessRequest {
     /**
      * Skip side-effects like incrementing metrics.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> passive() {
         return passive;
     }
@@ -64,6 +73,7 @@ public class GetWorkspaceAccessRequest {
     /**
      * The type of the generated target.
      */
+    @JsonIgnore
     public Optional<? extends String> targetType() {
         return targetType;
     }

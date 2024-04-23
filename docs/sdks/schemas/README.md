@@ -524,7 +524,7 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.File;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaFile;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequest;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequestBody;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaResponse;
@@ -550,7 +550,7 @@ public class Application {
 
             RegisterSchemaRequest req = RegisterSchemaRequest.builder()
                 .requestBody(RegisterSchemaRequestBody.builder()
-                        .file(File.builder()
+                        .file(RegisterSchemaFile.builder()
                                 .content("0xCAFCA03e0e".getBytes())
                                 .fileName("<value>")
                                 .build())

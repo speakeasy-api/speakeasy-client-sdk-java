@@ -4,24 +4,132 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.time.OffsetDateTime;
+import java.util.Optional;
 
 
 public class Workspaces {
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("account_type")
+    private Optional<? extends AccessTokenAccountType> accountType;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("id")
+    private Optional<? extends String> id;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("name")
+    private Optional<? extends String> name;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("updated_at")
+    private Optional<? extends OffsetDateTime> updatedAt;
+
+    @JsonCreator
+    public Workspaces(
+            @JsonProperty("account_type") Optional<? extends AccessTokenAccountType> accountType,
+            @JsonProperty("id") Optional<? extends String> id,
+            @JsonProperty("name") Optional<? extends String> name,
+            @JsonProperty("updated_at") Optional<? extends OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(accountType, "accountType");
+        Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.accountType = accountType;
+        this.id = id;
+        this.name = name;
+        this.updatedAt = updatedAt;
+    }
+    
     public Workspaces() {
-        
-        
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    @JsonIgnore
+    public Optional<? extends AccessTokenAccountType> accountType() {
+        return accountType;
+    }
+
+    @JsonIgnore
+    public Optional<? extends String> id() {
+        return id;
+    }
+
+    @JsonIgnore
+    public Optional<? extends String> name() {
+        return name;
+    }
+
+    @JsonIgnore
+    public Optional<? extends OffsetDateTime> updatedAt() {
+        return updatedAt;
     }
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public Workspaces withAccountType(AccessTokenAccountType accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = Optional.ofNullable(accountType);
+        return this;
+    }
+
+    public Workspaces withAccountType(Optional<? extends AccessTokenAccountType> accountType) {
+        Utils.checkNotNull(accountType, "accountType");
+        this.accountType = accountType;
+        return this;
+    }
+
+    public Workspaces withId(String id) {
+        Utils.checkNotNull(id, "id");
+        this.id = Optional.ofNullable(id);
+        return this;
+    }
+
+    public Workspaces withId(Optional<? extends String> id) {
+        Utils.checkNotNull(id, "id");
+        this.id = id;
+        return this;
+    }
+
+    public Workspaces withName(String name) {
+        Utils.checkNotNull(name, "name");
+        this.name = Optional.ofNullable(name);
+        return this;
+    }
+
+    public Workspaces withName(Optional<? extends String> name) {
+        Utils.checkNotNull(name, "name");
+        this.name = name;
+        return this;
+    }
+
+    public Workspaces withUpdatedAt(OffsetDateTime updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = Optional.ofNullable(updatedAt);
+        return this;
+    }
+
+    public Workspaces withUpdatedAt(Optional<? extends OffsetDateTime> updatedAt) {
+        Utils.checkNotNull(updatedAt, "updatedAt");
+        this.updatedAt = updatedAt;
+        return this;
     }
     
     @Override
@@ -32,29 +140,100 @@ public class Workspaces {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        return true;
+        Workspaces other = (Workspaces) o;
+        return 
+            java.util.Objects.deepEquals(this.accountType, other.accountType) &&
+            java.util.Objects.deepEquals(this.id, other.id) &&
+            java.util.Objects.deepEquals(this.name, other.name) &&
+            java.util.Objects.deepEquals(this.updatedAt, other.updatedAt);
     }
     
     @Override
     public int hashCode() {
         return java.util.Objects.hash(
-            );
+            accountType,
+            id,
+            name,
+            updatedAt);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(Workspaces.class);
+        return Utils.toString(Workspaces.class,
+                "accountType", accountType,
+                "id", id,
+                "name", name,
+                "updatedAt", updatedAt);
     }
     
-    public final static class Builder {  
+    public final static class Builder {
+ 
+        private Optional<? extends AccessTokenAccountType> accountType = Optional.empty();
+ 
+        private Optional<? extends String> id = Optional.empty();
+ 
+        private Optional<? extends String> name = Optional.empty();
+ 
+        private Optional<? extends OffsetDateTime> updatedAt = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
         }
+
+        public Builder accountType(AccessTokenAccountType accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = Optional.ofNullable(accountType);
+            return this;
+        }
+
+        public Builder accountType(Optional<? extends AccessTokenAccountType> accountType) {
+            Utils.checkNotNull(accountType, "accountType");
+            this.accountType = accountType;
+            return this;
+        }
+
+        public Builder id(String id) {
+            Utils.checkNotNull(id, "id");
+            this.id = Optional.ofNullable(id);
+            return this;
+        }
+
+        public Builder id(Optional<? extends String> id) {
+            Utils.checkNotNull(id, "id");
+            this.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            Utils.checkNotNull(name, "name");
+            this.name = Optional.ofNullable(name);
+            return this;
+        }
+
+        public Builder name(Optional<? extends String> name) {
+            Utils.checkNotNull(name, "name");
+            this.name = name;
+            return this;
+        }
+
+        public Builder updatedAt(OffsetDateTime updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = Optional.ofNullable(updatedAt);
+            return this;
+        }
+
+        public Builder updatedAt(Optional<? extends OffsetDateTime> updatedAt) {
+            Utils.checkNotNull(updatedAt, "updatedAt");
+            this.updatedAt = updatedAt;
+            return this;
+        }
         
         public Workspaces build() {
             return new Workspaces(
-                );
+                accountType,
+                id,
+                name,
+                updatedAt);
         }
     }
 }

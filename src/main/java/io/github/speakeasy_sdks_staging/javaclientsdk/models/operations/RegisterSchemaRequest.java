@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -34,6 +36,7 @@ public class RegisterSchemaRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=versionID")
     private String versionID;
 
+    @JsonCreator
     public RegisterSchemaRequest(
             RegisterSchemaRequestBody requestBody,
             String apiID,
@@ -49,6 +52,7 @@ public class RegisterSchemaRequest {
     /**
      * The schema file to upload provided as a multipart/form-data file segment.
      */
+    @JsonIgnore
     public RegisterSchemaRequestBody requestBody() {
         return requestBody;
     }
@@ -56,6 +60,7 @@ public class RegisterSchemaRequest {
     /**
      * The ID of the Api to get the schema for.
      */
+    @JsonIgnore
     public String apiID() {
         return apiID;
     }
@@ -63,6 +68,7 @@ public class RegisterSchemaRequest {
     /**
      * The version ID of the Api to delete metadata for.
      */
+    @JsonIgnore
     public String versionID() {
         return versionID;
     }

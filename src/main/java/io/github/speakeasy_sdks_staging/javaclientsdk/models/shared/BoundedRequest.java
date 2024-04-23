@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -110,6 +112,7 @@ public class BoundedRequest {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public BoundedRequest(
             @JsonProperty("api_endpoint_id") String apiEndpointId,
             @JsonProperty("api_id") String apiId,
@@ -154,10 +157,28 @@ public class BoundedRequest {
         this.versionId = versionId;
         this.workspaceId = workspaceId;
     }
+    
+    public BoundedRequest(
+            String apiEndpointId,
+            String apiId,
+            OffsetDateTime createdAt,
+            String customerId,
+            long latency,
+            String method,
+            String path,
+            OffsetDateTime requestFinishTime,
+            String requestId,
+            OffsetDateTime requestStartTime,
+            long status,
+            String versionId,
+            String workspaceId) {
+        this(apiEndpointId, apiId, createdAt, customerId, latency, Optional.empty(), method, path, requestFinishTime, requestId, requestStartTime, status, versionId, workspaceId);
+    }
 
     /**
      * The ID of the ApiEndpoint this request was made to.
      */
+    @JsonIgnore
     public String apiEndpointId() {
         return apiEndpointId;
     }
@@ -165,6 +186,7 @@ public class BoundedRequest {
     /**
      * The ID of the Api this request was made to.
      */
+    @JsonIgnore
     public String apiId() {
         return apiId;
     }
@@ -172,6 +194,7 @@ public class BoundedRequest {
     /**
      * Creation timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -179,6 +202,7 @@ public class BoundedRequest {
     /**
      * The ID of the customer that made this request.
      */
+    @JsonIgnore
     public String customerId() {
         return customerId;
     }
@@ -186,6 +210,7 @@ public class BoundedRequest {
     /**
      * The latency of the request.
      */
+    @JsonIgnore
     public long latency() {
         return latency;
     }
@@ -193,6 +218,7 @@ public class BoundedRequest {
     /**
      * Metadata associated with this request
      */
+    @JsonIgnore
     public Optional<? extends java.util.List<RequestMetadata>> metadata() {
         return metadata;
     }
@@ -200,6 +226,7 @@ public class BoundedRequest {
     /**
      * HTTP verb.
      */
+    @JsonIgnore
     public String method() {
         return method;
     }
@@ -207,6 +234,7 @@ public class BoundedRequest {
     /**
      * The path of the request.
      */
+    @JsonIgnore
     public String path() {
         return path;
     }
@@ -214,6 +242,7 @@ public class BoundedRequest {
     /**
      * The time the request finished.
      */
+    @JsonIgnore
     public OffsetDateTime requestFinishTime() {
         return requestFinishTime;
     }
@@ -221,6 +250,7 @@ public class BoundedRequest {
     /**
      * The ID of this request.
      */
+    @JsonIgnore
     public String requestId() {
         return requestId;
     }
@@ -228,6 +258,7 @@ public class BoundedRequest {
     /**
      * The time the request was made.
      */
+    @JsonIgnore
     public OffsetDateTime requestStartTime() {
         return requestStartTime;
     }
@@ -235,6 +266,7 @@ public class BoundedRequest {
     /**
      * The status code of the request.
      */
+    @JsonIgnore
     public long status() {
         return status;
     }
@@ -242,6 +274,7 @@ public class BoundedRequest {
     /**
      * The version ID of the Api this request was made to.
      */
+    @JsonIgnore
     public String versionId() {
         return versionId;
     }
@@ -249,6 +282,7 @@ public class BoundedRequest {
     /**
      * The workspace ID this request was made to.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }

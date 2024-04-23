@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.operations;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.SpeakeasyMetadata;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -36,6 +38,7 @@ public class GetWorkspaceEventsRequest {
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
     private Optional<? extends String> workspaceID;
 
+    @JsonCreator
     public GetWorkspaceEventsRequest(
             Optional<? extends OffsetDateTime> afterCreatedAt,
             Optional<? extends String> generateGenLockId,
@@ -47,10 +50,15 @@ public class GetWorkspaceEventsRequest {
         this.generateGenLockId = generateGenLockId;
         this.workspaceID = workspaceID;
     }
+    
+    public GetWorkspaceEventsRequest() {
+        this(Optional.empty(), Optional.empty(), Optional.empty());
+    }
 
     /**
      * Filter to only return events created after this timestamp
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> afterCreatedAt() {
         return afterCreatedAt;
     }
@@ -58,6 +66,7 @@ public class GetWorkspaceEventsRequest {
     /**
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockId() {
         return generateGenLockId;
     }
@@ -65,6 +74,7 @@ public class GetWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
+    @JsonIgnore
     public Optional<? extends String> workspaceID() {
         return workspaceID;
     }

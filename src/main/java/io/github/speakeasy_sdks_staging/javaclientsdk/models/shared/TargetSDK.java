@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -192,12 +194,34 @@ public class TargetSDK {
     private Optional<? extends String> repoLabel;
 
     /**
+     * The blob digest of the source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_blob_digest")
+    private Optional<? extends String> sourceBlobDigest;
+
+    /**
+     * The namespace name of the source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_namespace_name")
+    private Optional<? extends String> sourceNamespaceName;
+
+    /**
+     * The revision digest of the source.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("source_revision_digest")
+    private Optional<? extends String> sourceRevisionDigest;
+
+    /**
      * Indicates whether the event was successful.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("success")
     private Optional<? extends Boolean> success;
 
+    @JsonCreator
     public TargetSDK(
             @JsonProperty("commit_head") Optional<? extends String> commitHead,
             @JsonProperty("continuous_integration_environment") Optional<? extends String> continuousIntegrationEnvironment,
@@ -224,6 +248,9 @@ public class TargetSDK {
             @JsonProperty("last_event_id") String lastEventId,
             @JsonProperty("last_event_interaction_type") InteractionType lastEventInteractionType,
             @JsonProperty("repo_label") Optional<? extends String> repoLabel,
+            @JsonProperty("source_blob_digest") Optional<? extends String> sourceBlobDigest,
+            @JsonProperty("source_namespace_name") Optional<? extends String> sourceNamespaceName,
+            @JsonProperty("source_revision_digest") Optional<? extends String> sourceRevisionDigest,
             @JsonProperty("success") Optional<? extends Boolean> success) {
         Utils.checkNotNull(commitHead, "commitHead");
         Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
@@ -250,6 +277,9 @@ public class TargetSDK {
         Utils.checkNotNull(lastEventId, "lastEventId");
         Utils.checkNotNull(lastEventInteractionType, "lastEventInteractionType");
         Utils.checkNotNull(repoLabel, "repoLabel");
+        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
         Utils.checkNotNull(success, "success");
         this.commitHead = commitHead;
         this.continuousIntegrationEnvironment = continuousIntegrationEnvironment;
@@ -276,12 +306,26 @@ public class TargetSDK {
         this.lastEventId = lastEventId;
         this.lastEventInteractionType = lastEventInteractionType;
         this.repoLabel = repoLabel;
+        this.sourceBlobDigest = sourceBlobDigest;
+        this.sourceNamespaceName = sourceNamespaceName;
+        this.sourceRevisionDigest = sourceRevisionDigest;
         this.success = success;
+    }
+    
+    public TargetSDK(
+            String generateGenLockId,
+            String generateTarget,
+            String id,
+            OffsetDateTime lastEventCreatedAt,
+            String lastEventId,
+            InteractionType lastEventInteractionType) {
+        this(Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * Remote commit ID.
      */
+    @JsonIgnore
     public Optional<? extends String> commitHead() {
         return commitHead;
     }
@@ -289,6 +333,7 @@ public class TargetSDK {
     /**
      * Name of the CI environment.
      */
+    @JsonIgnore
     public Optional<? extends String> continuousIntegrationEnvironment() {
         return continuousIntegrationEnvironment;
     }
@@ -296,6 +341,7 @@ public class TargetSDK {
     /**
      * Version of the generated target (post generation)
      */
+    @JsonIgnore
     public Optional<? extends String> generateConfigPostVersion() {
         return generateConfigPostVersion;
     }
@@ -303,6 +349,7 @@ public class TargetSDK {
     /**
      * gen.lock ID (expected to be a uuid). The same as `id`. A unique identifier for the target.
      */
+    @JsonIgnore
     public String generateGenLockId() {
         return generateGenLockId;
     }
@@ -310,6 +357,7 @@ public class TargetSDK {
     /**
      * Features prior to generation
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPreFeatures() {
         return generateGenLockPreFeatures;
     }
@@ -317,6 +365,7 @@ public class TargetSDK {
     /**
      * Artifact version for the Previous Generation
      */
+    @JsonIgnore
     public Optional<? extends String> generateGenLockPreVersion() {
         return generateGenLockPreVersion;
     }
@@ -324,6 +373,7 @@ public class TargetSDK {
     /**
      * Indicates whether the target was considered published.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> generatePublished() {
         return generatePublished;
     }
@@ -331,6 +381,7 @@ public class TargetSDK {
     /**
      * eg `typescript`, `terraform`, `python`
      */
+    @JsonIgnore
     public String generateTarget() {
         return generateTarget;
     }
@@ -338,6 +389,7 @@ public class TargetSDK {
     /**
      * The name of the target as defined by the user.
      */
+    @JsonIgnore
     public Optional<? extends String> generateTargetName() {
         return generateTargetName;
     }
@@ -345,6 +397,7 @@ public class TargetSDK {
     /**
      * The version of the Speakeasy generator for this target eg v2 of the typescript generator.
      */
+    @JsonIgnore
     public Optional<? extends String> generateTargetVersion() {
         return generateTargetVersion;
     }
@@ -352,6 +405,7 @@ public class TargetSDK {
     /**
      * GitHub organization of the action.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionOrganization() {
         return ghActionOrganization;
     }
@@ -359,6 +413,7 @@ public class TargetSDK {
     /**
      * GitHub repository of the action.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionRepository() {
         return ghActionRepository;
     }
@@ -366,6 +421,7 @@ public class TargetSDK {
     /**
      * Link to the GitHub action run.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionRunLink() {
         return ghActionRunLink;
     }
@@ -373,6 +429,7 @@ public class TargetSDK {
     /**
      * Version of the GitHub action.
      */
+    @JsonIgnore
     public Optional<? extends String> ghActionVersion() {
         return ghActionVersion;
     }
@@ -380,6 +437,7 @@ public class TargetSDK {
     /**
      * Current working directory relative to the git root.
      */
+    @JsonIgnore
     public Optional<? extends String> gitRelativeCwd() {
         return gitRelativeCwd;
     }
@@ -387,6 +445,7 @@ public class TargetSDK {
     /**
      * Default owner for git remote.
      */
+    @JsonIgnore
     public Optional<? extends String> gitRemoteDefaultOwner() {
         return gitRemoteDefaultOwner;
     }
@@ -394,6 +453,7 @@ public class TargetSDK {
     /**
      * Default repository name for git remote.
      */
+    @JsonIgnore
     public Optional<? extends String> gitRemoteDefaultRepo() {
         return gitRemoteDefaultRepo;
     }
@@ -401,6 +461,7 @@ public class TargetSDK {
     /**
      * User email from git configuration.
      */
+    @JsonIgnore
     public Optional<? extends String> gitUserEmail() {
         return gitUserEmail;
     }
@@ -408,6 +469,7 @@ public class TargetSDK {
     /**
      * User's name from git configuration. (not GitHub username)
      */
+    @JsonIgnore
     public Optional<? extends String> gitUserName() {
         return gitUserName;
     }
@@ -415,6 +477,7 @@ public class TargetSDK {
     /**
      * Remote hostname.
      */
+    @JsonIgnore
     public Optional<? extends String> hostname() {
         return hostname;
     }
@@ -422,6 +485,7 @@ public class TargetSDK {
     /**
      * Unique identifier of the target the same as `generate_gen_lock_id`
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
@@ -429,6 +493,7 @@ public class TargetSDK {
     /**
      * Timestamp when the event was created in the database.
      */
+    @JsonIgnore
     public OffsetDateTime lastEventCreatedAt() {
         return lastEventCreatedAt;
     }
@@ -436,6 +501,7 @@ public class TargetSDK {
     /**
      * Unique identifier of the last event for the target
      */
+    @JsonIgnore
     public String lastEventId() {
         return lastEventId;
     }
@@ -443,6 +509,7 @@ public class TargetSDK {
     /**
      * Type of interaction.
      */
+    @JsonIgnore
     public InteractionType lastEventInteractionType() {
         return lastEventInteractionType;
     }
@@ -450,13 +517,39 @@ public class TargetSDK {
     /**
      * Label of the git repository.
      */
+    @JsonIgnore
     public Optional<? extends String> repoLabel() {
         return repoLabel;
     }
 
     /**
+     * The blob digest of the source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> sourceBlobDigest() {
+        return sourceBlobDigest;
+    }
+
+    /**
+     * The namespace name of the source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> sourceNamespaceName() {
+        return sourceNamespaceName;
+    }
+
+    /**
+     * The revision digest of the source.
+     */
+    @JsonIgnore
+    public Optional<? extends String> sourceRevisionDigest() {
+        return sourceRevisionDigest;
+    }
+
+    /**
      * Indicates whether the event was successful.
      */
+    @JsonIgnore
     public Optional<? extends Boolean> success() {
         return success;
     }
@@ -862,6 +955,60 @@ public class TargetSDK {
     }
 
     /**
+     * The blob digest of the source.
+     */
+    public TargetSDK withSourceBlobDigest(String sourceBlobDigest) {
+        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+        this.sourceBlobDigest = Optional.ofNullable(sourceBlobDigest);
+        return this;
+    }
+
+    /**
+     * The blob digest of the source.
+     */
+    public TargetSDK withSourceBlobDigest(Optional<? extends String> sourceBlobDigest) {
+        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+        this.sourceBlobDigest = sourceBlobDigest;
+        return this;
+    }
+
+    /**
+     * The namespace name of the source.
+     */
+    public TargetSDK withSourceNamespaceName(String sourceNamespaceName) {
+        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+        this.sourceNamespaceName = Optional.ofNullable(sourceNamespaceName);
+        return this;
+    }
+
+    /**
+     * The namespace name of the source.
+     */
+    public TargetSDK withSourceNamespaceName(Optional<? extends String> sourceNamespaceName) {
+        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+        this.sourceNamespaceName = sourceNamespaceName;
+        return this;
+    }
+
+    /**
+     * The revision digest of the source.
+     */
+    public TargetSDK withSourceRevisionDigest(String sourceRevisionDigest) {
+        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+        this.sourceRevisionDigest = Optional.ofNullable(sourceRevisionDigest);
+        return this;
+    }
+
+    /**
+     * The revision digest of the source.
+     */
+    public TargetSDK withSourceRevisionDigest(Optional<? extends String> sourceRevisionDigest) {
+        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+        this.sourceRevisionDigest = sourceRevisionDigest;
+        return this;
+    }
+
+    /**
      * Indicates whether the event was successful.
      */
     public TargetSDK withSuccess(boolean success) {
@@ -914,6 +1061,9 @@ public class TargetSDK {
             java.util.Objects.deepEquals(this.lastEventId, other.lastEventId) &&
             java.util.Objects.deepEquals(this.lastEventInteractionType, other.lastEventInteractionType) &&
             java.util.Objects.deepEquals(this.repoLabel, other.repoLabel) &&
+            java.util.Objects.deepEquals(this.sourceBlobDigest, other.sourceBlobDigest) &&
+            java.util.Objects.deepEquals(this.sourceNamespaceName, other.sourceNamespaceName) &&
+            java.util.Objects.deepEquals(this.sourceRevisionDigest, other.sourceRevisionDigest) &&
             java.util.Objects.deepEquals(this.success, other.success);
     }
     
@@ -945,6 +1095,9 @@ public class TargetSDK {
             lastEventId,
             lastEventInteractionType,
             repoLabel,
+            sourceBlobDigest,
+            sourceNamespaceName,
+            sourceRevisionDigest,
             success);
     }
     
@@ -976,6 +1129,9 @@ public class TargetSDK {
                 "lastEventId", lastEventId,
                 "lastEventInteractionType", lastEventInteractionType,
                 "repoLabel", repoLabel,
+                "sourceBlobDigest", sourceBlobDigest,
+                "sourceNamespaceName", sourceNamespaceName,
+                "sourceRevisionDigest", sourceRevisionDigest,
                 "success", success);
     }
     
@@ -1030,6 +1186,12 @@ public class TargetSDK {
         private InteractionType lastEventInteractionType;
  
         private Optional<? extends String> repoLabel = Optional.empty();
+ 
+        private Optional<? extends String> sourceBlobDigest = Optional.empty();
+ 
+        private Optional<? extends String> sourceNamespaceName = Optional.empty();
+ 
+        private Optional<? extends String> sourceRevisionDigest = Optional.empty();
  
         private Optional<? extends Boolean> success = Optional.empty();  
         
@@ -1434,6 +1596,60 @@ public class TargetSDK {
         }
 
         /**
+         * The blob digest of the source.
+         */
+        public Builder sourceBlobDigest(String sourceBlobDigest) {
+            Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+            this.sourceBlobDigest = Optional.ofNullable(sourceBlobDigest);
+            return this;
+        }
+
+        /**
+         * The blob digest of the source.
+         */
+        public Builder sourceBlobDigest(Optional<? extends String> sourceBlobDigest) {
+            Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
+            this.sourceBlobDigest = sourceBlobDigest;
+            return this;
+        }
+
+        /**
+         * The namespace name of the source.
+         */
+        public Builder sourceNamespaceName(String sourceNamespaceName) {
+            Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+            this.sourceNamespaceName = Optional.ofNullable(sourceNamespaceName);
+            return this;
+        }
+
+        /**
+         * The namespace name of the source.
+         */
+        public Builder sourceNamespaceName(Optional<? extends String> sourceNamespaceName) {
+            Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
+            this.sourceNamespaceName = sourceNamespaceName;
+            return this;
+        }
+
+        /**
+         * The revision digest of the source.
+         */
+        public Builder sourceRevisionDigest(String sourceRevisionDigest) {
+            Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+            this.sourceRevisionDigest = Optional.ofNullable(sourceRevisionDigest);
+            return this;
+        }
+
+        /**
+         * The revision digest of the source.
+         */
+        public Builder sourceRevisionDigest(Optional<? extends String> sourceRevisionDigest) {
+            Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+            this.sourceRevisionDigest = sourceRevisionDigest;
+            return this;
+        }
+
+        /**
          * Indicates whether the event was successful.
          */
         public Builder success(boolean success) {
@@ -1478,6 +1694,9 @@ public class TargetSDK {
                 lastEventId,
                 lastEventInteractionType,
                 repoLabel,
+                sourceBlobDigest,
+                sourceNamespaceName,
+                sourceRevisionDigest,
                 success);
         }
     }

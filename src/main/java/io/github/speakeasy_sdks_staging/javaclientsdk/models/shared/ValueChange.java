@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.type.TypeReference;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.Utils;
@@ -28,6 +30,7 @@ public class ValueChange {
     @JsonProperty("To")
     private String to;
 
+    @JsonCreator
     public ValueChange(
             @JsonProperty("From") String from,
             @JsonProperty("To") String to) {
@@ -40,6 +43,7 @@ public class ValueChange {
     /**
      * Represents the previous value of the element.
      */
+    @JsonIgnore
     public String from() {
         return from;
     }
@@ -47,6 +51,7 @@ public class ValueChange {
     /**
      * Represents the current value of the element.
      */
+    @JsonIgnore
     public String to() {
         return to;
     }

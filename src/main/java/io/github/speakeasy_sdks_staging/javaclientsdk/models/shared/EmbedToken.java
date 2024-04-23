@@ -4,7 +4,9 @@
 
 package io.github.speakeasy_sdks_staging.javaclientsdk.models.shared;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -88,6 +90,7 @@ public class EmbedToken {
     @JsonProperty("workspace_id")
     private String workspaceId;
 
+    @JsonCreator
     public EmbedToken(
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("created_by") String createdBy,
@@ -120,10 +123,22 @@ public class EmbedToken {
         this.revokedBy = revokedBy;
         this.workspaceId = workspaceId;
     }
+    
+    public EmbedToken(
+            OffsetDateTime createdAt,
+            String createdBy,
+            String description,
+            OffsetDateTime expiresAt,
+            String filters,
+            String id,
+            String workspaceId) {
+        this(createdAt, createdBy, description, expiresAt, filters, id, Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
+    }
 
     /**
      * Creation timestamp.
      */
+    @JsonIgnore
     public OffsetDateTime createdAt() {
         return createdAt;
     }
@@ -131,6 +146,7 @@ public class EmbedToken {
     /**
      * The ID of the user that created this token.
      */
+    @JsonIgnore
     public String createdBy() {
         return createdBy;
     }
@@ -138,6 +154,7 @@ public class EmbedToken {
     /**
      * A detailed description of the EmbedToken.
      */
+    @JsonIgnore
     public String description() {
         return description;
     }
@@ -145,6 +162,7 @@ public class EmbedToken {
     /**
      * The time this token expires.
      */
+    @JsonIgnore
     public OffsetDateTime expiresAt() {
         return expiresAt;
     }
@@ -152,6 +170,7 @@ public class EmbedToken {
     /**
      * The filters applied to this token.
      */
+    @JsonIgnore
     public String filters() {
         return filters;
     }
@@ -159,6 +178,7 @@ public class EmbedToken {
     /**
      * The ID of this EmbedToken.
      */
+    @JsonIgnore
     public String id() {
         return id;
     }
@@ -166,6 +186,7 @@ public class EmbedToken {
     /**
      * The last time this token was used.
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> lastUsed() {
         return lastUsed;
     }
@@ -173,6 +194,7 @@ public class EmbedToken {
     /**
      * The time this token was revoked.
      */
+    @JsonIgnore
     public Optional<? extends OffsetDateTime> revokedAt() {
         return revokedAt;
     }
@@ -180,6 +202,7 @@ public class EmbedToken {
     /**
      * The ID of the user that revoked this token.
      */
+    @JsonIgnore
     public Optional<? extends String> revokedBy() {
         return revokedBy;
     }
@@ -187,6 +210,7 @@ public class EmbedToken {
     /**
      * The workspace ID this token belongs to.
      */
+    @JsonIgnore
     public String workspaceId() {
         return workspaceId;
     }
