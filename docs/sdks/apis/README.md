@@ -25,26 +25,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             DeleteApiRequest req = DeleteApiRequest.builder()
@@ -59,8 +59,10 @@ public class Application {
             // handle response
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -94,26 +96,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateOpenApiSpecRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateOpenApiSpecResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GenerateOpenApiSpecRequest req = GenerateOpenApiSpecRequest.builder()
@@ -130,8 +132,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -164,26 +168,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GeneratePostmanCollectionRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GeneratePostmanCollectionResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GeneratePostmanCollectionRequest req = GeneratePostmanCollectionRequest.builder()
@@ -200,8 +204,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -235,37 +241,30 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllApiVersionsRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllApiVersionsResponse;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.Op;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetAllApiVersionsRequest req = GetAllApiVersionsRequest.builder()
                 .apiID("<value>")
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", java.util.List.of(
-                        "<value>"))))
-                .op(Op.builder()
-                    .and(false)
-                    .build())
                 .build();
 
             GetAllApiVersionsResponse res = sdk.apis().getAllApiVersions()
@@ -277,8 +276,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -312,36 +313,29 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApisRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApisResponse;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.QueryParamOp;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetApisRequest req = GetApisRequest.builder()
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", java.util.List.of(
-                        "<value>"))))
-                .op(QueryParamOp.builder()
-                    .and(false)
-                    .build())
                 .build();
 
             GetApisResponse res = sdk.apis().getApis()
@@ -353,8 +347,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -388,27 +384,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UpsertApiRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UpsertApiResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiInput;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             UpsertApiRequest req = UpsertApiRequest.builder()
@@ -416,9 +411,6 @@ public class Application {
                         .apiId("<value>")
                         .description("<value>")
                         .versionId("<value>")
-                        .metaData(java.util.Map.ofEntries(
-                            entry("key", java.util.List.of(
-                                "<value>"))))
                         .build())
                 .apiID("<value>")
                 .build();
@@ -432,8 +424,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

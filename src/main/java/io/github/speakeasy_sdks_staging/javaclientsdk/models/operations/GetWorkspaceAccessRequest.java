@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetWorkspaceAccessRequest {
 
     /**
@@ -57,25 +56,28 @@ public class GetWorkspaceAccessRequest {
     /**
      * Unique identifier of the generation target.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> genLockId() {
-        return genLockId;
+    public Optional<String> genLockId() {
+        return (Optional<String>) genLockId;
     }
 
     /**
      * Skip side-effects like incrementing metrics.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> passive() {
-        return passive;
+    public Optional<Boolean> passive() {
+        return (Optional<Boolean>) passive;
     }
 
     /**
      * The type of the generated target.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> targetType() {
-        return targetType;
+    public Optional<String> targetType() {
+        return (Optional<String>) targetType;
     }
 
     public final static Builder builder() {

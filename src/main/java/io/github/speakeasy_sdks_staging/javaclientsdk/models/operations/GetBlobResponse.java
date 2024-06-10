@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetBlobResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class GetBlobResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends InputStream> blob() {
-        return blob;
+    public Optional<InputStream> blob() {
+        return (Optional<InputStream>) blob;
     }
 
     /**
@@ -89,9 +89,10 @@ public class GetBlobResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**

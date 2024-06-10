@@ -22,26 +22,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetChangesReportSignedUrlRequest req = GetChangesReportSignedUrlRequest.builder()
@@ -57,8 +57,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -91,26 +93,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetLintingReportSignedUrlRequest req = GetLintingReportSignedUrlRequest.builder()
@@ -126,8 +128,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -160,37 +164,33 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.File;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportRequestBody;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Report;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Type;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             UploadReportRequestBody req = UploadReportRequestBody.builder()
                 .data(Report.builder()
-                        .type(Type.CHANGES)
                         .build())
                 .file(File.builder()
-                        .content("0x329C0ad855".getBytes())
+                        .content("0xA329C0ad85".getBytes())
                         .fileName("<value>")
                         .build())
                 .build();
@@ -204,8 +204,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

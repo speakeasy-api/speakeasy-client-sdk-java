@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * PreflightToken - A PreflightToken is a token that allows access to the OCI distribution endpoints.
  */
@@ -39,9 +38,10 @@ public class PreflightToken {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> authToken() {
-        return authToken;
+    public Optional<String> authToken() {
+        return (Optional<String>) authToken;
     }
 
     public final static Builder builder() {

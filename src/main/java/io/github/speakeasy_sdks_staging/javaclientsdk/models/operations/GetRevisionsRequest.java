@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetRevisionsRequest {
 
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=namespace_name")
@@ -51,9 +50,10 @@ public class GetRevisionsRequest {
     /**
      * Token to retrieve the next page of results
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> nextPageToken() {
-        return nextPageToken;
+    public Optional<String> nextPageToken() {
+        return (Optional<String>) nextPageToken;
     }
 
     public final static Builder builder() {

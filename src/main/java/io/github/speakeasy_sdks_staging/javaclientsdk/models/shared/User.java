@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class User {
 
     /**
@@ -189,9 +188,10 @@ public class User {
     /**
      * Identifier of the default workspace.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> defaultWorkspaceId() {
-        return defaultWorkspaceId;
+    public Optional<String> defaultWorkspaceId() {
+        return (Optional<String>) defaultWorkspaceId;
     }
 
     /**
@@ -221,9 +221,10 @@ public class User {
     /**
      * GitHub handle of the user.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> githubHandle() {
-        return githubHandle;
+    public Optional<String> githubHandle() {
+        return (Optional<String>) githubHandle;
     }
 
     /**
@@ -245,9 +246,10 @@ public class User {
     /**
      * URL of the user's photo.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> photoUrl() {
-        return photoUrl;
+    public Optional<String> photoUrl() {
+        return (Optional<String>) photoUrl;
     }
 
     /**

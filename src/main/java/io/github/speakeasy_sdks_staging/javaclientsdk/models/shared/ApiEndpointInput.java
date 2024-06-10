@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 /**
  * ApiEndpointInput - An ApiEndpoint is a description of an Endpoint for an API.
  */

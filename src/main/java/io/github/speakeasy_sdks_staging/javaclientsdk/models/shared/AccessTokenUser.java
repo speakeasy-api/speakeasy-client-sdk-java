@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class AccessTokenUser {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -74,34 +73,40 @@ public class AccessTokenUser {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> admin() {
-        return admin;
+    public Optional<Boolean> admin() {
+        return (Optional<Boolean>) admin;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> createdAt() {
-        return createdAt;
+    public Optional<OffsetDateTime> createdAt() {
+        return (Optional<OffsetDateTime>) createdAt;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> displayName() {
-        return displayName;
+    public Optional<String> displayName() {
+        return (Optional<String>) displayName;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> email() {
-        return email;
+    public Optional<String> email() {
+        return (Optional<String>) email;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> emailVerified() {
-        return emailVerified;
+    public Optional<Boolean> emailVerified() {
+        return (Optional<Boolean>) emailVerified;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
     public final static Builder builder() {

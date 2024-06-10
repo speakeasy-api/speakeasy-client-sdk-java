@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetUserResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -81,9 +80,10 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**
@@ -105,9 +105,10 @@ public class GetUserResponse implements io.github.speakeasy_sdks_staging.javacli
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User> user() {
-        return user;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User> user() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User>) user;
     }
 
     public final static Builder builder() {

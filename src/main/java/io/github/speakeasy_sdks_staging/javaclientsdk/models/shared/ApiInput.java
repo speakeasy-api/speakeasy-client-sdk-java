@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * ApiInput - An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform.
  */
@@ -91,9 +90,10 @@ public class ApiInput {
     /**
      * A set of values associated with a meta_data key. This field is only set on get requests.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.List<String>>> metaData() {
-        return metaData;
+    public Optional<java.util.Map<String, java.util.List<String>>> metaData() {
+        return (Optional<java.util.Map<String, java.util.List<String>>>) metaData;
     }
 
     /**

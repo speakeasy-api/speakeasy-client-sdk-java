@@ -9,7 +9,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'io.github.speakeasy_sdks_staging.javaclientsdk:speakeasy-client-sdk-java:7.13.0'
+implementation 'io.github.speakeasy_sdks_staging.javaclientsdk:speakeasy-client-sdk-java:7.14.0'
 ```
 
 Maven:
@@ -17,7 +17,7 @@ Maven:
 <dependency>
     <groupId>io.github.speakeasy_sdks_staging.javaclientsdk</groupId>
     <artifactId>speakeasy-client-sdk-java</artifactId>
-    <version>7.13.0</version>
+    <version>7.14.0</version>
 </dependency>
 ```
 
@@ -46,36 +46,29 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApisRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApisResponse;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.QueryParamOp;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetApisRequest req = GetApisRequest.builder()
-                .metadata(java.util.Map.ofEntries(
-                    entry("key", java.util.List.of(
-                        "<value>"))))
-                .op(QueryParamOp.builder()
-                    .and(false)
-                    .build())
                 .build();
 
             GetApisResponse res = sdk.apis().getApis()
@@ -87,8 +80,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -142,6 +137,7 @@ public class Application {
 * [getNamespaces](docs/sdks/artifacts/README.md#getnamespaces) - Each namespace contains many revisions.
 * [getRevisions](docs/sdks/artifacts/README.md#getrevisions)
 * [getTags](docs/sdks/artifacts/README.md#gettags)
+* [postTags](docs/sdks/artifacts/README.md#posttags) - Add tags to an existing revision
 * [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
 
 ### [auth()](docs/sdks/auth/README.md)
@@ -157,8 +153,16 @@ public class Application {
 * [getRequestFromEventLog](docs/sdks/requests/README.md#getrequestfromeventlog) - Get information about a particular request.
 * [queryEventLog](docs/sdks/requests/README.md#queryeventlog) - Query the event log to retrieve a list of requests.
 
+### [github()](docs/sdks/github/README.md)
+
+* [githubCheckAccess](docs/sdks/github/README.md#githubcheckaccess)
+* [githubConfigureTarget](docs/sdks/github/README.md#githubconfiguretarget)
+* [githubTriggerAction](docs/sdks/github/README.md#githubtriggeraction)
+
 ### [organizations()](docs/sdks/organizations/README.md)
 
+* [createFreeTrial](docs/sdks/organizations/README.md#createfreetrial) - Create a free trial for an organization
+* [getOrganizationUsage](docs/sdks/organizations/README.md#getorganizationusage) - Get billing usage summary for a particular organization
 * [getOrganizations](docs/sdks/organizations/README.md#getorganizations) - Get organizations for a user
 
 ### [reports()](docs/sdks/reports/README.md)
@@ -166,6 +170,10 @@ public class Application {
 * [getChangesReportSignedUrl](docs/sdks/reports/README.md#getchangesreportsignedurl) - Get the signed access url for the change reports for a particular document.
 * [getLintingReportSignedUrl](docs/sdks/reports/README.md#getlintingreportsignedurl) - Get the signed access url for the linting reports for a particular document.
 * [uploadReport](docs/sdks/reports/README.md#uploadreport) - Upload a report.
+
+### [suggest()](docs/sdks/suggest/README.md)
+
+* [suggestOperationIDs](docs/sdks/suggest/README.md#suggestoperationids) - Generate operation ID suggestions.
 
 ### [embeds()](docs/sdks/embeds/README.md)
 
@@ -175,10 +183,10 @@ public class Application {
 
 ### [events()](docs/sdks/events/README.md)
 
-* [getWorkspaceEvents](docs/sdks/events/README.md#getworkspaceevents) - Load recent events for a particular workspace
-* [getWorkspaceEventsBySourceRevisionDigest](docs/sdks/events/README.md#getworkspaceeventsbysourcerevisiondigest) - Load events for a particular workspace and source revision digest
+* [getWorkspaceEventsByTarget](docs/sdks/events/README.md#getworkspaceeventsbytarget) - Load recent events for a particular workspace
 * [getWorkspaceTargets](docs/sdks/events/README.md#getworkspacetargets) - Load targets for a particular workspace
 * [postWorkspaceEvents](docs/sdks/events/README.md#postworkspaceevents) - Post events for a specific workspace
+* [searchWorkspaceEvents](docs/sdks/events/README.md#searchworkspaceevents) - Search events for a particular workspace by any field
 <!-- End Available Resources and Operations [operations] -->
 
 
@@ -201,27 +209,27 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .server(SDK.AvailableServers.PROD)
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             DeleteApiRequest req = DeleteApiRequest.builder()
@@ -236,8 +244,10 @@ public class Application {
             // handle response
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -252,27 +262,27 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .serverURL("https://api.prod.speakeasyapi.dev")
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             DeleteApiRequest req = DeleteApiRequest.builder()
@@ -287,8 +297,10 @@ public class Application {
             // handle response
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -300,10 +312,10 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
 
-| Error Object                                                       | Status Code                                                        | Content Type                                                       |
-| ------------------------------------------------------------------ | ------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error | 5XX                                                                | application/json                                                   |
-| models/errors/SDKError                                             | 4xx-5xx                                                            | */*                                                                |
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 5XX                    | application/json       |
+| models/errors/SDKError | 4xx-5xx                | */*                    |
 
 ### Example
 
@@ -312,34 +324,33 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
-            GetWorkspaceEventsRequest req = GetWorkspaceEventsRequest.builder()
-                .afterCreatedAt(OffsetDateTime.parse("2024-04-02T06:03:54.204Z"))
-                .generateGenLockId("<value>")
+            GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
+                .targetID("<value>")
                 .build();
 
-            GetWorkspaceEventsResponse res = sdk.events().getWorkspaceEvents()
+            GetWorkspaceEventsByTargetResponse res = sdk.events().getWorkspaceEventsByTarget()
                 .request(req)
                 .call();
 
@@ -348,10 +359,13 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -376,26 +390,26 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             DeleteApiRequest req = DeleteApiRequest.builder()
@@ -410,8 +424,10 @@ public class Application {
             // handle response
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -423,7 +439,7 @@ public class Application {
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getWorkspaceEvents`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getWorkspaceEventsByTarget`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -442,34 +458,33 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
-            GetWorkspaceEventsRequest req = GetWorkspaceEventsRequest.builder()
-                .afterCreatedAt(OffsetDateTime.parse("2024-04-02T06:03:54.204Z"))
-                .generateGenLockId("<value>")
+            GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
+                .targetID("<value>")
                 .build();
 
-            GetWorkspaceEventsResponse res = sdk.events().getWorkspaceEvents()
+            GetWorkspaceEventsByTargetResponse res = sdk.events().getWorkspaceEventsByTarget()
                 .request(req)
                 .call();
 
@@ -478,10 +493,13 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
             // handle exception
+            throw e;
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -499,35 +517,32 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.BackoffStrategy;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.RetryConfig;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
-                .genLockId("<value>")
-                .passive(false)
-                .targetType("<value>")
                 .build();
 
             GetWorkspaceAccessResponse res = sdk.auth().getWorkspaceAccess()
@@ -549,8 +564,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }
@@ -562,23 +579,24 @@ package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.BackoffStrategy;
+import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
 import io.github.speakeasy_sdks_staging.javaclientsdk.utils.RetryConfig;
+import java.math.BigDecimal;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import org.openapitools.jackson.nullable.JsonNullable;
 import static java.util.Map.entry;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try {
             SDK sdk = SDK.builder()
                 .retryConfig(RetryConfig.builder()
@@ -594,13 +612,9 @@ public class Application {
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .workspaceID("<value>")
                 .build();
 
             GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
-                .genLockId("<value>")
-                .passive(false)
-                .targetType("<value>")
                 .build();
 
             GetWorkspaceAccessResponse res = sdk.auth().getWorkspaceAccess()
@@ -612,8 +626,10 @@ public class Application {
             }
         } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
             // handle exception
+            throw e;
         } catch (Exception e) {
             // handle exception
+            throw e;
         }
     }
 }

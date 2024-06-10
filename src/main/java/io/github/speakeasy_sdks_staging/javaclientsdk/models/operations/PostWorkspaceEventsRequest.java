@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class PostWorkspaceEventsRequest {
 
     @SpeakeasyMetadata("request:mediaType=application/json")
@@ -51,9 +50,10 @@ public class PostWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceID() {
+        return (Optional<String>) workspaceID;
     }
 
     public final static Builder builder() {

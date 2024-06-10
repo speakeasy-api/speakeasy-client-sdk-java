@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class CliEvent {
 
     /**
@@ -50,6 +49,13 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("duration_ms")
     private Optional<? extends Long> durationMs;
+
+    /**
+     * Error message if the event was not successful.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("error")
+    private Optional<? extends String> error;
 
     /**
      * Unique identifier for each execution of the CLI.
@@ -105,6 +111,13 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_config_pre_version")
     private Optional<? extends String> generateConfigPreVersion;
+
+    /**
+     * Eligible feature set during generation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_eligible_features")
+    private Optional<? extends String> generateEligibleFeatures;
 
     /**
      * gen.lock ID (expected to be a uuid).
@@ -170,6 +183,20 @@ public class CliEvent {
     private Optional<? extends String> generateGenLockPreVersion;
 
     /**
+     * The number of operations ignored in generation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_number_of_operations_ignored")
+    private Optional<? extends Long> generateNumberOfOperationsIgnored;
+
+    /**
+     * The number of operations used in generation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_number_of_operations_used")
+    private Optional<? extends Long> generateNumberOfOperationsUsed;
+
+    /**
      * Indicates whether tests were output.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -217,6 +244,13 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gh_action_organization")
     private Optional<? extends String> ghActionOrganization;
+
+    /**
+     * GitHub Action ref value.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gh_action_ref")
+    private Optional<? extends String> ghActionRef;
 
     /**
      * GitHub repository of the action.
@@ -294,6 +328,13 @@ public class CliEvent {
     private InteractionType interactionType;
 
     /**
+     * The last step of the event.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_step")
+    private Optional<? extends String> lastStep;
+
+    /**
      * The checksum of the lint report.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -347,6 +388,13 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("management_doc_version")
     private Optional<? extends String> managementDocVersion;
+
+    /**
+     * Mermaid diagram
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("mermaid_diagram")
+    private Optional<? extends String> mermaidDiagram;
 
     /**
      * The blob digest of the base source.
@@ -472,6 +520,34 @@ public class CliEvent {
     private boolean success;
 
     /**
+     * Workflow lock file (post execution)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow_lock_post_raw")
+    private Optional<? extends String> workflowLockPostRaw;
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow_lock_pre_raw")
+    private Optional<? extends String> workflowLockPreRaw;
+
+    /**
+     * Workflow file (post execution)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow_post_raw")
+    private Optional<? extends String> workflowPostRaw;
+
+    /**
+     * Workflow file (prior to execution)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow_pre_raw")
+    private Optional<? extends String> workflowPreRaw;
+
+    /**
      * Identifier of the workspace.
      */
     @JsonProperty("workspace_id")
@@ -483,6 +559,7 @@ public class CliEvent {
             @JsonProperty("continuous_integration_environment") Optional<? extends String> continuousIntegrationEnvironment,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("duration_ms") Optional<? extends Long> durationMs,
+            @JsonProperty("error") Optional<? extends String> error,
             @JsonProperty("execution_id") String executionId,
             @JsonProperty("generate_bump_type") Optional<? extends GenerateBumpType> generateBumpType,
             @JsonProperty("generate_config_post_checksum") Optional<? extends String> generateConfigPostChecksum,
@@ -491,6 +568,7 @@ public class CliEvent {
             @JsonProperty("generate_config_pre_checksum") Optional<? extends String> generateConfigPreChecksum,
             @JsonProperty("generate_config_pre_raw") Optional<? extends String> generateConfigPreRaw,
             @JsonProperty("generate_config_pre_version") Optional<? extends String> generateConfigPreVersion,
+            @JsonProperty("generate_eligible_features") Optional<? extends String> generateEligibleFeatures,
             @JsonProperty("generate_gen_lock_id") Optional<? extends String> generateGenLockId,
             @JsonProperty("generate_gen_lock_post_features") Optional<? extends String> generateGenLockPostFeatures,
             @JsonProperty("generate_gen_lock_pre_blob_digest") Optional<? extends String> generateGenLockPreBlobDigest,
@@ -500,6 +578,8 @@ public class CliEvent {
             @JsonProperty("generate_gen_lock_pre_namespace_name") Optional<? extends String> generateGenLockPreNamespaceName,
             @JsonProperty("generate_gen_lock_pre_revision_digest") Optional<? extends String> generateGenLockPreRevisionDigest,
             @JsonProperty("generate_gen_lock_pre_version") Optional<? extends String> generateGenLockPreVersion,
+            @JsonProperty("generate_number_of_operations_ignored") Optional<? extends Long> generateNumberOfOperationsIgnored,
+            @JsonProperty("generate_number_of_operations_used") Optional<? extends Long> generateNumberOfOperationsUsed,
             @JsonProperty("generate_output_tests") Optional<? extends Boolean> generateOutputTests,
             @JsonProperty("generate_published") Optional<? extends Boolean> generatePublished,
             @JsonProperty("generate_repo_url") Optional<? extends String> generateRepoUrl,
@@ -507,6 +587,7 @@ public class CliEvent {
             @JsonProperty("generate_target_version") Optional<? extends String> generateTargetVersion,
             @JsonProperty("generate_version") Optional<? extends String> generateVersion,
             @JsonProperty("gh_action_organization") Optional<? extends String> ghActionOrganization,
+            @JsonProperty("gh_action_ref") Optional<? extends String> ghActionRef,
             @JsonProperty("gh_action_repository") Optional<? extends String> ghActionRepository,
             @JsonProperty("gh_action_run_link") Optional<? extends String> ghActionRunLink,
             @JsonProperty("gh_action_version") Optional<? extends String> ghActionVersion,
@@ -518,6 +599,7 @@ public class CliEvent {
             @JsonProperty("hostname") Optional<? extends String> hostname,
             @JsonProperty("id") String id,
             @JsonProperty("interaction_type") InteractionType interactionType,
+            @JsonProperty("last_step") Optional<? extends String> lastStep,
             @JsonProperty("lint_report_digest") Optional<? extends String> lintReportDigest,
             @JsonProperty("lint_report_error_count") Optional<? extends Long> lintReportErrorCount,
             @JsonProperty("lint_report_info_count") Optional<? extends Long> lintReportInfoCount,
@@ -526,6 +608,7 @@ public class CliEvent {
             @JsonProperty("local_started_at") OffsetDateTime localStartedAt,
             @JsonProperty("management_doc_checksum") Optional<? extends String> managementDocChecksum,
             @JsonProperty("management_doc_version") Optional<? extends String> managementDocVersion,
+            @JsonProperty("mermaid_diagram") Optional<? extends String> mermaidDiagram,
             @JsonProperty("openapi_diff_base_source_blob_digest") Optional<? extends String> openapiDiffBaseSourceBlobDigest,
             @JsonProperty("openapi_diff_base_source_namespace_name") Optional<? extends String> openapiDiffBaseSourceNamespaceName,
             @JsonProperty("openapi_diff_base_source_revision_digest") Optional<? extends String> openapiDiffBaseSourceRevisionDigest,
@@ -544,11 +627,16 @@ public class CliEvent {
             @JsonProperty("speakeasy_api_key_name") String speakeasyApiKeyName,
             @JsonProperty("speakeasy_version") String speakeasyVersion,
             @JsonProperty("success") boolean success,
+            @JsonProperty("workflow_lock_post_raw") Optional<? extends String> workflowLockPostRaw,
+            @JsonProperty("workflow_lock_pre_raw") Optional<? extends String> workflowLockPreRaw,
+            @JsonProperty("workflow_post_raw") Optional<? extends String> workflowPostRaw,
+            @JsonProperty("workflow_pre_raw") Optional<? extends String> workflowPreRaw,
             @JsonProperty("workspace_id") String workspaceId) {
         Utils.checkNotNull(commitHead, "commitHead");
         Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(durationMs, "durationMs");
+        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(executionId, "executionId");
         Utils.checkNotNull(generateBumpType, "generateBumpType");
         Utils.checkNotNull(generateConfigPostChecksum, "generateConfigPostChecksum");
@@ -557,6 +645,7 @@ public class CliEvent {
         Utils.checkNotNull(generateConfigPreChecksum, "generateConfigPreChecksum");
         Utils.checkNotNull(generateConfigPreRaw, "generateConfigPreRaw");
         Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
+        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(generateGenLockPostFeatures, "generateGenLockPostFeatures");
         Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
@@ -566,6 +655,8 @@ public class CliEvent {
         Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
         Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
+        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
         Utils.checkNotNull(generateOutputTests, "generateOutputTests");
         Utils.checkNotNull(generatePublished, "generatePublished");
         Utils.checkNotNull(generateRepoUrl, "generateRepoUrl");
@@ -573,6 +664,7 @@ public class CliEvent {
         Utils.checkNotNull(generateTargetVersion, "generateTargetVersion");
         Utils.checkNotNull(generateVersion, "generateVersion");
         Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
+        Utils.checkNotNull(ghActionRef, "ghActionRef");
         Utils.checkNotNull(ghActionRepository, "ghActionRepository");
         Utils.checkNotNull(ghActionRunLink, "ghActionRunLink");
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
@@ -584,6 +676,7 @@ public class CliEvent {
         Utils.checkNotNull(hostname, "hostname");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(interactionType, "interactionType");
+        Utils.checkNotNull(lastStep, "lastStep");
         Utils.checkNotNull(lintReportDigest, "lintReportDigest");
         Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
         Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
@@ -592,6 +685,7 @@ public class CliEvent {
         Utils.checkNotNull(localStartedAt, "localStartedAt");
         Utils.checkNotNull(managementDocChecksum, "managementDocChecksum");
         Utils.checkNotNull(managementDocVersion, "managementDocVersion");
+        Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
         Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
         Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
         Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
@@ -610,11 +704,16 @@ public class CliEvent {
         Utils.checkNotNull(speakeasyApiKeyName, "speakeasyApiKeyName");
         Utils.checkNotNull(speakeasyVersion, "speakeasyVersion");
         Utils.checkNotNull(success, "success");
+        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+        Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
+        Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.commitHead = commitHead;
         this.continuousIntegrationEnvironment = continuousIntegrationEnvironment;
         this.createdAt = createdAt;
         this.durationMs = durationMs;
+        this.error = error;
         this.executionId = executionId;
         this.generateBumpType = generateBumpType;
         this.generateConfigPostChecksum = generateConfigPostChecksum;
@@ -623,6 +722,7 @@ public class CliEvent {
         this.generateConfigPreChecksum = generateConfigPreChecksum;
         this.generateConfigPreRaw = generateConfigPreRaw;
         this.generateConfigPreVersion = generateConfigPreVersion;
+        this.generateEligibleFeatures = generateEligibleFeatures;
         this.generateGenLockId = generateGenLockId;
         this.generateGenLockPostFeatures = generateGenLockPostFeatures;
         this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
@@ -632,6 +732,8 @@ public class CliEvent {
         this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
         this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
         this.generateGenLockPreVersion = generateGenLockPreVersion;
+        this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
+        this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
         this.generateOutputTests = generateOutputTests;
         this.generatePublished = generatePublished;
         this.generateRepoUrl = generateRepoUrl;
@@ -639,6 +741,7 @@ public class CliEvent {
         this.generateTargetVersion = generateTargetVersion;
         this.generateVersion = generateVersion;
         this.ghActionOrganization = ghActionOrganization;
+        this.ghActionRef = ghActionRef;
         this.ghActionRepository = ghActionRepository;
         this.ghActionRunLink = ghActionRunLink;
         this.ghActionVersion = ghActionVersion;
@@ -650,6 +753,7 @@ public class CliEvent {
         this.hostname = hostname;
         this.id = id;
         this.interactionType = interactionType;
+        this.lastStep = lastStep;
         this.lintReportDigest = lintReportDigest;
         this.lintReportErrorCount = lintReportErrorCount;
         this.lintReportInfoCount = lintReportInfoCount;
@@ -658,6 +762,7 @@ public class CliEvent {
         this.localStartedAt = localStartedAt;
         this.managementDocChecksum = managementDocChecksum;
         this.managementDocVersion = managementDocVersion;
+        this.mermaidDiagram = mermaidDiagram;
         this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
         this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
         this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
@@ -676,6 +781,10 @@ public class CliEvent {
         this.speakeasyApiKeyName = speakeasyApiKeyName;
         this.speakeasyVersion = speakeasyVersion;
         this.success = success;
+        this.workflowLockPostRaw = workflowLockPostRaw;
+        this.workflowLockPreRaw = workflowLockPreRaw;
+        this.workflowPostRaw = workflowPostRaw;
+        this.workflowPreRaw = workflowPreRaw;
         this.workspaceId = workspaceId;
     }
     
@@ -689,23 +798,25 @@ public class CliEvent {
             String speakeasyVersion,
             boolean success,
             String workspaceId) {
-        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, workspaceId);
+        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
     }
 
     /**
      * Remote commit ID.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> commitHead() {
-        return commitHead;
+    public Optional<String> commitHead() {
+        return (Optional<String>) commitHead;
     }
 
     /**
      * Name of the CI environment.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> continuousIntegrationEnvironment() {
-        return continuousIntegrationEnvironment;
+    public Optional<String> continuousIntegrationEnvironment() {
+        return (Optional<String>) continuousIntegrationEnvironment;
     }
 
     /**
@@ -719,9 +830,19 @@ public class CliEvent {
     /**
      * Duration of the event in milliseconds.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> durationMs() {
-        return durationMs;
+    public Optional<Long> durationMs() {
+        return (Optional<Long>) durationMs;
+    }
+
+    /**
+     * Error message if the event was not successful.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     /**
@@ -735,257 +856,325 @@ public class CliEvent {
     /**
      * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends GenerateBumpType> generateBumpType() {
-        return generateBumpType;
+    public Optional<GenerateBumpType> generateBumpType() {
+        return (Optional<GenerateBumpType>) generateBumpType;
     }
 
     /**
      * Checksum of the configuration file (post generation)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPostChecksum() {
-        return generateConfigPostChecksum;
+    public Optional<String> generateConfigPostChecksum() {
+        return (Optional<String>) generateConfigPostChecksum;
     }
 
     /**
      * Rendered configuration file (post generation)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPostRaw() {
-        return generateConfigPostRaw;
+    public Optional<String> generateConfigPostRaw() {
+        return (Optional<String>) generateConfigPostRaw;
     }
 
     /**
      * The version of the customer's SDK that we just generated
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPostVersion() {
-        return generateConfigPostVersion;
+    public Optional<String> generateConfigPostVersion() {
+        return (Optional<String>) generateConfigPostVersion;
     }
 
     /**
      * Checksum of the configuration file (prior to generation)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPreChecksum() {
-        return generateConfigPreChecksum;
+    public Optional<String> generateConfigPreChecksum() {
+        return (Optional<String>) generateConfigPreChecksum;
     }
 
     /**
      * Rendered configuration file (prior to generation)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPreRaw() {
-        return generateConfigPreRaw;
+    public Optional<String> generateConfigPreRaw() {
+        return (Optional<String>) generateConfigPreRaw;
     }
 
     /**
      * The version of the customer's SDK before we generated
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPreVersion() {
-        return generateConfigPreVersion;
+    public Optional<String> generateConfigPreVersion() {
+        return (Optional<String>) generateConfigPreVersion;
+    }
+
+    /**
+     * Eligible feature set during generation
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> generateEligibleFeatures() {
+        return (Optional<String>) generateEligibleFeatures;
     }
 
     /**
      * gen.lock ID (expected to be a uuid).
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockId() {
-        return generateGenLockId;
+    public Optional<String> generateGenLockId() {
+        return (Optional<String>) generateGenLockId;
     }
 
     /**
      * Features post generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPostFeatures() {
-        return generateGenLockPostFeatures;
+    public Optional<String> generateGenLockPostFeatures() {
+        return (Optional<String>) generateGenLockPostFeatures;
     }
 
     /**
      * Blob digest of the Previous Generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreBlobDigest() {
-        return generateGenLockPreBlobDigest;
+    public Optional<String> generateGenLockPreBlobDigest() {
+        return (Optional<String>) generateGenLockPreBlobDigest;
     }
 
     /**
      * Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreDocChecksum() {
-        return generateGenLockPreDocChecksum;
+    public Optional<String> generateGenLockPreDocChecksum() {
+        return (Optional<String>) generateGenLockPreDocChecksum;
     }
 
     /**
      * info.Version of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreDocVersion() {
-        return generateGenLockPreDocVersion;
+    public Optional<String> generateGenLockPreDocVersion() {
+        return (Optional<String>) generateGenLockPreDocVersion;
     }
 
     /**
      * Features prior to generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreFeatures() {
-        return generateGenLockPreFeatures;
+    public Optional<String> generateGenLockPreFeatures() {
+        return (Optional<String>) generateGenLockPreFeatures;
     }
 
     /**
      * Namespace name of the Previous Generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreNamespaceName() {
-        return generateGenLockPreNamespaceName;
+    public Optional<String> generateGenLockPreNamespaceName() {
+        return (Optional<String>) generateGenLockPreNamespaceName;
     }
 
     /**
      * Revision digest of the Previous Generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreRevisionDigest() {
-        return generateGenLockPreRevisionDigest;
+    public Optional<String> generateGenLockPreRevisionDigest() {
+        return (Optional<String>) generateGenLockPreRevisionDigest;
     }
 
     /**
      * Artifact version for the Previous Generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreVersion() {
-        return generateGenLockPreVersion;
+    public Optional<String> generateGenLockPreVersion() {
+        return (Optional<String>) generateGenLockPreVersion;
+    }
+
+    /**
+     * The number of operations ignored in generation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Long> generateNumberOfOperationsIgnored() {
+        return (Optional<Long>) generateNumberOfOperationsIgnored;
+    }
+
+    /**
+     * The number of operations used in generation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Long> generateNumberOfOperationsUsed() {
+        return (Optional<Long>) generateNumberOfOperationsUsed;
     }
 
     /**
      * Indicates whether tests were output.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> generateOutputTests() {
-        return generateOutputTests;
+    public Optional<Boolean> generateOutputTests() {
+        return (Optional<Boolean>) generateOutputTests;
     }
 
     /**
      * Indicates whether the target was considered published.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> generatePublished() {
-        return generatePublished;
+    public Optional<Boolean> generatePublished() {
+        return (Optional<Boolean>) generatePublished;
     }
 
     /**
      * Expected Repo URL, for use in documentation generation.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateRepoUrl() {
-        return generateRepoUrl;
+    public Optional<String> generateRepoUrl() {
+        return (Optional<String>) generateRepoUrl;
     }
 
     /**
      * The target of the event.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateTarget() {
-        return generateTarget;
+    public Optional<String> generateTarget() {
+        return (Optional<String>) generateTarget;
     }
 
     /**
      * The version of the target.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateTargetVersion() {
-        return generateTargetVersion;
+    public Optional<String> generateTargetVersion() {
+        return (Optional<String>) generateTargetVersion;
     }
 
     /**
      * Version of the generation logic used.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateVersion() {
-        return generateVersion;
+    public Optional<String> generateVersion() {
+        return (Optional<String>) generateVersion;
     }
 
     /**
      * GitHub organization of the action.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionOrganization() {
-        return ghActionOrganization;
+    public Optional<String> ghActionOrganization() {
+        return (Optional<String>) ghActionOrganization;
+    }
+
+    /**
+     * GitHub Action ref value.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> ghActionRef() {
+        return (Optional<String>) ghActionRef;
     }
 
     /**
      * GitHub repository of the action.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionRepository() {
-        return ghActionRepository;
+    public Optional<String> ghActionRepository() {
+        return (Optional<String>) ghActionRepository;
     }
 
     /**
      * Link to the GitHub action run.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionRunLink() {
-        return ghActionRunLink;
+    public Optional<String> ghActionRunLink() {
+        return (Optional<String>) ghActionRunLink;
     }
 
     /**
      * Version of the GitHub action.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionVersion() {
-        return ghActionVersion;
+    public Optional<String> ghActionVersion() {
+        return (Optional<String>) ghActionVersion;
     }
 
     /**
      * Current working directory relative to the git root.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitRelativeCwd() {
-        return gitRelativeCwd;
+    public Optional<String> gitRelativeCwd() {
+        return (Optional<String>) gitRelativeCwd;
     }
 
     /**
      * Default owner for git remote.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitRemoteDefaultOwner() {
-        return gitRemoteDefaultOwner;
+    public Optional<String> gitRemoteDefaultOwner() {
+        return (Optional<String>) gitRemoteDefaultOwner;
     }
 
     /**
      * Default repository name for git remote.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitRemoteDefaultRepo() {
-        return gitRemoteDefaultRepo;
+    public Optional<String> gitRemoteDefaultRepo() {
+        return (Optional<String>) gitRemoteDefaultRepo;
     }
 
     /**
      * User email from git configuration.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitUserEmail() {
-        return gitUserEmail;
+    public Optional<String> gitUserEmail() {
+        return (Optional<String>) gitUserEmail;
     }
 
     /**
      * User's name from git configuration. (not GitHub username)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitUserName() {
-        return gitUserName;
+    public Optional<String> gitUserName() {
+        return (Optional<String>) gitUserName;
     }
 
     /**
      * Remote hostname.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> hostname() {
-        return hostname;
+    public Optional<String> hostname() {
+        return (Optional<String>) hostname;
     }
 
     /**
@@ -1005,43 +1194,57 @@ public class CliEvent {
     }
 
     /**
+     * The last step of the event.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> lastStep() {
+        return (Optional<String>) lastStep;
+    }
+
+    /**
      * The checksum of the lint report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> lintReportDigest() {
-        return lintReportDigest;
+    public Optional<String> lintReportDigest() {
+        return (Optional<String>) lintReportDigest;
     }
 
     /**
      * The number of errors in the lint report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> lintReportErrorCount() {
-        return lintReportErrorCount;
+    public Optional<Long> lintReportErrorCount() {
+        return (Optional<Long>) lintReportErrorCount;
     }
 
     /**
      * The number of info messages in the lint report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> lintReportInfoCount() {
-        return lintReportInfoCount;
+    public Optional<Long> lintReportInfoCount() {
+        return (Optional<Long>) lintReportInfoCount;
     }
 
     /**
      * The number of warnings in the lint report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> lintReportWarningCount() {
-        return lintReportWarningCount;
+    public Optional<Long> lintReportWarningCount() {
+        return (Optional<Long>) lintReportWarningCount;
     }
 
     /**
      * Timestamp when the event completed, in local time.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> localCompletedAt() {
-        return localCompletedAt;
+    public Optional<OffsetDateTime> localCompletedAt() {
+        return (Optional<OffsetDateTime>) localCompletedAt;
     }
 
     /**
@@ -1055,137 +1258,163 @@ public class CliEvent {
     /**
      * Checksum of the currently Rendered OpenAPI document.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> managementDocChecksum() {
-        return managementDocChecksum;
+    public Optional<String> managementDocChecksum() {
+        return (Optional<String>) managementDocChecksum;
     }
 
     /**
      * Version taken from info.version field of the Rendered OpenAPI document.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> managementDocVersion() {
-        return managementDocVersion;
+    public Optional<String> managementDocVersion() {
+        return (Optional<String>) managementDocVersion;
+    }
+
+    /**
+     * Mermaid diagram
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> mermaidDiagram() {
+        return (Optional<String>) mermaidDiagram;
     }
 
     /**
      * The blob digest of the base source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> openapiDiffBaseSourceBlobDigest() {
-        return openapiDiffBaseSourceBlobDigest;
+    public Optional<String> openapiDiffBaseSourceBlobDigest() {
+        return (Optional<String>) openapiDiffBaseSourceBlobDigest;
     }
 
     /**
      * The namespace name of the base source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> openapiDiffBaseSourceNamespaceName() {
-        return openapiDiffBaseSourceNamespaceName;
+    public Optional<String> openapiDiffBaseSourceNamespaceName() {
+        return (Optional<String>) openapiDiffBaseSourceNamespaceName;
     }
 
     /**
      * The revision digest of the base source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> openapiDiffBaseSourceRevisionDigest() {
-        return openapiDiffBaseSourceRevisionDigest;
+    public Optional<String> openapiDiffBaseSourceRevisionDigest() {
+        return (Optional<String>) openapiDiffBaseSourceRevisionDigest;
     }
 
     /**
      * The number of breaking changes in the openapi diff report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> openapiDiffBreakingChangesCount() {
-        return openapiDiffBreakingChangesCount;
+    public Optional<Long> openapiDiffBreakingChangesCount() {
+        return (Optional<Long>) openapiDiffBreakingChangesCount;
     }
 
     /**
      * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType() {
-        return openapiDiffBumpType;
+    public Optional<OpenapiDiffBumpType> openapiDiffBumpType() {
+        return (Optional<OpenapiDiffBumpType>) openapiDiffBumpType;
     }
 
     /**
      * The checksum of the openapi diff report.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> openapiDiffReportDigest() {
-        return openapiDiffReportDigest;
+    public Optional<String> openapiDiffReportDigest() {
+        return (Optional<String>) openapiDiffReportDigest;
     }
 
     /**
      * Name of the published package.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> publishPackageName() {
-        return publishPackageName;
+    public Optional<String> publishPackageName() {
+        return (Optional<String>) publishPackageName;
     }
 
     /**
      * Name of the registry where the package was published.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> publishPackageRegistryName() {
-        return publishPackageRegistryName;
+    public Optional<String> publishPackageRegistryName() {
+        return (Optional<String>) publishPackageRegistryName;
     }
 
     /**
      * URL of the published package.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> publishPackageUrl() {
-        return publishPackageUrl;
+    public Optional<String> publishPackageUrl() {
+        return (Optional<String>) publishPackageUrl;
     }
 
     /**
      * Version of the published package.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> publishPackageVersion() {
-        return publishPackageVersion;
+    public Optional<String> publishPackageVersion() {
+        return (Optional<String>) publishPackageVersion;
     }
 
     /**
      * Full CLI command.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> rawCommand() {
-        return rawCommand;
+    public Optional<String> rawCommand() {
+        return (Optional<String>) rawCommand;
     }
 
     /**
      * Label of the git repository.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> repoLabel() {
-        return repoLabel;
+    public Optional<String> repoLabel() {
+        return (Optional<String>) repoLabel;
     }
 
     /**
      * The blob digest of the source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceBlobDigest() {
-        return sourceBlobDigest;
+    public Optional<String> sourceBlobDigest() {
+        return (Optional<String>) sourceBlobDigest;
     }
 
     /**
      * The namespace name of the source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceNamespaceName() {
-        return sourceNamespaceName;
+    public Optional<String> sourceNamespaceName() {
+        return (Optional<String>) sourceNamespaceName;
     }
 
     /**
      * The revision digest of the source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceRevisionDigest() {
-        return sourceRevisionDigest;
+    public Optional<String> sourceRevisionDigest() {
+        return (Optional<String>) sourceRevisionDigest;
     }
 
     /**
@@ -1210,6 +1439,42 @@ public class CliEvent {
     @JsonIgnore
     public boolean success() {
         return success;
+    }
+
+    /**
+     * Workflow lock file (post execution)
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> workflowLockPostRaw() {
+        return (Optional<String>) workflowLockPostRaw;
+    }
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> workflowLockPreRaw() {
+        return (Optional<String>) workflowLockPreRaw;
+    }
+
+    /**
+     * Workflow file (post execution)
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> workflowPostRaw() {
+        return (Optional<String>) workflowPostRaw;
+    }
+
+    /**
+     * Workflow file (prior to execution)
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> workflowPreRaw() {
+        return (Optional<String>) workflowPreRaw;
     }
 
     /**
@@ -1284,6 +1549,24 @@ public class CliEvent {
     public CliEvent withDurationMs(Optional<? extends Long> durationMs) {
         Utils.checkNotNull(durationMs, "durationMs");
         this.durationMs = durationMs;
+        return this;
+    }
+
+    /**
+     * Error message if the event was not successful.
+     */
+    public CliEvent withError(String error) {
+        Utils.checkNotNull(error, "error");
+        this.error = Optional.ofNullable(error);
+        return this;
+    }
+
+    /**
+     * Error message if the event was not successful.
+     */
+    public CliEvent withError(Optional<? extends String> error) {
+        Utils.checkNotNull(error, "error");
+        this.error = error;
         return this;
     }
 
@@ -1419,6 +1702,24 @@ public class CliEvent {
     public CliEvent withGenerateConfigPreVersion(Optional<? extends String> generateConfigPreVersion) {
         Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
         this.generateConfigPreVersion = generateConfigPreVersion;
+        return this;
+    }
+
+    /**
+     * Eligible feature set during generation
+     */
+    public CliEvent withGenerateEligibleFeatures(String generateEligibleFeatures) {
+        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+        this.generateEligibleFeatures = Optional.ofNullable(generateEligibleFeatures);
+        return this;
+    }
+
+    /**
+     * Eligible feature set during generation
+     */
+    public CliEvent withGenerateEligibleFeatures(Optional<? extends String> generateEligibleFeatures) {
+        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+        this.generateEligibleFeatures = generateEligibleFeatures;
         return this;
     }
 
@@ -1585,6 +1886,42 @@ public class CliEvent {
     }
 
     /**
+     * The number of operations ignored in generation.
+     */
+    public CliEvent withGenerateNumberOfOperationsIgnored(long generateNumberOfOperationsIgnored) {
+        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+        this.generateNumberOfOperationsIgnored = Optional.ofNullable(generateNumberOfOperationsIgnored);
+        return this;
+    }
+
+    /**
+     * The number of operations ignored in generation.
+     */
+    public CliEvent withGenerateNumberOfOperationsIgnored(Optional<? extends Long> generateNumberOfOperationsIgnored) {
+        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+        this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
+        return this;
+    }
+
+    /**
+     * The number of operations used in generation.
+     */
+    public CliEvent withGenerateNumberOfOperationsUsed(long generateNumberOfOperationsUsed) {
+        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+        this.generateNumberOfOperationsUsed = Optional.ofNullable(generateNumberOfOperationsUsed);
+        return this;
+    }
+
+    /**
+     * The number of operations used in generation.
+     */
+    public CliEvent withGenerateNumberOfOperationsUsed(Optional<? extends Long> generateNumberOfOperationsUsed) {
+        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+        this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
+        return this;
+    }
+
+    /**
      * Indicates whether tests were output.
      */
     public CliEvent withGenerateOutputTests(boolean generateOutputTests) {
@@ -1707,6 +2044,24 @@ public class CliEvent {
     public CliEvent withGhActionOrganization(Optional<? extends String> ghActionOrganization) {
         Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
         this.ghActionOrganization = ghActionOrganization;
+        return this;
+    }
+
+    /**
+     * GitHub Action ref value.
+     */
+    public CliEvent withGhActionRef(String ghActionRef) {
+        Utils.checkNotNull(ghActionRef, "ghActionRef");
+        this.ghActionRef = Optional.ofNullable(ghActionRef);
+        return this;
+    }
+
+    /**
+     * GitHub Action ref value.
+     */
+    public CliEvent withGhActionRef(Optional<? extends String> ghActionRef) {
+        Utils.checkNotNull(ghActionRef, "ghActionRef");
+        this.ghActionRef = ghActionRef;
         return this;
     }
 
@@ -1891,6 +2246,24 @@ public class CliEvent {
     }
 
     /**
+     * The last step of the event.
+     */
+    public CliEvent withLastStep(String lastStep) {
+        Utils.checkNotNull(lastStep, "lastStep");
+        this.lastStep = Optional.ofNullable(lastStep);
+        return this;
+    }
+
+    /**
+     * The last step of the event.
+     */
+    public CliEvent withLastStep(Optional<? extends String> lastStep) {
+        Utils.checkNotNull(lastStep, "lastStep");
+        this.lastStep = lastStep;
+        return this;
+    }
+
+    /**
      * The checksum of the lint report.
      */
     public CliEvent withLintReportDigest(String lintReportDigest) {
@@ -2022,6 +2395,24 @@ public class CliEvent {
     public CliEvent withManagementDocVersion(Optional<? extends String> managementDocVersion) {
         Utils.checkNotNull(managementDocVersion, "managementDocVersion");
         this.managementDocVersion = managementDocVersion;
+        return this;
+    }
+
+    /**
+     * Mermaid diagram
+     */
+    public CliEvent withMermaidDiagram(String mermaidDiagram) {
+        Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
+        this.mermaidDiagram = Optional.ofNullable(mermaidDiagram);
+        return this;
+    }
+
+    /**
+     * Mermaid diagram
+     */
+    public CliEvent withMermaidDiagram(Optional<? extends String> mermaidDiagram) {
+        Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
+        this.mermaidDiagram = mermaidDiagram;
         return this;
     }
 
@@ -2323,6 +2714,78 @@ public class CliEvent {
     }
 
     /**
+     * Workflow lock file (post execution)
+     */
+    public CliEvent withWorkflowLockPostRaw(String workflowLockPostRaw) {
+        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+        this.workflowLockPostRaw = Optional.ofNullable(workflowLockPostRaw);
+        return this;
+    }
+
+    /**
+     * Workflow lock file (post execution)
+     */
+    public CliEvent withWorkflowLockPostRaw(Optional<? extends String> workflowLockPostRaw) {
+        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+        this.workflowLockPostRaw = workflowLockPostRaw;
+        return this;
+    }
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    public CliEvent withWorkflowLockPreRaw(String workflowLockPreRaw) {
+        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+        this.workflowLockPreRaw = Optional.ofNullable(workflowLockPreRaw);
+        return this;
+    }
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    public CliEvent withWorkflowLockPreRaw(Optional<? extends String> workflowLockPreRaw) {
+        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+        this.workflowLockPreRaw = workflowLockPreRaw;
+        return this;
+    }
+
+    /**
+     * Workflow file (post execution)
+     */
+    public CliEvent withWorkflowPostRaw(String workflowPostRaw) {
+        Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
+        this.workflowPostRaw = Optional.ofNullable(workflowPostRaw);
+        return this;
+    }
+
+    /**
+     * Workflow file (post execution)
+     */
+    public CliEvent withWorkflowPostRaw(Optional<? extends String> workflowPostRaw) {
+        Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
+        this.workflowPostRaw = workflowPostRaw;
+        return this;
+    }
+
+    /**
+     * Workflow file (prior to execution)
+     */
+    public CliEvent withWorkflowPreRaw(String workflowPreRaw) {
+        Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
+        this.workflowPreRaw = Optional.ofNullable(workflowPreRaw);
+        return this;
+    }
+
+    /**
+     * Workflow file (prior to execution)
+     */
+    public CliEvent withWorkflowPreRaw(Optional<? extends String> workflowPreRaw) {
+        Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
+        this.workflowPreRaw = workflowPreRaw;
+        return this;
+    }
+
+    /**
      * Identifier of the workspace.
      */
     public CliEvent withWorkspaceId(String workspaceId) {
@@ -2345,6 +2808,7 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.continuousIntegrationEnvironment, other.continuousIntegrationEnvironment) &&
             java.util.Objects.deepEquals(this.createdAt, other.createdAt) &&
             java.util.Objects.deepEquals(this.durationMs, other.durationMs) &&
+            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.executionId, other.executionId) &&
             java.util.Objects.deepEquals(this.generateBumpType, other.generateBumpType) &&
             java.util.Objects.deepEquals(this.generateConfigPostChecksum, other.generateConfigPostChecksum) &&
@@ -2353,6 +2817,7 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.generateConfigPreChecksum, other.generateConfigPreChecksum) &&
             java.util.Objects.deepEquals(this.generateConfigPreRaw, other.generateConfigPreRaw) &&
             java.util.Objects.deepEquals(this.generateConfigPreVersion, other.generateConfigPreVersion) &&
+            java.util.Objects.deepEquals(this.generateEligibleFeatures, other.generateEligibleFeatures) &&
             java.util.Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
             java.util.Objects.deepEquals(this.generateGenLockPostFeatures, other.generateGenLockPostFeatures) &&
             java.util.Objects.deepEquals(this.generateGenLockPreBlobDigest, other.generateGenLockPreBlobDigest) &&
@@ -2362,6 +2827,8 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.generateGenLockPreNamespaceName, other.generateGenLockPreNamespaceName) &&
             java.util.Objects.deepEquals(this.generateGenLockPreRevisionDigest, other.generateGenLockPreRevisionDigest) &&
             java.util.Objects.deepEquals(this.generateGenLockPreVersion, other.generateGenLockPreVersion) &&
+            java.util.Objects.deepEquals(this.generateNumberOfOperationsIgnored, other.generateNumberOfOperationsIgnored) &&
+            java.util.Objects.deepEquals(this.generateNumberOfOperationsUsed, other.generateNumberOfOperationsUsed) &&
             java.util.Objects.deepEquals(this.generateOutputTests, other.generateOutputTests) &&
             java.util.Objects.deepEquals(this.generatePublished, other.generatePublished) &&
             java.util.Objects.deepEquals(this.generateRepoUrl, other.generateRepoUrl) &&
@@ -2369,6 +2836,7 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.generateTargetVersion, other.generateTargetVersion) &&
             java.util.Objects.deepEquals(this.generateVersion, other.generateVersion) &&
             java.util.Objects.deepEquals(this.ghActionOrganization, other.ghActionOrganization) &&
+            java.util.Objects.deepEquals(this.ghActionRef, other.ghActionRef) &&
             java.util.Objects.deepEquals(this.ghActionRepository, other.ghActionRepository) &&
             java.util.Objects.deepEquals(this.ghActionRunLink, other.ghActionRunLink) &&
             java.util.Objects.deepEquals(this.ghActionVersion, other.ghActionVersion) &&
@@ -2380,6 +2848,7 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.hostname, other.hostname) &&
             java.util.Objects.deepEquals(this.id, other.id) &&
             java.util.Objects.deepEquals(this.interactionType, other.interactionType) &&
+            java.util.Objects.deepEquals(this.lastStep, other.lastStep) &&
             java.util.Objects.deepEquals(this.lintReportDigest, other.lintReportDigest) &&
             java.util.Objects.deepEquals(this.lintReportErrorCount, other.lintReportErrorCount) &&
             java.util.Objects.deepEquals(this.lintReportInfoCount, other.lintReportInfoCount) &&
@@ -2388,6 +2857,7 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.localStartedAt, other.localStartedAt) &&
             java.util.Objects.deepEquals(this.managementDocChecksum, other.managementDocChecksum) &&
             java.util.Objects.deepEquals(this.managementDocVersion, other.managementDocVersion) &&
+            java.util.Objects.deepEquals(this.mermaidDiagram, other.mermaidDiagram) &&
             java.util.Objects.deepEquals(this.openapiDiffBaseSourceBlobDigest, other.openapiDiffBaseSourceBlobDigest) &&
             java.util.Objects.deepEquals(this.openapiDiffBaseSourceNamespaceName, other.openapiDiffBaseSourceNamespaceName) &&
             java.util.Objects.deepEquals(this.openapiDiffBaseSourceRevisionDigest, other.openapiDiffBaseSourceRevisionDigest) &&
@@ -2406,6 +2876,10 @@ public class CliEvent {
             java.util.Objects.deepEquals(this.speakeasyApiKeyName, other.speakeasyApiKeyName) &&
             java.util.Objects.deepEquals(this.speakeasyVersion, other.speakeasyVersion) &&
             java.util.Objects.deepEquals(this.success, other.success) &&
+            java.util.Objects.deepEquals(this.workflowLockPostRaw, other.workflowLockPostRaw) &&
+            java.util.Objects.deepEquals(this.workflowLockPreRaw, other.workflowLockPreRaw) &&
+            java.util.Objects.deepEquals(this.workflowPostRaw, other.workflowPostRaw) &&
+            java.util.Objects.deepEquals(this.workflowPreRaw, other.workflowPreRaw) &&
             java.util.Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
@@ -2416,6 +2890,7 @@ public class CliEvent {
             continuousIntegrationEnvironment,
             createdAt,
             durationMs,
+            error,
             executionId,
             generateBumpType,
             generateConfigPostChecksum,
@@ -2424,6 +2899,7 @@ public class CliEvent {
             generateConfigPreChecksum,
             generateConfigPreRaw,
             generateConfigPreVersion,
+            generateEligibleFeatures,
             generateGenLockId,
             generateGenLockPostFeatures,
             generateGenLockPreBlobDigest,
@@ -2433,6 +2909,8 @@ public class CliEvent {
             generateGenLockPreNamespaceName,
             generateGenLockPreRevisionDigest,
             generateGenLockPreVersion,
+            generateNumberOfOperationsIgnored,
+            generateNumberOfOperationsUsed,
             generateOutputTests,
             generatePublished,
             generateRepoUrl,
@@ -2440,6 +2918,7 @@ public class CliEvent {
             generateTargetVersion,
             generateVersion,
             ghActionOrganization,
+            ghActionRef,
             ghActionRepository,
             ghActionRunLink,
             ghActionVersion,
@@ -2451,6 +2930,7 @@ public class CliEvent {
             hostname,
             id,
             interactionType,
+            lastStep,
             lintReportDigest,
             lintReportErrorCount,
             lintReportInfoCount,
@@ -2459,6 +2939,7 @@ public class CliEvent {
             localStartedAt,
             managementDocChecksum,
             managementDocVersion,
+            mermaidDiagram,
             openapiDiffBaseSourceBlobDigest,
             openapiDiffBaseSourceNamespaceName,
             openapiDiffBaseSourceRevisionDigest,
@@ -2477,6 +2958,10 @@ public class CliEvent {
             speakeasyApiKeyName,
             speakeasyVersion,
             success,
+            workflowLockPostRaw,
+            workflowLockPreRaw,
+            workflowPostRaw,
+            workflowPreRaw,
             workspaceId);
     }
     
@@ -2487,6 +2972,7 @@ public class CliEvent {
                 "continuousIntegrationEnvironment", continuousIntegrationEnvironment,
                 "createdAt", createdAt,
                 "durationMs", durationMs,
+                "error", error,
                 "executionId", executionId,
                 "generateBumpType", generateBumpType,
                 "generateConfigPostChecksum", generateConfigPostChecksum,
@@ -2495,6 +2981,7 @@ public class CliEvent {
                 "generateConfigPreChecksum", generateConfigPreChecksum,
                 "generateConfigPreRaw", generateConfigPreRaw,
                 "generateConfigPreVersion", generateConfigPreVersion,
+                "generateEligibleFeatures", generateEligibleFeatures,
                 "generateGenLockId", generateGenLockId,
                 "generateGenLockPostFeatures", generateGenLockPostFeatures,
                 "generateGenLockPreBlobDigest", generateGenLockPreBlobDigest,
@@ -2504,6 +2991,8 @@ public class CliEvent {
                 "generateGenLockPreNamespaceName", generateGenLockPreNamespaceName,
                 "generateGenLockPreRevisionDigest", generateGenLockPreRevisionDigest,
                 "generateGenLockPreVersion", generateGenLockPreVersion,
+                "generateNumberOfOperationsIgnored", generateNumberOfOperationsIgnored,
+                "generateNumberOfOperationsUsed", generateNumberOfOperationsUsed,
                 "generateOutputTests", generateOutputTests,
                 "generatePublished", generatePublished,
                 "generateRepoUrl", generateRepoUrl,
@@ -2511,6 +3000,7 @@ public class CliEvent {
                 "generateTargetVersion", generateTargetVersion,
                 "generateVersion", generateVersion,
                 "ghActionOrganization", ghActionOrganization,
+                "ghActionRef", ghActionRef,
                 "ghActionRepository", ghActionRepository,
                 "ghActionRunLink", ghActionRunLink,
                 "ghActionVersion", ghActionVersion,
@@ -2522,6 +3012,7 @@ public class CliEvent {
                 "hostname", hostname,
                 "id", id,
                 "interactionType", interactionType,
+                "lastStep", lastStep,
                 "lintReportDigest", lintReportDigest,
                 "lintReportErrorCount", lintReportErrorCount,
                 "lintReportInfoCount", lintReportInfoCount,
@@ -2530,6 +3021,7 @@ public class CliEvent {
                 "localStartedAt", localStartedAt,
                 "managementDocChecksum", managementDocChecksum,
                 "managementDocVersion", managementDocVersion,
+                "mermaidDiagram", mermaidDiagram,
                 "openapiDiffBaseSourceBlobDigest", openapiDiffBaseSourceBlobDigest,
                 "openapiDiffBaseSourceNamespaceName", openapiDiffBaseSourceNamespaceName,
                 "openapiDiffBaseSourceRevisionDigest", openapiDiffBaseSourceRevisionDigest,
@@ -2548,6 +3040,10 @@ public class CliEvent {
                 "speakeasyApiKeyName", speakeasyApiKeyName,
                 "speakeasyVersion", speakeasyVersion,
                 "success", success,
+                "workflowLockPostRaw", workflowLockPostRaw,
+                "workflowLockPreRaw", workflowLockPreRaw,
+                "workflowPostRaw", workflowPostRaw,
+                "workflowPreRaw", workflowPreRaw,
                 "workspaceId", workspaceId);
     }
     
@@ -2560,6 +3056,8 @@ public class CliEvent {
         private OffsetDateTime createdAt;
  
         private Optional<? extends Long> durationMs = Optional.empty();
+ 
+        private Optional<? extends String> error = Optional.empty();
  
         private String executionId;
  
@@ -2576,6 +3074,8 @@ public class CliEvent {
         private Optional<? extends String> generateConfigPreRaw = Optional.empty();
  
         private Optional<? extends String> generateConfigPreVersion = Optional.empty();
+ 
+        private Optional<? extends String> generateEligibleFeatures = Optional.empty();
  
         private Optional<? extends String> generateGenLockId = Optional.empty();
  
@@ -2595,6 +3095,10 @@ public class CliEvent {
  
         private Optional<? extends String> generateGenLockPreVersion = Optional.empty();
  
+        private Optional<? extends Long> generateNumberOfOperationsIgnored = Optional.empty();
+ 
+        private Optional<? extends Long> generateNumberOfOperationsUsed = Optional.empty();
+ 
         private Optional<? extends Boolean> generateOutputTests = Optional.empty();
  
         private Optional<? extends Boolean> generatePublished = Optional.empty();
@@ -2608,6 +3112,8 @@ public class CliEvent {
         private Optional<? extends String> generateVersion = Optional.empty();
  
         private Optional<? extends String> ghActionOrganization = Optional.empty();
+ 
+        private Optional<? extends String> ghActionRef = Optional.empty();
  
         private Optional<? extends String> ghActionRepository = Optional.empty();
  
@@ -2631,6 +3137,8 @@ public class CliEvent {
  
         private InteractionType interactionType;
  
+        private Optional<? extends String> lastStep = Optional.empty();
+ 
         private Optional<? extends String> lintReportDigest = Optional.empty();
  
         private Optional<? extends Long> lintReportErrorCount = Optional.empty();
@@ -2646,6 +3154,8 @@ public class CliEvent {
         private Optional<? extends String> managementDocChecksum = Optional.empty();
  
         private Optional<? extends String> managementDocVersion = Optional.empty();
+ 
+        private Optional<? extends String> mermaidDiagram = Optional.empty();
  
         private Optional<? extends String> openapiDiffBaseSourceBlobDigest = Optional.empty();
  
@@ -2682,6 +3192,14 @@ public class CliEvent {
         private String speakeasyVersion;
  
         private Boolean success;
+ 
+        private Optional<? extends String> workflowLockPostRaw = Optional.empty();
+ 
+        private Optional<? extends String> workflowLockPreRaw = Optional.empty();
+ 
+        private Optional<? extends String> workflowPostRaw = Optional.empty();
+ 
+        private Optional<? extends String> workflowPreRaw = Optional.empty();
  
         private String workspaceId;  
         
@@ -2749,6 +3267,24 @@ public class CliEvent {
         public Builder durationMs(Optional<? extends Long> durationMs) {
             Utils.checkNotNull(durationMs, "durationMs");
             this.durationMs = durationMs;
+            return this;
+        }
+
+        /**
+         * Error message if the event was not successful.
+         */
+        public Builder error(String error) {
+            Utils.checkNotNull(error, "error");
+            this.error = Optional.ofNullable(error);
+            return this;
+        }
+
+        /**
+         * Error message if the event was not successful.
+         */
+        public Builder error(Optional<? extends String> error) {
+            Utils.checkNotNull(error, "error");
+            this.error = error;
             return this;
         }
 
@@ -2884,6 +3420,24 @@ public class CliEvent {
         public Builder generateConfigPreVersion(Optional<? extends String> generateConfigPreVersion) {
             Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
             this.generateConfigPreVersion = generateConfigPreVersion;
+            return this;
+        }
+
+        /**
+         * Eligible feature set during generation
+         */
+        public Builder generateEligibleFeatures(String generateEligibleFeatures) {
+            Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+            this.generateEligibleFeatures = Optional.ofNullable(generateEligibleFeatures);
+            return this;
+        }
+
+        /**
+         * Eligible feature set during generation
+         */
+        public Builder generateEligibleFeatures(Optional<? extends String> generateEligibleFeatures) {
+            Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+            this.generateEligibleFeatures = generateEligibleFeatures;
             return this;
         }
 
@@ -3050,6 +3604,42 @@ public class CliEvent {
         }
 
         /**
+         * The number of operations ignored in generation.
+         */
+        public Builder generateNumberOfOperationsIgnored(long generateNumberOfOperationsIgnored) {
+            Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+            this.generateNumberOfOperationsIgnored = Optional.ofNullable(generateNumberOfOperationsIgnored);
+            return this;
+        }
+
+        /**
+         * The number of operations ignored in generation.
+         */
+        public Builder generateNumberOfOperationsIgnored(Optional<? extends Long> generateNumberOfOperationsIgnored) {
+            Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+            this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
+            return this;
+        }
+
+        /**
+         * The number of operations used in generation.
+         */
+        public Builder generateNumberOfOperationsUsed(long generateNumberOfOperationsUsed) {
+            Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+            this.generateNumberOfOperationsUsed = Optional.ofNullable(generateNumberOfOperationsUsed);
+            return this;
+        }
+
+        /**
+         * The number of operations used in generation.
+         */
+        public Builder generateNumberOfOperationsUsed(Optional<? extends Long> generateNumberOfOperationsUsed) {
+            Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+            this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
+            return this;
+        }
+
+        /**
          * Indicates whether tests were output.
          */
         public Builder generateOutputTests(boolean generateOutputTests) {
@@ -3172,6 +3762,24 @@ public class CliEvent {
         public Builder ghActionOrganization(Optional<? extends String> ghActionOrganization) {
             Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
             this.ghActionOrganization = ghActionOrganization;
+            return this;
+        }
+
+        /**
+         * GitHub Action ref value.
+         */
+        public Builder ghActionRef(String ghActionRef) {
+            Utils.checkNotNull(ghActionRef, "ghActionRef");
+            this.ghActionRef = Optional.ofNullable(ghActionRef);
+            return this;
+        }
+
+        /**
+         * GitHub Action ref value.
+         */
+        public Builder ghActionRef(Optional<? extends String> ghActionRef) {
+            Utils.checkNotNull(ghActionRef, "ghActionRef");
+            this.ghActionRef = ghActionRef;
             return this;
         }
 
@@ -3356,6 +3964,24 @@ public class CliEvent {
         }
 
         /**
+         * The last step of the event.
+         */
+        public Builder lastStep(String lastStep) {
+            Utils.checkNotNull(lastStep, "lastStep");
+            this.lastStep = Optional.ofNullable(lastStep);
+            return this;
+        }
+
+        /**
+         * The last step of the event.
+         */
+        public Builder lastStep(Optional<? extends String> lastStep) {
+            Utils.checkNotNull(lastStep, "lastStep");
+            this.lastStep = lastStep;
+            return this;
+        }
+
+        /**
          * The checksum of the lint report.
          */
         public Builder lintReportDigest(String lintReportDigest) {
@@ -3487,6 +4113,24 @@ public class CliEvent {
         public Builder managementDocVersion(Optional<? extends String> managementDocVersion) {
             Utils.checkNotNull(managementDocVersion, "managementDocVersion");
             this.managementDocVersion = managementDocVersion;
+            return this;
+        }
+
+        /**
+         * Mermaid diagram
+         */
+        public Builder mermaidDiagram(String mermaidDiagram) {
+            Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
+            this.mermaidDiagram = Optional.ofNullable(mermaidDiagram);
+            return this;
+        }
+
+        /**
+         * Mermaid diagram
+         */
+        public Builder mermaidDiagram(Optional<? extends String> mermaidDiagram) {
+            Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
+            this.mermaidDiagram = mermaidDiagram;
             return this;
         }
 
@@ -3788,6 +4432,78 @@ public class CliEvent {
         }
 
         /**
+         * Workflow lock file (post execution)
+         */
+        public Builder workflowLockPostRaw(String workflowLockPostRaw) {
+            Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+            this.workflowLockPostRaw = Optional.ofNullable(workflowLockPostRaw);
+            return this;
+        }
+
+        /**
+         * Workflow lock file (post execution)
+         */
+        public Builder workflowLockPostRaw(Optional<? extends String> workflowLockPostRaw) {
+            Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+            this.workflowLockPostRaw = workflowLockPostRaw;
+            return this;
+        }
+
+        /**
+         * Workflow lock file (prior to execution)
+         */
+        public Builder workflowLockPreRaw(String workflowLockPreRaw) {
+            Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+            this.workflowLockPreRaw = Optional.ofNullable(workflowLockPreRaw);
+            return this;
+        }
+
+        /**
+         * Workflow lock file (prior to execution)
+         */
+        public Builder workflowLockPreRaw(Optional<? extends String> workflowLockPreRaw) {
+            Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+            this.workflowLockPreRaw = workflowLockPreRaw;
+            return this;
+        }
+
+        /**
+         * Workflow file (post execution)
+         */
+        public Builder workflowPostRaw(String workflowPostRaw) {
+            Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
+            this.workflowPostRaw = Optional.ofNullable(workflowPostRaw);
+            return this;
+        }
+
+        /**
+         * Workflow file (post execution)
+         */
+        public Builder workflowPostRaw(Optional<? extends String> workflowPostRaw) {
+            Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
+            this.workflowPostRaw = workflowPostRaw;
+            return this;
+        }
+
+        /**
+         * Workflow file (prior to execution)
+         */
+        public Builder workflowPreRaw(String workflowPreRaw) {
+            Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
+            this.workflowPreRaw = Optional.ofNullable(workflowPreRaw);
+            return this;
+        }
+
+        /**
+         * Workflow file (prior to execution)
+         */
+        public Builder workflowPreRaw(Optional<? extends String> workflowPreRaw) {
+            Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
+            this.workflowPreRaw = workflowPreRaw;
+            return this;
+        }
+
+        /**
          * Identifier of the workspace.
          */
         public Builder workspaceId(String workspaceId) {
@@ -3802,6 +4518,7 @@ public class CliEvent {
                 continuousIntegrationEnvironment,
                 createdAt,
                 durationMs,
+                error,
                 executionId,
                 generateBumpType,
                 generateConfigPostChecksum,
@@ -3810,6 +4527,7 @@ public class CliEvent {
                 generateConfigPreChecksum,
                 generateConfigPreRaw,
                 generateConfigPreVersion,
+                generateEligibleFeatures,
                 generateGenLockId,
                 generateGenLockPostFeatures,
                 generateGenLockPreBlobDigest,
@@ -3819,6 +4537,8 @@ public class CliEvent {
                 generateGenLockPreNamespaceName,
                 generateGenLockPreRevisionDigest,
                 generateGenLockPreVersion,
+                generateNumberOfOperationsIgnored,
+                generateNumberOfOperationsUsed,
                 generateOutputTests,
                 generatePublished,
                 generateRepoUrl,
@@ -3826,6 +4546,7 @@ public class CliEvent {
                 generateTargetVersion,
                 generateVersion,
                 ghActionOrganization,
+                ghActionRef,
                 ghActionRepository,
                 ghActionRunLink,
                 ghActionVersion,
@@ -3837,6 +4558,7 @@ public class CliEvent {
                 hostname,
                 id,
                 interactionType,
+                lastStep,
                 lintReportDigest,
                 lintReportErrorCount,
                 lintReportInfoCount,
@@ -3845,6 +4567,7 @@ public class CliEvent {
                 localStartedAt,
                 managementDocChecksum,
                 managementDocVersion,
+                mermaidDiagram,
                 openapiDiffBaseSourceBlobDigest,
                 openapiDiffBaseSourceNamespaceName,
                 openapiDiffBaseSourceRevisionDigest,
@@ -3863,6 +4586,10 @@ public class CliEvent {
                 speakeasyApiKeyName,
                 speakeasyVersion,
                 success,
+                workflowLockPostRaw,
+                workflowLockPreRaw,
+                workflowPostRaw,
+                workflowPreRaw,
                 workspaceId);
         }
     }

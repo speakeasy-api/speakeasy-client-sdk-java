@@ -35,10 +35,10 @@ import org.openapitools.jackson.nullable.JsonNullable;
  * REST APIs for capturing event data
  */
 public class Events implements
-            MethodCallGetWorkspaceEvents,
-            MethodCallGetWorkspaceEventsBySourceRevisionDigest,
+            MethodCallGetWorkspaceEventsByTarget,
             MethodCallGetWorkspaceTargets,
-            MethodCallPostWorkspaceEvents {
+            MethodCallPostWorkspaceEvents,
+            MethodCallSearchWorkspaceEvents {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -50,8 +50,8 @@ public class Events implements
      * Load recent events for a particular workspace
      * @return The call builder
      */
-    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequestBuilder getWorkspaceEvents() {
-        return new io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequestBuilder(this);
+    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequestBuilder getWorkspaceEventsByTarget() {
+        return new io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequestBuilder(this);
     }
 
     /**
@@ -60,13 +60,13 @@ public class Events implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse getWorkspaceEvents(
-            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest request) throws Exception {
+    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse getWorkspaceEventsByTarget(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest.class,
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspaceID}/events",
+                "/v1/workspace/{workspaceID}/events/targets/{targetID}/events",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
@@ -75,7 +75,7 @@ public class Events implements
                 this.sdkConfiguration.userAgent);
 
         _req.addQueryParams(Utils.getQueryParams(
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest.class,
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
 
@@ -86,7 +86,7 @@ public class Events implements
         HttpRequest _r = 
             sdkConfiguration.hooks()
                .beforeRequest(
-                  new BeforeRequestContextImpl("getWorkspaceEvents", sdkConfiguration.securitySource()),
+                  new BeforeRequestContextImpl("getWorkspaceEventsByTarget", sdkConfiguration.securitySource()),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -94,18 +94,18 @@ public class Events implements
             if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
-                        new AfterErrorContextImpl("getWorkspaceEvents", sdkConfiguration.securitySource()),
+                        new AfterErrorContextImpl("getWorkspaceEventsByTarget", sdkConfiguration.securitySource()),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
-                        new AfterSuccessContextImpl("getWorkspaceEvents", sdkConfiguration.securitySource()),
+                        new AfterSuccessContextImpl("getWorkspaceEventsByTarget", sdkConfiguration.securitySource()),
                          _httpRes);
             }
         } catch (Exception _e) {
             _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getWorkspaceEvents", sdkConfiguration.securitySource()), 
+                    .afterError(new AfterErrorContextImpl("getWorkspaceEventsByTarget", sdkConfiguration.securitySource()), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -113,19 +113,18 @@ public class Events implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse.Builder _resBuilder = 
-            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse.Builder _resBuilder = 
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse _res = _resBuilder.build();
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse _res = _resBuilder.build();
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> _out = _mapper.readValue(
+                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent>>() {});
                 _res.withCliEventBatch(java.util.Optional.ofNullable(_out));
@@ -148,126 +147,7 @@ public class Events implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
-            }
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.toByteArrayAndClose(_httpRes.body()));
-    }
-
-
-    /**
-     * Load events for a particular workspace and source revision digest
-     * @return The call builder
-     */
-    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestRequestBuilder getWorkspaceEventsBySourceRevisionDigest() {
-        return new io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestRequestBuilder(this);
-    }
-
-    /**
-     * Load events for a particular workspace and source revision digest
-     * @param request The request object containing all of the parameters for the API call.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestResponse getWorkspaceEventsBySourceRevisionDigest(
-            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestRequest.class,
-                _baseUrl,
-                "/v1/workspace/{workspaceID}/events/source_revision_digest/{sourceRevisionDigest}",
-                request, this.sdkConfiguration.globals);
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
-
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl("getWorkspaceEventsBySourceRevisionDigest", sdkConfiguration.securitySource()),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl("getWorkspaceEventsBySourceRevisionDigest", sdkConfiguration.securitySource()),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl("getWorkspaceEventsBySourceRevisionDigest", sdkConfiguration.securitySource()),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(new AfterErrorContextImpl("getWorkspaceEventsBySourceRevisionDigest", sdkConfiguration.securitySource()), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestResponse.Builder _resBuilder = 
-            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> _out = _mapper.readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent>>() {});
-                _res.withCliEventBatch(java.util.Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.toByteArrayAndClose(_httpRes.body()));
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 throw _out;
@@ -365,8 +245,7 @@ public class Events implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK> _out = _mapper.readValue(
+                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>>() {});
                 _res.withTargetSDKList(java.util.Optional.ofNullable(_out));
@@ -389,8 +268,7 @@ public class Events implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 throw _out;
@@ -482,7 +360,7 @@ public class Events implements
                             .initialInterval(100, java.util.concurrent.TimeUnit.MILLISECONDS)
                             .maxInterval(2000, java.util.concurrent.TimeUnit.MILLISECONDS)
                             .baseFactor((double)(1.5))
-                            .maxElapsedTime(30000, java.util.concurrent.TimeUnit.MILLISECONDS)
+                            .maxElapsedTime(60000, java.util.concurrent.TimeUnit.MILLISECONDS)
                             .retryConnectError(true)
                             .build())
                 .build();
@@ -547,8 +425,128 @@ public class Events implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.toByteArrayAndClose(_httpRes.body()));
+    }
+
+
+    /**
+     * Search events for a particular workspace by any field
+     * @return The call builder
+     */
+    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequestBuilder searchWorkspaceEvents() {
+        return new io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequestBuilder(this);
+    }
+
+    /**
+     * Search events for a particular workspace by any field
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsResponse searchWorkspaceEvents(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequest.class,
+                _baseUrl,
+                "/v1/workspace/{workspaceID}/events",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                this.sdkConfiguration.userAgent);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl("searchWorkspaceEvents", sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl("searchWorkspaceEvents", sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl("searchWorkspaceEvents", sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(new AfterErrorContextImpl("searchWorkspaceEvents", sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsResponse.Builder _resBuilder = 
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent> _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent>>() {});
+                _res.withCliEventBatch(java.util.Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.toByteArrayAndClose(_httpRes.body()));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 throw _out;

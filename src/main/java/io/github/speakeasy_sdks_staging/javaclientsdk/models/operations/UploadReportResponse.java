@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class UploadReportResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class UploadReportResponse implements io.github.speakeasy_sdks_staging.ja
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends UploadReportUploadedReport> uploadedReport() {
-        return uploadedReport;
+    public Optional<UploadReportUploadedReport> uploadedReport() {
+        return (Optional<UploadReportUploadedReport>) uploadedReport;
     }
 
     public final static Builder builder() {

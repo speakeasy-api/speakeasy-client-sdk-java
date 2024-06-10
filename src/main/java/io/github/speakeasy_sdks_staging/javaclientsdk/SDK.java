@@ -86,12 +86,19 @@ public class SDK {
      */
     private final Requests requests;
 
+    private final Github github;
+
     private final Organizations organizations;
 
     /**
      * REST APIs for managing reports
      */
     private final Reports reports;
+
+    /**
+     * REST APIs for managing LLM OAS suggestions
+     */
+    private final Suggest suggest;
 
     /**
      * REST APIs for managing embeds
@@ -149,6 +156,10 @@ public class SDK {
         return requests;
     }
 
+    public Github github() {
+        return github;
+    }
+
     public Organizations organizations() {
         return organizations;
     }
@@ -158,6 +169,13 @@ public class SDK {
      */
     public Reports reports() {
         return reports;
+    }
+
+    /**
+     * REST APIs for managing LLM OAS suggestions
+     */
+    public Suggest suggest() {
+        return suggest;
     }
 
     /**
@@ -323,8 +341,10 @@ public class SDK {
         this.artifacts = new Artifacts(sdkConfiguration);
         this.auth = new Auth(sdkConfiguration);
         this.requests = new Requests(sdkConfiguration);
+        this.github = new Github(sdkConfiguration);
         this.organizations = new Organizations(sdkConfiguration);
         this.reports = new Reports(sdkConfiguration);
+        this.suggest = new Suggest(sdkConfiguration);
         this.embeds = new Embeds(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
         this.sdkConfiguration.initialize();

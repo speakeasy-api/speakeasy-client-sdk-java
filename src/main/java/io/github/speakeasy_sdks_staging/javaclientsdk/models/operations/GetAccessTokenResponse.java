@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetAccessTokenResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class GetAccessTokenResponse implements io.github.speakeasy_sdks_staging.
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessToken> accessToken() {
-        return accessToken;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessToken> accessToken() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessToken>) accessToken;
     }
 
     /**
@@ -89,9 +89,10 @@ public class GetAccessTokenResponse implements io.github.speakeasy_sdks_staging.
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**

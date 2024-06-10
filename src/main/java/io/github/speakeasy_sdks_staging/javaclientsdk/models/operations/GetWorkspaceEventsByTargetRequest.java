@@ -17,8 +17,7 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
-public class GetWorkspaceEventsRequest {
+public class GetWorkspaceEventsByTargetRequest {
 
     /**
      * Filter to only return events created after this timestamp
@@ -29,8 +28,8 @@ public class GetWorkspaceEventsRequest {
     /**
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
-    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=generate_gen_lock_id")
-    private Optional<? extends String> generateGenLockId;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=targetID")
+    private String targetID;
 
     /**
      * Unique identifier of the workspace.
@@ -39,44 +38,47 @@ public class GetWorkspaceEventsRequest {
     private Optional<? extends String> workspaceID;
 
     @JsonCreator
-    public GetWorkspaceEventsRequest(
+    public GetWorkspaceEventsByTargetRequest(
             Optional<? extends OffsetDateTime> afterCreatedAt,
-            Optional<? extends String> generateGenLockId,
+            String targetID,
             Optional<? extends String> workspaceID) {
         Utils.checkNotNull(afterCreatedAt, "afterCreatedAt");
-        Utils.checkNotNull(generateGenLockId, "generateGenLockId");
+        Utils.checkNotNull(targetID, "targetID");
         Utils.checkNotNull(workspaceID, "workspaceID");
         this.afterCreatedAt = afterCreatedAt;
-        this.generateGenLockId = generateGenLockId;
+        this.targetID = targetID;
         this.workspaceID = workspaceID;
     }
     
-    public GetWorkspaceEventsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
+    public GetWorkspaceEventsByTargetRequest(
+            String targetID) {
+        this(Optional.empty(), targetID, Optional.empty());
     }
 
     /**
      * Filter to only return events created after this timestamp
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> afterCreatedAt() {
-        return afterCreatedAt;
+    public Optional<OffsetDateTime> afterCreatedAt() {
+        return (Optional<OffsetDateTime>) afterCreatedAt;
     }
 
     /**
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
     @JsonIgnore
-    public Optional<? extends String> generateGenLockId() {
-        return generateGenLockId;
+    public String targetID() {
+        return targetID;
     }
 
     /**
      * Unique identifier of the workspace.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceID() {
+        return (Optional<String>) workspaceID;
     }
 
     public final static Builder builder() {
@@ -86,7 +88,7 @@ public class GetWorkspaceEventsRequest {
     /**
      * Filter to only return events created after this timestamp
      */
-    public GetWorkspaceEventsRequest withAfterCreatedAt(OffsetDateTime afterCreatedAt) {
+    public GetWorkspaceEventsByTargetRequest withAfterCreatedAt(OffsetDateTime afterCreatedAt) {
         Utils.checkNotNull(afterCreatedAt, "afterCreatedAt");
         this.afterCreatedAt = Optional.ofNullable(afterCreatedAt);
         return this;
@@ -95,7 +97,7 @@ public class GetWorkspaceEventsRequest {
     /**
      * Filter to only return events created after this timestamp
      */
-    public GetWorkspaceEventsRequest withAfterCreatedAt(Optional<? extends OffsetDateTime> afterCreatedAt) {
+    public GetWorkspaceEventsByTargetRequest withAfterCreatedAt(Optional<? extends OffsetDateTime> afterCreatedAt) {
         Utils.checkNotNull(afterCreatedAt, "afterCreatedAt");
         this.afterCreatedAt = afterCreatedAt;
         return this;
@@ -104,25 +106,16 @@ public class GetWorkspaceEventsRequest {
     /**
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
-    public GetWorkspaceEventsRequest withGenerateGenLockId(String generateGenLockId) {
-        Utils.checkNotNull(generateGenLockId, "generateGenLockId");
-        this.generateGenLockId = Optional.ofNullable(generateGenLockId);
-        return this;
-    }
-
-    /**
-     * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
-     */
-    public GetWorkspaceEventsRequest withGenerateGenLockId(Optional<? extends String> generateGenLockId) {
-        Utils.checkNotNull(generateGenLockId, "generateGenLockId");
-        this.generateGenLockId = generateGenLockId;
+    public GetWorkspaceEventsByTargetRequest withTargetID(String targetID) {
+        Utils.checkNotNull(targetID, "targetID");
+        this.targetID = targetID;
         return this;
     }
 
     /**
      * Unique identifier of the workspace.
      */
-    public GetWorkspaceEventsRequest withWorkspaceID(String workspaceID) {
+    public GetWorkspaceEventsByTargetRequest withWorkspaceID(String workspaceID) {
         Utils.checkNotNull(workspaceID, "workspaceID");
         this.workspaceID = Optional.ofNullable(workspaceID);
         return this;
@@ -131,7 +124,7 @@ public class GetWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
-    public GetWorkspaceEventsRequest withWorkspaceID(Optional<? extends String> workspaceID) {
+    public GetWorkspaceEventsByTargetRequest withWorkspaceID(Optional<? extends String> workspaceID) {
         Utils.checkNotNull(workspaceID, "workspaceID");
         this.workspaceID = workspaceID;
         return this;
@@ -145,10 +138,10 @@ public class GetWorkspaceEventsRequest {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        GetWorkspaceEventsRequest other = (GetWorkspaceEventsRequest) o;
+        GetWorkspaceEventsByTargetRequest other = (GetWorkspaceEventsByTargetRequest) o;
         return 
             java.util.Objects.deepEquals(this.afterCreatedAt, other.afterCreatedAt) &&
-            java.util.Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
+            java.util.Objects.deepEquals(this.targetID, other.targetID) &&
             java.util.Objects.deepEquals(this.workspaceID, other.workspaceID);
     }
     
@@ -156,15 +149,15 @@ public class GetWorkspaceEventsRequest {
     public int hashCode() {
         return java.util.Objects.hash(
             afterCreatedAt,
-            generateGenLockId,
+            targetID,
             workspaceID);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(GetWorkspaceEventsRequest.class,
+        return Utils.toString(GetWorkspaceEventsByTargetRequest.class,
                 "afterCreatedAt", afterCreatedAt,
-                "generateGenLockId", generateGenLockId,
+                "targetID", targetID,
                 "workspaceID", workspaceID);
     }
     
@@ -172,7 +165,7 @@ public class GetWorkspaceEventsRequest {
  
         private Optional<? extends OffsetDateTime> afterCreatedAt = Optional.empty();
  
-        private Optional<? extends String> generateGenLockId = Optional.empty();
+        private String targetID;
  
         private Optional<? extends String> workspaceID = Optional.empty();  
         
@@ -201,18 +194,9 @@ public class GetWorkspaceEventsRequest {
         /**
          * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
          */
-        public Builder generateGenLockId(String generateGenLockId) {
-            Utils.checkNotNull(generateGenLockId, "generateGenLockId");
-            this.generateGenLockId = Optional.ofNullable(generateGenLockId);
-            return this;
-        }
-
-        /**
-         * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
-         */
-        public Builder generateGenLockId(Optional<? extends String> generateGenLockId) {
-            Utils.checkNotNull(generateGenLockId, "generateGenLockId");
-            this.generateGenLockId = generateGenLockId;
+        public Builder targetID(String targetID) {
+            Utils.checkNotNull(targetID, "targetID");
+            this.targetID = targetID;
             return this;
         }
 
@@ -234,10 +218,10 @@ public class GetWorkspaceEventsRequest {
             return this;
         }
         
-        public GetWorkspaceEventsRequest build() {
-            return new GetWorkspaceEventsRequest(
+        public GetWorkspaceEventsByTargetRequest build() {
+            return new GetWorkspaceEventsByTargetRequest(
                 afterCreatedAt,
-                generateGenLockId,
+                targetID,
                 workspaceID);
         }
     }

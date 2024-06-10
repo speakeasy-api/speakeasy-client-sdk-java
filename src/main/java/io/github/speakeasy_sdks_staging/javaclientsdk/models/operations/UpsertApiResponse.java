@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class UpsertApiResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class UpsertApiResponse implements io.github.speakeasy_sdks_staging.javac
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Api> api() {
-        return api;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Api> api() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Api>) api;
     }
 
     /**
@@ -89,9 +89,10 @@ public class UpsertApiResponse implements io.github.speakeasy_sdks_staging.javac
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**

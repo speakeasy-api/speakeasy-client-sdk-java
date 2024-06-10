@@ -194,6 +194,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallPostTags {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsResponse postTags(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsRequest request) throws Exception;
+    }
+
+
     public interface MethodCallPreflight {
         io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PreflightResponse preflight(
             Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.PreflightRequest> request) throws Exception;
@@ -241,6 +247,34 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallGithubCheckAccess {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubCheckAccessResponse githubCheckAccess(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubCheckAccessRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGithubConfigureTarget {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubConfigureTargetResponse githubConfigureTarget(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubConfigureTargetRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGithubTriggerAction {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubTriggerActionResponse githubTriggerAction(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubTriggerActionRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallCreateFreeTrial {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CreateFreeTrialResponse createFreeTrialDirect() throws Exception;
+    }
+
+
+    public interface MethodCallGetOrganizationUsage {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationUsageResponse getOrganizationUsageDirect() throws Exception;
+    }
+
+
     public interface MethodCallGetOrganizations {
         io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationsResponse getOrganizationsDirect() throws Exception;
     }
@@ -264,6 +298,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallSuggestOperationIDs {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsResponse suggestOperationIDs(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsRequestBody request) throws Exception;
+    }
+
+
     public interface MethodCallGetEmbedAccessToken {
         io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetEmbedAccessTokenResponse getEmbedAccessToken(
             io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetEmbedAccessTokenRequest request) throws Exception;
@@ -281,15 +321,9 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallGetWorkspaceEvents {
-        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsResponse getWorkspaceEvents(
-            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallGetWorkspaceEventsBySourceRevisionDigest {
-        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestResponse getWorkspaceEventsBySourceRevisionDigest(
-            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsBySourceRevisionDigestRequest request) throws Exception;
+    public interface MethodCallGetWorkspaceEventsByTarget {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse getWorkspaceEventsByTarget(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest request) throws Exception;
     }
 
 
@@ -303,6 +337,12 @@ public class SDKMethodInterfaces {
         io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostWorkspaceEventsResponse postWorkspaceEvents(
             io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostWorkspaceEventsRequest request,
             Optional<Options> options) throws Exception;
+    }
+
+
+    public interface MethodCallSearchWorkspaceEvents {
+        io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsResponse searchWorkspaceEvents(
+            io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequest request) throws Exception;
     }
 
 }

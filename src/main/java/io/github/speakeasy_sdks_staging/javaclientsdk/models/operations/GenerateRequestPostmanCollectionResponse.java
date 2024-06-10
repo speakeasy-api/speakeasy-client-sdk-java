@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GenerateRequestPostmanCollectionResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -81,17 +80,19 @@ public class GenerateRequestPostmanCollectionResponse implements io.github.speak
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends InputStream> postmanCollection() {
-        return postmanCollection;
+    public Optional<InputStream> postmanCollection() {
+        return (Optional<InputStream>) postmanCollection;
     }
 
     /**

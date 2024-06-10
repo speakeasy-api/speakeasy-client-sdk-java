@@ -17,7 +17,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class GetWorkspaceTargetsRequest {
 
     /**
@@ -49,17 +48,19 @@ public class GetWorkspaceTargetsRequest {
     /**
      * Filter to only return targets with events created after this timestamp
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> afterLastEventCreatedAt() {
-        return afterLastEventCreatedAt;
+    public Optional<OffsetDateTime> afterLastEventCreatedAt() {
+        return (Optional<OffsetDateTime>) afterLastEventCreatedAt;
     }
 
     /**
      * Unique identifier of the workspace.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceID() {
+        return (Optional<String>) workspaceID;
     }
 
     public final static Builder builder() {

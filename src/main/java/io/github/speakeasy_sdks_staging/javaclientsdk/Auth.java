@@ -119,8 +119,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessToken _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessToken _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessToken>() {});
                 _res.withAccessToken(java.util.Optional.ofNullable(_out));
@@ -143,8 +142,7 @@ public class Auth implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -234,8 +232,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.User>() {});
                 _res.withUser(java.util.Optional.ofNullable(_out));
@@ -258,8 +255,7 @@ public class Auth implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -347,7 +343,7 @@ public class Auth implements
                             .initialInterval(100, java.util.concurrent.TimeUnit.MILLISECONDS)
                             .maxInterval(2000, java.util.concurrent.TimeUnit.MILLISECONDS)
                             .baseFactor((double)(1.5))
-                            .maxElapsedTime(30000, java.util.concurrent.TimeUnit.MILLISECONDS)
+                            .maxElapsedTime(60000, java.util.concurrent.TimeUnit.MILLISECONDS)
                             .retryConnectError(true)
                             .build())
                 .build();
@@ -400,8 +396,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessDetails _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessDetails _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessDetails>() {});
                 _res.withAccessDetails(java.util.Optional.ofNullable(_out));
@@ -499,8 +494,7 @@ public class Auth implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiKeyDetails _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiKeyDetails _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiKeyDetails>() {});
                 _res.withApiKeyDetails(java.util.Optional.ofNullable(_out));
@@ -523,8 +517,7 @@ public class Auth implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));

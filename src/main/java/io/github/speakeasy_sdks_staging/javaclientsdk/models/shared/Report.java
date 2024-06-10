@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Report {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -36,9 +35,10 @@ public class Report {
         this(Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Type> type() {
-        return type;
+    public Optional<Type> type() {
+        return (Optional<Type>) type;
     }
 
     public final static Builder builder() {

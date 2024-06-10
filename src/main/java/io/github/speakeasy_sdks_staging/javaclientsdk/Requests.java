@@ -140,8 +140,7 @@ public class Requests implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -235,8 +234,7 @@ public class Requests implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.UnboundedRequest _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.UnboundedRequest _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.UnboundedRequest>() {});
                 _res.withUnboundedRequest(java.util.Optional.ofNullable(_out));
@@ -259,8 +257,7 @@ public class Requests implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -361,8 +358,7 @@ public class Requests implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.BoundedRequest> _out = _mapper.readValue(
+                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.BoundedRequest> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.BoundedRequest>>() {});
                 _res.withBoundedRequests(java.util.Optional.ofNullable(_out));
@@ -385,8 +381,7 @@ public class Requests implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));

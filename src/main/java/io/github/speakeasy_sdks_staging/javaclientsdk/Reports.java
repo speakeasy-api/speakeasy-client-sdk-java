@@ -113,8 +113,7 @@ public class Reports implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlSignedAccess _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlSignedAccess _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlSignedAccess>() {});
                 _res.withSignedAccess(java.util.Optional.ofNullable(_out));
@@ -216,8 +215,7 @@ public class Reports implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlSignedAccess _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlSignedAccess _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlSignedAccess>() {});
                 _res.withSignedAccess(java.util.Optional.ofNullable(_out));
@@ -325,8 +323,7 @@ public class Reports implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportUploadedReport _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportUploadedReport _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportUploadedReport>() {});
                 _res.withUploadedReport(java.util.Optional.ofNullable(_out));

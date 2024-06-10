@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 /**
  * SchemaDiff - A SchemaDiff represents a diff of two Schemas.
  */

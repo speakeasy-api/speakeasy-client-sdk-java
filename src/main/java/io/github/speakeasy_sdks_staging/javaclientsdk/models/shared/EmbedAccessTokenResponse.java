@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 /**
  * EmbedAccessTokenResponse - An EmbedAccessTokenResponse contains a token that can be used to embed a Speakeasy dashboard.
  */

@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * ApiEndpoint - An ApiEndpoint is a description of an Endpoint for an API.
  */
@@ -188,9 +187,10 @@ public class ApiEndpoint {
     /**
      * Determines if the endpoint was found in the OpenAPI spec associated with the parent Api.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> matched() {
-        return matched;
+    public Optional<Boolean> matched() {
+        return (Optional<Boolean>) matched;
     }
 
     /**

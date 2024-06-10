@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetSchemasResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -81,9 +80,10 @@ public class GetSchemasResponse implements io.github.speakeasy_sdks_staging.java
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**
@@ -105,9 +105,10 @@ public class GetSchemasResponse implements io.github.speakeasy_sdks_staging.java
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Schema>> classes() {
-        return classes;
+    public Optional<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Schema>> classes() {
+        return (Optional<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Schema>>) classes;
     }
 
     public final static Builder builder() {

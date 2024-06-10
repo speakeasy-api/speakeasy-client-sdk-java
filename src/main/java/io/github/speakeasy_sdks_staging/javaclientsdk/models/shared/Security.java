@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class Security {
 
     @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=x-api-key")
@@ -39,14 +38,16 @@ public class Security {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> apiKey() {
-        return apiKey;
+    public Optional<String> apiKey() {
+        return (Optional<String>) apiKey;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> bearer() {
-        return bearer;
+    public Optional<String> bearer() {
+        return (Optional<String>) bearer;
     }
 
     public final static Builder builder() {

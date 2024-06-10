@@ -17,24 +17,24 @@ import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class GetWorkspaceEventsBySourceRevisionDigestRequestBuilder {
+public class SuggestOperationIDsRequestBuilder {
 
-    private GetWorkspaceEventsBySourceRevisionDigestRequest request;
-    private final SDKMethodInterfaces.MethodCallGetWorkspaceEventsBySourceRevisionDigest sdk;
+    private SuggestOperationIDsRequestBody request;
+    private final SDKMethodInterfaces.MethodCallSuggestOperationIDs sdk;
 
-    public GetWorkspaceEventsBySourceRevisionDigestRequestBuilder(SDKMethodInterfaces.MethodCallGetWorkspaceEventsBySourceRevisionDigest sdk) {
+    public SuggestOperationIDsRequestBuilder(SDKMethodInterfaces.MethodCallSuggestOperationIDs sdk) {
         this.sdk = sdk;
     }
 
-    public GetWorkspaceEventsBySourceRevisionDigestRequestBuilder request(GetWorkspaceEventsBySourceRevisionDigestRequest request) {
+    public SuggestOperationIDsRequestBuilder request(SuggestOperationIDsRequestBody request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
-    public GetWorkspaceEventsBySourceRevisionDigestResponse call() throws Exception {
+    public SuggestOperationIDsResponse call() throws Exception {
 
-        return sdk.getWorkspaceEventsBySourceRevisionDigest(
+        return sdk.suggestOperationIDs(
             request);
     }
 }

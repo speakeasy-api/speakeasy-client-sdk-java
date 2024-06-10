@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * BoundedRequest - A BoundedRequest is a request that has been logged by the Speakeasy without the contents of the request.
  */
@@ -218,9 +217,10 @@ public class BoundedRequest {
     /**
      * Metadata associated with this request
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<RequestMetadata>> metadata() {
-        return metadata;
+    public Optional<java.util.List<RequestMetadata>> metadata() {
+        return (Optional<java.util.List<RequestMetadata>>) metadata;
     }
 
     /**

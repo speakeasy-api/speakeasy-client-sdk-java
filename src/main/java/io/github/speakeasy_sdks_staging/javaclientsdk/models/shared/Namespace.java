@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-
 /**
  * Namespace - A namespace contains many revisions.
  */

@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetAllApiEndpointsResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -73,9 +72,10 @@ public class GetAllApiEndpointsResponse implements io.github.speakeasy_sdks_stag
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>> apiEndpoints() {
-        return apiEndpoints;
+    public Optional<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>> apiEndpoints() {
+        return (Optional<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>>) apiEndpoints;
     }
 
     /**
@@ -89,9 +89,10 @@ public class GetAllApiEndpointsResponse implements io.github.speakeasy_sdks_stag
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**

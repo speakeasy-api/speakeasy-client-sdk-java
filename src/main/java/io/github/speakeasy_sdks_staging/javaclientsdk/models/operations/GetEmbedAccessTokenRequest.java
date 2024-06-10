@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetEmbedAccessTokenRequest {
 
     /**
@@ -57,25 +56,28 @@ public class GetEmbedAccessTokenRequest {
     /**
      * The description of the embed access token.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> description() {
-        return description;
+    public Optional<String> description() {
+        return (Optional<String>) description;
     }
 
     /**
      * The duration (in minutes) of the embed access token.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> duration() {
-        return duration;
+    public Optional<Long> duration() {
+        return (Optional<Long>) duration;
     }
 
     /**
      * The filter to apply to the query.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters() {
-        return filters;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters>) filters;
     }
 
     public final static Builder builder() {

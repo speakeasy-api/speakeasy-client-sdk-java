@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class QueryEventLogRequest {
 
     /**
@@ -39,9 +38,10 @@ public class QueryEventLogRequest {
     /**
      * The filter to apply to the query.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters() {
-        return filters;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters> filters() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Filters>) filters;
     }
 
     public final static Builder builder() {

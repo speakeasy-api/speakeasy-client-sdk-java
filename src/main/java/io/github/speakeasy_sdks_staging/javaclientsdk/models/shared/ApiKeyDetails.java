@@ -18,14 +18,21 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class ApiKeyDetails {
 
     @JsonProperty("account_type")
     private AccountType accountType;
 
+    @JsonProperty("enabled_features")
+    private java.util.List<String> enabledFeatures;
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("feature_flags")
-    private java.util.List<FeatureFlags> featureFlags;
+    @Deprecated
+    private Optional<? extends java.util.List<String>> featureFlags;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generation_access_unlimited")
@@ -43,18 +50,21 @@ public class ApiKeyDetails {
     @JsonCreator
     public ApiKeyDetails(
             @JsonProperty("account_type") AccountType accountType,
-            @JsonProperty("feature_flags") java.util.List<FeatureFlags> featureFlags,
+            @JsonProperty("enabled_features") java.util.List<String> enabledFeatures,
+            @JsonProperty("feature_flags") Optional<? extends java.util.List<String>> featureFlags,
             @JsonProperty("generation_access_unlimited") Optional<? extends Boolean> generationAccessUnlimited,
             @JsonProperty("org_slug") String orgSlug,
             @JsonProperty("workspace_id") String workspaceId,
             @JsonProperty("workspace_slug") String workspaceSlug) {
         Utils.checkNotNull(accountType, "accountType");
+        Utils.checkNotNull(enabledFeatures, "enabledFeatures");
         Utils.checkNotNull(featureFlags, "featureFlags");
         Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
         Utils.checkNotNull(orgSlug, "orgSlug");
         Utils.checkNotNull(workspaceId, "workspaceId");
         Utils.checkNotNull(workspaceSlug, "workspaceSlug");
         this.accountType = accountType;
+        this.enabledFeatures = enabledFeatures;
         this.featureFlags = featureFlags;
         this.generationAccessUnlimited = generationAccessUnlimited;
         this.orgSlug = orgSlug;
@@ -64,11 +74,11 @@ public class ApiKeyDetails {
     
     public ApiKeyDetails(
             AccountType accountType,
-            java.util.List<FeatureFlags> featureFlags,
+            java.util.List<String> enabledFeatures,
             String orgSlug,
             String workspaceId,
             String workspaceSlug) {
-        this(accountType, featureFlags, Optional.empty(), orgSlug, workspaceId, workspaceSlug);
+        this(accountType, enabledFeatures, Optional.empty(), Optional.empty(), orgSlug, workspaceId, workspaceSlug);
     }
 
     @JsonIgnore
@@ -77,13 +87,24 @@ public class ApiKeyDetails {
     }
 
     @JsonIgnore
-    public java.util.List<FeatureFlags> featureFlags() {
-        return featureFlags;
+    public java.util.List<String> enabledFeatures() {
+        return enabledFeatures;
     }
 
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> generationAccessUnlimited() {
-        return generationAccessUnlimited;
+    public Optional<java.util.List<String>> featureFlags() {
+        return (Optional<java.util.List<String>>) featureFlags;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Boolean> generationAccessUnlimited() {
+        return (Optional<Boolean>) generationAccessUnlimited;
     }
 
     @JsonIgnore
@@ -111,7 +132,27 @@ public class ApiKeyDetails {
         return this;
     }
 
-    public ApiKeyDetails withFeatureFlags(java.util.List<FeatureFlags> featureFlags) {
+    public ApiKeyDetails withEnabledFeatures(java.util.List<String> enabledFeatures) {
+        Utils.checkNotNull(enabledFeatures, "enabledFeatures");
+        this.enabledFeatures = enabledFeatures;
+        return this;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public ApiKeyDetails withFeatureFlags(java.util.List<String> featureFlags) {
+        Utils.checkNotNull(featureFlags, "featureFlags");
+        this.featureFlags = Optional.ofNullable(featureFlags);
+        return this;
+    }
+
+    /**
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public ApiKeyDetails withFeatureFlags(Optional<? extends java.util.List<String>> featureFlags) {
         Utils.checkNotNull(featureFlags, "featureFlags");
         this.featureFlags = featureFlags;
         return this;
@@ -158,6 +199,7 @@ public class ApiKeyDetails {
         ApiKeyDetails other = (ApiKeyDetails) o;
         return 
             java.util.Objects.deepEquals(this.accountType, other.accountType) &&
+            java.util.Objects.deepEquals(this.enabledFeatures, other.enabledFeatures) &&
             java.util.Objects.deepEquals(this.featureFlags, other.featureFlags) &&
             java.util.Objects.deepEquals(this.generationAccessUnlimited, other.generationAccessUnlimited) &&
             java.util.Objects.deepEquals(this.orgSlug, other.orgSlug) &&
@@ -169,6 +211,7 @@ public class ApiKeyDetails {
     public int hashCode() {
         return java.util.Objects.hash(
             accountType,
+            enabledFeatures,
             featureFlags,
             generationAccessUnlimited,
             orgSlug,
@@ -180,6 +223,7 @@ public class ApiKeyDetails {
     public String toString() {
         return Utils.toString(ApiKeyDetails.class,
                 "accountType", accountType,
+                "enabledFeatures", enabledFeatures,
                 "featureFlags", featureFlags,
                 "generationAccessUnlimited", generationAccessUnlimited,
                 "orgSlug", orgSlug,
@@ -191,7 +235,10 @@ public class ApiKeyDetails {
  
         private AccountType accountType;
  
-        private java.util.List<FeatureFlags> featureFlags;
+        private java.util.List<String> enabledFeatures;
+ 
+        @Deprecated
+        private Optional<? extends java.util.List<String>> featureFlags = Optional.empty();
  
         private Optional<? extends Boolean> generationAccessUnlimited = Optional.empty();
  
@@ -211,7 +258,27 @@ public class ApiKeyDetails {
             return this;
         }
 
-        public Builder featureFlags(java.util.List<FeatureFlags> featureFlags) {
+        public Builder enabledFeatures(java.util.List<String> enabledFeatures) {
+            Utils.checkNotNull(enabledFeatures, "enabledFeatures");
+            this.enabledFeatures = enabledFeatures;
+            return this;
+        }
+
+        /**
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder featureFlags(java.util.List<String> featureFlags) {
+            Utils.checkNotNull(featureFlags, "featureFlags");
+            this.featureFlags = Optional.ofNullable(featureFlags);
+            return this;
+        }
+
+        /**
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder featureFlags(Optional<? extends java.util.List<String>> featureFlags) {
             Utils.checkNotNull(featureFlags, "featureFlags");
             this.featureFlags = featureFlags;
             return this;
@@ -250,6 +317,7 @@ public class ApiKeyDetails {
         public ApiKeyDetails build() {
             return new ApiKeyDetails(
                 accountType,
+                enabledFeatures,
                 featureFlags,
                 generationAccessUnlimited,
                 orgSlug,

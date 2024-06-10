@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * Organization - A speakeasy organization
  */
@@ -31,7 +30,7 @@ public class Organization {
     private OrganizationAccountType accountType;
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("created)at")
+    @JsonProperty("created_at")
     private Optional<? extends OffsetDateTime> createdAt;
 
     @JsonProperty("id")
@@ -51,7 +50,7 @@ public class Organization {
     @JsonCreator
     public Organization(
             @JsonProperty("account_type") OrganizationAccountType accountType,
-            @JsonProperty("created)at") Optional<? extends OffsetDateTime> createdAt,
+            @JsonProperty("created_at") Optional<? extends OffsetDateTime> createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("slug") Optional<? extends String> slug,
@@ -82,9 +81,10 @@ public class Organization {
         return accountType;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> createdAt() {
-        return createdAt;
+    public Optional<OffsetDateTime> createdAt() {
+        return (Optional<OffsetDateTime>) createdAt;
     }
 
     @JsonIgnore
@@ -97,14 +97,16 @@ public class Organization {
         return name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> slug() {
-        return slug;
+    public Optional<String> slug() {
+        return (Optional<String>) slug;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> updatedAt() {
-        return updatedAt;
+    public Optional<OffsetDateTime> updatedAt() {
+        return (Optional<OffsetDateTime>) updatedAt;
     }
 
     public final static Builder builder() {

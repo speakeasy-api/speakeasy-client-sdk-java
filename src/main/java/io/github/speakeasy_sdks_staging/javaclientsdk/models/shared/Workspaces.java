@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class Workspaces {
 
     @JsonInclude(Include.NON_ABSENT)
@@ -60,24 +59,28 @@ public class Workspaces {
         this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends AccessTokenAccountType> accountType() {
-        return accountType;
+    public Optional<AccessTokenAccountType> accountType() {
+        return (Optional<AccessTokenAccountType>) accountType;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> id() {
-        return id;
+    public Optional<String> id() {
+        return (Optional<String>) id;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> name() {
-        return name;
+    public Optional<String> name() {
+        return (Optional<String>) name;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> updatedAt() {
-        return updatedAt;
+    public Optional<OffsetDateTime> updatedAt() {
+        return (Optional<OffsetDateTime>) updatedAt;
     }
 
     public final static Builder builder() {

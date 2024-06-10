@@ -133,8 +133,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -232,8 +231,7 @@ public class ApiEndpoints implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>() {});
                 _res.withApiEndpoint(java.util.Optional.ofNullable(_out));
@@ -256,8 +254,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -355,8 +352,7 @@ public class ApiEndpoints implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GenerateOpenApiSpecDiff _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GenerateOpenApiSpecDiff _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GenerateOpenApiSpecDiff>() {});
                 _res.withGenerateOpenApiSpecDiff(java.util.Optional.ofNullable(_out));
@@ -379,8 +375,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -498,8 +493,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -593,8 +587,7 @@ public class ApiEndpoints implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint> _out = _mapper.readValue(
+                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>>() {});
                 _res.withApiEndpoints(java.util.Optional.ofNullable(_out));
@@ -617,8 +610,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -712,8 +704,7 @@ public class ApiEndpoints implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint> _out = _mapper.readValue(
+                java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint> _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>>() {});
                 _res.withAPIEndpoints(java.util.Optional.ofNullable(_out));
@@ -736,8 +727,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -831,8 +821,7 @@ public class ApiEndpoints implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>() {});
                 _res.withApiEndpoint(java.util.Optional.ofNullable(_out));
@@ -855,8 +844,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));
@@ -960,8 +948,7 @@ public class ApiEndpoints implements
         
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpoint>() {});
                 _res.withApiEndpoint(java.util.Optional.ofNullable(_out));
@@ -984,8 +971,7 @@ public class ApiEndpoints implements
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "default")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                ObjectMapper _mapper = JSON.getMapper();
-                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = _mapper.readValue(
+                io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>() {});
                 _res.withError(java.util.Optional.ofNullable(_out));

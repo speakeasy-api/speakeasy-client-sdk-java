@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetRequestFromEventLogResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -81,9 +80,10 @@ public class GetRequestFromEventLogResponse implements io.github.speakeasy_sdks_
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**
@@ -105,9 +105,10 @@ public class GetRequestFromEventLogResponse implements io.github.speakeasy_sdks_
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.UnboundedRequest> unboundedRequest() {
-        return unboundedRequest;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.UnboundedRequest> unboundedRequest() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.UnboundedRequest>) unboundedRequest;
     }
 
     public final static Builder builder() {

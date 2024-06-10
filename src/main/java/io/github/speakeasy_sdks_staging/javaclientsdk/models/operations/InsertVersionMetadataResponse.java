@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class InsertVersionMetadataResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -81,9 +80,10 @@ public class InsertVersionMetadataResponse implements io.github.speakeasy_sdks_s
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**
@@ -105,9 +105,10 @@ public class InsertVersionMetadataResponse implements io.github.speakeasy_sdks_s
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.VersionMetadata> versionMetadata() {
-        return versionMetadata;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.VersionMetadata> versionMetadata() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.VersionMetadata>) versionMetadata;
     }
 
     public final static Builder builder() {

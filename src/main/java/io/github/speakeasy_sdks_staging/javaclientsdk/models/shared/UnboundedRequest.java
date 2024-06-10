@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-
 /**
  * UnboundedRequest - An UnboundedRequest represents the HAR content capture by Speakeasy when logging a request.
  */

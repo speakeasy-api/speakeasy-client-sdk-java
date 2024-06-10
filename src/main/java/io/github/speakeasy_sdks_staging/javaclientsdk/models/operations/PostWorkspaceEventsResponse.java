@@ -15,7 +15,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.net.http.HttpResponse;
 
-
 public class PostWorkspaceEventsResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**

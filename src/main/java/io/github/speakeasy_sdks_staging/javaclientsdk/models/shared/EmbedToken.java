@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * EmbedToken - A representation of an embed token granted for working with Speakeasy components.
  */
@@ -186,25 +185,28 @@ public class EmbedToken {
     /**
      * The last time this token was used.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> lastUsed() {
-        return lastUsed;
+    public Optional<OffsetDateTime> lastUsed() {
+        return (Optional<OffsetDateTime>) lastUsed;
     }
 
     /**
      * The time this token was revoked.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends OffsetDateTime> revokedAt() {
-        return revokedAt;
+    public Optional<OffsetDateTime> revokedAt() {
+        return (Optional<OffsetDateTime>) revokedAt;
     }
 
     /**
      * The ID of the user that revoked this token.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> revokedBy() {
-        return revokedBy;
+    public Optional<String> revokedBy() {
+        return (Optional<String>) revokedBy;
     }
 
     /**

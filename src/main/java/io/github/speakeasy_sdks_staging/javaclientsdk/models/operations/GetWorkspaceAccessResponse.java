@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetWorkspaceAccessResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -65,9 +64,10 @@ public class GetWorkspaceAccessResponse implements io.github.speakeasy_sdks_stag
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessDetails> accessDetails() {
-        return accessDetails;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessDetails> accessDetails() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.AccessDetails>) accessDetails;
     }
 
     /**

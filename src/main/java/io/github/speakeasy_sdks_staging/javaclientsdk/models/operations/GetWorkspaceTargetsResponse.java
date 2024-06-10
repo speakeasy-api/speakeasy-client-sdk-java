@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class GetWorkspaceTargetsResponse implements io.github.speakeasy_sdks_sta
     /**
      * Success
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>> targetSDKList() {
-        return targetSDKList;
+    public Optional<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>> targetSDKList() {
+        return (Optional<java.util.List<io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.TargetSDK>>) targetSDKList;
     }
 
     public final static Builder builder() {

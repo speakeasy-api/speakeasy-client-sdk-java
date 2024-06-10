@@ -14,7 +14,6 @@ import java.io.InputStream;
 import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-
 /**
  * VersionMetadataInput - A set of keys and associated values, attached to a particular version of an Api.
  */

@@ -20,7 +20,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
-
 /**
  * Api - An Api is representation of a API (a collection of API Endpoints) within the Speakeasy Platform.
  */
@@ -142,17 +141,19 @@ public class Api {
     /**
      * Determines if all the endpoints within the Api are found in the OpenAPI spec associated with the Api.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> matched() {
-        return matched;
+    public Optional<Boolean> matched() {
+        return (Optional<Boolean>) matched;
     }
 
     /**
      * A set of values associated with a meta_data key. This field is only set on get requests.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.List<String>>> metaData() {
-        return metaData;
+    public Optional<java.util.Map<String, java.util.List<String>>> metaData() {
+        return (Optional<java.util.Map<String, java.util.List<String>>>) metaData;
     }
 
     /**

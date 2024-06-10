@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetLintingReportSignedUrlResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class GetLintingReportSignedUrlResponse implements io.github.speakeasy_sd
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends GetLintingReportSignedUrlSignedAccess> signedAccess() {
-        return signedAccess;
+    public Optional<GetLintingReportSignedUrlSignedAccess> signedAccess() {
+        return (Optional<GetLintingReportSignedUrlSignedAccess>) signedAccess;
     }
 
     public final static Builder builder() {

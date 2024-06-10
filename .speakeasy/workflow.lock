@@ -1,18 +1,19 @@
-speakeasyVersion: 1.269.1
+speakeasyVersion: 1.300.1
 sources:
     first-source: {}
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:3da9526650b8d39c65e2efd3453a4c92503bd9b6a86d3f221d6a2e80d6632b24
-        sourceBlobDigest: sha256:be621d8c6307bb77377bf4a28fcfab0a126bb1655fd6e881b5af03b9e9758709
+        sourceRevisionDigest: sha256:88eedea72b46acfdfa65a8ae7deed5c9b8a3cf68f8218569005f71820371d446
+        sourceBlobDigest: sha256:95a05d11e66a829e602dcec12aba8d34494c3bb3830a522185e0d1537f07e7c5
         tags:
             - latest
+            - main
 targets:
     java-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:3da9526650b8d39c65e2efd3453a4c92503bd9b6a86d3f221d6a2e80d6632b24
-        sourceBlobDigest: sha256:be621d8c6307bb77377bf4a28fcfab0a126bb1655fd6e881b5af03b9e9758709
+        sourceRevisionDigest: sha256:88eedea72b46acfdfa65a8ae7deed5c9b8a3cf68f8218569005f71820371d446
+        sourceBlobDigest: sha256:95a05d11e66a829e602dcec12aba8d34494c3bb3830a522185e0d1537f07e7c5
         outLocation: /github/workspace/repo
     py:
         source: first-source
@@ -27,6 +28,8 @@ workflow:
         my-source:
             inputs:
                 - location: https://docs.speakeasyapi.dev/openapi.yaml
+            registry:
+                location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/my-source
     targets:
         java-target:
             target: java

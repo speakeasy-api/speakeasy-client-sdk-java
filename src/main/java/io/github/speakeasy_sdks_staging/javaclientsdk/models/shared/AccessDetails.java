@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class AccessDetails {
 
     @JsonProperty("generation_allowed")
@@ -55,9 +54,10 @@ public class AccessDetails {
         return generationAllowed;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Level> level() {
-        return level;
+    public Optional<Level> level() {
+        return (Optional<Level>) level;
     }
 
     @JsonIgnore

@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * AccessToken - An AccessToken is a token that can be used to authenticate with the Speakeasy API.
  */
@@ -30,6 +29,10 @@ public class AccessToken {
     @JsonProperty("claims")
     private Claims claims;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("feature_flags")
+    private Optional<? extends java.util.List<FeatureFlag>> featureFlags;
+
     @JsonProperty("user")
     private AccessTokenUser user;
 
@@ -41,14 +44,17 @@ public class AccessToken {
     public AccessToken(
             @JsonProperty("access_token") String accessToken,
             @JsonProperty("claims") Claims claims,
+            @JsonProperty("feature_flags") Optional<? extends java.util.List<FeatureFlag>> featureFlags,
             @JsonProperty("user") AccessTokenUser user,
             @JsonProperty("workspaces") Optional<? extends java.util.List<Workspaces>> workspaces) {
         Utils.checkNotNull(accessToken, "accessToken");
         Utils.checkNotNull(claims, "claims");
+        Utils.checkNotNull(featureFlags, "featureFlags");
         Utils.checkNotNull(user, "user");
         Utils.checkNotNull(workspaces, "workspaces");
         this.accessToken = accessToken;
         this.claims = claims;
+        this.featureFlags = featureFlags;
         this.user = user;
         this.workspaces = workspaces;
     }
@@ -57,7 +63,7 @@ public class AccessToken {
             String accessToken,
             Claims claims,
             AccessTokenUser user) {
-        this(accessToken, claims, user, Optional.empty());
+        this(accessToken, claims, Optional.empty(), user, Optional.empty());
     }
 
     @JsonIgnore
@@ -70,14 +76,21 @@ public class AccessToken {
         return claims;
     }
 
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<java.util.List<FeatureFlag>> featureFlags() {
+        return (Optional<java.util.List<FeatureFlag>>) featureFlags;
+    }
+
     @JsonIgnore
     public AccessTokenUser user() {
         return user;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<Workspaces>> workspaces() {
-        return workspaces;
+    public Optional<java.util.List<Workspaces>> workspaces() {
+        return (Optional<java.util.List<Workspaces>>) workspaces;
     }
 
     public final static Builder builder() {
@@ -93,6 +106,18 @@ public class AccessToken {
     public AccessToken withClaims(Claims claims) {
         Utils.checkNotNull(claims, "claims");
         this.claims = claims;
+        return this;
+    }
+
+    public AccessToken withFeatureFlags(java.util.List<FeatureFlag> featureFlags) {
+        Utils.checkNotNull(featureFlags, "featureFlags");
+        this.featureFlags = Optional.ofNullable(featureFlags);
+        return this;
+    }
+
+    public AccessToken withFeatureFlags(Optional<? extends java.util.List<FeatureFlag>> featureFlags) {
+        Utils.checkNotNull(featureFlags, "featureFlags");
+        this.featureFlags = featureFlags;
         return this;
     }
 
@@ -126,6 +151,7 @@ public class AccessToken {
         return 
             java.util.Objects.deepEquals(this.accessToken, other.accessToken) &&
             java.util.Objects.deepEquals(this.claims, other.claims) &&
+            java.util.Objects.deepEquals(this.featureFlags, other.featureFlags) &&
             java.util.Objects.deepEquals(this.user, other.user) &&
             java.util.Objects.deepEquals(this.workspaces, other.workspaces);
     }
@@ -135,6 +161,7 @@ public class AccessToken {
         return java.util.Objects.hash(
             accessToken,
             claims,
+            featureFlags,
             user,
             workspaces);
     }
@@ -144,6 +171,7 @@ public class AccessToken {
         return Utils.toString(AccessToken.class,
                 "accessToken", accessToken,
                 "claims", claims,
+                "featureFlags", featureFlags,
                 "user", user,
                 "workspaces", workspaces);
     }
@@ -153,6 +181,8 @@ public class AccessToken {
         private String accessToken;
  
         private Claims claims;
+ 
+        private Optional<? extends java.util.List<FeatureFlag>> featureFlags = Optional.empty();
  
         private AccessTokenUser user;
  
@@ -171,6 +201,18 @@ public class AccessToken {
         public Builder claims(Claims claims) {
             Utils.checkNotNull(claims, "claims");
             this.claims = claims;
+            return this;
+        }
+
+        public Builder featureFlags(java.util.List<FeatureFlag> featureFlags) {
+            Utils.checkNotNull(featureFlags, "featureFlags");
+            this.featureFlags = Optional.ofNullable(featureFlags);
+            return this;
+        }
+
+        public Builder featureFlags(Optional<? extends java.util.List<FeatureFlag>> featureFlags) {
+            Utils.checkNotNull(featureFlags, "featureFlags");
+            this.featureFlags = featureFlags;
             return this;
         }
 
@@ -196,6 +238,7 @@ public class AccessToken {
             return new AccessToken(
                 accessToken,
                 claims,
+                featureFlags,
                 user,
                 workspaces);
         }

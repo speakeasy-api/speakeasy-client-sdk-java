@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -81,17 +80,19 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends InputStream> twoHundredApplicationJsonSchema() {
-        return twoHundredApplicationJsonSchema;
+    public Optional<InputStream> twoHundredApplicationJsonSchema() {
+        return (Optional<InputStream>) twoHundredApplicationJsonSchema;
     }
 
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends InputStream> twoHundredApplicationXYamlSchema() {
-        return twoHundredApplicationXYamlSchema;
+    public Optional<InputStream> twoHundredApplicationXYamlSchema() {
+        return (Optional<InputStream>) twoHundredApplicationXYamlSchema;
     }
 
     /**
@@ -105,9 +106,10 @@ public class DownloadSchemaRevisionResponse implements io.github.speakeasy_sdks_
     /**
      * Default error response
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
-        return error;
+    public Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error> error() {
+        return (Optional<io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error>) error;
     }
 
     /**

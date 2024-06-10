@@ -16,7 +16,6 @@ import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
 
-
 public class GetAllApiVersionsRequest {
 
     /**
@@ -66,17 +65,19 @@ public class GetAllApiVersionsRequest {
     /**
      * Metadata to filter Apis on
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.Map<String, java.util.List<String>>> metadata() {
-        return metadata;
+    public Optional<java.util.Map<String, java.util.List<String>>> metadata() {
+        return (Optional<java.util.Map<String, java.util.List<String>>>) metadata;
     }
 
     /**
      * Configuration for filter operations
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Op> op() {
-        return op;
+    public Optional<Op> op() {
+        return (Optional<Op>) op;
     }
 
     public final static Builder builder() {

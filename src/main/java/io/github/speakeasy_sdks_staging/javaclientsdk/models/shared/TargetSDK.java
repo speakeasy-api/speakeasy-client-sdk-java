@@ -21,7 +21,6 @@ import java.math.BigInteger;
 import java.time.OffsetDateTime;
 import java.util.Optional;
 
-
 public class TargetSDK {
 
     /**
@@ -39,11 +38,25 @@ public class TargetSDK {
     private Optional<? extends String> continuousIntegrationEnvironment;
 
     /**
+     * Error message if the last event was not successful.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("error")
+    private Optional<? extends String> error;
+
+    /**
      * Version of the generated target (post generation)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_config_post_version")
     private Optional<? extends String> generateConfigPostVersion;
+
+    /**
+     * Eligible feature set during generation
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_eligible_features")
+    private Optional<? extends String> generateEligibleFeatures;
 
     /**
      * gen.lock ID (expected to be a uuid). The same as `id`. A unique identifier for the target.
@@ -64,6 +77,20 @@ public class TargetSDK {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_gen_lock_pre_version")
     private Optional<? extends String> generateGenLockPreVersion;
+
+    /**
+     * The number of operations ignored in generation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_number_of_operations_ignored")
+    private Optional<? extends Long> generateNumberOfOperationsIgnored;
+
+    /**
+     * The number of operations used in generation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_number_of_operations_used")
+    private Optional<? extends Long> generateNumberOfOperationsUsed;
 
     /**
      * Indicates whether the target was considered published.
@@ -98,6 +125,13 @@ public class TargetSDK {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gh_action_organization")
     private Optional<? extends String> ghActionOrganization;
+
+    /**
+     * GitHub Action ref value.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gh_action_ref")
+    private Optional<? extends String> ghActionRef;
 
     /**
      * GitHub repository of the action.
@@ -225,15 +259,20 @@ public class TargetSDK {
     public TargetSDK(
             @JsonProperty("commit_head") Optional<? extends String> commitHead,
             @JsonProperty("continuous_integration_environment") Optional<? extends String> continuousIntegrationEnvironment,
+            @JsonProperty("error") Optional<? extends String> error,
             @JsonProperty("generate_config_post_version") Optional<? extends String> generateConfigPostVersion,
+            @JsonProperty("generate_eligible_features") Optional<? extends String> generateEligibleFeatures,
             @JsonProperty("generate_gen_lock_id") String generateGenLockId,
             @JsonProperty("generate_gen_lock_pre_features") Optional<? extends String> generateGenLockPreFeatures,
             @JsonProperty("generate_gen_lock_pre_version") Optional<? extends String> generateGenLockPreVersion,
+            @JsonProperty("generate_number_of_operations_ignored") Optional<? extends Long> generateNumberOfOperationsIgnored,
+            @JsonProperty("generate_number_of_operations_used") Optional<? extends Long> generateNumberOfOperationsUsed,
             @JsonProperty("generate_published") Optional<? extends Boolean> generatePublished,
             @JsonProperty("generate_target") String generateTarget,
             @JsonProperty("generate_target_name") Optional<? extends String> generateTargetName,
             @JsonProperty("generate_target_version") Optional<? extends String> generateTargetVersion,
             @JsonProperty("gh_action_organization") Optional<? extends String> ghActionOrganization,
+            @JsonProperty("gh_action_ref") Optional<? extends String> ghActionRef,
             @JsonProperty("gh_action_repository") Optional<? extends String> ghActionRepository,
             @JsonProperty("gh_action_run_link") Optional<? extends String> ghActionRunLink,
             @JsonProperty("gh_action_version") Optional<? extends String> ghActionVersion,
@@ -254,15 +293,20 @@ public class TargetSDK {
             @JsonProperty("success") Optional<? extends Boolean> success) {
         Utils.checkNotNull(commitHead, "commitHead");
         Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
+        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
+        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(generateGenLockPreFeatures, "generateGenLockPreFeatures");
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
+        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
         Utils.checkNotNull(generatePublished, "generatePublished");
         Utils.checkNotNull(generateTarget, "generateTarget");
         Utils.checkNotNull(generateTargetName, "generateTargetName");
         Utils.checkNotNull(generateTargetVersion, "generateTargetVersion");
         Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
+        Utils.checkNotNull(ghActionRef, "ghActionRef");
         Utils.checkNotNull(ghActionRepository, "ghActionRepository");
         Utils.checkNotNull(ghActionRunLink, "ghActionRunLink");
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
@@ -283,15 +327,20 @@ public class TargetSDK {
         Utils.checkNotNull(success, "success");
         this.commitHead = commitHead;
         this.continuousIntegrationEnvironment = continuousIntegrationEnvironment;
+        this.error = error;
         this.generateConfigPostVersion = generateConfigPostVersion;
+        this.generateEligibleFeatures = generateEligibleFeatures;
         this.generateGenLockId = generateGenLockId;
         this.generateGenLockPreFeatures = generateGenLockPreFeatures;
         this.generateGenLockPreVersion = generateGenLockPreVersion;
+        this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
+        this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
         this.generatePublished = generatePublished;
         this.generateTarget = generateTarget;
         this.generateTargetName = generateTargetName;
         this.generateTargetVersion = generateTargetVersion;
         this.ghActionOrganization = ghActionOrganization;
+        this.ghActionRef = ghActionRef;
         this.ghActionRepository = ghActionRepository;
         this.ghActionRunLink = ghActionRunLink;
         this.ghActionVersion = ghActionVersion;
@@ -319,31 +368,52 @@ public class TargetSDK {
             OffsetDateTime lastEventCreatedAt,
             String lastEventId,
             InteractionType lastEventInteractionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
      * Remote commit ID.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> commitHead() {
-        return commitHead;
+    public Optional<String> commitHead() {
+        return (Optional<String>) commitHead;
     }
 
     /**
      * Name of the CI environment.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> continuousIntegrationEnvironment() {
-        return continuousIntegrationEnvironment;
+    public Optional<String> continuousIntegrationEnvironment() {
+        return (Optional<String>) continuousIntegrationEnvironment;
+    }
+
+    /**
+     * Error message if the last event was not successful.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> error() {
+        return (Optional<String>) error;
     }
 
     /**
      * Version of the generated target (post generation)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateConfigPostVersion() {
-        return generateConfigPostVersion;
+    public Optional<String> generateConfigPostVersion() {
+        return (Optional<String>) generateConfigPostVersion;
+    }
+
+    /**
+     * Eligible feature set during generation
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> generateEligibleFeatures() {
+        return (Optional<String>) generateEligibleFeatures;
     }
 
     /**
@@ -357,25 +427,46 @@ public class TargetSDK {
     /**
      * Features prior to generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreFeatures() {
-        return generateGenLockPreFeatures;
+    public Optional<String> generateGenLockPreFeatures() {
+        return (Optional<String>) generateGenLockPreFeatures;
     }
 
     /**
      * Artifact version for the Previous Generation
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateGenLockPreVersion() {
-        return generateGenLockPreVersion;
+    public Optional<String> generateGenLockPreVersion() {
+        return (Optional<String>) generateGenLockPreVersion;
+    }
+
+    /**
+     * The number of operations ignored in generation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Long> generateNumberOfOperationsIgnored() {
+        return (Optional<Long>) generateNumberOfOperationsIgnored;
+    }
+
+    /**
+     * The number of operations used in generation.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<Long> generateNumberOfOperationsUsed() {
+        return (Optional<Long>) generateNumberOfOperationsUsed;
     }
 
     /**
      * Indicates whether the target was considered published.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> generatePublished() {
-        return generatePublished;
+    public Optional<Boolean> generatePublished() {
+        return (Optional<Boolean>) generatePublished;
     }
 
     /**
@@ -389,97 +480,118 @@ public class TargetSDK {
     /**
      * The name of the target as defined by the user.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateTargetName() {
-        return generateTargetName;
+    public Optional<String> generateTargetName() {
+        return (Optional<String>) generateTargetName;
     }
 
     /**
      * The version of the Speakeasy generator for this target eg v2 of the typescript generator.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> generateTargetVersion() {
-        return generateTargetVersion;
+    public Optional<String> generateTargetVersion() {
+        return (Optional<String>) generateTargetVersion;
     }
 
     /**
      * GitHub organization of the action.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionOrganization() {
-        return ghActionOrganization;
+    public Optional<String> ghActionOrganization() {
+        return (Optional<String>) ghActionOrganization;
+    }
+
+    /**
+     * GitHub Action ref value.
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<String> ghActionRef() {
+        return (Optional<String>) ghActionRef;
     }
 
     /**
      * GitHub repository of the action.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionRepository() {
-        return ghActionRepository;
+    public Optional<String> ghActionRepository() {
+        return (Optional<String>) ghActionRepository;
     }
 
     /**
      * Link to the GitHub action run.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionRunLink() {
-        return ghActionRunLink;
+    public Optional<String> ghActionRunLink() {
+        return (Optional<String>) ghActionRunLink;
     }
 
     /**
      * Version of the GitHub action.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> ghActionVersion() {
-        return ghActionVersion;
+    public Optional<String> ghActionVersion() {
+        return (Optional<String>) ghActionVersion;
     }
 
     /**
      * Current working directory relative to the git root.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitRelativeCwd() {
-        return gitRelativeCwd;
+    public Optional<String> gitRelativeCwd() {
+        return (Optional<String>) gitRelativeCwd;
     }
 
     /**
      * Default owner for git remote.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitRemoteDefaultOwner() {
-        return gitRemoteDefaultOwner;
+    public Optional<String> gitRemoteDefaultOwner() {
+        return (Optional<String>) gitRemoteDefaultOwner;
     }
 
     /**
      * Default repository name for git remote.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitRemoteDefaultRepo() {
-        return gitRemoteDefaultRepo;
+    public Optional<String> gitRemoteDefaultRepo() {
+        return (Optional<String>) gitRemoteDefaultRepo;
     }
 
     /**
      * User email from git configuration.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitUserEmail() {
-        return gitUserEmail;
+    public Optional<String> gitUserEmail() {
+        return (Optional<String>) gitUserEmail;
     }
 
     /**
      * User's name from git configuration. (not GitHub username)
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> gitUserName() {
-        return gitUserName;
+    public Optional<String> gitUserName() {
+        return (Optional<String>) gitUserName;
     }
 
     /**
      * Remote hostname.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> hostname() {
-        return hostname;
+    public Optional<String> hostname() {
+        return (Optional<String>) hostname;
     }
 
     /**
@@ -517,41 +629,46 @@ public class TargetSDK {
     /**
      * Label of the git repository.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> repoLabel() {
-        return repoLabel;
+    public Optional<String> repoLabel() {
+        return (Optional<String>) repoLabel;
     }
 
     /**
      * The blob digest of the source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceBlobDigest() {
-        return sourceBlobDigest;
+    public Optional<String> sourceBlobDigest() {
+        return (Optional<String>) sourceBlobDigest;
     }
 
     /**
      * The namespace name of the source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceNamespaceName() {
-        return sourceNamespaceName;
+    public Optional<String> sourceNamespaceName() {
+        return (Optional<String>) sourceNamespaceName;
     }
 
     /**
      * The revision digest of the source.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> sourceRevisionDigest() {
-        return sourceRevisionDigest;
+    public Optional<String> sourceRevisionDigest() {
+        return (Optional<String>) sourceRevisionDigest;
     }
 
     /**
      * Indicates whether the event was successful.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Boolean> success() {
-        return success;
+    public Optional<Boolean> success() {
+        return (Optional<Boolean>) success;
     }
 
     public final static Builder builder() {
@@ -595,6 +712,24 @@ public class TargetSDK {
     }
 
     /**
+     * Error message if the last event was not successful.
+     */
+    public TargetSDK withError(String error) {
+        Utils.checkNotNull(error, "error");
+        this.error = Optional.ofNullable(error);
+        return this;
+    }
+
+    /**
+     * Error message if the last event was not successful.
+     */
+    public TargetSDK withError(Optional<? extends String> error) {
+        Utils.checkNotNull(error, "error");
+        this.error = error;
+        return this;
+    }
+
+    /**
      * Version of the generated target (post generation)
      */
     public TargetSDK withGenerateConfigPostVersion(String generateConfigPostVersion) {
@@ -609,6 +744,24 @@ public class TargetSDK {
     public TargetSDK withGenerateConfigPostVersion(Optional<? extends String> generateConfigPostVersion) {
         Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
         this.generateConfigPostVersion = generateConfigPostVersion;
+        return this;
+    }
+
+    /**
+     * Eligible feature set during generation
+     */
+    public TargetSDK withGenerateEligibleFeatures(String generateEligibleFeatures) {
+        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+        this.generateEligibleFeatures = Optional.ofNullable(generateEligibleFeatures);
+        return this;
+    }
+
+    /**
+     * Eligible feature set during generation
+     */
+    public TargetSDK withGenerateEligibleFeatures(Optional<? extends String> generateEligibleFeatures) {
+        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+        this.generateEligibleFeatures = generateEligibleFeatures;
         return this;
     }
 
@@ -654,6 +807,42 @@ public class TargetSDK {
     public TargetSDK withGenerateGenLockPreVersion(Optional<? extends String> generateGenLockPreVersion) {
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
         this.generateGenLockPreVersion = generateGenLockPreVersion;
+        return this;
+    }
+
+    /**
+     * The number of operations ignored in generation.
+     */
+    public TargetSDK withGenerateNumberOfOperationsIgnored(long generateNumberOfOperationsIgnored) {
+        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+        this.generateNumberOfOperationsIgnored = Optional.ofNullable(generateNumberOfOperationsIgnored);
+        return this;
+    }
+
+    /**
+     * The number of operations ignored in generation.
+     */
+    public TargetSDK withGenerateNumberOfOperationsIgnored(Optional<? extends Long> generateNumberOfOperationsIgnored) {
+        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+        this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
+        return this;
+    }
+
+    /**
+     * The number of operations used in generation.
+     */
+    public TargetSDK withGenerateNumberOfOperationsUsed(long generateNumberOfOperationsUsed) {
+        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+        this.generateNumberOfOperationsUsed = Optional.ofNullable(generateNumberOfOperationsUsed);
+        return this;
+    }
+
+    /**
+     * The number of operations used in generation.
+     */
+    public TargetSDK withGenerateNumberOfOperationsUsed(Optional<? extends Long> generateNumberOfOperationsUsed) {
+        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+        this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
         return this;
     }
 
@@ -735,6 +924,24 @@ public class TargetSDK {
     public TargetSDK withGhActionOrganization(Optional<? extends String> ghActionOrganization) {
         Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
         this.ghActionOrganization = ghActionOrganization;
+        return this;
+    }
+
+    /**
+     * GitHub Action ref value.
+     */
+    public TargetSDK withGhActionRef(String ghActionRef) {
+        Utils.checkNotNull(ghActionRef, "ghActionRef");
+        this.ghActionRef = Optional.ofNullable(ghActionRef);
+        return this;
+    }
+
+    /**
+     * GitHub Action ref value.
+     */
+    public TargetSDK withGhActionRef(Optional<? extends String> ghActionRef) {
+        Utils.checkNotNull(ghActionRef, "ghActionRef");
+        this.ghActionRef = ghActionRef;
         return this;
     }
 
@@ -1038,15 +1245,20 @@ public class TargetSDK {
         return 
             java.util.Objects.deepEquals(this.commitHead, other.commitHead) &&
             java.util.Objects.deepEquals(this.continuousIntegrationEnvironment, other.continuousIntegrationEnvironment) &&
+            java.util.Objects.deepEquals(this.error, other.error) &&
             java.util.Objects.deepEquals(this.generateConfigPostVersion, other.generateConfigPostVersion) &&
+            java.util.Objects.deepEquals(this.generateEligibleFeatures, other.generateEligibleFeatures) &&
             java.util.Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
             java.util.Objects.deepEquals(this.generateGenLockPreFeatures, other.generateGenLockPreFeatures) &&
             java.util.Objects.deepEquals(this.generateGenLockPreVersion, other.generateGenLockPreVersion) &&
+            java.util.Objects.deepEquals(this.generateNumberOfOperationsIgnored, other.generateNumberOfOperationsIgnored) &&
+            java.util.Objects.deepEquals(this.generateNumberOfOperationsUsed, other.generateNumberOfOperationsUsed) &&
             java.util.Objects.deepEquals(this.generatePublished, other.generatePublished) &&
             java.util.Objects.deepEquals(this.generateTarget, other.generateTarget) &&
             java.util.Objects.deepEquals(this.generateTargetName, other.generateTargetName) &&
             java.util.Objects.deepEquals(this.generateTargetVersion, other.generateTargetVersion) &&
             java.util.Objects.deepEquals(this.ghActionOrganization, other.ghActionOrganization) &&
+            java.util.Objects.deepEquals(this.ghActionRef, other.ghActionRef) &&
             java.util.Objects.deepEquals(this.ghActionRepository, other.ghActionRepository) &&
             java.util.Objects.deepEquals(this.ghActionRunLink, other.ghActionRunLink) &&
             java.util.Objects.deepEquals(this.ghActionVersion, other.ghActionVersion) &&
@@ -1072,15 +1284,20 @@ public class TargetSDK {
         return java.util.Objects.hash(
             commitHead,
             continuousIntegrationEnvironment,
+            error,
             generateConfigPostVersion,
+            generateEligibleFeatures,
             generateGenLockId,
             generateGenLockPreFeatures,
             generateGenLockPreVersion,
+            generateNumberOfOperationsIgnored,
+            generateNumberOfOperationsUsed,
             generatePublished,
             generateTarget,
             generateTargetName,
             generateTargetVersion,
             ghActionOrganization,
+            ghActionRef,
             ghActionRepository,
             ghActionRunLink,
             ghActionVersion,
@@ -1106,15 +1323,20 @@ public class TargetSDK {
         return Utils.toString(TargetSDK.class,
                 "commitHead", commitHead,
                 "continuousIntegrationEnvironment", continuousIntegrationEnvironment,
+                "error", error,
                 "generateConfigPostVersion", generateConfigPostVersion,
+                "generateEligibleFeatures", generateEligibleFeatures,
                 "generateGenLockId", generateGenLockId,
                 "generateGenLockPreFeatures", generateGenLockPreFeatures,
                 "generateGenLockPreVersion", generateGenLockPreVersion,
+                "generateNumberOfOperationsIgnored", generateNumberOfOperationsIgnored,
+                "generateNumberOfOperationsUsed", generateNumberOfOperationsUsed,
                 "generatePublished", generatePublished,
                 "generateTarget", generateTarget,
                 "generateTargetName", generateTargetName,
                 "generateTargetVersion", generateTargetVersion,
                 "ghActionOrganization", ghActionOrganization,
+                "ghActionRef", ghActionRef,
                 "ghActionRepository", ghActionRepository,
                 "ghActionRunLink", ghActionRunLink,
                 "ghActionVersion", ghActionVersion,
@@ -1141,13 +1363,21 @@ public class TargetSDK {
  
         private Optional<? extends String> continuousIntegrationEnvironment = Optional.empty();
  
+        private Optional<? extends String> error = Optional.empty();
+ 
         private Optional<? extends String> generateConfigPostVersion = Optional.empty();
+ 
+        private Optional<? extends String> generateEligibleFeatures = Optional.empty();
  
         private String generateGenLockId;
  
         private Optional<? extends String> generateGenLockPreFeatures = Optional.empty();
  
         private Optional<? extends String> generateGenLockPreVersion = Optional.empty();
+ 
+        private Optional<? extends Long> generateNumberOfOperationsIgnored = Optional.empty();
+ 
+        private Optional<? extends Long> generateNumberOfOperationsUsed = Optional.empty();
  
         private Optional<? extends Boolean> generatePublished = Optional.empty();
  
@@ -1158,6 +1388,8 @@ public class TargetSDK {
         private Optional<? extends String> generateTargetVersion = Optional.empty();
  
         private Optional<? extends String> ghActionOrganization = Optional.empty();
+ 
+        private Optional<? extends String> ghActionRef = Optional.empty();
  
         private Optional<? extends String> ghActionRepository = Optional.empty();
  
@@ -1236,6 +1468,24 @@ public class TargetSDK {
         }
 
         /**
+         * Error message if the last event was not successful.
+         */
+        public Builder error(String error) {
+            Utils.checkNotNull(error, "error");
+            this.error = Optional.ofNullable(error);
+            return this;
+        }
+
+        /**
+         * Error message if the last event was not successful.
+         */
+        public Builder error(Optional<? extends String> error) {
+            Utils.checkNotNull(error, "error");
+            this.error = error;
+            return this;
+        }
+
+        /**
          * Version of the generated target (post generation)
          */
         public Builder generateConfigPostVersion(String generateConfigPostVersion) {
@@ -1250,6 +1500,24 @@ public class TargetSDK {
         public Builder generateConfigPostVersion(Optional<? extends String> generateConfigPostVersion) {
             Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
             this.generateConfigPostVersion = generateConfigPostVersion;
+            return this;
+        }
+
+        /**
+         * Eligible feature set during generation
+         */
+        public Builder generateEligibleFeatures(String generateEligibleFeatures) {
+            Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+            this.generateEligibleFeatures = Optional.ofNullable(generateEligibleFeatures);
+            return this;
+        }
+
+        /**
+         * Eligible feature set during generation
+         */
+        public Builder generateEligibleFeatures(Optional<? extends String> generateEligibleFeatures) {
+            Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
+            this.generateEligibleFeatures = generateEligibleFeatures;
             return this;
         }
 
@@ -1295,6 +1563,42 @@ public class TargetSDK {
         public Builder generateGenLockPreVersion(Optional<? extends String> generateGenLockPreVersion) {
             Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
             this.generateGenLockPreVersion = generateGenLockPreVersion;
+            return this;
+        }
+
+        /**
+         * The number of operations ignored in generation.
+         */
+        public Builder generateNumberOfOperationsIgnored(long generateNumberOfOperationsIgnored) {
+            Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+            this.generateNumberOfOperationsIgnored = Optional.ofNullable(generateNumberOfOperationsIgnored);
+            return this;
+        }
+
+        /**
+         * The number of operations ignored in generation.
+         */
+        public Builder generateNumberOfOperationsIgnored(Optional<? extends Long> generateNumberOfOperationsIgnored) {
+            Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
+            this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
+            return this;
+        }
+
+        /**
+         * The number of operations used in generation.
+         */
+        public Builder generateNumberOfOperationsUsed(long generateNumberOfOperationsUsed) {
+            Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+            this.generateNumberOfOperationsUsed = Optional.ofNullable(generateNumberOfOperationsUsed);
+            return this;
+        }
+
+        /**
+         * The number of operations used in generation.
+         */
+        public Builder generateNumberOfOperationsUsed(Optional<? extends Long> generateNumberOfOperationsUsed) {
+            Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+            this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
             return this;
         }
 
@@ -1376,6 +1680,24 @@ public class TargetSDK {
         public Builder ghActionOrganization(Optional<? extends String> ghActionOrganization) {
             Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
             this.ghActionOrganization = ghActionOrganization;
+            return this;
+        }
+
+        /**
+         * GitHub Action ref value.
+         */
+        public Builder ghActionRef(String ghActionRef) {
+            Utils.checkNotNull(ghActionRef, "ghActionRef");
+            this.ghActionRef = Optional.ofNullable(ghActionRef);
+            return this;
+        }
+
+        /**
+         * GitHub Action ref value.
+         */
+        public Builder ghActionRef(Optional<? extends String> ghActionRef) {
+            Utils.checkNotNull(ghActionRef, "ghActionRef");
+            this.ghActionRef = ghActionRef;
             return this;
         }
 
@@ -1671,15 +1993,20 @@ public class TargetSDK {
             return new TargetSDK(
                 commitHead,
                 continuousIntegrationEnvironment,
+                error,
                 generateConfigPostVersion,
+                generateEligibleFeatures,
                 generateGenLockId,
                 generateGenLockPreFeatures,
                 generateGenLockPreVersion,
+                generateNumberOfOperationsIgnored,
+                generateNumberOfOperationsUsed,
                 generatePublished,
                 generateTarget,
                 generateTargetName,
                 generateTargetVersion,
                 ghActionOrganization,
+                ghActionRef,
                 ghActionRepository,
                 ghActionRunLink,
                 ghActionVersion,

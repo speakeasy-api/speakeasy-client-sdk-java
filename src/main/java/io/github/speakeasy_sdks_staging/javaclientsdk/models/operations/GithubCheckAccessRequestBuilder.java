@@ -17,24 +17,24 @@ import java.util.stream.Stream;
 import org.openapitools.jackson.nullable.JsonNullable;
 
 
-public class GetWorkspaceEventsRequestBuilder {
+public class GithubCheckAccessRequestBuilder {
 
-    private GetWorkspaceEventsRequest request;
-    private final SDKMethodInterfaces.MethodCallGetWorkspaceEvents sdk;
+    private GithubCheckAccessRequest request;
+    private final SDKMethodInterfaces.MethodCallGithubCheckAccess sdk;
 
-    public GetWorkspaceEventsRequestBuilder(SDKMethodInterfaces.MethodCallGetWorkspaceEvents sdk) {
+    public GithubCheckAccessRequestBuilder(SDKMethodInterfaces.MethodCallGithubCheckAccess sdk) {
         this.sdk = sdk;
     }
 
-    public GetWorkspaceEventsRequestBuilder request(GetWorkspaceEventsRequest request) {
+    public GithubCheckAccessRequestBuilder request(GithubCheckAccessRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
 
-    public GetWorkspaceEventsResponse call() throws Exception {
+    public GithubCheckAccessResponse call() throws Exception {
 
-        return sdk.getWorkspaceEvents(
+        return sdk.githubCheckAccess(
             request);
     }
 }

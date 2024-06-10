@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.OffsetDateTime;
-
 /**
  * VersionMetadata - A set of keys and associated values, attached to a particular version of an Api.
  */

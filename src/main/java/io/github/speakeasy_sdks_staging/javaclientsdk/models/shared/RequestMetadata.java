@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * RequestMetadata - Key-Value pairs associated with a request
  */
@@ -46,14 +45,16 @@ public class RequestMetadata {
         this(Optional.empty(), Optional.empty());
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> key() {
-        return key;
+    public Optional<String> key() {
+        return (Optional<String>) key;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> value() {
-        return value;
+    public Optional<String> value() {
+        return (Optional<String>) value;
     }
 
     public final static Builder builder() {

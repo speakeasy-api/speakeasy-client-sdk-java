@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * Annotations - Annotations
  */
@@ -152,94 +151,106 @@ public class Annotations {
     /**
      * The authors of the image
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageAuthors() {
-        return orgOpencontainersImageAuthors;
+    public Optional<String> orgOpencontainersImageAuthors() {
+        return (Optional<String>) orgOpencontainersImageAuthors;
     }
 
     /**
      * The time the image was created
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageCreated() {
-        return orgOpencontainersImageCreated;
+    public Optional<String> orgOpencontainersImageCreated() {
+        return (Optional<String>) orgOpencontainersImageCreated;
     }
 
     /**
      * Human-readable description of the software packaged in the image
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageDescription() {
-        return orgOpencontainersImageDescription;
+    public Optional<String> orgOpencontainersImageDescription() {
+        return (Optional<String>) orgOpencontainersImageDescription;
     }
 
     /**
      * The documentation URL of the image
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageDocumentation() {
-        return orgOpencontainersImageDocumentation;
+    public Optional<String> orgOpencontainersImageDocumentation() {
+        return (Optional<String>) orgOpencontainersImageDocumentation;
     }
 
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageLicenses() {
-        return orgOpencontainersImageLicenses;
+    public Optional<String> orgOpencontainersImageLicenses() {
+        return (Optional<String>) orgOpencontainersImageLicenses;
     }
 
     /**
      * Name of the reference for a target
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageRefName() {
-        return orgOpencontainersImageRefName;
+    public Optional<String> orgOpencontainersImageRefName() {
+        return (Optional<String>) orgOpencontainersImageRefName;
     }
 
     /**
      * Source control revision identifier
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageRevision() {
-        return orgOpencontainersImageRevision;
+    public Optional<String> orgOpencontainersImageRevision() {
+        return (Optional<String>) orgOpencontainersImageRevision;
     }
 
     /**
      * The URL to get source code for building the image
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageSource() {
-        return orgOpencontainersImageSource;
+    public Optional<String> orgOpencontainersImageSource() {
+        return (Optional<String>) orgOpencontainersImageSource;
     }
 
     /**
      * Human-readable title of the image
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageTitle() {
-        return orgOpencontainersImageTitle;
+    public Optional<String> orgOpencontainersImageTitle() {
+        return (Optional<String>) orgOpencontainersImageTitle;
     }
 
     /**
      * The URL of the image
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageUrl() {
-        return orgOpencontainersImageUrl;
+    public Optional<String> orgOpencontainersImageUrl() {
+        return (Optional<String>) orgOpencontainersImageUrl;
     }
 
     /**
      * Name of the distributing entity, organization or individual.
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageVendor() {
-        return orgOpencontainersImageVendor;
+    public Optional<String> orgOpencontainersImageVendor() {
+        return (Optional<String>) orgOpencontainersImageVendor;
     }
 
     /**
      * The version of the packaged software
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> orgOpencontainersImageVersion() {
-        return orgOpencontainersImageVersion;
+    public Optional<String> orgOpencontainersImageVersion() {
+        return (Optional<String>) orgOpencontainersImageVersion;
     }
 
     public final static Builder builder() {

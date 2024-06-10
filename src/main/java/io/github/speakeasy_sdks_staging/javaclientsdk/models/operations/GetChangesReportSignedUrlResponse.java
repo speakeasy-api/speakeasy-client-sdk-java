@@ -16,7 +16,6 @@ import java.math.BigInteger;
 import java.net.http.HttpResponse;
 import java.util.Optional;
 
-
 public class GetChangesReportSignedUrlResponse implements io.github.speakeasy_sdks_staging.javaclientsdk.utils.Response {
 
     /**
@@ -89,9 +88,10 @@ public class GetChangesReportSignedUrlResponse implements io.github.speakeasy_sd
     /**
      * OK
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends GetChangesReportSignedUrlSignedAccess> signedAccess() {
-        return signedAccess;
+    public Optional<GetChangesReportSignedUrlSignedAccess> signedAccess() {
+        return (Optional<GetChangesReportSignedUrlSignedAccess>) signedAccess;
     }
 
     public final static Builder builder() {

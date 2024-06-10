@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * Manifest - Returns the requested manifest file
  */
@@ -85,41 +84,46 @@ public class Manifest {
     /**
      * Annotations
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Annotations> annotations() {
-        return annotations;
+    public Optional<Annotations> annotations() {
+        return (Optional<Annotations>) annotations;
     }
 
     /**
      * Type of artifact
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> artifactType() {
-        return artifactType;
+    public Optional<String> artifactType() {
+        return (Optional<String>) artifactType;
     }
 
     /**
      * List of V2 image layer information
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends java.util.List<V2Descriptor>> layers() {
-        return layers;
+    public Optional<java.util.List<V2Descriptor>> layers() {
+        return (Optional<java.util.List<V2Descriptor>>) layers;
     }
 
     /**
      * Media type usually application/vnd.docker.distribution.manifest.v2+json if this is in the accept header
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> mediaType() {
-        return mediaType;
+    public Optional<String> mediaType() {
+        return (Optional<String>) mediaType;
     }
 
     /**
      * Schema version
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> schemaVersion() {
-        return schemaVersion;
+    public Optional<Long> schemaVersion() {
+        return (Optional<Long>) schemaVersion;
     }
 
     public final static Builder builder() {

@@ -17,7 +17,6 @@ import java.lang.Deprecated;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.Optional;
-
 /**
  * V2Descriptor - V2 descriptor
  */
@@ -75,33 +74,37 @@ public class V2Descriptor {
     /**
      * Annotations
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Annotations> annotations() {
-        return annotations;
+    public Optional<Annotations> annotations() {
+        return (Optional<Annotations>) annotations;
     }
 
     /**
      * Digest
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> digest() {
-        return digest;
+    public Optional<String> digest() {
+        return (Optional<String>) digest;
     }
 
     /**
      * Media type
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends String> mediaType() {
-        return mediaType;
+    public Optional<String> mediaType() {
+        return (Optional<String>) mediaType;
     }
 
     /**
      * Size
      */
+    @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<? extends Long> size() {
-        return size;
+    public Optional<Long> size() {
+        return (Optional<Long>) size;
     }
 
     public final static Builder builder() {
