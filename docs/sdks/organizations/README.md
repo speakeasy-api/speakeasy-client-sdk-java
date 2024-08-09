@@ -4,6 +4,7 @@
 ### Available Operations
 
 * [createFreeTrial](#createfreetrial) - Create a free trial for an organization
+* [getOrganization](#getorganization) - Get organization
 * [getOrganizationUsage](#getorganizationusage) - Get billing usage summary for a particular organization
 * [getOrganizations](#getorganizations) - Get organizations for a user
 
@@ -17,18 +18,10 @@ Creates a free trial for an organization
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CreateFreeTrialResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -44,7 +37,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -59,7 +52,72 @@ public class Application {
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CreateFreeTrialResponse](../../models/operations/CreateFreeTrialResponse.md)**
+**[CreateFreeTrialResponse](../../models/operations/CreateFreeTrialResponse.md)**
+### Errors
+
+| Error Object           | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+
+## getOrganization
+
+Get information about a particular organization.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationResponse;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+        try {
+            SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+                .build();
+
+            GetOrganizationRequest req = GetOrganizationRequest.builder()
+                .organizationID("<value>")
+                .build();
+
+            GetOrganizationResponse res = sdk.organizations().getOrganization()
+                .request(req)
+                .call();
+
+            if (res.organization().isPresent()) {
+                // handle response
+            }
+        } catch (SDKError e) {
+            // handle exception
+            throw e;
+        } catch (Exception e) {
+            // handle exception
+            throw e;
+        }
+
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetOrganizationRequest](../../models/operations/GetOrganizationRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+
+### Response
+
+**[GetOrganizationResponse](../../models/operations/GetOrganizationResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -76,18 +134,10 @@ Returns a billing usage summary by target languages for a particular organizatio
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationUsageResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -105,7 +155,7 @@ public class Application {
             if (res.organizationUsageResponse().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -120,7 +170,7 @@ public class Application {
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationUsageResponse](../../models/operations/GetOrganizationUsageResponse.md)**
+**[GetOrganizationUsageResponse](../../models/operations/GetOrganizationUsageResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -137,18 +187,10 @@ Returns a list of organizations a user has access too
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -166,7 +208,7 @@ public class Application {
             if (res.organizations().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -181,7 +223,7 @@ public class Application {
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationsResponse](../../models/operations/GetOrganizationsResponse.md)**
+**[GetOrganizationsResponse](../../models/operations/GetOrganizationsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

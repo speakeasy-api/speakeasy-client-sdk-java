@@ -26,18 +26,11 @@ Delete a particular schema revision for an Api.
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteSchemaRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteSchemaResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -60,7 +53,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -74,14 +67,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                              | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteSchemaRequest](../../models/operations/DeleteSchemaRequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [DeleteSchemaRequest](../../models/operations/DeleteSchemaRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteSchemaResponse](../../models/operations/DeleteSchemaResponse.md)**
+**[DeleteSchemaResponse](../../models/operations/DeleteSchemaResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -98,18 +91,11 @@ Download the latest schema for a particular apiID.
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -133,7 +119,7 @@ public class Application {
             if (res.twoHundredApplicationJsonSchema().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -147,14 +133,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                  | Type                                                                                                                                       | Required                                                                                                                                   | Description                                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                  | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRequest](../../models/operations/DownloadSchemaRequest.md) | :heavy_check_mark:                                                                                                                         | The request object to use for the request.                                                                                                 |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [DownloadSchemaRequest](../../models/operations/DownloadSchemaRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaResponse](../../models/operations/DownloadSchemaResponse.md)**
+**[DownloadSchemaResponse](../../models/operations/DownloadSchemaResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -171,18 +157,11 @@ Download a particular schema revision for an Api.
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRevisionRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRevisionResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -207,7 +186,7 @@ public class Application {
             if (res.twoHundredApplicationJsonSchema().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -221,14 +200,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                                  | Type                                                                                                                                                       | Required                                                                                                                                                   | Description                                                                                                                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                                  | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRevisionRequest](../../models/operations/DownloadSchemaRevisionRequest.md) | :heavy_check_mark:                                                                                                                                         | The request object to use for the request.                                                                                                                 |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `request`                                                                                 | [DownloadSchemaRevisionRequest](../../models/operations/DownloadSchemaRevisionRequest.md) | :heavy_check_mark:                                                                        | The request object to use for the request.                                                |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRevisionResponse](../../models/operations/DownloadSchemaRevisionResponse.md)**
+**[DownloadSchemaRevisionResponse](../../models/operations/DownloadSchemaRevisionResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -246,18 +225,11 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -281,7 +253,7 @@ public class Application {
             if (res.schema().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -295,14 +267,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                        | Type                                                                                                                             | Required                                                                                                                         | Description                                                                                                                      |
-| -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                        | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRequest](../../models/operations/GetSchemaRequest.md) | :heavy_check_mark:                                                                                                               | The request object to use for the request.                                                                                       |
+| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
+| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
+| `request`                                                       | [GetSchemaRequest](../../models/operations/GetSchemaRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaResponse](../../models/operations/GetSchemaResponse.md)**
+**[GetSchemaResponse](../../models/operations/GetSchemaResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -319,18 +291,11 @@ Get a diff of two schema revisions for an Api.
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaDiffRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaDiffResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -356,7 +321,7 @@ public class Application {
             if (res.schemaDiff().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -370,14 +335,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaDiffRequest](../../models/operations/GetSchemaDiffRequest.md) | :heavy_check_mark:                                                                                                                       | The request object to use for the request.                                                                                               |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetSchemaDiffRequest](../../models/operations/GetSchemaDiffRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaDiffResponse](../../models/operations/GetSchemaDiffResponse.md)**
+**[GetSchemaDiffResponse](../../models/operations/GetSchemaDiffResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -395,18 +360,11 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRevisionRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRevisionResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -431,7 +389,7 @@ public class Application {
             if (res.schema().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -445,14 +403,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                        | Type                                                                                                                                             | Required                                                                                                                                         | Description                                                                                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                        | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRevisionRequest](../../models/operations/GetSchemaRevisionRequest.md) | :heavy_check_mark:                                                                                                                               | The request object to use for the request.                                                                                                       |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [GetSchemaRevisionRequest](../../models/operations/GetSchemaRevisionRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRevisionResponse](../../models/operations/GetSchemaRevisionResponse.md)**
+**[GetSchemaRevisionResponse](../../models/operations/GetSchemaRevisionResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -470,18 +428,11 @@ This won't include the schemas themselves, they can be retrieved via the downloa
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemasRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemasResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -505,7 +456,7 @@ public class Application {
             if (res.classes().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -519,14 +470,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                          | Type                                                                                                                               | Required                                                                                                                           | Description                                                                                                                        |
-| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                          | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemasRequest](../../models/operations/GetSchemasRequest.md) | :heavy_check_mark:                                                                                                                 | The request object to use for the request.                                                                                         |
+| Parameter                                                         | Type                                                              | Required                                                          | Description                                                       |
+| ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------- |
+| `request`                                                         | [GetSchemasRequest](../../models/operations/GetSchemasRequest.md) | :heavy_check_mark:                                                | The request object to use for the request.                        |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemasResponse](../../models/operations/GetSchemasResponse.md)**
+**[GetSchemasResponse](../../models/operations/GetSchemasResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -544,18 +495,13 @@ This will be used to populate ApiEndpoints and used as a base for any schema gen
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaFile;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequestBody;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -583,7 +529,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -597,14 +543,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                  | Type                                                                                                                                       | Required                                                                                                                                   | Description                                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                                  | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequest](../../models/operations/RegisterSchemaRequest.md) | :heavy_check_mark:                                                                                                                         | The request object to use for the request.                                                                                                 |
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [RegisterSchemaRequest](../../models/operations/RegisterSchemaRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaResponse](../../models/operations/RegisterSchemaResponse.md)**
+**[RegisterSchemaResponse](../../models/operations/RegisterSchemaResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

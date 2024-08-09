@@ -26,18 +26,11 @@ Get blob for a particular digest
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -63,7 +56,7 @@ public class Application {
             if (res.blob().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -77,14 +70,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                    | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobRequest](../../models/operations/GetBlobRequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [GetBlobRequest](../../models/operations/GetBlobRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobResponse](../../models/operations/GetBlobResponse.md)**
+**[GetBlobResponse](../../models/operations/GetBlobResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -101,18 +94,11 @@ Get manifest for a particular reference
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -138,7 +124,7 @@ public class Application {
             if (res.manifest().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -152,14 +138,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                            | Type                                                                                                                                 | Required                                                                                                                             | Description                                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                            | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestRequest](../../models/operations/GetManifestRequest.md) | :heavy_check_mark:                                                                                                                   | The request object to use for the request.                                                                                           |
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `request`                                                           | [GetManifestRequest](../../models/operations/GetManifestRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestResponse](../../models/operations/GetManifestResponse.md)**
+**[GetManifestResponse](../../models/operations/GetManifestResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -176,18 +162,10 @@ Each namespace contains many revisions.
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetNamespacesResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -205,7 +183,7 @@ public class Application {
             if (res.getNamespacesResponse().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -220,7 +198,7 @@ public class Application {
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetNamespacesResponse](../../models/operations/GetNamespacesResponse.md)**
+**[GetNamespacesResponse](../../models/operations/GetNamespacesResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -235,18 +213,11 @@ public class Application {
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOASSummaryRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOASSummaryResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -270,7 +241,7 @@ public class Application {
             if (res.oasSummary().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -284,14 +255,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                                | Type                                                                                                                                     | Required                                                                                                                                 | Description                                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                                | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOASSummaryRequest](../../models/operations/GetOASSummaryRequest.md) | :heavy_check_mark:                                                                                                                       | The request object to use for the request.                                                                                               |
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetOASSummaryRequest](../../models/operations/GetOASSummaryRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOASSummaryResponse](../../models/operations/GetOASSummaryResponse.md)**
+**[GetOASSummaryResponse](../../models/operations/GetOASSummaryResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -306,18 +277,11 @@ public class Application {
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -340,7 +304,7 @@ public class Application {
             if (res.getRevisionsResponse().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -354,14 +318,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                              | Type                                                                                                                                   | Required                                                                                                                               | Description                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                              | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsRequest](../../models/operations/GetRevisionsRequest.md) | :heavy_check_mark:                                                                                                                     | The request object to use for the request.                                                                                             |
+| Parameter                                                             | Type                                                                  | Required                                                              | Description                                                           |
+| --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `request`                                                             | [GetRevisionsRequest](../../models/operations/GetRevisionsRequest.md) | :heavy_check_mark:                                                    | The request object to use for the request.                            |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsResponse](../../models/operations/GetRevisionsResponse.md)**
+**[GetRevisionsResponse](../../models/operations/GetRevisionsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -376,18 +340,11 @@ public class Application {
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -410,7 +367,7 @@ public class Application {
             if (res.getTagsResponse().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -424,14 +381,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                    | Type                                                                                                                         | Required                                                                                                                     | Description                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| `request`                                                                                                                    | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsRequest](../../models/operations/GetTagsRequest.md) | :heavy_check_mark:                                                                                                           | The request object to use for the request.                                                                                   |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [GetTagsRequest](../../models/operations/GetTagsRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsResponse](../../models/operations/GetTagsResponse.md)**
+**[GetTagsResponse](../../models/operations/GetTagsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -448,18 +405,11 @@ Add tags to an existing revision
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsRequest;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsResponse;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -480,7 +430,7 @@ public class Application {
                 .call();
 
             // handle response
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -494,14 +444,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                      | Type                                                                                                                           | Required                                                                                                                       | Description                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                      | [io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsRequest](../../models/operations/PostTagsRequest.md) | :heavy_check_mark:                                                                                                             | The request object to use for the request.                                                                                     |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `request`                                                     | [PostTagsRequest](../../models/operations/PostTagsRequest.md) | :heavy_check_mark:                                            | The request object to use for the request.                    |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsResponse](../../models/operations/PostTagsResponse.md)**
+**[PostTagsResponse](../../models/operations/PostTagsResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |
@@ -518,18 +468,11 @@ Get access token for communicating with OCI distribution endpoints
 package hello.world;
 
 import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.*;
-import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.*;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PreflightResponse;
+import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.PreflightRequest;
 import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
-import io.github.speakeasy_sdks_staging.javaclientsdk.utils.EventStream;
-import java.math.BigDecimal;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.OffsetDateTime;
-import java.util.Optional;
-import org.openapitools.jackson.nullable.JsonNullable;
-import static java.util.Map.entry;
+import java.lang.Exception;
 
 public class Application {
 
@@ -552,7 +495,7 @@ public class Application {
             if (res.preflightToken().isPresent()) {
                 // handle response
             }
-        } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError e) {
+        } catch (SDKError e) {
             // handle exception
             throw e;
         } catch (Exception e) {
@@ -566,14 +509,14 @@ public class Application {
 
 ### Parameters
 
-| Parameter                                                                                                                | Type                                                                                                                     | Required                                                                                                                 | Description                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `request`                                                                                                                | [io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.PreflightRequest](../../models/shared/PreflightRequest.md) | :heavy_check_mark:                                                                                                       | The request object to use for the request.                                                                               |
+| Parameter                                                   | Type                                                        | Required                                                    | Description                                                 |
+| ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
+| `request`                                                   | [PreflightRequest](../../models/shared/PreflightRequest.md) | :heavy_check_mark:                                          | The request object to use for the request.                  |
 
 
 ### Response
 
-**[io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PreflightResponse](../../models/operations/PreflightResponse.md)**
+**[PreflightResponse](../../models/operations/PreflightResponse.md)**
 ### Errors
 
 | Error Object           | Status Code            | Content Type           |

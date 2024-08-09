@@ -1,0 +1,3179 @@
+overlay: 1.0.0
+info:
+  title: CodeSamples overlay for java target
+  version: 0.0.0
+actions:
+  - target: $["paths"]["/v1/github/action"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getAction
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetActionRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetActionResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetActionRequest req = GetActionRequest.builder()
+                            .org("<value>")
+                            .repo("<value>")
+                            .build();
+
+                        GetActionResponse res = sdk.github().getAction()
+                            .request(req)
+                            .call();
+
+                        if (res.githubGetActionResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/{workspaceID}/events"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: postWorkspaceEvents
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.CliEvent;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.InteractionType;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+            import java.time.OffsetDateTime;
+            import java.util.List;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
+                            .requestBody(List.of(
+                                    CliEvent.builder()
+                                        .id("<value>")
+                                        .executionId("<value>")
+                                        .workspaceId("<value>")
+                                        .speakeasyApiKeyName("<value>")
+                                        .interactionType(InteractionType.PUBLISH)
+                                        .localStartedAt(OffsetDateTime.parse("2022-05-18T11:28:11.328Z"))
+                                        .createdAt(OffsetDateTime.parse("2024-05-07T12:35:47.182Z"))
+                                        .speakeasyVersion("<value>")
+                                        .success(false)
+                                        .build()))
+                            .build();
+
+                        PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
+                        // handle exception
+                        throw e;
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/reports/linting/{documentChecksum}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getLintingReportSignedUrl
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetLintingReportSignedUrlRequest req = GetLintingReportSignedUrlRequest.builder()
+                            .documentChecksum("<value>")
+                            .build();
+
+                        GetLintingReportSignedUrlResponse res = sdk.reports().getLintingReportSignedUrl()
+                            .request(req)
+                            .call();
+
+                        if (res.signedAccess().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteApi
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        DeleteApiRequest req = DeleteApiRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        DeleteApiResponse res = sdk.apis().deleteApi()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generatePostmanCollectionForApiEndpoint
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GeneratePostmanCollectionForApiEndpointRequest req = GeneratePostmanCollectionForApiEndpointRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .apiEndpointID("<value>")
+                            .build();
+
+                        GeneratePostmanCollectionForApiEndpointResponse res = sdk.apiEndpoints().generatePostmanCollectionForApiEndpoint()
+                            .request(req)
+                            .call();
+
+                        if (res.postmanCollection().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/publishing_secrets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: githubCheckPublishingSecrets
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubCheckPublishingSecretsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubCheckPublishingSecretsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GithubCheckPublishingSecretsRequest req = GithubCheckPublishingSecretsRequest.builder()
+                            .generateGenLockId("<value>")
+                            .build();
+
+                        GithubCheckPublishingSecretsResponse res = sdk.github().githubCheckPublishingSecrets()
+                            .request(req)
+                            .call();
+
+                        if (res.githubMissingPublishingSecretsResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/organization/free_trial"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: createFreeTrial
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CreateFreeTrialResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        CreateFreeTrialResponse res = sdk.organizations().createFreeTrial()
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/embed-access-token"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getEmbedAccessToken
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetEmbedAccessTokenRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetEmbedAccessTokenResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetEmbedAccessTokenRequest req = GetEmbedAccessTokenRequest.builder()
+                            .build();
+
+                        GetEmbedAccessTokenResponse res = sdk.embeds().getEmbedAccessToken()
+                            .request(req)
+                            .call();
+
+                        if (res.embedAccessTokenResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/suggest/operation_ids/apply"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: applyOperationIDs
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.ApplyOperationIDsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.ApplyOperationIDsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        ApplyOperationIDsRequest req = ApplyOperationIDsRequest.builder()
+                            .xSessionId("<value>")
+                            .build();
+
+                        ApplyOperationIDsResponse res = sdk.suggest().applyOperationIDs()
+                            .request(req)
+                            .call();
+
+                        if (res.twoHundredApplicationJsonSchema().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteApiEndpoint
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiEndpointRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteApiEndpointResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        DeleteApiEndpointRequest req = DeleteApiEndpointRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .apiEndpointID("<value>")
+                            .build();
+
+                        DeleteApiEndpointResponse res = sdk.apiEndpoints().deleteApiEndpoint()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: upsertApiEndpoint
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UpsertApiEndpointRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UpsertApiEndpointResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiEndpointInput;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        UpsertApiEndpointRequest req = UpsertApiEndpointRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .apiEndpointID("<value>")
+                            .apiEndpoint(ApiEndpointInput.builder()
+                                    .apiEndpointId("<value>")
+                                    .description("<value>")
+                                    .displayName("<value>")
+                                    .method("<value>")
+                                    .path("<value>")
+                                    .versionId("<value>")
+                                    .build())
+                            .build();
+
+                        UpsertApiEndpointResponse res = sdk.apiEndpoints().upsertApiEndpoint()
+                            .request(req)
+                            .call();
+
+                        if (res.apiEndpoint().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/user"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getUser
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetUserResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetUserResponse res = sdk.auth().getUser()
+                            .call();
+
+                        if (res.user().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/eventlog/query"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: queryEventLog
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.QueryEventLogRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.QueryEventLogResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        QueryEventLogRequest req = QueryEventLogRequest.builder()
+                            .build();
+
+                        QueryEventLogResponse res = sdk.requests().queryEventLog()
+                            .request(req)
+                            .call();
+
+                        if (res.boundedRequests().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/suggest/operation_ids/{namespace_name}/{revision_reference}"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: suggestOperationIDsRegistry
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsRegistryRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsRegistryResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        SuggestOperationIDsRegistryRequest req = SuggestOperationIDsRegistryRequest.builder()
+                            .namespaceName("<value>")
+                            .revisionReference("<value>")
+                            .xSessionId("<value>")
+                            .build();
+
+                        SuggestOperationIDsRegistryResponse res = sdk.suggest().suggestOperationIDsRegistry()
+                            .request(req)
+                            .call();
+
+                        if (res.suggestedOperationIDs().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/auth/validate"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: validateApiKey
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.ValidateApiKeyResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        ValidateApiKeyResponse res = sdk.auth().validateApiKey()
+                            .call();
+
+                        if (res.apiKeyDetails().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/tags"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getTags
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetTagsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetTagsRequest req = GetTagsRequest.builder()
+                            .namespaceName("<value>")
+                            .build();
+
+                        GetTagsResponse res = sdk.artifacts().getTags()
+                            .request(req)
+                            .call();
+
+                        if (res.getTagsResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/reports"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: uploadReport
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportFile;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportRequestBody;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UploadReportResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Report;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        UploadReportRequestBody req = UploadReportRequestBody.builder()
+                            .data(Report.builder()
+                                    .build())
+                            .file(UploadReportFile.builder()
+                                    .fileName("<value>")
+                                    .content("0xA329C0ad85".getBytes())
+                                    .build())
+                            .build();
+
+                        UploadReportResponse res = sdk.reports().uploadReport()
+                            .request(req)
+                            .call();
+
+                        if (res.uploadedReport().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getApis
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApisRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApisResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetApisRequest req = GetApisRequest.builder()
+                            .build();
+
+                        GetApisResponse res = sdk.apis().getApis()
+                            .request(req)
+                            .call();
+
+                        if (res.apis().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/generate/openapi"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateOpenApiSpec
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateOpenApiSpecRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateOpenApiSpecResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GenerateOpenApiSpecRequest req = GenerateOpenApiSpecRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        GenerateOpenApiSpecResponse res = sdk.apis().generateOpenApiSpec()
+                            .request(req)
+                            .call();
+
+                        if (res.generateOpenApiSpecDiff().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generatePostmanCollection
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GeneratePostmanCollectionRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GeneratePostmanCollectionResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GeneratePostmanCollectionRequest req = GeneratePostmanCollectionRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        GeneratePostmanCollectionResponse res = sdk.apis().generatePostmanCollection()
+                            .request(req)
+                            .call();
+
+                        if (res.postmanCollection().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchema
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetSchemaRequest req = GetSchemaRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        GetSchemaResponse res = sdk.schemas().getSchema()
+                            .request(req)
+                            .call();
+
+                        if (res.schema().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: registerSchema
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.File;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaRequestBody;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RegisterSchemaResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        RegisterSchemaRequest req = RegisterSchemaRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .requestBody(RegisterSchemaRequestBody.builder()
+                                    .file(File.builder()
+                                            .fileName("<value>")
+                                            .content("0xCAFCA03e0e".getBytes())
+                                            .build())
+                                    .build())
+                            .build();
+
+                        RegisterSchemaResponse res = sdk.schemas().registerSchema()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchemaDiff
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaDiffRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaDiffResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetSchemaDiffRequest req = GetSchemaDiffRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .baseRevisionID("<value>")
+                            .targetRevisionID("<value>")
+                            .build();
+
+                        GetSchemaDiffResponse res = sdk.schemas().getSchemaDiff()
+                            .request(req)
+                            .call();
+
+                        if (res.schemaDiff().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/eventlog/{requestID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getRequestFromEventLog
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRequestFromEventLogRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRequestFromEventLogResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetRequestFromEventLogRequest req = GetRequestFromEventLogRequest.builder()
+                            .requestID("<value>")
+                            .build();
+
+                        GetRequestFromEventLogResponse res = sdk.requests().getRequestFromEventLog()
+                            .request(req)
+                            .call();
+
+                        if (res.unboundedRequest().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/organization/{organizationID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getOrganization
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetOrganizationRequest req = GetOrganizationRequest.builder()
+                            .organizationID("<value>")
+                            .build();
+
+                        GetOrganizationResponse res = sdk.organizations().getOrganization()
+                            .request(req)
+                            .call();
+
+                        if (res.organization().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/api_endpoints"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getAllApiEndpoints
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllApiEndpointsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllApiEndpointsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetAllApiEndpointsRequest req = GetAllApiEndpointsRequest.builder()
+                            .apiID("<value>")
+                            .build();
+
+                        GetAllApiEndpointsResponse res = sdk.apiEndpoints().getAllApiEndpoints()
+                            .request(req)
+                            .call();
+
+                        if (res.apiEndpoints().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/configure_code_samples"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: configureCodeSamples
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.ConfigureCodeSamplesResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GithubConfigureCodeSamplesRequest req = GithubConfigureCodeSamplesRequest.builder()
+                            .org("<value>")
+                            .repo("<value>")
+                            .targetName("<value>")
+                            .build();
+
+                        ConfigureCodeSamplesResponse res = sdk.github().configureCodeSamples()
+                            .request(req)
+                            .call();
+
+                        if (res.githubConfigureCodeSamplesResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/trigger_action"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: triggerAction
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.TriggerActionResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubTriggerActionRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GithubTriggerActionRequest req = GithubTriggerActionRequest.builder()
+                            .org("<value>")
+                            .repoName("<value>")
+                            .genLockId("<value>")
+                            .build();
+
+                        TriggerActionResponse res = sdk.github().triggerAction()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/embed-access-tokens/valid"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getValidEmbedAccessTokens
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetValidEmbedAccessTokensResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetValidEmbedAccessTokensResponse res = sdk.embeds().getValidEmbedAccessTokens()
+                            .call();
+
+                        if (res.embedTokens().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/{workspaceID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getWorkspace
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetWorkspaceRequest req = GetWorkspaceRequest.builder()
+                            .build();
+
+                        GetWorkspaceResponse res = sdk.workspaces().getWorkspace()
+                            .request(req)
+                            .call();
+
+                        if (res.workspace().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/short_urls"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: create
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CreateRequestBody;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CreateResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        CreateRequestBody req = CreateRequestBody.builder()
+                            .url("<value>")
+                            .build();
+
+                        CreateResponse res = sdk.shortURLs().create()
+                            .request(req)
+                            .call();
+
+                        if (res.shortURL().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: findApiEndpoint
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.FindApiEndpointRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.FindApiEndpointResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        FindApiEndpointRequest req = FindApiEndpointRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .displayName("<value>")
+                            .build();
+
+                        FindApiEndpointResponse res = sdk.apiEndpoints().findApiEndpoint()
+                            .request(req)
+                            .call();
+
+                        if (res.apiEndpoint().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/download"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: downloadSchema
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        DownloadSchemaRequest req = DownloadSchemaRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        DownloadSchemaResponse res = sdk.schemas().downloadSchema()
+                            .request(req)
+                            .call();
+
+                        if (res.twoHundredApplicationJsonSchema().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/access"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getWorkspaceAccess
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
+                            .build();
+
+                        GetWorkspaceAccessResponse res = sdk.auth().getWorkspaceAccess()
+                            .request(req)
+                            .call();
+
+                        if (res.accessDetails().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/{workspaceID}/events/targets/{targetID}/events"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getWorkspaceEventsByTarget
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
+                            .targetID("<value>")
+                            .build();
+
+                        GetWorkspaceEventsByTargetResponse res = sdk.events().getWorkspaceEventsByTarget()
+                            .request(req)
+                            .call();
+
+                        if (res.cliEventBatch().isPresent()) {
+                            // handle response
+                        }
+                    } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
+                        // handle exception
+                        throw e;
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getManifest
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetManifestResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetManifestRequest req = GetManifestRequest.builder()
+                            .organizationSlug("<value>")
+                            .workspaceSlug("<value>")
+                            .namespaceName("<value>")
+                            .revisionReference("<value>")
+                            .build();
+
+                        GetManifestResponse res = sdk.artifacts().getManifest()
+                            .request(req)
+                            .call();
+
+                        if (res.manifest().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/reports/changes/{documentChecksum}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getChangesReportSignedUrl
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetChangesReportSignedUrlRequest req = GetChangesReportSignedUrlRequest.builder()
+                            .documentChecksum("<value>")
+                            .build();
+
+                        GetChangesReportSignedUrlResponse res = sdk.reports().getChangesReportSignedUrl()
+                            .request(req)
+                            .call();
+
+                        if (res.signedAccess().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: insertVersionMetadata
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.InsertVersionMetadataRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.InsertVersionMetadataResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.VersionMetadataInput;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        InsertVersionMetadataRequest req = InsertVersionMetadataRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .versionMetadata(VersionMetadataInput.builder()
+                                    .metaKey("<value>")
+                                    .metaValue("<value>")
+                                    .build())
+                            .build();
+
+                        InsertVersionMetadataResponse res = sdk.metadata().insertVersionMetadata()
+                            .request(req)
+                            .call();
+
+                        if (res.versionMetadata().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/auth/access_token"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getAccessToken
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAccessTokenRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAccessTokenResponse;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .build();
+
+                        GetAccessTokenRequest req = GetAccessTokenRequest.builder()
+                            .workspaceId("<value>")
+                            .build();
+
+                        GetAccessTokenResponse res = sdk.auth().getAccessToken()
+                            .request(req)
+                            .call();
+
+                        if (res.accessToken().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/publishing_prs"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: fetchPublishingPRs
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.FetchPublishingPRsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.FetchPublishingPRsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        FetchPublishingPRsRequest req = FetchPublishingPRsRequest.builder()
+                            .generateGenLockId("<value>")
+                            .org("<value>")
+                            .repo("<value>")
+                            .build();
+
+                        FetchPublishingPRsResponse res = sdk.github().fetchPublishingPRs()
+                            .request(req)
+                            .call();
+
+                        if (res.githubPublishingPRResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/organization"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getOrganizations
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetOrganizationsResponse res = sdk.organizations().getOrganizations()
+                            .call();
+
+                        if (res.organizations().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: upsertApi
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UpsertApiRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.UpsertApiResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.ApiInput;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        UpsertApiRequest req = UpsertApiRequest.builder()
+                            .apiID("<value>")
+                            .api(ApiInput.builder()
+                                    .apiId("<value>")
+                                    .description("<value>")
+                                    .versionId("<value>")
+                                    .build())
+                            .build();
+
+                        UpsertApiResponse res = sdk.apis().upsertApi()
+                            .request(req)
+                            .call();
+
+                        if (res.api().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/check_access"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: checkAccess
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CheckAccessRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.CheckAccessResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        CheckAccessRequest req = CheckAccessRequest.builder()
+                            .org("<value>")
+                            .repo("<value>")
+                            .build();
+
+                        CheckAccessResponse res = sdk.github().checkAccess()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getAllApiVersions
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllApiVersionsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllApiVersionsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetAllApiVersionsRequest req = GetAllApiVersionsRequest.builder()
+                            .apiID("<value>")
+                            .build();
+
+                        GetAllApiVersionsResponse res = sdk.apis().getAllApiVersions()
+                            .request(req)
+                            .call();
+
+                        if (res.apis().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/configure_mintlify_repo"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: configureMintlifyRepo
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.ConfigureMintlifyRepoResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+            import java.util.List;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GithubConfigureMintlifyRepoRequest req = GithubConfigureMintlifyRepoRequest.builder()
+                            .org("<value>")
+                            .repo("<value>")
+                            .input("<value>")
+                            .overlays(List.of(
+                                    "<value>"))
+                            .build();
+
+                        ConfigureMintlifyRepoResponse res = sdk.github().configureMintlifyRepo()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getAllForVersionApiEndpoints
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllForVersionApiEndpointsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetAllForVersionApiEndpointsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetAllForVersionApiEndpointsRequest req = GetAllForVersionApiEndpointsRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        GetAllForVersionApiEndpointsResponse res = sdk.apiEndpoints().getAllForVersionApiEndpoints()
+                            .request(req)
+                            .call();
+
+                        if (res.apiEndpoints().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getApiEndpoint
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApiEndpointRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetApiEndpointResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetApiEndpointRequest req = GetApiEndpointRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .apiEndpointID("<value>")
+                            .build();
+
+                        GetApiEndpointResponse res = sdk.apiEndpoints().getApiEndpoint()
+                            .request(req)
+                            .call();
+
+                        if (res.apiEndpoint().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/organization/usage"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getOrganizationUsage
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOrganizationUsageResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetOrganizationUsageResponse res = sdk.organizations().getOrganizationUsage()
+                            .call();
+
+                        if (res.organizationUsageResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/namespaces"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getNamespaces
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetNamespacesResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetNamespacesResponse res = sdk.artifacts().getNamespaces()
+                            .call();
+
+                        if (res.getNamespacesResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteSchema
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteSchemaRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteSchemaResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        DeleteSchemaRequest req = DeleteSchemaRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .revisionID("<value>")
+                            .build();
+
+                        DeleteSchemaResponse res = sdk.schemas().deleteSchema()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: downloadSchemaRevision
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRevisionRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DownloadSchemaRevisionResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        DownloadSchemaRevisionRequest req = DownloadSchemaRevisionRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .revisionID("<value>")
+                            .build();
+
+                        DownloadSchemaRevisionResponse res = sdk.schemas().downloadSchemaRevision()
+                            .request(req)
+                            .call();
+
+                        if (res.twoHundredApplicationJsonSchema().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/eventlog/{requestID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateRequestPostmanCollection
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateRequestPostmanCollectionRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GenerateRequestPostmanCollectionRequest req = GenerateRequestPostmanCollectionRequest.builder()
+                            .requestID("<value>")
+                            .build();
+
+                        GenerateRequestPostmanCollectionResponse res = sdk.requests().generateRequestPostmanCollection()
+                            .request(req)
+                            .call();
+
+                        if (res.postmanCollection().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateOpenApiSpecForApiEndpoint
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GenerateOpenApiSpecForApiEndpointRequest req = GenerateOpenApiSpecForApiEndpointRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .apiEndpointID("<value>")
+                            .build();
+
+                        GenerateOpenApiSpecForApiEndpointResponse res = sdk.apiEndpoints().generateOpenApiSpecForApiEndpoint()
+                            .request(req)
+                            .call();
+
+                        if (res.generateOpenApiSpecDiff().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchemaRevision
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRevisionRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemaRevisionResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetSchemaRevisionRequest req = GetSchemaRevisionRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .revisionID("<value>")
+                            .build();
+
+                        GetSchemaRevisionResponse res = sdk.schemas().getSchemaRevision()
+                            .request(req)
+                            .call();
+
+                        if (res.schema().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schemas"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchemas
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemasRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetSchemasResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetSchemasRequest req = GetSchemasRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        GetSchemasResponse res = sdk.schemas().getSchemas()
+                            .request(req)
+                            .call();
+
+                        if (res.schemata().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/publishing_secrets"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: githubStorePublishingSecrets
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GithubStorePublishingSecretsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubStorePublishingSecretsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GithubStorePublishingSecretsRequest req = GithubStorePublishingSecretsRequest.builder()
+                            .generateGenLockId("<value>")
+                            .build();
+
+                        GithubStorePublishingSecretsResponse res = sdk.github().githubStorePublishingSecrets()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/{workspaceID}/events"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: searchWorkspaceEvents
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SearchWorkspaceEventsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        SearchWorkspaceEventsRequest req = SearchWorkspaceEventsRequest.builder()
+                            .build();
+
+                        SearchWorkspaceEventsResponse res = sdk.events().searchWorkspaceEvents()
+                            .request(req)
+                            .call();
+
+                        if (res.cliEventBatch().isPresent()) {
+                            // handle response
+                        }
+                    } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
+                        // handle exception
+                        throw e;
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/{workspaceID}/events/targets"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getWorkspaceTargets
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceTargetsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetWorkspaceTargetsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetWorkspaceTargetsRequest req = GetWorkspaceTargetsRequest.builder()
+                            .build();
+
+                        GetWorkspaceTargetsResponse res = sdk.events().getWorkspaceTargets()
+                            .request(req)
+                            .call();
+
+                        if (res.targetSDKList().isPresent()) {
+                            // handle response
+                        }
+                    } catch (io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.Error e) {
+                        // handle exception
+                        throw e;
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/preflight"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: preflight
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PreflightResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.PreflightRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        PreflightRequest req = PreflightRequest.builder()
+                            .namespaceName("<value>")
+                            .build();
+
+                        PreflightResponse res = sdk.artifacts().preflight()
+                            .request(req)
+                            .call();
+
+                        if (res.preflightToken().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/revisions"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getRevisions
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetRevisionsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetRevisionsRequest req = GetRevisionsRequest.builder()
+                            .namespaceName("<value>")
+                            .build();
+
+                        GetRevisionsResponse res = sdk.artifacts().getRevisions()
+                            .request(req)
+                            .call();
+
+                        if (res.getRevisionsResponse().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/revisions/{revision_reference}/summary"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getOASSummary
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOASSummaryRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetOASSummaryResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetOASSummaryRequest req = GetOASSummaryRequest.builder()
+                            .namespaceName("<value>")
+                            .revisionReference("<value>")
+                            .build();
+
+                        GetOASSummaryResponse res = sdk.artifacts().getOASSummary()
+                            .request(req)
+                            .call();
+
+                        if (res.oasSummary().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteVersionMetadata
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteVersionMetadataRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.DeleteVersionMetadataResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        DeleteVersionMetadataRequest req = DeleteVersionMetadataRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .metaKey("<value>")
+                            .metaValue("<value>")
+                            .build();
+
+                        DeleteVersionMetadataResponse res = sdk.metadata().deleteVersionMetadata()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/workspace/embed-access-tokens/{tokenID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: revokeEmbedAccessToken
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.RevokeEmbedAccessTokenResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        RevokeEmbedAccessTokenRequest req = RevokeEmbedAccessTokenRequest.builder()
+                            .tokenID("<value>")
+                            .build();
+
+                        RevokeEmbedAccessTokenResponse res = sdk.embeds().revokeEmbedAccessToken()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getBlob
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetBlobResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetBlobRequest req = GetBlobRequest.builder()
+                            .organizationSlug("<value>")
+                            .workspaceSlug("<value>")
+                            .namespaceName("<value>")
+                            .digest("<value>")
+                            .build();
+
+                        GetBlobResponse res = sdk.artifacts().getBlob()
+                            .request(req)
+                            .call();
+
+                        if (res.blob().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getVersionMetadata
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetVersionMetadataRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.GetVersionMetadataResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GetVersionMetadataRequest req = GetVersionMetadataRequest.builder()
+                            .apiID("<value>")
+                            .versionID("<value>")
+                            .build();
+
+                        GetVersionMetadataResponse res = sdk.metadata().getVersionMetadata()
+                            .request(req)
+                            .call();
+
+                        if (res.versionMetadata().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/github/configure_target"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: configureTarget
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.ConfigureTargetResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.GithubConfigureTargetRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        GithubConfigureTargetRequest req = GithubConfigureTargetRequest.builder()
+                            .org("<value>")
+                            .repoName("<value>")
+                            .build();
+
+                        ConfigureTargetResponse res = sdk.github().configureTarget()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/tags"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: postTags
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.PostTagsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        PostTagsRequest req = PostTagsRequest.builder()
+                            .namespaceName("<value>")
+                            .build();
+
+                        PostTagsResponse res = sdk.artifacts().postTags()
+                            .request(req)
+                            .call();
+
+                        // handle response
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
+  - target: $["paths"]["/v1/suggest/operation_ids"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: suggestOperationIDs
+          source: |-
+            package hello.world;
+
+            import io.github.speakeasy_sdks_staging.javaclientsdk.SDK;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.errors.SDKError;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.Schema;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsRequest;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsRequestBody;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.operations.SuggestOperationIDsResponse;
+            import io.github.speakeasy_sdks_staging.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+                    try {
+                        SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                            .build();
+
+                        SuggestOperationIDsRequest req = SuggestOperationIDsRequest.builder()
+                            .xSessionId("<value>")
+                            .requestBody(SuggestOperationIDsRequestBody.builder()
+                                    .schema(Schema.builder()
+                                            .fileName("<value>")
+                                            .content("0xb2de88c98a".getBytes())
+                                            .build())
+                                    .build())
+                            .build();
+
+                        SuggestOperationIDsResponse res = sdk.suggest().suggestOperationIDs()
+                            .request(req)
+                            .call();
+
+                        if (res.suggestedOperationIDs().isPresent()) {
+                            // handle response
+                        }
+                    } catch (SDKError e) {
+                        // handle exception
+                        throw e;
+                    } catch (Exception e) {
+                        // handle exception
+                        throw e;
+                    }
+
+                }
+            }
