@@ -15,7 +15,7 @@ public class GetLintingReportSignedUrlRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetLintingReportSignedUrlRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest request) {
+    public GetLintingReportSignedUrlRequestBuilder request(GetLintingReportSignedUrlRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

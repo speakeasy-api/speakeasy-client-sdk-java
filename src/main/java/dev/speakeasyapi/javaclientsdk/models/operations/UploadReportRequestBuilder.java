@@ -15,7 +15,7 @@ public class UploadReportRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UploadReportRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.UploadReportRequestBody request) {
+    public UploadReportRequestBuilder request(UploadReportRequestBody request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

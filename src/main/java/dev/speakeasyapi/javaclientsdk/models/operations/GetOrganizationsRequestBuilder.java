@@ -15,6 +15,6 @@ public class GetOrganizationsRequestBuilder {
 
     public GetOrganizationsResponse call() throws Exception {
 
-        return sdk.getOrganizationsDirect();
+        return sdk.getAllDirect();
     }
 }

@@ -10,11 +10,13 @@ import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 
 /**
  * Error - The `Status` type defines a logical error model
  */
+@SuppressWarnings("serial")
 public class Error extends RuntimeException {
 
     /**
@@ -33,6 +35,7 @@ public class Error extends RuntimeException {
     public Error(
             @JsonProperty("message") String message,
             @JsonProperty("status_code") int statusCode) {
+        super(message);
         Utils.checkNotNull(message, "message");
         Utils.checkNotNull(statusCode, "statusCode");
         this.message = message;

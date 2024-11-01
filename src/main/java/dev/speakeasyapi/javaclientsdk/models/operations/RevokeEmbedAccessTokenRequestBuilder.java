@@ -15,7 +15,7 @@ public class RevokeEmbedAccessTokenRequestBuilder {
         this.sdk = sdk;
     }
 
-    public RevokeEmbedAccessTokenRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest request) {
+    public RevokeEmbedAccessTokenRequestBuilder request(RevokeEmbedAccessTokenRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -10,6 +10,9 @@ import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsResponse;
@@ -53,6 +56,7 @@ import java.util.concurrent.TimeUnit;
 public class Events implements
             MethodCallGetWorkspaceEventsByTarget,
             MethodCallGetWorkspaceTargets,
+            MethodCallGetWorkspaceTargetsDeprecated,
             MethodCallPostWorkspaceEvents,
             MethodCallSearchWorkspaceEvents {
 
@@ -67,7 +71,7 @@ public class Events implements
      * Load recent events for a particular workspace
      * @return The call builder
      */
-    public GetWorkspaceEventsByTargetRequestBuilder getWorkspaceEventsByTarget() {
+    public GetWorkspaceEventsByTargetRequestBuilder getEventsByTarget() {
         return new GetWorkspaceEventsByTargetRequestBuilder(this);
     }
 
@@ -77,19 +81,19 @@ public class Events implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetWorkspaceEventsByTargetResponse getWorkspaceEventsByTarget(
+    public GetWorkspaceEventsByTargetResponse getEventsByTarget(
             GetWorkspaceEventsByTargetRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 GetWorkspaceEventsByTargetRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspaceID}/events/targets/{targetID}/events",
+                "/v1/workspace/{workspace_id}/events/targets/{target_id}/events",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 GetWorkspaceEventsByTargetRequest.class,
@@ -202,7 +206,7 @@ public class Events implements
      * Load targets for a particular workspace
      * @return The call builder
      */
-    public GetWorkspaceTargetsRequestBuilder getWorkspaceTargets() {
+    public GetWorkspaceTargetsRequestBuilder getTargets() {
         return new GetWorkspaceTargetsRequestBuilder(this);
     }
 
@@ -212,19 +216,17 @@ public class Events implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetWorkspaceTargetsResponse getWorkspaceTargets(
+    public GetWorkspaceTargetsResponse getTargets(
             GetWorkspaceTargetsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                GetWorkspaceTargetsRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspaceID}/events/targets",
-                request, this.sdkConfiguration.globals);
+                "/v1/workspace/events/targets");
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 GetWorkspaceTargetsRequest.class,
@@ -334,11 +336,146 @@ public class Events implements
 
 
     /**
+     * Load targets for a particular workspace
+     * @return The call builder
+     */
+    public GetWorkspaceTargetsDeprecatedRequestBuilder getTargetsDeprecated() {
+        return new GetWorkspaceTargetsDeprecatedRequestBuilder(this);
+    }
+
+    /**
+     * Load targets for a particular workspace
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public GetWorkspaceTargetsDeprecatedResponse getTargetsDeprecated(
+            GetWorkspaceTargetsDeprecatedRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                GetWorkspaceTargetsDeprecatedRequest.class,
+                _baseUrl,
+                "/v1/workspace/{workspace_id}/events/targets",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetWorkspaceTargetsDeprecatedRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "getWorkspaceTargetsDeprecated", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getWorkspaceTargetsDeprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "getWorkspaceTargetsDeprecated",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getWorkspaceTargetsDeprecated",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetWorkspaceTargetsDeprecatedResponse.Builder _resBuilder = 
+            GetWorkspaceTargetsDeprecatedResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetWorkspaceTargetsDeprecatedResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                List<TargetSDK> _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<List<TargetSDK>>() {});
+                _res.withTargetSDKList(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
      * Post events for a specific workspace
      * Sends an array of events to be stored for a particular workspace.
      * @return The call builder
      */
-    public PostWorkspaceEventsRequestBuilder postWorkspaceEvents() {
+    public PostWorkspaceEventsRequestBuilder post() {
         return new PostWorkspaceEventsRequestBuilder(this);
     }
 
@@ -349,9 +486,9 @@ public class Events implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostWorkspaceEventsResponse postWorkspaceEvents(
+    public PostWorkspaceEventsResponse post(
             PostWorkspaceEventsRequest request) throws Exception {
-        return postWorkspaceEvents(request, Optional.empty());
+        return post(request, Optional.empty());
     }
     
     /**
@@ -362,18 +499,18 @@ public class Events implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public PostWorkspaceEventsResponse postWorkspaceEvents(
+    public PostWorkspaceEventsResponse post(
             PostWorkspaceEventsRequest request,
             Optional<Options> options) throws Exception {
 
         if (options.isPresent()) {
-          options.get().validate(Arrays.asList(dev.speakeasyapi.javaclientsdk.utils.Options.Option.RETRY_CONFIG));
+          options.get().validate(Arrays.asList(Options.Option.RETRY_CONFIG));
         }
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 PostWorkspaceEventsRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspaceID}/events",
+                "/v1/workspace/{workspace_id}/events",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
@@ -392,7 +529,7 @@ public class Events implements
         _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -509,7 +646,7 @@ public class Events implements
      * Search events for a particular workspace by any field
      * @return The call builder
      */
-    public SearchWorkspaceEventsRequestBuilder searchWorkspaceEvents() {
+    public SearchWorkspaceEventsRequestBuilder search() {
         return new SearchWorkspaceEventsRequestBuilder(this);
     }
 
@@ -519,19 +656,19 @@ public class Events implements
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public SearchWorkspaceEventsResponse searchWorkspaceEvents(
+    public SearchWorkspaceEventsResponse search(
             SearchWorkspaceEventsRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 SearchWorkspaceEventsRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspaceID}/events",
+                "/v1/workspace/{workspace_id}/events",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "GET");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
-                this.sdkConfiguration.userAgent);
+                SDKConfiguration.USER_AGENT);
 
         _req.addQueryParams(Utils.getQueryParams(
                 SearchWorkspaceEventsRequest.class,

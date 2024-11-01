@@ -15,7 +15,7 @@ public class GetApisRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetApisRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest request) {
+    public GetApisRequestBuilder request(GetApisRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

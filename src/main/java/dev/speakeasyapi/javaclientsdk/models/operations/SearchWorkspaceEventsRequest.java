@@ -52,8 +52,8 @@ public class SearchWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
-    private Optional<String> workspaceID;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspace_id")
+    private Optional<String> workspaceId;
 
     @JsonCreator
     public SearchWorkspaceEventsRequest(
@@ -62,19 +62,19 @@ public class SearchWorkspaceEventsRequest {
             Optional<String> lintReportDigest,
             Optional<String> openapiDiffReportDigest,
             Optional<String> sourceRevisionDigest,
-            Optional<String> workspaceID) {
+            Optional<String> workspaceId) {
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(interactionType, "interactionType");
         Utils.checkNotNull(lintReportDigest, "lintReportDigest");
         Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
         Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
-        Utils.checkNotNull(workspaceID, "workspaceID");
+        Utils.checkNotNull(workspaceId, "workspaceId");
         this.generateGenLockId = generateGenLockId;
         this.interactionType = interactionType;
         this.lintReportDigest = lintReportDigest;
         this.openapiDiffReportDigest = openapiDiffReportDigest;
         this.sourceRevisionDigest = sourceRevisionDigest;
-        this.workspaceID = workspaceID;
+        this.workspaceId = workspaceId;
     }
     
     public SearchWorkspaceEventsRequest() {
@@ -126,8 +126,8 @@ public class SearchWorkspaceEventsRequest {
      * Unique identifier of the workspace.
      */
     @JsonIgnore
-    public Optional<String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceId() {
+        return workspaceId;
     }
 
     public final static Builder builder() {
@@ -227,18 +227,18 @@ public class SearchWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
-    public SearchWorkspaceEventsRequest withWorkspaceID(String workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = Optional.ofNullable(workspaceID);
+    public SearchWorkspaceEventsRequest withWorkspaceId(String workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = Optional.ofNullable(workspaceId);
         return this;
     }
 
     /**
      * Unique identifier of the workspace.
      */
-    public SearchWorkspaceEventsRequest withWorkspaceID(Optional<String> workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = workspaceID;
+    public SearchWorkspaceEventsRequest withWorkspaceId(Optional<String> workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = workspaceId;
         return this;
     }
     
@@ -257,7 +257,7 @@ public class SearchWorkspaceEventsRequest {
             Objects.deepEquals(this.lintReportDigest, other.lintReportDigest) &&
             Objects.deepEquals(this.openapiDiffReportDigest, other.openapiDiffReportDigest) &&
             Objects.deepEquals(this.sourceRevisionDigest, other.sourceRevisionDigest) &&
-            Objects.deepEquals(this.workspaceID, other.workspaceID);
+            Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
     @Override
@@ -268,7 +268,7 @@ public class SearchWorkspaceEventsRequest {
             lintReportDigest,
             openapiDiffReportDigest,
             sourceRevisionDigest,
-            workspaceID);
+            workspaceId);
     }
     
     @Override
@@ -279,7 +279,7 @@ public class SearchWorkspaceEventsRequest {
                 "lintReportDigest", lintReportDigest,
                 "openapiDiffReportDigest", openapiDiffReportDigest,
                 "sourceRevisionDigest", sourceRevisionDigest,
-                "workspaceID", workspaceID);
+                "workspaceId", workspaceId);
     }
     
     public final static class Builder {
@@ -294,7 +294,7 @@ public class SearchWorkspaceEventsRequest {
  
         private Optional<String> sourceRevisionDigest = Optional.empty();
  
-        private Optional<String> workspaceID = Optional.empty();  
+        private Optional<String> workspaceId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -393,18 +393,18 @@ public class SearchWorkspaceEventsRequest {
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(String workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = Optional.ofNullable(workspaceID);
+        public Builder workspaceId(String workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = Optional.ofNullable(workspaceId);
             return this;
         }
 
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(Optional<String> workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = workspaceID;
+        public Builder workspaceId(Optional<String> workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = workspaceId;
             return this;
         }
         
@@ -415,7 +415,7 @@ public class SearchWorkspaceEventsRequest {
                 lintReportDigest,
                 openapiDiffReportDigest,
                 sourceRevisionDigest,
-                workspaceID);
+                workspaceId);
         }
     }
 }

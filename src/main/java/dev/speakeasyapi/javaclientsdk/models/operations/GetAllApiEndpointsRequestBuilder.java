@@ -15,7 +15,7 @@ public class GetAllApiEndpointsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetAllApiEndpointsRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsRequest request) {
+    public GetAllApiEndpointsRequestBuilder request(GetAllApiEndpointsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

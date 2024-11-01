@@ -15,7 +15,7 @@ public class SuggestOpenAPIRegistryRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SuggestOpenAPIRegistryRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryRequest request) {
+    public SuggestOpenAPIRegistryRequestBuilder request(SuggestOpenAPIRegistryRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

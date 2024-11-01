@@ -44,6 +44,12 @@ public class OrganizationUsage {
     private String language;
 
     /**
+     * Maximum Number of operations per SDK specific in contract
+     */
+    @JsonProperty("max_operations")
+    private long maxOperations;
+
+    /**
      * Number of operations performed
      */
     @JsonProperty("number_of_operations")
@@ -67,6 +73,7 @@ public class OrganizationUsage {
             @JsonProperty("accessible_features") List<String> accessibleFeatures,
             @JsonProperty("gen_lock_ids") List<String> genLockIds,
             @JsonProperty("language") String language,
+            @JsonProperty("max_operations") long maxOperations,
             @JsonProperty("number_of_operations") long numberOfOperations,
             @JsonProperty("used_features") List<String> usedFeatures,
             @JsonProperty("workspaces") List<String> workspaces) {
@@ -74,6 +81,7 @@ public class OrganizationUsage {
         Utils.checkNotNull(accessibleFeatures, "accessibleFeatures");
         Utils.checkNotNull(genLockIds, "genLockIds");
         Utils.checkNotNull(language, "language");
+        Utils.checkNotNull(maxOperations, "maxOperations");
         Utils.checkNotNull(numberOfOperations, "numberOfOperations");
         Utils.checkNotNull(usedFeatures, "usedFeatures");
         Utils.checkNotNull(workspaces, "workspaces");
@@ -81,6 +89,7 @@ public class OrganizationUsage {
         this.accessibleFeatures = accessibleFeatures;
         this.genLockIds = genLockIds;
         this.language = language;
+        this.maxOperations = maxOperations;
         this.numberOfOperations = numberOfOperations;
         this.usedFeatures = usedFeatures;
         this.workspaces = workspaces;
@@ -116,6 +125,14 @@ public class OrganizationUsage {
     @JsonIgnore
     public String language() {
         return language;
+    }
+
+    /**
+     * Maximum Number of operations per SDK specific in contract
+     */
+    @JsonIgnore
+    public long maxOperations() {
+        return maxOperations;
     }
 
     /**
@@ -183,6 +200,15 @@ public class OrganizationUsage {
     }
 
     /**
+     * Maximum Number of operations per SDK specific in contract
+     */
+    public OrganizationUsage withMaxOperations(long maxOperations) {
+        Utils.checkNotNull(maxOperations, "maxOperations");
+        this.maxOperations = maxOperations;
+        return this;
+    }
+
+    /**
      * Number of operations performed
      */
     public OrganizationUsage withNumberOfOperations(long numberOfOperations) {
@@ -223,6 +249,7 @@ public class OrganizationUsage {
             Objects.deepEquals(this.accessibleFeatures, other.accessibleFeatures) &&
             Objects.deepEquals(this.genLockIds, other.genLockIds) &&
             Objects.deepEquals(this.language, other.language) &&
+            Objects.deepEquals(this.maxOperations, other.maxOperations) &&
             Objects.deepEquals(this.numberOfOperations, other.numberOfOperations) &&
             Objects.deepEquals(this.usedFeatures, other.usedFeatures) &&
             Objects.deepEquals(this.workspaces, other.workspaces);
@@ -235,6 +262,7 @@ public class OrganizationUsage {
             accessibleFeatures,
             genLockIds,
             language,
+            maxOperations,
             numberOfOperations,
             usedFeatures,
             workspaces);
@@ -247,6 +275,7 @@ public class OrganizationUsage {
                 "accessibleFeatures", accessibleFeatures,
                 "genLockIds", genLockIds,
                 "language", language,
+                "maxOperations", maxOperations,
                 "numberOfOperations", numberOfOperations,
                 "usedFeatures", usedFeatures,
                 "workspaces", workspaces);
@@ -261,6 +290,8 @@ public class OrganizationUsage {
         private List<String> genLockIds;
  
         private String language;
+ 
+        private Long maxOperations;
  
         private Long numberOfOperations;
  
@@ -309,6 +340,15 @@ public class OrganizationUsage {
         }
 
         /**
+         * Maximum Number of operations per SDK specific in contract
+         */
+        public Builder maxOperations(long maxOperations) {
+            Utils.checkNotNull(maxOperations, "maxOperations");
+            this.maxOperations = maxOperations;
+            return this;
+        }
+
+        /**
          * Number of operations performed
          */
         public Builder numberOfOperations(long numberOfOperations) {
@@ -341,6 +381,7 @@ public class OrganizationUsage {
                 accessibleFeatures,
                 genLockIds,
                 language,
+                maxOperations,
                 numberOfOperations,
                 usedFeatures,
                 workspaces);

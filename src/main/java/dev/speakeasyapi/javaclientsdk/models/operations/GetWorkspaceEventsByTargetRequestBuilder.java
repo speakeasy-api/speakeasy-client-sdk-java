@@ -15,7 +15,7 @@ public class GetWorkspaceEventsByTargetRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetWorkspaceEventsByTargetRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest request) {
+    public GetWorkspaceEventsByTargetRequestBuilder request(GetWorkspaceEventsByTargetRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -23,7 +23,7 @@ public class GetWorkspaceEventsByTargetRequestBuilder {
 
     public GetWorkspaceEventsByTargetResponse call() throws Exception {
 
-        return sdk.getWorkspaceEventsByTarget(
+        return sdk.getEventsByTarget(
             request);
     }
 }

@@ -15,7 +15,7 @@ public class UpsertApiEndpointRequestBuilder {
         this.sdk = sdk;
     }
 
-    public UpsertApiEndpointRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointRequest request) {
+    public UpsertApiEndpointRequestBuilder request(UpsertApiEndpointRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

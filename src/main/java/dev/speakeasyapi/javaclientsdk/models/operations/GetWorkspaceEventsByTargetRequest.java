@@ -27,31 +27,31 @@ public class GetWorkspaceEventsByTargetRequest {
     /**
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=targetID")
-    private String targetID;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=target_id")
+    private String targetId;
 
     /**
      * Unique identifier of the workspace.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
-    private Optional<String> workspaceID;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspace_id")
+    private Optional<String> workspaceId;
 
     @JsonCreator
     public GetWorkspaceEventsByTargetRequest(
             Optional<OffsetDateTime> afterCreatedAt,
-            String targetID,
-            Optional<String> workspaceID) {
+            String targetId,
+            Optional<String> workspaceId) {
         Utils.checkNotNull(afterCreatedAt, "afterCreatedAt");
-        Utils.checkNotNull(targetID, "targetID");
-        Utils.checkNotNull(workspaceID, "workspaceID");
+        Utils.checkNotNull(targetId, "targetId");
+        Utils.checkNotNull(workspaceId, "workspaceId");
         this.afterCreatedAt = afterCreatedAt;
-        this.targetID = targetID;
-        this.workspaceID = workspaceID;
+        this.targetId = targetId;
+        this.workspaceId = workspaceId;
     }
     
     public GetWorkspaceEventsByTargetRequest(
-            String targetID) {
-        this(Optional.empty(), targetID, Optional.empty());
+            String targetId) {
+        this(Optional.empty(), targetId, Optional.empty());
     }
 
     /**
@@ -66,16 +66,16 @@ public class GetWorkspaceEventsByTargetRequest {
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
     @JsonIgnore
-    public String targetID() {
-        return targetID;
+    public String targetId() {
+        return targetId;
     }
 
     /**
      * Unique identifier of the workspace.
      */
     @JsonIgnore
-    public Optional<String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceId() {
+        return workspaceId;
     }
 
     public final static Builder builder() {
@@ -103,27 +103,27 @@ public class GetWorkspaceEventsByTargetRequest {
     /**
      * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
      */
-    public GetWorkspaceEventsByTargetRequest withTargetID(String targetID) {
-        Utils.checkNotNull(targetID, "targetID");
-        this.targetID = targetID;
+    public GetWorkspaceEventsByTargetRequest withTargetId(String targetId) {
+        Utils.checkNotNull(targetId, "targetId");
+        this.targetId = targetId;
         return this;
     }
 
     /**
      * Unique identifier of the workspace.
      */
-    public GetWorkspaceEventsByTargetRequest withWorkspaceID(String workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = Optional.ofNullable(workspaceID);
+    public GetWorkspaceEventsByTargetRequest withWorkspaceId(String workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = Optional.ofNullable(workspaceId);
         return this;
     }
 
     /**
      * Unique identifier of the workspace.
      */
-    public GetWorkspaceEventsByTargetRequest withWorkspaceID(Optional<String> workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = workspaceID;
+    public GetWorkspaceEventsByTargetRequest withWorkspaceId(Optional<String> workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = workspaceId;
         return this;
     }
     
@@ -138,33 +138,33 @@ public class GetWorkspaceEventsByTargetRequest {
         GetWorkspaceEventsByTargetRequest other = (GetWorkspaceEventsByTargetRequest) o;
         return 
             Objects.deepEquals(this.afterCreatedAt, other.afterCreatedAt) &&
-            Objects.deepEquals(this.targetID, other.targetID) &&
-            Objects.deepEquals(this.workspaceID, other.workspaceID);
+            Objects.deepEquals(this.targetId, other.targetId) &&
+            Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             afterCreatedAt,
-            targetID,
-            workspaceID);
+            targetId,
+            workspaceId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWorkspaceEventsByTargetRequest.class,
                 "afterCreatedAt", afterCreatedAt,
-                "targetID", targetID,
-                "workspaceID", workspaceID);
+                "targetId", targetId,
+                "workspaceId", workspaceId);
     }
     
     public final static class Builder {
  
         private Optional<OffsetDateTime> afterCreatedAt = Optional.empty();
  
-        private String targetID;
+        private String targetId;
  
-        private Optional<String> workspaceID = Optional.empty();  
+        private Optional<String> workspaceId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -191,35 +191,35 @@ public class GetWorkspaceEventsByTargetRequest {
         /**
          * Filter to only return events corresponding to a particular gen_lock_id (gen_lock_id uniquely identifies a target)
          */
-        public Builder targetID(String targetID) {
-            Utils.checkNotNull(targetID, "targetID");
-            this.targetID = targetID;
+        public Builder targetId(String targetId) {
+            Utils.checkNotNull(targetId, "targetId");
+            this.targetId = targetId;
             return this;
         }
 
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(String workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = Optional.ofNullable(workspaceID);
+        public Builder workspaceId(String workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = Optional.ofNullable(workspaceId);
             return this;
         }
 
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(Optional<String> workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = workspaceID;
+        public Builder workspaceId(Optional<String> workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = workspaceId;
             return this;
         }
         
         public GetWorkspaceEventsByTargetRequest build() {
             return new GetWorkspaceEventsByTargetRequest(
                 afterCreatedAt,
-                targetID,
-                workspaceID);
+                targetId,
+                workspaceId);
         }
     }
 }

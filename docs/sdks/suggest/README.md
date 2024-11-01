@@ -8,6 +8,7 @@ REST APIs for managing LLM OAS suggestions
 ### Available Operations
 
 * [suggest](#suggest) - Generate suggestions for improving an OpenAPI document.
+* [suggestItems](#suggestitems) - Generate generic suggestions for a list of items.
 * [suggestOpenAPI](#suggestopenapi) - (DEPRECATED) Generate suggestions for improving an OpenAPI document.
 * [suggestOpenAPIRegistry](#suggestopenapiregistry) - Generate suggestions for improving an OpenAPI document stored in the registry.
 
@@ -21,7 +22,6 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Diagnostic;
@@ -38,14 +38,14 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            SuggestRequest req = SuggestRequest.builder()
+        SuggestRequest req = SuggestRequest.builder()
                 .suggestRequestBody(SuggestRequestBody.builder()
                     .diagnostics(List.of(
                         Diagnostic.builder()
@@ -56,7 +56,7 @@ public class Application {
                             .build()))
                     .oasSummary(OASSummary.builder()
                         .info(OASInfo.builder()
-                            .description("Object-based multi-state pricing structure")
+                            .description("kielbasa psst stitcher cannon devoted blindly apropos low")
                             .license(License.builder()
                                 .build())
                             .summary("<value>")
@@ -65,34 +65,26 @@ public class Application {
                             .build())
                         .operations(List.of(
                             OASOperation.builder()
-                                .description("Innovative tangible hierarchy")
+                                .description("via apparatus gray whether opposite what")
                                 .method("<value>")
-                                .operationId("<value>")
-                                .path("/usr/include")
+                                .operationId("<id>")
+                                .path("/sys")
                                 .tags(List.of(
                                     "<value>"))
                                 .build()))
                         .build())
                     .suggestionType(SuggestRequestBodySuggestionType.METHOD_NAMES)
                     .build())
-                .xSessionId("<value>")
+                .xSessionId("<id>")
                 .build();
 
-            SuggestResponse res = sdk.suggest().suggest()
+        SuggestResponse res = sdk.suggest().suggest()
                 .request(req)
                 .call();
 
-            if (res.schema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.schema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -109,10 +101,68 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
+## suggestItems
+
+Generate generic suggestions for a list of items.
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.operations.SuggestItemsResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import dev.speakeasyapi.javaclientsdk.models.shared.SuggestItemsRequestBody;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        SuggestItemsRequestBody req = SuggestItemsRequestBody.builder()
+                .items(List.of(
+                    "<value>"))
+                .prompt("<value>")
+                .build();
+
+        SuggestItemsResponse res = sdk.suggest().suggestItems()
+                .request(req)
+                .call();
+
+        if (res.strings().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| `request`                                                                 | [SuggestItemsRequestBody](../../models/shared/SuggestItemsRequestBody.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
+
+### Response
+
+**[SuggestItemsResponse](../../models/operations/SuggestItemsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## suggestOpenAPI
 
@@ -124,49 +174,41 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.Schema;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            SuggestOpenAPIRequest req = SuggestOpenAPIRequest.builder()
+        SuggestOpenAPIRequest req = SuggestOpenAPIRequest.builder()
                 .requestBody(SuggestOpenAPIRequestBody.builder()
                     .schema(Schema.builder()
-                        .content("0x0FbfeAEcc8".getBytes())
+                        .content("0x0beEcB7cF6".getBytes(StandardCharsets.UTF_8))
                         .fileName("example.file")
                         .build())
                     .build())
-                .xSessionId("<value>")
+                .xSessionId("<id>")
                 .build();
 
-            SuggestOpenAPIResponse res = sdk.suggest().suggestOpenAPI()
+        SuggestOpenAPIResponse res = sdk.suggest().suggestOpenAPI()
                 .request(req)
                 .call();
 
-            if (res.schema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.schema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -183,10 +225,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## suggestOpenAPIRegistry
 
@@ -198,7 +239,6 @@ Get suggestions from an LLM model for improving an OpenAPI document stored in th
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -207,34 +247,26 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            SuggestOpenAPIRegistryRequest req = SuggestOpenAPIRegistryRequest.builder()
+        SuggestOpenAPIRegistryRequest req = SuggestOpenAPIRegistryRequest.builder()
                 .namespaceName("<value>")
                 .revisionReference("<value>")
-                .xSessionId("<value>")
+                .xSessionId("<id>")
                 .build();
 
-            SuggestOpenAPIRegistryResponse res = sdk.suggest().suggestOpenAPIRegistry()
+        SuggestOpenAPIRegistryResponse res = sdk.suggest().suggestOpenAPIRegistry()
                 .request(req)
                 .call();
 
-            if (res.schema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.schema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -251,6 +283,6 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

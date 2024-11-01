@@ -3,7 +3,7 @@
 <!-- Start Summary [summary] -->
 ## Summary
 
-Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
+Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
 
 For more information about the API: [The Speakeasy Platform Documentation](/docs)
 <!-- End Summary [summary] -->
@@ -32,7 +32,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.16.9'
+implementation 'dev.speakeasyapi:javaclientsdk:7.17.0'
 ```
 
 Maven:
@@ -40,7 +40,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.16.9</version>
+    <version>7.17.0</version>
 </dependency>
 ```
 
@@ -68,7 +68,7 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -76,32 +76,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetApisRequest req = GetApisRequest.builder()
                 .build();
 
-            GetApisRequest req = GetApisRequest.builder()
-                .build();
-
-            GetApisResponse res = sdk.apis().getApis()
+        GetApisResponse res = sdk.apis().getApis()
                 .request(req)
                 .call();
 
-            if (res.apis().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.apis().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -135,20 +127,21 @@ public class Application {
 
 ### [artifacts()](docs/sdks/artifacts/README.md)
 
+* [createRemoteSource](docs/sdks/artifacts/README.md#createremotesource) - Configure a new remote source
 * [getBlob](docs/sdks/artifacts/README.md#getblob) - Get blob for a particular digest
 * [getManifest](docs/sdks/artifacts/README.md#getmanifest) - Get manifest for a particular reference
 * [getNamespaces](docs/sdks/artifacts/README.md#getnamespaces) - Each namespace contains many revisions.
-* [getOASSummary](docs/sdks/artifacts/README.md#getoassummary)
 * [getRevisions](docs/sdks/artifacts/README.md#getrevisions)
 * [getTags](docs/sdks/artifacts/README.md#gettags)
+* [listRemoteSources](docs/sdks/artifacts/README.md#listremotesources) - Get remote sources attached to a particular namespace
 * [postTags](docs/sdks/artifacts/README.md#posttags) - Add tags to an existing revision
 * [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
 
 ### [auth()](docs/sdks/auth/README.md)
 
+* [getAccess](docs/sdks/auth/README.md#getaccess) - Get access allowances for a particular workspace
 * [getAccessToken](docs/sdks/auth/README.md#getaccesstoken) - Get or refresh an access token for the current workspace.
 * [getUser](docs/sdks/auth/README.md#getuser) - Get information about the current user.
-* [getWorkspaceAccess](docs/sdks/auth/README.md#getworkspaceaccess) - Get access allowances for a particular workspace
 * [validateApiKey](docs/sdks/auth/README.md#validateapikey) - Validate the current api key.
 
 ### [embeds()](docs/sdks/embeds/README.md)
@@ -159,21 +152,22 @@ public class Application {
 
 ### [events()](docs/sdks/events/README.md)
 
-* [getWorkspaceEventsByTarget](docs/sdks/events/README.md#getworkspaceeventsbytarget) - Load recent events for a particular workspace
-* [getWorkspaceTargets](docs/sdks/events/README.md#getworkspacetargets) - Load targets for a particular workspace
-* [postWorkspaceEvents](docs/sdks/events/README.md#postworkspaceevents) - Post events for a specific workspace
-* [searchWorkspaceEvents](docs/sdks/events/README.md#searchworkspaceevents) - Search events for a particular workspace by any field
+* [getEventsByTarget](docs/sdks/events/README.md#geteventsbytarget) - Load recent events for a particular workspace
+* [getTargets](docs/sdks/events/README.md#gettargets) - Load targets for a particular workspace
+* [getTargetsDeprecated](docs/sdks/events/README.md#gettargetsdeprecated) - Load targets for a particular workspace
+* [post](docs/sdks/events/README.md#post) - Post events for a specific workspace
+* [search](docs/sdks/events/README.md#search) - Search events for a particular workspace by any field
 
 ### [github()](docs/sdks/github/README.md)
 
 * [checkAccess](docs/sdks/github/README.md#checkaccess)
+* [checkPublishingPRs](docs/sdks/github/README.md#checkpublishingprs)
+* [checkPublishingSecrets](docs/sdks/github/README.md#checkpublishingsecrets)
 * [configureCodeSamples](docs/sdks/github/README.md#configurecodesamples)
 * [configureMintlifyRepo](docs/sdks/github/README.md#configuremintlifyrepo)
 * [configureTarget](docs/sdks/github/README.md#configuretarget)
-* [fetchPublishingPRs](docs/sdks/github/README.md#fetchpublishingprs)
 * [getAction](docs/sdks/github/README.md#getaction)
-* [githubCheckPublishingSecrets](docs/sdks/github/README.md#githubcheckpublishingsecrets)
-* [githubStorePublishingSecrets](docs/sdks/github/README.md#githubstorepublishingsecrets)
+* [storePublishingSecrets](docs/sdks/github/README.md#storepublishingsecrets)
 * [triggerAction](docs/sdks/github/README.md#triggeraction)
 
 ### [metadata()](docs/sdks/metadata/README.md)
@@ -184,10 +178,11 @@ public class Application {
 
 ### [organizations()](docs/sdks/organizations/README.md)
 
+* [create](docs/sdks/organizations/README.md#create) - Create an organization
 * [createFreeTrial](docs/sdks/organizations/README.md#createfreetrial) - Create a free trial for an organization
-* [getOrganization](docs/sdks/organizations/README.md#getorganization) - Get organization
-* [getOrganizationUsage](docs/sdks/organizations/README.md#getorganizationusage) - Get billing usage summary for a particular organization
-* [getOrganizations](docs/sdks/organizations/README.md#getorganizations) - Get organizations for a user
+* [get](docs/sdks/organizations/README.md#get) - Get organization
+* [getAll](docs/sdks/organizations/README.md#getall) - Get organizations for a user
+* [getUsage](docs/sdks/organizations/README.md#getusage) - Get billing usage summary for a particular organization
 
 ### [reports()](docs/sdks/reports/README.md)
 
@@ -217,16 +212,34 @@ public class Application {
 
 * [create](docs/sdks/shorturls/README.md#create) - Shorten a URL.
 
+### [subscriptions()](docs/sdks/subscriptions/README.md)
+
+* [createSubscription](docs/sdks/subscriptions/README.md#createsubscription) - Create Subscription
+* [listRegistrySubscriptions](docs/sdks/subscriptions/README.md#listregistrysubscriptions) - List Subscriptions
+
 ### [suggest()](docs/sdks/suggest/README.md)
 
 * [suggest](docs/sdks/suggest/README.md#suggest) - Generate suggestions for improving an OpenAPI document.
+* [suggestItems](docs/sdks/suggest/README.md#suggestitems) - Generate generic suggestions for a list of items.
 * [suggestOpenAPI](docs/sdks/suggest/README.md#suggestopenapi) - (DEPRECATED) Generate suggestions for improving an OpenAPI document.
 * [suggestOpenAPIRegistry](docs/sdks/suggest/README.md#suggestopenapiregistry) - Generate suggestions for improving an OpenAPI document stored in the registry.
 
 ### [workspaces()](docs/sdks/workspaces/README.md)
 
-* [getWorkspace](docs/sdks/workspaces/README.md#getworkspace) - Get workspace
-* [getWorkspaceFeatureFlags](docs/sdks/workspaces/README.md#getworkspacefeatureflags) - Get workspace feature flags
+* [create](docs/sdks/workspaces/README.md#create) - Create a workspace
+* [createToken](docs/sdks/workspaces/README.md#createtoken) - Create a token for a particular workspace
+* [deleteToken](docs/sdks/workspaces/README.md#deletetoken) - Delete a token for a particular workspace
+* [get](docs/sdks/workspaces/README.md#get) - Get workspace by context
+* [getAll](docs/sdks/workspaces/README.md#getall) - Get workspaces for a user
+* [getByID](docs/sdks/workspaces/README.md#getbyid) - Get workspace
+* [getFeatureFlags](docs/sdks/workspaces/README.md#getfeatureflags) - Get workspace feature flags
+* [getSettings](docs/sdks/workspaces/README.md#getsettings) - Get workspace settings
+* [getTeam](docs/sdks/workspaces/README.md#getteam) - Get team members for a particular workspace
+* [getTokens](docs/sdks/workspaces/README.md#gettokens) - Get tokens for a particular workspace
+* [grantAccess](docs/sdks/workspaces/README.md#grantaccess) - Grant a user access to a particular workspace
+* [revokeAccess](docs/sdks/workspaces/README.md#revokeaccess) - Revoke a user's access to a particular workspace
+* [update](docs/sdks/workspaces/README.md#update) - Update workspace details
+* [updateSettings](docs/sdks/workspaces/README.md#updatesettings) - Update workspace settings
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -250,7 +263,7 @@ You can override the default server globally by passing a server name to the `se
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -258,33 +271,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .server(SDK.AvailableServers.PROD)
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .serverIndex(0)
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
-                .build();
-
-            DeleteApiResponse res = sdk.apis().deleteApi()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -297,7 +302,7 @@ The default server can also be overridden globally by passing a URL to the `serv
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -305,33 +310,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .serverURL("https://api.prod.speakeasyapi.dev")
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
-                .build();
-
-            DeleteApiResponse res = sdk.apis().deleteApi()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -340,12 +337,14 @@ public class Application {
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or raise an error.  If Error objects are specified in your OpenAPI Spec, the SDK will throw the appropriate Exception type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-| Error Object           | Status Code            | Content Type           |
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `deleteApi` method throws the following exceptions:
+
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 5XX                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ### Example
 
@@ -353,43 +352,32 @@ Handling errors in this SDK should largely match your expectations.  All operati
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsResponse;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            GetWorkspaceFeatureFlagsRequest req = GetWorkspaceFeatureFlagsRequest.builder()
-                .build();
-
-            GetWorkspaceFeatureFlagsResponse res = sdk.workspaces().getWorkspaceFeatureFlags()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
-            if (res.workspaceFeatureFlagResponse().isPresent()) {
-                // handle response
-            }
-        } catch (dev.speakeasyapi.javaclientsdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -402,17 +390,18 @@ public class Application {
 
 This SDK supports the following security schemes globally:
 
-| Name        | Type        | Scheme      |
-| ----------- | ----------- | ----------- |
-| `apiKey`    | apiKey      | API key     |
-| `bearer`    | http        | HTTP Bearer |
+| Name                  | Type                  | Scheme                |
+| --------------------- | --------------------- | --------------------- |
+| `apiKey`              | apiKey                | API key               |
+| `bearer`              | http                  | HTTP Bearer           |
+| `workspaceIdentifier` | apiKey                | API key               |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -420,32 +409,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
-                .build();
-
-            DeleteApiResponse res = sdk.apis().deleteApi()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -456,7 +437,7 @@ public class Application {
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspaceID` to `"<value>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getWorkspace`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspace_id` to `"<id>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getAccessToken`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -465,7 +446,7 @@ The following global parameter is available.
 
 | Name | Type | Required | Description |
 | ---- | ---- |:--------:| ----------- |
-| workspaceID | java.lang.String |  | The workspaceID parameter. |
+| workspaceId | java.lang.String |  | The workspaceId parameter. |
 
 
 ### Example
@@ -474,40 +455,29 @@ The following global parameter is available.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenResponse;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+            .build();
+
+        GetAccessTokenRequest req = GetAccessTokenRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
-            GetWorkspaceRequest req = GetWorkspaceRequest.builder()
-                .build();
-
-            GetWorkspaceResponse res = sdk.workspaces().getWorkspace()
+        GetAccessTokenResponse res = sdk.auth().getAccessToken()
                 .request(req)
                 .call();
 
-            if (res.workspace().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.accessToken().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -523,7 +493,6 @@ To change the default retry strategy for a single API call, you can provide a `R
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -535,17 +504,17 @@ import java.util.concurrent.TimeUnit;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
                 .build();
 
-            GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
-                .build();
-
-            GetWorkspaceAccessResponse res = sdk.auth().getWorkspaceAccess()
+        GetWorkspaceAccessResponse res = sdk.auth().getAccess()
                 .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
@@ -559,17 +528,9 @@ public class Application {
                     .build())
                 .call();
 
-            if (res.accessDetails().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.accessDetails().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -579,7 +540,6 @@ If you'd like to override the default retry strategy for all operations that sup
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -591,8 +551,8 @@ import java.util.concurrent.TimeUnit;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)
@@ -606,26 +566,18 @@ public class Application {
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
                 .build();
 
-            GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
-                .build();
-
-            GetWorkspaceAccessResponse res = sdk.auth().getWorkspaceAccess()
+        GetWorkspaceAccessResponse res = sdk.auth().getAccess()
                 .request(req)
                 .call();
 
-            if (res.accessDetails().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.accessDetails().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```

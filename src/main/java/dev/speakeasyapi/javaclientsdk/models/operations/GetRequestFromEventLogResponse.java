@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.UnboundedRequest;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -29,11 +28,6 @@ public class GetRequestFromEventLogResponse implements Response {
     private String contentType;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -51,17 +45,14 @@ public class GetRequestFromEventLogResponse implements Response {
     @JsonCreator
     public GetRequestFromEventLogResponse(
             String contentType,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse,
             Optional<? extends UnboundedRequest> unboundedRequest) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         Utils.checkNotNull(unboundedRequest, "unboundedRequest");
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
         this.unboundedRequest = unboundedRequest;
@@ -71,7 +62,7 @@ public class GetRequestFromEventLogResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse, Optional.empty());
+        this(contentType, statusCode, rawResponse, Optional.empty());
     }
 
     /**
@@ -80,15 +71,6 @@ public class GetRequestFromEventLogResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -126,24 +108,6 @@ public class GetRequestFromEventLogResponse implements Response {
     public GetRequestFromEventLogResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetRequestFromEventLogResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetRequestFromEventLogResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -194,7 +158,6 @@ public class GetRequestFromEventLogResponse implements Response {
         GetRequestFromEventLogResponse other = (GetRequestFromEventLogResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse) &&
             Objects.deepEquals(this.unboundedRequest, other.unboundedRequest);
@@ -204,7 +167,6 @@ public class GetRequestFromEventLogResponse implements Response {
     public int hashCode() {
         return Objects.hash(
             contentType,
-            error,
             statusCode,
             rawResponse,
             unboundedRequest);
@@ -214,7 +176,6 @@ public class GetRequestFromEventLogResponse implements Response {
     public String toString() {
         return Utils.toString(GetRequestFromEventLogResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse,
                 "unboundedRequest", unboundedRequest);
@@ -223,8 +184,6 @@ public class GetRequestFromEventLogResponse implements Response {
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -242,24 +201,6 @@ public class GetRequestFromEventLogResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -302,7 +243,6 @@ public class GetRequestFromEventLogResponse implements Response {
         public GetRequestFromEventLogResponse build() {
             return new GetRequestFromEventLogResponse(
                 contentType,
-                error,
                 statusCode,
                 rawResponse,
                 unboundedRequest);

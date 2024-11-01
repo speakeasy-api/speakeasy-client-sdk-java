@@ -15,7 +15,7 @@ public class DownloadSchemaRevisionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DownloadSchemaRevisionRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionRequest request) {
+    public DownloadSchemaRevisionRequestBuilder request(DownloadSchemaRevisionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

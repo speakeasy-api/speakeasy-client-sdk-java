@@ -15,7 +15,7 @@ public class GeneratePostmanCollectionRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GeneratePostmanCollectionRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionRequest request) {
+    public GeneratePostmanCollectionRequestBuilder request(GeneratePostmanCollectionRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

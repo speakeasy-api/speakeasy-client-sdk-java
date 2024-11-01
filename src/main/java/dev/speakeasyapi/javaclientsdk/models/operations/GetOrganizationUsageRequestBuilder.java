@@ -15,6 +15,6 @@ public class GetOrganizationUsageRequestBuilder {
 
     public GetOrganizationUsageResponse call() throws Exception {
 
-        return sdk.getOrganizationUsageDirect();
+        return sdk.getUsageDirect();
     }
 }

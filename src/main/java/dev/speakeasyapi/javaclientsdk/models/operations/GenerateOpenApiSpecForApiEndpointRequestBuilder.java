@@ -15,7 +15,7 @@ public class GenerateOpenApiSpecForApiEndpointRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GenerateOpenApiSpecForApiEndpointRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointRequest request) {
+    public GenerateOpenApiSpecForApiEndpointRequestBuilder request(GenerateOpenApiSpecForApiEndpointRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

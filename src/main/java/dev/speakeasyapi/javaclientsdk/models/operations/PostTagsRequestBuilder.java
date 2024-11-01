@@ -15,7 +15,7 @@ public class PostTagsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public PostTagsRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.PostTagsRequest request) {
+    public PostTagsRequestBuilder request(PostTagsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.GenerateOpenApiSpecDiff;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -29,11 +28,6 @@ public class GenerateOpenApiSpecResponse implements Response {
     private String contentType;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * OK
      */
     private Optional<? extends GenerateOpenApiSpecDiff> generateOpenApiSpecDiff;
@@ -51,17 +45,14 @@ public class GenerateOpenApiSpecResponse implements Response {
     @JsonCreator
     public GenerateOpenApiSpecResponse(
             String contentType,
-            Optional<? extends Error> error,
             Optional<? extends GenerateOpenApiSpecDiff> generateOpenApiSpecDiff,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(generateOpenApiSpecDiff, "generateOpenApiSpecDiff");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.generateOpenApiSpecDiff = generateOpenApiSpecDiff;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
@@ -71,7 +62,7 @@ public class GenerateOpenApiSpecResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -80,15 +71,6 @@ public class GenerateOpenApiSpecResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -126,24 +108,6 @@ public class GenerateOpenApiSpecResponse implements Response {
     public GenerateOpenApiSpecResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GenerateOpenApiSpecResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GenerateOpenApiSpecResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -194,7 +158,6 @@ public class GenerateOpenApiSpecResponse implements Response {
         GenerateOpenApiSpecResponse other = (GenerateOpenApiSpecResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.generateOpenApiSpecDiff, other.generateOpenApiSpecDiff) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
@@ -204,7 +167,6 @@ public class GenerateOpenApiSpecResponse implements Response {
     public int hashCode() {
         return Objects.hash(
             contentType,
-            error,
             generateOpenApiSpecDiff,
             statusCode,
             rawResponse);
@@ -214,7 +176,6 @@ public class GenerateOpenApiSpecResponse implements Response {
     public String toString() {
         return Utils.toString(GenerateOpenApiSpecResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "generateOpenApiSpecDiff", generateOpenApiSpecDiff,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -223,8 +184,6 @@ public class GenerateOpenApiSpecResponse implements Response {
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Optional<? extends GenerateOpenApiSpecDiff> generateOpenApiSpecDiff = Optional.empty();
  
@@ -242,24 +201,6 @@ public class GenerateOpenApiSpecResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -302,7 +243,6 @@ public class GenerateOpenApiSpecResponse implements Response {
         public GenerateOpenApiSpecResponse build() {
             return new GenerateOpenApiSpecResponse(
                 contentType,
-                error,
                 generateOpenApiSpecDiff,
                 statusCode,
                 rawResponse);

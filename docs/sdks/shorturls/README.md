@@ -19,7 +19,6 @@ Shorten a URL.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -28,32 +27,24 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        CreateRequestBody req = CreateRequestBody.builder()
+                .url("https://probable-heating.com/")
                 .build();
 
-            CreateRequestBody req = CreateRequestBody.builder()
-                .url("http://limp-pastry.org")
-                .build();
-
-            CreateResponse res = sdk.shortURLs().create()
+        CreateResponse res = sdk.shortURLs().create()
                 .request(req)
                 .call();
 
-            if (res.shortURL().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.shortURL().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -70,6 +61,6 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

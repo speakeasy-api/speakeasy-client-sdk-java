@@ -15,7 +15,7 @@ public class GetSchemaDiffRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetSchemaDiffRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffRequest request) {
+    public GetSchemaDiffRequestBuilder request(GetSchemaDiffRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

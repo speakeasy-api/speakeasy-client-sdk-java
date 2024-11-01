@@ -20,14 +20,14 @@ public class GetWorkspaceRequest {
     /**
      * Unique identifier of the workspace.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
-    private Optional<String> workspaceID;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspace_id")
+    private Optional<String> workspaceId;
 
     @JsonCreator
     public GetWorkspaceRequest(
-            Optional<String> workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = workspaceID;
+            Optional<String> workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = workspaceId;
     }
     
     public GetWorkspaceRequest() {
@@ -38,8 +38,8 @@ public class GetWorkspaceRequest {
      * Unique identifier of the workspace.
      */
     @JsonIgnore
-    public Optional<String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceId() {
+        return workspaceId;
     }
 
     public final static Builder builder() {
@@ -49,18 +49,18 @@ public class GetWorkspaceRequest {
     /**
      * Unique identifier of the workspace.
      */
-    public GetWorkspaceRequest withWorkspaceID(String workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = Optional.ofNullable(workspaceID);
+    public GetWorkspaceRequest withWorkspaceId(String workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = Optional.ofNullable(workspaceId);
         return this;
     }
 
     /**
      * Unique identifier of the workspace.
      */
-    public GetWorkspaceRequest withWorkspaceID(Optional<String> workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = workspaceID;
+    public GetWorkspaceRequest withWorkspaceId(Optional<String> workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = workspaceId;
         return this;
     }
     
@@ -74,24 +74,24 @@ public class GetWorkspaceRequest {
         }
         GetWorkspaceRequest other = (GetWorkspaceRequest) o;
         return 
-            Objects.deepEquals(this.workspaceID, other.workspaceID);
+            Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            workspaceID);
+            workspaceId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetWorkspaceRequest.class,
-                "workspaceID", workspaceID);
+                "workspaceId", workspaceId);
     }
     
     public final static class Builder {
  
-        private Optional<String> workspaceID = Optional.empty();  
+        private Optional<String> workspaceId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -100,24 +100,24 @@ public class GetWorkspaceRequest {
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(String workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = Optional.ofNullable(workspaceID);
+        public Builder workspaceId(String workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = Optional.ofNullable(workspaceId);
             return this;
         }
 
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(Optional<String> workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = workspaceID;
+        public Builder workspaceId(Optional<String> workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = workspaceId;
             return this;
         }
         
         public GetWorkspaceRequest build() {
             return new GetWorkspaceRequest(
-                workspaceID);
+                workspaceId);
         }
     }
 }

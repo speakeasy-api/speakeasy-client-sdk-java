@@ -6,13 +6,13 @@
 ### Available Operations
 
 * [checkAccess](#checkaccess)
+* [checkPublishingPRs](#checkpublishingprs)
+* [checkPublishingSecrets](#checkpublishingsecrets)
 * [configureCodeSamples](#configurecodesamples)
 * [configureMintlifyRepo](#configuremintlifyrepo)
 * [configureTarget](#configuretarget)
-* [fetchPublishingPRs](#fetchpublishingprs)
 * [getAction](#getaction)
-* [githubCheckPublishingSecrets](#githubcheckpublishingsecrets)
-* [githubStorePublishingSecrets](#githubstorepublishingsecrets)
+* [storePublishingSecrets](#storepublishingsecrets)
 * [triggerAction](#triggeraction)
 
 ## checkAccess
@@ -23,62 +23,54 @@
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.CheckAccessRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.CheckAccessResponse;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            CheckAccessRequest req = CheckAccessRequest.builder()
+        CheckGithubAccessRequest req = CheckGithubAccessRequest.builder()
                 .org("<value>")
                 .repo("<value>")
                 .build();
 
-            CheckAccessResponse res = sdk.github().checkAccess()
+        CheckGithubAccessResponse res = sdk.github().checkAccess()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `request`                                                           | [CheckAccessRequest](../../models/operations/CheckAccessRequest.md) | :heavy_check_mark:                                                  | The request object to use for the request.                          |
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [CheckGithubAccessRequest](../../models/operations/CheckGithubAccessRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
 
 ### Response
 
-**[CheckAccessResponse](../../models/operations/CheckAccessResponse.md)**
+**[CheckGithubAccessResponse](../../models/operations/CheckGithubAccessResponse.md)**
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
-
-## configureCodeSamples
+## checkPublishingPRs
 
 ### Example Usage
 
@@ -86,43 +78,35 @@ public class Application {
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.ConfigureCodeSamplesResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GithubConfigureCodeSamplesRequest req = GithubConfigureCodeSamplesRequest.builder()
+        GithubCheckPublishingPRsRequest req = GithubCheckPublishingPRsRequest.builder()
+                .generateGenLockId("<id>")
                 .org("<value>")
                 .repo("<value>")
-                .targetName("<value>")
                 .build();
 
-            ConfigureCodeSamplesResponse res = sdk.github().configureCodeSamples()
+        GithubCheckPublishingPRsResponse res = sdk.github().checkPublishingPRs()
                 .request(req)
                 .call();
 
-            if (res.githubConfigureCodeSamplesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.githubPublishingPRResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -131,20 +115,20 @@ public class Application {
 
 | Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
 | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| `request`                                                                                     | [GithubConfigureCodeSamplesRequest](../../models/shared/GithubConfigureCodeSamplesRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+| `request`                                                                                     | [GithubCheckPublishingPRsRequest](../../models/operations/GithubCheckPublishingPRsRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
 
 ### Response
 
-**[ConfigureCodeSamplesResponse](../../models/operations/ConfigureCodeSamplesResponse.md)**
+**[GithubCheckPublishingPRsResponse](../../models/operations/GithubCheckPublishingPRsResponse.md)**
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
-
-## configureMintlifyRepo
+## checkPublishingSecrets
 
 ### Example Usage
 
@@ -152,268 +136,7 @@ public class Application {
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.ConfigureMintlifyRepoResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
-                .build();
-
-            GithubConfigureMintlifyRepoRequest req = GithubConfigureMintlifyRepoRequest.builder()
-                .input("<value>")
-                .org("<value>")
-                .overlays(List.of(
-                    "<value>"))
-                .repo("<value>")
-                .build();
-
-            ConfigureMintlifyRepoResponse res = sdk.github().configureMintlifyRepo()
-                .request(req)
-                .call();
-
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
-| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `request`                                                                                       | [GithubConfigureMintlifyRepoRequest](../../models/shared/GithubConfigureMintlifyRepoRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
-
-### Response
-
-**[ConfigureMintlifyRepoResponse](../../models/operations/ConfigureMintlifyRepoResponse.md)**
-
-### Errors
-
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
-
-## configureTarget
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.ConfigureTargetResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
-                .build();
-
-            GithubConfigureTargetRequest req = GithubConfigureTargetRequest.builder()
-                .org("<value>")
-                .repoName("<value>")
-                .build();
-
-            ConfigureTargetResponse res = sdk.github().configureTarget()
-                .request(req)
-                .call();
-
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `request`                                                                           | [GithubConfigureTargetRequest](../../models/shared/GithubConfigureTargetRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
-
-### Response
-
-**[ConfigureTargetResponse](../../models/operations/ConfigureTargetResponse.md)**
-
-### Errors
-
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
-
-## fetchPublishingPRs
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.FetchPublishingPRsRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.FetchPublishingPRsResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
-                .build();
-
-            FetchPublishingPRsRequest req = FetchPublishingPRsRequest.builder()
-                .generateGenLockId("<value>")
-                .org("<value>")
-                .repo("<value>")
-                .build();
-
-            FetchPublishingPRsResponse res = sdk.github().fetchPublishingPRs()
-                .request(req)
-                .call();
-
-            if (res.githubPublishingPRResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
-| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| `request`                                                                         | [FetchPublishingPRsRequest](../../models/operations/FetchPublishingPRsRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
-
-### Response
-
-**[FetchPublishingPRsResponse](../../models/operations/FetchPublishingPRsResponse.md)**
-
-### Errors
-
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
-
-## getAction
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetActionRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetActionResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
-                .build();
-
-            GetActionRequest req = GetActionRequest.builder()
-                .org("<value>")
-                .repo("<value>")
-                .build();
-
-            GetActionResponse res = sdk.github().getAction()
-                .request(req)
-                .call();
-
-            if (res.githubGetActionResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                       | Type                                                            | Required                                                        | Description                                                     |
-| --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------- |
-| `request`                                                       | [GetActionRequest](../../models/operations/GetActionRequest.md) | :heavy_check_mark:                                              | The request object to use for the request.                      |
-
-### Response
-
-**[GetActionResponse](../../models/operations/GetActionResponse.md)**
-
-### Errors
-
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
-
-## githubCheckPublishingSecrets
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -421,33 +144,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GithubCheckPublishingSecretsRequest req = GithubCheckPublishingSecretsRequest.builder()
+                .generateGenLockId("<id>")
                 .build();
 
-            GithubCheckPublishingSecretsRequest req = GithubCheckPublishingSecretsRequest.builder()
-                .generateGenLockId("<value>")
-                .build();
-
-            GithubCheckPublishingSecretsResponse res = sdk.github().githubCheckPublishingSecrets()
+        GithubCheckPublishingSecretsResponse res = sdk.github().checkPublishingSecrets()
                 .request(req)
                 .call();
 
-            if (res.githubMissingPublishingSecretsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.githubMissingPublishingSecretsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -464,12 +179,12 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
-
-## githubStorePublishingSecrets
+## configureCodeSamples
 
 ### Example Usage
 
@@ -477,7 +192,236 @@ public class Application {
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureCodeSamplesResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        GithubConfigureCodeSamplesRequest req = GithubConfigureCodeSamplesRequest.builder()
+                .org("<value>")
+                .repo("<value>")
+                .targetName("<value>")
+                .build();
+
+        GithubConfigureCodeSamplesResponse res = sdk.github().configureCodeSamples()
+                .request(req)
+                .call();
+
+        if (res.githubConfigureCodeSamplesResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                     | Type                                                                                          | Required                                                                                      | Description                                                                                   |
+| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| `request`                                                                                     | [GithubConfigureCodeSamplesRequest](../../models/shared/GithubConfigureCodeSamplesRequest.md) | :heavy_check_mark:                                                                            | The request object to use for the request.                                                    |
+
+### Response
+
+**[GithubConfigureCodeSamplesResponse](../../models/operations/GithubConfigureCodeSamplesResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## configureMintlifyRepo
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureMintlifyRepoResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        GithubConfigureMintlifyRepoRequest req = GithubConfigureMintlifyRepoRequest.builder()
+                .input("<value>")
+                .org("<value>")
+                .overlays(List.of(
+                    "<value>"))
+                .repo("<value>")
+                .build();
+
+        GithubConfigureMintlifyRepoResponse res = sdk.github().configureMintlifyRepo()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                       | Type                                                                                            | Required                                                                                        | Description                                                                                     |
+| ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| `request`                                                                                       | [GithubConfigureMintlifyRepoRequest](../../models/shared/GithubConfigureMintlifyRepoRequest.md) | :heavy_check_mark:                                                                              | The request object to use for the request.                                                      |
+
+### Response
+
+**[GithubConfigureMintlifyRepoResponse](../../models/operations/GithubConfigureMintlifyRepoResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## configureTarget
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureTargetResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        GithubConfigureTargetRequest req = GithubConfigureTargetRequest.builder()
+                .org("<value>")
+                .repoName("<value>")
+                .build();
+
+        GithubConfigureTargetResponse res = sdk.github().configureTarget()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [GithubConfigureTargetRequest](../../models/shared/GithubConfigureTargetRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+
+### Response
+
+**[GithubConfigureTargetResponse](../../models/operations/GithubConfigureTargetResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## getAction
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        GetGitHubActionRequest req = GetGitHubActionRequest.builder()
+                .org("<value>")
+                .repo("<value>")
+                .build();
+
+        GetGitHubActionResponse res = sdk.github().getAction()
+                .request(req)
+                .call();
+
+        if (res.githubGetActionResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `request`                                                                   | [GetGitHubActionRequest](../../models/operations/GetGitHubActionRequest.md) | :heavy_check_mark:                                                          | The request object to use for the request.                                  |
+
+### Response
+
+**[GetGitHubActionResponse](../../models/operations/GetGitHubActionResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## storePublishingSecrets
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubStorePublishingSecretsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubStorePublishingSecretsRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -485,31 +429,23 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GithubStorePublishingSecretsRequest req = GithubStorePublishingSecretsRequest.builder()
+                .generateGenLockId("<id>")
                 .build();
 
-            GithubStorePublishingSecretsRequest req = GithubStorePublishingSecretsRequest.builder()
-                .generateGenLockId("<value>")
-                .build();
-
-            GithubStorePublishingSecretsResponse res = sdk.github().githubStorePublishingSecrets()
+        GithubStorePublishingSecretsResponse res = sdk.github().storePublishingSecrets()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -526,10 +462,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## triggerAction
 
@@ -539,41 +475,33 @@ public class Application {
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.TriggerActionResponse;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GithubTriggerActionResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubTriggerActionRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GithubTriggerActionRequest req = GithubTriggerActionRequest.builder()
-                .genLockId("<value>")
+        GithubTriggerActionRequest req = GithubTriggerActionRequest.builder()
+                .genLockId("<id>")
                 .org("<value>")
                 .repoName("<value>")
                 .build();
 
-            TriggerActionResponse res = sdk.github().triggerAction()
+        GithubTriggerActionResponse res = sdk.github().triggerAction()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -586,10 +514,11 @@ public class Application {
 
 ### Response
 
-**[TriggerActionResponse](../../models/operations/TriggerActionResponse.md)**
+**[GithubTriggerActionResponse](../../models/operations/GithubTriggerActionResponse.md)**
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |

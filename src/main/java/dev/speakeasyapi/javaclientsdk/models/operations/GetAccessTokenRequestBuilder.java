@@ -15,7 +15,7 @@ public class GetAccessTokenRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetAccessTokenRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest request) {
+    public GetAccessTokenRequestBuilder request(GetAccessTokenRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

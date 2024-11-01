@@ -15,7 +15,7 @@ public class GetAllApiVersionsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetAllApiVersionsRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsRequest request) {
+    public GetAllApiVersionsRequestBuilder request(GetAllApiVersionsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

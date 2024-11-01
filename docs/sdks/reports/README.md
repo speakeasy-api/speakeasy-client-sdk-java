@@ -21,7 +21,6 @@ Get the signed access url for the change reports for a particular document.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -30,32 +29,24 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetChangesReportSignedUrlRequest req = GetChangesReportSignedUrlRequest.builder()
+        GetChangesReportSignedUrlRequest req = GetChangesReportSignedUrlRequest.builder()
                 .documentChecksum("<value>")
                 .build();
 
-            GetChangesReportSignedUrlResponse res = sdk.reports().getChangesReportSignedUrl()
+        GetChangesReportSignedUrlResponse res = sdk.reports().getChangesReportSignedUrl()
                 .request(req)
                 .call();
 
-            if (res.signedAccess().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.signedAccess().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -72,10 +63,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## getLintingReportSignedUrl
 
@@ -87,7 +77,6 @@ Get the signed access url for the linting reports for a particular document.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -96,32 +85,24 @@ import java.lang.Exception;
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetLintingReportSignedUrlRequest req = GetLintingReportSignedUrlRequest.builder()
+        GetLintingReportSignedUrlRequest req = GetLintingReportSignedUrlRequest.builder()
                 .documentChecksum("<value>")
                 .build();
 
-            GetLintingReportSignedUrlResponse res = sdk.reports().getLintingReportSignedUrl()
+        GetLintingReportSignedUrlResponse res = sdk.reports().getLintingReportSignedUrl()
                 .request(req)
                 .call();
 
-            if (res.signedAccess().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.signedAccess().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -138,10 +119,9 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |
 
 ## uploadReport
 
@@ -153,48 +133,40 @@ Upload a report.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
 import dev.speakeasyapi.javaclientsdk.models.operations.File;
 import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Report;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
 
 public class Application {
 
     public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            UploadReportRequestBody req = UploadReportRequestBody.builder()
+        UploadReportRequestBody req = UploadReportRequestBody.builder()
                 .data(Report.builder()
                     .build())
                 .file(File.builder()
-                    .content("0xA329C0ad85".getBytes())
+                    .content("0xA2Ca85EFA5".getBytes(StandardCharsets.UTF_8))
                     .fileName("example.file")
                     .build())
                 .build();
 
-            UploadReportResponse res = sdk.reports().uploadReport()
+        UploadReportResponse res = sdk.reports().uploadReport()
                 .request(req)
                 .call();
 
-            if (res.uploadedReport().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.uploadedReport().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -211,6 +183,6 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX, 5XX               | \*/\*                  |

@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.ApiEndpoint;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -35,11 +34,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
     private String contentType;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -53,17 +47,14 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
     public GetAllForVersionApiEndpointsResponse(
             Optional<? extends List<ApiEndpoint>> apiEndpoints,
             String contentType,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(apiEndpoints, "apiEndpoints");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.apiEndpoints = apiEndpoints;
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -72,7 +63,7 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, Optional.empty(), statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
@@ -90,15 +81,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -149,24 +131,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
     }
 
     /**
-     * Default error response
-     */
-    public GetAllForVersionApiEndpointsResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetAllForVersionApiEndpointsResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public GetAllForVersionApiEndpointsResponse withStatusCode(int statusCode) {
@@ -196,7 +160,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
         return 
             Objects.deepEquals(this.apiEndpoints, other.apiEndpoints) &&
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -206,7 +169,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
         return Objects.hash(
             apiEndpoints,
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -216,7 +178,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
         return Utils.toString(GetAllForVersionApiEndpointsResponse.class,
                 "apiEndpoints", apiEndpoints,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -226,8 +187,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
         private Optional<? extends List<ApiEndpoint>> apiEndpoints = Optional.empty();
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -265,24 +224,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
         }
 
         /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -304,7 +245,6 @@ public class GetAllForVersionApiEndpointsResponse implements Response {
             return new GetAllForVersionApiEndpointsResponse(
                 apiEndpoints,
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

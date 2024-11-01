@@ -7,17 +7,14 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
-import java.util.Optional;
 
 
 public class DeleteApiResponse implements Response {
@@ -26,11 +23,6 @@ public class DeleteApiResponse implements Response {
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
 
     /**
      * HTTP response status code for this operation
@@ -45,24 +37,14 @@ public class DeleteApiResponse implements Response {
     @JsonCreator
     public DeleteApiResponse(
             String contentType,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-    }
-    
-    public DeleteApiResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -71,15 +53,6 @@ public class DeleteApiResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -112,24 +85,6 @@ public class DeleteApiResponse implements Response {
     }
 
     /**
-     * Default error response
-     */
-    public DeleteApiResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public DeleteApiResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public DeleteApiResponse withStatusCode(int statusCode) {
@@ -158,7 +113,6 @@ public class DeleteApiResponse implements Response {
         DeleteApiResponse other = (DeleteApiResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -167,7 +121,6 @@ public class DeleteApiResponse implements Response {
     public int hashCode() {
         return Objects.hash(
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -176,7 +129,6 @@ public class DeleteApiResponse implements Response {
     public String toString() {
         return Utils.toString(DeleteApiResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -184,8 +136,6 @@ public class DeleteApiResponse implements Response {
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -201,24 +151,6 @@ public class DeleteApiResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -243,7 +175,6 @@ public class DeleteApiResponse implements Response {
         public DeleteApiResponse build() {
             return new DeleteApiResponse(
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

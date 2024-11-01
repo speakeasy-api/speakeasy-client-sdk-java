@@ -15,7 +15,7 @@ public class GetChangesReportSignedUrlRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetChangesReportSignedUrlRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest request) {
+    public GetChangesReportSignedUrlRequestBuilder request(GetChangesReportSignedUrlRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

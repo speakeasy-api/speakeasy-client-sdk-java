@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.BoundedRequest;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -35,11 +34,6 @@ public class QueryEventLogResponse implements Response {
     private String contentType;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -53,17 +47,14 @@ public class QueryEventLogResponse implements Response {
     public QueryEventLogResponse(
             Optional<? extends List<BoundedRequest>> boundedRequests,
             String contentType,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(boundedRequests, "boundedRequests");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.boundedRequests = boundedRequests;
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -72,7 +63,7 @@ public class QueryEventLogResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, Optional.empty(), statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
@@ -90,15 +81,6 @@ public class QueryEventLogResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -149,24 +131,6 @@ public class QueryEventLogResponse implements Response {
     }
 
     /**
-     * Default error response
-     */
-    public QueryEventLogResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public QueryEventLogResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public QueryEventLogResponse withStatusCode(int statusCode) {
@@ -196,7 +160,6 @@ public class QueryEventLogResponse implements Response {
         return 
             Objects.deepEquals(this.boundedRequests, other.boundedRequests) &&
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -206,7 +169,6 @@ public class QueryEventLogResponse implements Response {
         return Objects.hash(
             boundedRequests,
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -216,7 +178,6 @@ public class QueryEventLogResponse implements Response {
         return Utils.toString(QueryEventLogResponse.class,
                 "boundedRequests", boundedRequests,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -226,8 +187,6 @@ public class QueryEventLogResponse implements Response {
         private Optional<? extends List<BoundedRequest>> boundedRequests = Optional.empty();
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -265,24 +224,6 @@ public class QueryEventLogResponse implements Response {
         }
 
         /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -304,7 +245,6 @@ public class QueryEventLogResponse implements Response {
             return new QueryEventLogResponse(
                 boundedRequests,
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

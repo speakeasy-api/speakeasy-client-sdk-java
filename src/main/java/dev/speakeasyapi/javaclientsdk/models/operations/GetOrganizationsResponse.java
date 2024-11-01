@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.Organization;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -30,11 +29,6 @@ public class GetOrganizationsResponse implements Response {
     private String contentType;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * OK
      */
     private Optional<? extends List<Organization>> organizations;
@@ -52,17 +46,14 @@ public class GetOrganizationsResponse implements Response {
     @JsonCreator
     public GetOrganizationsResponse(
             String contentType,
-            Optional<? extends Error> error,
             Optional<? extends List<Organization>> organizations,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(organizations, "organizations");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.error = error;
         this.organizations = organizations;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
@@ -72,7 +63,7 @@ public class GetOrganizationsResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -81,15 +72,6 @@ public class GetOrganizationsResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -127,24 +109,6 @@ public class GetOrganizationsResponse implements Response {
     public GetOrganizationsResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetOrganizationsResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetOrganizationsResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -195,7 +159,6 @@ public class GetOrganizationsResponse implements Response {
         GetOrganizationsResponse other = (GetOrganizationsResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.organizations, other.organizations) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
@@ -205,7 +168,6 @@ public class GetOrganizationsResponse implements Response {
     public int hashCode() {
         return Objects.hash(
             contentType,
-            error,
             organizations,
             statusCode,
             rawResponse);
@@ -215,7 +177,6 @@ public class GetOrganizationsResponse implements Response {
     public String toString() {
         return Utils.toString(GetOrganizationsResponse.class,
                 "contentType", contentType,
-                "error", error,
                 "organizations", organizations,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
@@ -224,8 +185,6 @@ public class GetOrganizationsResponse implements Response {
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Optional<? extends List<Organization>> organizations = Optional.empty();
  
@@ -243,24 +202,6 @@ public class GetOrganizationsResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -303,7 +244,6 @@ public class GetOrganizationsResponse implements Response {
         public GetOrganizationsResponse build() {
             return new GetOrganizationsResponse(
                 contentType,
-                error,
                 organizations,
                 statusCode,
                 rawResponse);

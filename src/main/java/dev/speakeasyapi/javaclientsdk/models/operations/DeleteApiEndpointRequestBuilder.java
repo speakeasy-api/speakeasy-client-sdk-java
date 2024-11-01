@@ -15,7 +15,7 @@ public class DeleteApiEndpointRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteApiEndpointRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointRequest request) {
+    public DeleteApiEndpointRequestBuilder request(DeleteApiEndpointRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -8,13 +8,14 @@ import dev.speakeasyapi.javaclientsdk.models.operations.SDKMethodInterfaces.*;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPClient;
 import dev.speakeasyapi.javaclientsdk.utils.RetryConfig;
 import dev.speakeasyapi.javaclientsdk.utils.SpeakeasyHTTPClient;
+import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 /**
- * Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
+ * Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
  * /docs - The Speakeasy Platform Documentation
  */
 public class SDK {
@@ -98,17 +99,22 @@ public class SDK {
      */
     private final Suggest suggest;
 
+    private final Workspaces workspaces;
+
     /**
      * REST APIs for managing embeds
      */
     private final Embeds embeds;
 
-    private final Workspaces workspaces;
-
     /**
      * REST APIs for capturing event data
      */
     private final Events events;
+
+    /**
+     * REST APIs for managing subscriptions
+     */
+    private final Subscriptions subscriptions;
 
     /**
      * REST APIs for managing Api entities
@@ -188,6 +194,10 @@ public class SDK {
         return suggest;
     }
 
+    public Workspaces workspaces() {
+        return workspaces;
+    }
+
     /**
      * REST APIs for managing embeds
      */
@@ -195,15 +205,18 @@ public class SDK {
         return embeds;
     }
 
-    public Workspaces workspaces() {
-        return workspaces;
-    }
-
     /**
      * REST APIs for capturing event data
      */
     public Events events() {
         return events;
+    }
+
+    /**
+     * REST APIs for managing subscriptions
+     */
+    public Subscriptions subscriptions() {
+        return subscriptions;
     }
 
     private final SDKConfiguration sdkConfiguration;
@@ -269,7 +282,7 @@ public class SDK {
          * @return The builder instance.
          */
         public Builder serverURL(String serverUrl, Map<String, String> params) {
-            this.sdkConfiguration.serverUrl = dev.speakeasyapi.javaclientsdk.utils.Utils.templateUrl(serverUrl, params);
+            this.sdkConfiguration.serverUrl = Utils.templateUrl(serverUrl, params);
             return this;
         }
         
@@ -296,17 +309,17 @@ public class SDK {
             return this;
         }
         /**
-         * Allows setting the workspaceID parameter for all supported operations.
+         * Allows setting the workspaceId parameter for all supported operations.
          *
-         * @param workspaceID The value to set.
+         * @param workspaceId The value to set.
          * @return The builder instance.
          */
-        public Builder workspaceID(String workspaceID) {
+        public Builder workspaceId(String workspaceId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("pathParam")) {
                 this.sdkConfiguration.globals.get("parameters").put("pathParam", new java.util.HashMap<>());
             }
 
-            this.sdkConfiguration.globals.get("parameters").get("pathParam").put("workspaceID", workspaceID);
+            this.sdkConfiguration.globals.get("parameters").get("pathParam").put("workspaceId", workspaceId);
 
             return this;
         }
@@ -360,8 +373,9 @@ public class SDK {
         this.reports = new Reports(sdkConfiguration);
         this.shortURLs = new ShortURLs(sdkConfiguration);
         this.suggest = new Suggest(sdkConfiguration);
-        this.embeds = new Embeds(sdkConfiguration);
         this.workspaces = new Workspaces(sdkConfiguration);
+        this.embeds = new Embeds(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
+        this.subscriptions = new Subscriptions(sdkConfiguration);
         this.sdkConfiguration.initialize();
     }}

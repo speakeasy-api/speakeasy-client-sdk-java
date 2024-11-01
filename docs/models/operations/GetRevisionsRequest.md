@@ -6,4 +6,4 @@
 | Field                                      | Type                                       | Required                                   | Description                                |
 | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
 | `namespaceName`                            | *String*                                   | :heavy_check_mark:                         | N/A                                        |
-| `nextPageToken`                            | *Optional<String>*                         | :heavy_minus_sign:                         | Token to retrieve the next page of results |
+| `nextPageToken`                            | *Optional\<String>*                        | :heavy_minus_sign:                         | Token to retrieve the next page of results |

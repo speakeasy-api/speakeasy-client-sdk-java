@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.io.InputStream;
@@ -25,22 +24,17 @@ public class DownloadSchemaRevisionResponse implements Response {
     /**
      * OK
      */
-    private Optional<? extends InputStream> twoHundredApplicationJsonSchema;
+    private Optional<? extends InputStream> twoXXApplicationJsonSchema;
 
     /**
      * OK
      */
-    private Optional<? extends InputStream> twoHundredApplicationXYamlSchema;
+    private Optional<? extends InputStream> twoXXApplicationXYamlSchema;
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
 
     /**
      * HTTP response status code for this operation
@@ -54,22 +48,19 @@ public class DownloadSchemaRevisionResponse implements Response {
 
     @JsonCreator
     public DownloadSchemaRevisionResponse(
-            Optional<? extends InputStream> twoHundredApplicationJsonSchema,
-            Optional<? extends InputStream> twoHundredApplicationXYamlSchema,
+            Optional<? extends InputStream> twoXXApplicationJsonSchema,
+            Optional<? extends InputStream> twoXXApplicationXYamlSchema,
             String contentType,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        Utils.checkNotNull(twoHundredApplicationJsonSchema, "twoHundredApplicationJsonSchema");
-        Utils.checkNotNull(twoHundredApplicationXYamlSchema, "twoHundredApplicationXYamlSchema");
+        Utils.checkNotNull(twoXXApplicationJsonSchema, "twoXXApplicationJsonSchema");
+        Utils.checkNotNull(twoXXApplicationXYamlSchema, "twoXXApplicationXYamlSchema");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
-        this.twoHundredApplicationJsonSchema = twoHundredApplicationJsonSchema;
-        this.twoHundredApplicationXYamlSchema = twoHundredApplicationXYamlSchema;
+        this.twoXXApplicationJsonSchema = twoXXApplicationJsonSchema;
+        this.twoXXApplicationXYamlSchema = twoXXApplicationXYamlSchema;
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -78,7 +69,7 @@ public class DownloadSchemaRevisionResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), Optional.empty(), contentType, Optional.empty(), statusCode, rawResponse);
+        this(Optional.empty(), Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
@@ -86,8 +77,8 @@ public class DownloadSchemaRevisionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<InputStream> twoHundredApplicationJsonSchema() {
-        return (Optional<InputStream>) twoHundredApplicationJsonSchema;
+    public Optional<InputStream> twoXXApplicationJsonSchema() {
+        return (Optional<InputStream>) twoXXApplicationJsonSchema;
     }
 
     /**
@@ -95,8 +86,8 @@ public class DownloadSchemaRevisionResponse implements Response {
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
-    public Optional<InputStream> twoHundredApplicationXYamlSchema() {
-        return (Optional<InputStream>) twoHundredApplicationXYamlSchema;
+    public Optional<InputStream> twoXXApplicationXYamlSchema() {
+        return (Optional<InputStream>) twoXXApplicationXYamlSchema;
     }
 
     /**
@@ -105,15 +96,6 @@ public class DownloadSchemaRevisionResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -139,36 +121,36 @@ public class DownloadSchemaRevisionResponse implements Response {
     /**
      * OK
      */
-    public DownloadSchemaRevisionResponse withTwoHundredApplicationJsonSchema(InputStream twoHundredApplicationJsonSchema) {
-        Utils.checkNotNull(twoHundredApplicationJsonSchema, "twoHundredApplicationJsonSchema");
-        this.twoHundredApplicationJsonSchema = Optional.ofNullable(twoHundredApplicationJsonSchema);
+    public DownloadSchemaRevisionResponse withTwoXXApplicationJsonSchema(InputStream twoXXApplicationJsonSchema) {
+        Utils.checkNotNull(twoXXApplicationJsonSchema, "twoXXApplicationJsonSchema");
+        this.twoXXApplicationJsonSchema = Optional.ofNullable(twoXXApplicationJsonSchema);
         return this;
     }
 
     /**
      * OK
      */
-    public DownloadSchemaRevisionResponse withTwoHundredApplicationJsonSchema(Optional<? extends InputStream> twoHundredApplicationJsonSchema) {
-        Utils.checkNotNull(twoHundredApplicationJsonSchema, "twoHundredApplicationJsonSchema");
-        this.twoHundredApplicationJsonSchema = twoHundredApplicationJsonSchema;
+    public DownloadSchemaRevisionResponse withTwoXXApplicationJsonSchema(Optional<? extends InputStream> twoXXApplicationJsonSchema) {
+        Utils.checkNotNull(twoXXApplicationJsonSchema, "twoXXApplicationJsonSchema");
+        this.twoXXApplicationJsonSchema = twoXXApplicationJsonSchema;
         return this;
     }
 
     /**
      * OK
      */
-    public DownloadSchemaRevisionResponse withTwoHundredApplicationXYamlSchema(InputStream twoHundredApplicationXYamlSchema) {
-        Utils.checkNotNull(twoHundredApplicationXYamlSchema, "twoHundredApplicationXYamlSchema");
-        this.twoHundredApplicationXYamlSchema = Optional.ofNullable(twoHundredApplicationXYamlSchema);
+    public DownloadSchemaRevisionResponse withTwoXXApplicationXYamlSchema(InputStream twoXXApplicationXYamlSchema) {
+        Utils.checkNotNull(twoXXApplicationXYamlSchema, "twoXXApplicationXYamlSchema");
+        this.twoXXApplicationXYamlSchema = Optional.ofNullable(twoXXApplicationXYamlSchema);
         return this;
     }
 
     /**
      * OK
      */
-    public DownloadSchemaRevisionResponse withTwoHundredApplicationXYamlSchema(Optional<? extends InputStream> twoHundredApplicationXYamlSchema) {
-        Utils.checkNotNull(twoHundredApplicationXYamlSchema, "twoHundredApplicationXYamlSchema");
-        this.twoHundredApplicationXYamlSchema = twoHundredApplicationXYamlSchema;
+    public DownloadSchemaRevisionResponse withTwoXXApplicationXYamlSchema(Optional<? extends InputStream> twoXXApplicationXYamlSchema) {
+        Utils.checkNotNull(twoXXApplicationXYamlSchema, "twoXXApplicationXYamlSchema");
+        this.twoXXApplicationXYamlSchema = twoXXApplicationXYamlSchema;
         return this;
     }
 
@@ -178,24 +160,6 @@ public class DownloadSchemaRevisionResponse implements Response {
     public DownloadSchemaRevisionResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public DownloadSchemaRevisionResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public DownloadSchemaRevisionResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
         return this;
     }
 
@@ -227,10 +191,9 @@ public class DownloadSchemaRevisionResponse implements Response {
         }
         DownloadSchemaRevisionResponse other = (DownloadSchemaRevisionResponse) o;
         return 
-            Objects.deepEquals(this.twoHundredApplicationJsonSchema, other.twoHundredApplicationJsonSchema) &&
-            Objects.deepEquals(this.twoHundredApplicationXYamlSchema, other.twoHundredApplicationXYamlSchema) &&
+            Objects.deepEquals(this.twoXXApplicationJsonSchema, other.twoXXApplicationJsonSchema) &&
+            Objects.deepEquals(this.twoXXApplicationXYamlSchema, other.twoXXApplicationXYamlSchema) &&
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -238,10 +201,9 @@ public class DownloadSchemaRevisionResponse implements Response {
     @Override
     public int hashCode() {
         return Objects.hash(
-            twoHundredApplicationJsonSchema,
-            twoHundredApplicationXYamlSchema,
+            twoXXApplicationJsonSchema,
+            twoXXApplicationXYamlSchema,
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -249,23 +211,20 @@ public class DownloadSchemaRevisionResponse implements Response {
     @Override
     public String toString() {
         return Utils.toString(DownloadSchemaRevisionResponse.class,
-                "twoHundredApplicationJsonSchema", twoHundredApplicationJsonSchema,
-                "twoHundredApplicationXYamlSchema", twoHundredApplicationXYamlSchema,
+                "twoXXApplicationJsonSchema", twoXXApplicationJsonSchema,
+                "twoXXApplicationXYamlSchema", twoXXApplicationXYamlSchema,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
     
     public final static class Builder {
  
-        private Optional<? extends InputStream> twoHundredApplicationJsonSchema = Optional.empty();
+        private Optional<? extends InputStream> twoXXApplicationJsonSchema = Optional.empty();
  
-        private Optional<? extends InputStream> twoHundredApplicationXYamlSchema = Optional.empty();
+        private Optional<? extends InputStream> twoXXApplicationXYamlSchema = Optional.empty();
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -278,36 +237,36 @@ public class DownloadSchemaRevisionResponse implements Response {
         /**
          * OK
          */
-        public Builder twoHundredApplicationJsonSchema(InputStream twoHundredApplicationJsonSchema) {
-            Utils.checkNotNull(twoHundredApplicationJsonSchema, "twoHundredApplicationJsonSchema");
-            this.twoHundredApplicationJsonSchema = Optional.ofNullable(twoHundredApplicationJsonSchema);
+        public Builder twoXXApplicationJsonSchema(InputStream twoXXApplicationJsonSchema) {
+            Utils.checkNotNull(twoXXApplicationJsonSchema, "twoXXApplicationJsonSchema");
+            this.twoXXApplicationJsonSchema = Optional.ofNullable(twoXXApplicationJsonSchema);
             return this;
         }
 
         /**
          * OK
          */
-        public Builder twoHundredApplicationJsonSchema(Optional<? extends InputStream> twoHundredApplicationJsonSchema) {
-            Utils.checkNotNull(twoHundredApplicationJsonSchema, "twoHundredApplicationJsonSchema");
-            this.twoHundredApplicationJsonSchema = twoHundredApplicationJsonSchema;
+        public Builder twoXXApplicationJsonSchema(Optional<? extends InputStream> twoXXApplicationJsonSchema) {
+            Utils.checkNotNull(twoXXApplicationJsonSchema, "twoXXApplicationJsonSchema");
+            this.twoXXApplicationJsonSchema = twoXXApplicationJsonSchema;
             return this;
         }
 
         /**
          * OK
          */
-        public Builder twoHundredApplicationXYamlSchema(InputStream twoHundredApplicationXYamlSchema) {
-            Utils.checkNotNull(twoHundredApplicationXYamlSchema, "twoHundredApplicationXYamlSchema");
-            this.twoHundredApplicationXYamlSchema = Optional.ofNullable(twoHundredApplicationXYamlSchema);
+        public Builder twoXXApplicationXYamlSchema(InputStream twoXXApplicationXYamlSchema) {
+            Utils.checkNotNull(twoXXApplicationXYamlSchema, "twoXXApplicationXYamlSchema");
+            this.twoXXApplicationXYamlSchema = Optional.ofNullable(twoXXApplicationXYamlSchema);
             return this;
         }
 
         /**
          * OK
          */
-        public Builder twoHundredApplicationXYamlSchema(Optional<? extends InputStream> twoHundredApplicationXYamlSchema) {
-            Utils.checkNotNull(twoHundredApplicationXYamlSchema, "twoHundredApplicationXYamlSchema");
-            this.twoHundredApplicationXYamlSchema = twoHundredApplicationXYamlSchema;
+        public Builder twoXXApplicationXYamlSchema(Optional<? extends InputStream> twoXXApplicationXYamlSchema) {
+            Utils.checkNotNull(twoXXApplicationXYamlSchema, "twoXXApplicationXYamlSchema");
+            this.twoXXApplicationXYamlSchema = twoXXApplicationXYamlSchema;
             return this;
         }
 
@@ -317,24 +276,6 @@ public class DownloadSchemaRevisionResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
             return this;
         }
 
@@ -358,10 +299,9 @@ public class DownloadSchemaRevisionResponse implements Response {
         
         public DownloadSchemaRevisionResponse build() {
             return new DownloadSchemaRevisionResponse(
-                twoHundredApplicationJsonSchema,
-                twoHundredApplicationXYamlSchema,
+                twoXXApplicationJsonSchema,
+                twoXXApplicationXYamlSchema,
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

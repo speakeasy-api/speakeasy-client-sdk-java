@@ -17,6 +17,7 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 
 public class User {
@@ -44,7 +45,7 @@ public class User {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("default_workspace_id")
-    private Optional<String> defaultWorkspaceId;
+    private JsonNullable<String> defaultWorkspaceId;
 
     /**
      * Display name of the user.
@@ -69,7 +70,7 @@ public class User {
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("github_handle")
-    private Optional<String> githubHandle;
+    private JsonNullable<String> githubHandle;
 
     /**
      * Unique identifier for the user.
@@ -78,17 +79,25 @@ public class User {
     private String id;
 
     /**
+     * Indicates whether the user is internal.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("internal")
+    private Optional<Boolean> internal;
+
+    /**
      * Timestamp of the last login.
      */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("last_login_at")
-    private OffsetDateTime lastLoginAt;
+    private JsonNullable<OffsetDateTime> lastLoginAt;
 
     /**
      * URL of the user's photo.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("photo_url")
-    private Optional<String> photoUrl;
+    private JsonNullable<String> photoUrl;
 
     /**
      * Timestamp of the user's last update.
@@ -107,14 +116,15 @@ public class User {
             @JsonProperty("admin") boolean admin,
             @JsonProperty("confirmed") boolean confirmed,
             @JsonProperty("created_at") OffsetDateTime createdAt,
-            @JsonProperty("default_workspace_id") Optional<String> defaultWorkspaceId,
+            @JsonProperty("default_workspace_id") JsonNullable<String> defaultWorkspaceId,
             @JsonProperty("display_name") String displayName,
             @JsonProperty("email") String email,
             @JsonProperty("email_verified") boolean emailVerified,
-            @JsonProperty("github_handle") Optional<String> githubHandle,
+            @JsonProperty("github_handle") JsonNullable<String> githubHandle,
             @JsonProperty("id") String id,
-            @JsonProperty("last_login_at") OffsetDateTime lastLoginAt,
-            @JsonProperty("photo_url") Optional<String> photoUrl,
+            @JsonProperty("internal") Optional<Boolean> internal,
+            @JsonProperty("last_login_at") JsonNullable<OffsetDateTime> lastLoginAt,
+            @JsonProperty("photo_url") JsonNullable<String> photoUrl,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("whitelisted") boolean whitelisted) {
         Utils.checkNotNull(admin, "admin");
@@ -126,6 +136,7 @@ public class User {
         Utils.checkNotNull(emailVerified, "emailVerified");
         Utils.checkNotNull(githubHandle, "githubHandle");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(internal, "internal");
         Utils.checkNotNull(lastLoginAt, "lastLoginAt");
         Utils.checkNotNull(photoUrl, "photoUrl");
         Utils.checkNotNull(updatedAt, "updatedAt");
@@ -139,6 +150,7 @@ public class User {
         this.emailVerified = emailVerified;
         this.githubHandle = githubHandle;
         this.id = id;
+        this.internal = internal;
         this.lastLoginAt = lastLoginAt;
         this.photoUrl = photoUrl;
         this.updatedAt = updatedAt;
@@ -153,10 +165,9 @@ public class User {
             String email,
             boolean emailVerified,
             String id,
-            OffsetDateTime lastLoginAt,
             OffsetDateTime updatedAt,
             boolean whitelisted) {
-        this(admin, confirmed, createdAt, Optional.empty(), displayName, email, emailVerified, Optional.empty(), id, lastLoginAt, Optional.empty(), updatedAt, whitelisted);
+        this(admin, confirmed, createdAt, JsonNullable.undefined(), displayName, email, emailVerified, JsonNullable.undefined(), id, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), updatedAt, whitelisted);
     }
 
     /**
@@ -187,7 +198,7 @@ public class User {
      * Identifier of the default workspace.
      */
     @JsonIgnore
-    public Optional<String> defaultWorkspaceId() {
+    public JsonNullable<String> defaultWorkspaceId() {
         return defaultWorkspaceId;
     }
 
@@ -219,7 +230,7 @@ public class User {
      * GitHub handle of the user.
      */
     @JsonIgnore
-    public Optional<String> githubHandle() {
+    public JsonNullable<String> githubHandle() {
         return githubHandle;
     }
 
@@ -232,10 +243,18 @@ public class User {
     }
 
     /**
+     * Indicates whether the user is internal.
+     */
+    @JsonIgnore
+    public Optional<Boolean> internal() {
+        return internal;
+    }
+
+    /**
      * Timestamp of the last login.
      */
     @JsonIgnore
-    public OffsetDateTime lastLoginAt() {
+    public JsonNullable<OffsetDateTime> lastLoginAt() {
         return lastLoginAt;
     }
 
@@ -243,7 +262,7 @@ public class User {
      * URL of the user's photo.
      */
     @JsonIgnore
-    public Optional<String> photoUrl() {
+    public JsonNullable<String> photoUrl() {
         return photoUrl;
     }
 
@@ -299,14 +318,14 @@ public class User {
      */
     public User withDefaultWorkspaceId(String defaultWorkspaceId) {
         Utils.checkNotNull(defaultWorkspaceId, "defaultWorkspaceId");
-        this.defaultWorkspaceId = Optional.ofNullable(defaultWorkspaceId);
+        this.defaultWorkspaceId = JsonNullable.of(defaultWorkspaceId);
         return this;
     }
 
     /**
      * Identifier of the default workspace.
      */
-    public User withDefaultWorkspaceId(Optional<String> defaultWorkspaceId) {
+    public User withDefaultWorkspaceId(JsonNullable<String> defaultWorkspaceId) {
         Utils.checkNotNull(defaultWorkspaceId, "defaultWorkspaceId");
         this.defaultWorkspaceId = defaultWorkspaceId;
         return this;
@@ -344,14 +363,14 @@ public class User {
      */
     public User withGithubHandle(String githubHandle) {
         Utils.checkNotNull(githubHandle, "githubHandle");
-        this.githubHandle = Optional.ofNullable(githubHandle);
+        this.githubHandle = JsonNullable.of(githubHandle);
         return this;
     }
 
     /**
      * GitHub handle of the user.
      */
-    public User withGithubHandle(Optional<String> githubHandle) {
+    public User withGithubHandle(JsonNullable<String> githubHandle) {
         Utils.checkNotNull(githubHandle, "githubHandle");
         this.githubHandle = githubHandle;
         return this;
@@ -367,9 +386,36 @@ public class User {
     }
 
     /**
+     * Indicates whether the user is internal.
+     */
+    public User withInternal(boolean internal) {
+        Utils.checkNotNull(internal, "internal");
+        this.internal = Optional.ofNullable(internal);
+        return this;
+    }
+
+    /**
+     * Indicates whether the user is internal.
+     */
+    public User withInternal(Optional<Boolean> internal) {
+        Utils.checkNotNull(internal, "internal");
+        this.internal = internal;
+        return this;
+    }
+
+    /**
      * Timestamp of the last login.
      */
     public User withLastLoginAt(OffsetDateTime lastLoginAt) {
+        Utils.checkNotNull(lastLoginAt, "lastLoginAt");
+        this.lastLoginAt = JsonNullable.of(lastLoginAt);
+        return this;
+    }
+
+    /**
+     * Timestamp of the last login.
+     */
+    public User withLastLoginAt(JsonNullable<OffsetDateTime> lastLoginAt) {
         Utils.checkNotNull(lastLoginAt, "lastLoginAt");
         this.lastLoginAt = lastLoginAt;
         return this;
@@ -380,14 +426,14 @@ public class User {
      */
     public User withPhotoUrl(String photoUrl) {
         Utils.checkNotNull(photoUrl, "photoUrl");
-        this.photoUrl = Optional.ofNullable(photoUrl);
+        this.photoUrl = JsonNullable.of(photoUrl);
         return this;
     }
 
     /**
      * URL of the user's photo.
      */
-    public User withPhotoUrl(Optional<String> photoUrl) {
+    public User withPhotoUrl(JsonNullable<String> photoUrl) {
         Utils.checkNotNull(photoUrl, "photoUrl");
         this.photoUrl = photoUrl;
         return this;
@@ -430,6 +476,7 @@ public class User {
             Objects.deepEquals(this.emailVerified, other.emailVerified) &&
             Objects.deepEquals(this.githubHandle, other.githubHandle) &&
             Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.internal, other.internal) &&
             Objects.deepEquals(this.lastLoginAt, other.lastLoginAt) &&
             Objects.deepEquals(this.photoUrl, other.photoUrl) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
@@ -448,6 +495,7 @@ public class User {
             emailVerified,
             githubHandle,
             id,
+            internal,
             lastLoginAt,
             photoUrl,
             updatedAt,
@@ -466,6 +514,7 @@ public class User {
                 "emailVerified", emailVerified,
                 "githubHandle", githubHandle,
                 "id", id,
+                "internal", internal,
                 "lastLoginAt", lastLoginAt,
                 "photoUrl", photoUrl,
                 "updatedAt", updatedAt,
@@ -480,7 +529,7 @@ public class User {
  
         private OffsetDateTime createdAt;
  
-        private Optional<String> defaultWorkspaceId = Optional.empty();
+        private JsonNullable<String> defaultWorkspaceId = JsonNullable.undefined();
  
         private String displayName;
  
@@ -488,13 +537,15 @@ public class User {
  
         private Boolean emailVerified;
  
-        private Optional<String> githubHandle = Optional.empty();
+        private JsonNullable<String> githubHandle = JsonNullable.undefined();
  
         private String id;
  
-        private OffsetDateTime lastLoginAt;
+        private Optional<Boolean> internal = Optional.empty();
  
-        private Optional<String> photoUrl = Optional.empty();
+        private JsonNullable<OffsetDateTime> lastLoginAt = JsonNullable.undefined();
+ 
+        private JsonNullable<String> photoUrl = JsonNullable.undefined();
  
         private OffsetDateTime updatedAt;
  
@@ -536,14 +587,14 @@ public class User {
          */
         public Builder defaultWorkspaceId(String defaultWorkspaceId) {
             Utils.checkNotNull(defaultWorkspaceId, "defaultWorkspaceId");
-            this.defaultWorkspaceId = Optional.ofNullable(defaultWorkspaceId);
+            this.defaultWorkspaceId = JsonNullable.of(defaultWorkspaceId);
             return this;
         }
 
         /**
          * Identifier of the default workspace.
          */
-        public Builder defaultWorkspaceId(Optional<String> defaultWorkspaceId) {
+        public Builder defaultWorkspaceId(JsonNullable<String> defaultWorkspaceId) {
             Utils.checkNotNull(defaultWorkspaceId, "defaultWorkspaceId");
             this.defaultWorkspaceId = defaultWorkspaceId;
             return this;
@@ -581,14 +632,14 @@ public class User {
          */
         public Builder githubHandle(String githubHandle) {
             Utils.checkNotNull(githubHandle, "githubHandle");
-            this.githubHandle = Optional.ofNullable(githubHandle);
+            this.githubHandle = JsonNullable.of(githubHandle);
             return this;
         }
 
         /**
          * GitHub handle of the user.
          */
-        public Builder githubHandle(Optional<String> githubHandle) {
+        public Builder githubHandle(JsonNullable<String> githubHandle) {
             Utils.checkNotNull(githubHandle, "githubHandle");
             this.githubHandle = githubHandle;
             return this;
@@ -604,9 +655,36 @@ public class User {
         }
 
         /**
+         * Indicates whether the user is internal.
+         */
+        public Builder internal(boolean internal) {
+            Utils.checkNotNull(internal, "internal");
+            this.internal = Optional.ofNullable(internal);
+            return this;
+        }
+
+        /**
+         * Indicates whether the user is internal.
+         */
+        public Builder internal(Optional<Boolean> internal) {
+            Utils.checkNotNull(internal, "internal");
+            this.internal = internal;
+            return this;
+        }
+
+        /**
          * Timestamp of the last login.
          */
         public Builder lastLoginAt(OffsetDateTime lastLoginAt) {
+            Utils.checkNotNull(lastLoginAt, "lastLoginAt");
+            this.lastLoginAt = JsonNullable.of(lastLoginAt);
+            return this;
+        }
+
+        /**
+         * Timestamp of the last login.
+         */
+        public Builder lastLoginAt(JsonNullable<OffsetDateTime> lastLoginAt) {
             Utils.checkNotNull(lastLoginAt, "lastLoginAt");
             this.lastLoginAt = lastLoginAt;
             return this;
@@ -617,14 +695,14 @@ public class User {
          */
         public Builder photoUrl(String photoUrl) {
             Utils.checkNotNull(photoUrl, "photoUrl");
-            this.photoUrl = Optional.ofNullable(photoUrl);
+            this.photoUrl = JsonNullable.of(photoUrl);
             return this;
         }
 
         /**
          * URL of the user's photo.
          */
-        public Builder photoUrl(Optional<String> photoUrl) {
+        public Builder photoUrl(JsonNullable<String> photoUrl) {
             Utils.checkNotNull(photoUrl, "photoUrl");
             this.photoUrl = photoUrl;
             return this;
@@ -659,6 +737,7 @@ public class User {
                 emailVerified,
                 githubHandle,
                 id,
+                internal,
                 lastLoginAt,
                 photoUrl,
                 updatedAt,

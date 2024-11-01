@@ -92,6 +92,13 @@ public class TargetSDK {
     private Optional<Long> generateNumberOfOperationsUsed;
 
     /**
+     * The number of terraform resources used in generation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_number_of_terraform_resources")
+    private Optional<Long> generateNumberOfTerraformResources;
+
+    /**
      * Indicates whether the target was considered published.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -220,6 +227,34 @@ public class TargetSDK {
     private InteractionType lastEventInteractionType;
 
     /**
+     * Name of the published package.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("publish_package_name")
+    private Optional<String> publishPackageName;
+
+    /**
+     * Name of the registry where the package was published.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("publish_package_registry_name")
+    private Optional<String> publishPackageRegistryName;
+
+    /**
+     * URL of the published package.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("publish_package_url")
+    private Optional<String> publishPackageUrl;
+
+    /**
+     * Version of the published package.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("publish_package_version")
+    private Optional<String> publishPackageVersion;
+
+    /**
      * Label of the git repository.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -280,6 +315,7 @@ public class TargetSDK {
             @JsonProperty("generate_gen_lock_pre_version") Optional<String> generateGenLockPreVersion,
             @JsonProperty("generate_number_of_operations_ignored") Optional<Long> generateNumberOfOperationsIgnored,
             @JsonProperty("generate_number_of_operations_used") Optional<Long> generateNumberOfOperationsUsed,
+            @JsonProperty("generate_number_of_terraform_resources") Optional<Long> generateNumberOfTerraformResources,
             @JsonProperty("generate_published") Optional<Boolean> generatePublished,
             @JsonProperty("generate_target") String generateTarget,
             @JsonProperty("generate_target_name") Optional<String> generateTargetName,
@@ -299,6 +335,10 @@ public class TargetSDK {
             @JsonProperty("last_event_created_at") OffsetDateTime lastEventCreatedAt,
             @JsonProperty("last_event_id") String lastEventId,
             @JsonProperty("last_event_interaction_type") InteractionType lastEventInteractionType,
+            @JsonProperty("publish_package_name") Optional<String> publishPackageName,
+            @JsonProperty("publish_package_registry_name") Optional<String> publishPackageRegistryName,
+            @JsonProperty("publish_package_url") Optional<String> publishPackageUrl,
+            @JsonProperty("publish_package_version") Optional<String> publishPackageVersion,
             @JsonProperty("repo_label") Optional<String> repoLabel,
             @JsonProperty("source_blob_digest") Optional<String> sourceBlobDigest,
             @JsonProperty("source_namespace_name") Optional<String> sourceNamespaceName,
@@ -316,6 +356,7 @@ public class TargetSDK {
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
         Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
         Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
         Utils.checkNotNull(generatePublished, "generatePublished");
         Utils.checkNotNull(generateTarget, "generateTarget");
         Utils.checkNotNull(generateTargetName, "generateTargetName");
@@ -335,6 +376,10 @@ public class TargetSDK {
         Utils.checkNotNull(lastEventCreatedAt, "lastEventCreatedAt");
         Utils.checkNotNull(lastEventId, "lastEventId");
         Utils.checkNotNull(lastEventInteractionType, "lastEventInteractionType");
+        Utils.checkNotNull(publishPackageName, "publishPackageName");
+        Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
+        Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
+        Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
         Utils.checkNotNull(repoLabel, "repoLabel");
         Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
         Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
@@ -352,6 +397,7 @@ public class TargetSDK {
         this.generateGenLockPreVersion = generateGenLockPreVersion;
         this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
         this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
+        this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
         this.generatePublished = generatePublished;
         this.generateTarget = generateTarget;
         this.generateTargetName = generateTargetName;
@@ -371,6 +417,10 @@ public class TargetSDK {
         this.lastEventCreatedAt = lastEventCreatedAt;
         this.lastEventId = lastEventId;
         this.lastEventInteractionType = lastEventInteractionType;
+        this.publishPackageName = publishPackageName;
+        this.publishPackageRegistryName = publishPackageRegistryName;
+        this.publishPackageUrl = publishPackageUrl;
+        this.publishPackageVersion = publishPackageVersion;
         this.repoLabel = repoLabel;
         this.sourceBlobDigest = sourceBlobDigest;
         this.sourceNamespaceName = sourceNamespaceName;
@@ -387,7 +437,7 @@ public class TargetSDK {
             OffsetDateTime lastEventCreatedAt,
             String lastEventId,
             InteractionType lastEventInteractionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -468,6 +518,14 @@ public class TargetSDK {
     @JsonIgnore
     public Optional<Long> generateNumberOfOperationsUsed() {
         return generateNumberOfOperationsUsed;
+    }
+
+    /**
+     * The number of terraform resources used in generation.
+     */
+    @JsonIgnore
+    public Optional<Long> generateNumberOfTerraformResources() {
+        return generateNumberOfTerraformResources;
     }
 
     /**
@@ -620,6 +678,38 @@ public class TargetSDK {
     @JsonIgnore
     public InteractionType lastEventInteractionType() {
         return lastEventInteractionType;
+    }
+
+    /**
+     * Name of the published package.
+     */
+    @JsonIgnore
+    public Optional<String> publishPackageName() {
+        return publishPackageName;
+    }
+
+    /**
+     * Name of the registry where the package was published.
+     */
+    @JsonIgnore
+    public Optional<String> publishPackageRegistryName() {
+        return publishPackageRegistryName;
+    }
+
+    /**
+     * URL of the published package.
+     */
+    @JsonIgnore
+    public Optional<String> publishPackageUrl() {
+        return publishPackageUrl;
+    }
+
+    /**
+     * Version of the published package.
+     */
+    @JsonIgnore
+    public Optional<String> publishPackageVersion() {
+        return publishPackageVersion;
     }
 
     /**
@@ -850,6 +940,24 @@ public class TargetSDK {
     public TargetSDK withGenerateNumberOfOperationsUsed(Optional<Long> generateNumberOfOperationsUsed) {
         Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
         this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
+        return this;
+    }
+
+    /**
+     * The number of terraform resources used in generation.
+     */
+    public TargetSDK withGenerateNumberOfTerraformResources(long generateNumberOfTerraformResources) {
+        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+        this.generateNumberOfTerraformResources = Optional.ofNullable(generateNumberOfTerraformResources);
+        return this;
+    }
+
+    /**
+     * The number of terraform resources used in generation.
+     */
+    public TargetSDK withGenerateNumberOfTerraformResources(Optional<Long> generateNumberOfTerraformResources) {
+        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+        this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
         return this;
     }
 
@@ -1151,6 +1259,78 @@ public class TargetSDK {
     }
 
     /**
+     * Name of the published package.
+     */
+    public TargetSDK withPublishPackageName(String publishPackageName) {
+        Utils.checkNotNull(publishPackageName, "publishPackageName");
+        this.publishPackageName = Optional.ofNullable(publishPackageName);
+        return this;
+    }
+
+    /**
+     * Name of the published package.
+     */
+    public TargetSDK withPublishPackageName(Optional<String> publishPackageName) {
+        Utils.checkNotNull(publishPackageName, "publishPackageName");
+        this.publishPackageName = publishPackageName;
+        return this;
+    }
+
+    /**
+     * Name of the registry where the package was published.
+     */
+    public TargetSDK withPublishPackageRegistryName(String publishPackageRegistryName) {
+        Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
+        this.publishPackageRegistryName = Optional.ofNullable(publishPackageRegistryName);
+        return this;
+    }
+
+    /**
+     * Name of the registry where the package was published.
+     */
+    public TargetSDK withPublishPackageRegistryName(Optional<String> publishPackageRegistryName) {
+        Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
+        this.publishPackageRegistryName = publishPackageRegistryName;
+        return this;
+    }
+
+    /**
+     * URL of the published package.
+     */
+    public TargetSDK withPublishPackageUrl(String publishPackageUrl) {
+        Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
+        this.publishPackageUrl = Optional.ofNullable(publishPackageUrl);
+        return this;
+    }
+
+    /**
+     * URL of the published package.
+     */
+    public TargetSDK withPublishPackageUrl(Optional<String> publishPackageUrl) {
+        Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
+        this.publishPackageUrl = publishPackageUrl;
+        return this;
+    }
+
+    /**
+     * Version of the published package.
+     */
+    public TargetSDK withPublishPackageVersion(String publishPackageVersion) {
+        Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
+        this.publishPackageVersion = Optional.ofNullable(publishPackageVersion);
+        return this;
+    }
+
+    /**
+     * Version of the published package.
+     */
+    public TargetSDK withPublishPackageVersion(Optional<String> publishPackageVersion) {
+        Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
+        this.publishPackageVersion = publishPackageVersion;
+        return this;
+    }
+
+    /**
      * Label of the git repository.
      */
     public TargetSDK withRepoLabel(String repoLabel) {
@@ -1296,6 +1476,7 @@ public class TargetSDK {
             Objects.deepEquals(this.generateGenLockPreVersion, other.generateGenLockPreVersion) &&
             Objects.deepEquals(this.generateNumberOfOperationsIgnored, other.generateNumberOfOperationsIgnored) &&
             Objects.deepEquals(this.generateNumberOfOperationsUsed, other.generateNumberOfOperationsUsed) &&
+            Objects.deepEquals(this.generateNumberOfTerraformResources, other.generateNumberOfTerraformResources) &&
             Objects.deepEquals(this.generatePublished, other.generatePublished) &&
             Objects.deepEquals(this.generateTarget, other.generateTarget) &&
             Objects.deepEquals(this.generateTargetName, other.generateTargetName) &&
@@ -1315,6 +1496,10 @@ public class TargetSDK {
             Objects.deepEquals(this.lastEventCreatedAt, other.lastEventCreatedAt) &&
             Objects.deepEquals(this.lastEventId, other.lastEventId) &&
             Objects.deepEquals(this.lastEventInteractionType, other.lastEventInteractionType) &&
+            Objects.deepEquals(this.publishPackageName, other.publishPackageName) &&
+            Objects.deepEquals(this.publishPackageRegistryName, other.publishPackageRegistryName) &&
+            Objects.deepEquals(this.publishPackageUrl, other.publishPackageUrl) &&
+            Objects.deepEquals(this.publishPackageVersion, other.publishPackageVersion) &&
             Objects.deepEquals(this.repoLabel, other.repoLabel) &&
             Objects.deepEquals(this.sourceBlobDigest, other.sourceBlobDigest) &&
             Objects.deepEquals(this.sourceNamespaceName, other.sourceNamespaceName) &&
@@ -1337,6 +1522,7 @@ public class TargetSDK {
             generateGenLockPreVersion,
             generateNumberOfOperationsIgnored,
             generateNumberOfOperationsUsed,
+            generateNumberOfTerraformResources,
             generatePublished,
             generateTarget,
             generateTargetName,
@@ -1356,6 +1542,10 @@ public class TargetSDK {
             lastEventCreatedAt,
             lastEventId,
             lastEventInteractionType,
+            publishPackageName,
+            publishPackageRegistryName,
+            publishPackageUrl,
+            publishPackageVersion,
             repoLabel,
             sourceBlobDigest,
             sourceNamespaceName,
@@ -1378,6 +1568,7 @@ public class TargetSDK {
                 "generateGenLockPreVersion", generateGenLockPreVersion,
                 "generateNumberOfOperationsIgnored", generateNumberOfOperationsIgnored,
                 "generateNumberOfOperationsUsed", generateNumberOfOperationsUsed,
+                "generateNumberOfTerraformResources", generateNumberOfTerraformResources,
                 "generatePublished", generatePublished,
                 "generateTarget", generateTarget,
                 "generateTargetName", generateTargetName,
@@ -1397,6 +1588,10 @@ public class TargetSDK {
                 "lastEventCreatedAt", lastEventCreatedAt,
                 "lastEventId", lastEventId,
                 "lastEventInteractionType", lastEventInteractionType,
+                "publishPackageName", publishPackageName,
+                "publishPackageRegistryName", publishPackageRegistryName,
+                "publishPackageUrl", publishPackageUrl,
+                "publishPackageVersion", publishPackageVersion,
                 "repoLabel", repoLabel,
                 "sourceBlobDigest", sourceBlobDigest,
                 "sourceNamespaceName", sourceNamespaceName,
@@ -1427,6 +1622,8 @@ public class TargetSDK {
         private Optional<Long> generateNumberOfOperationsIgnored = Optional.empty();
  
         private Optional<Long> generateNumberOfOperationsUsed = Optional.empty();
+ 
+        private Optional<Long> generateNumberOfTerraformResources = Optional.empty();
  
         private Optional<Boolean> generatePublished = Optional.empty();
  
@@ -1465,6 +1662,14 @@ public class TargetSDK {
         private String lastEventId;
  
         private InteractionType lastEventInteractionType;
+ 
+        private Optional<String> publishPackageName = Optional.empty();
+ 
+        private Optional<String> publishPackageRegistryName = Optional.empty();
+ 
+        private Optional<String> publishPackageUrl = Optional.empty();
+ 
+        private Optional<String> publishPackageVersion = Optional.empty();
  
         private Optional<String> repoLabel = Optional.empty();
  
@@ -1652,6 +1857,24 @@ public class TargetSDK {
         public Builder generateNumberOfOperationsUsed(Optional<Long> generateNumberOfOperationsUsed) {
             Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
             this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
+            return this;
+        }
+
+        /**
+         * The number of terraform resources used in generation.
+         */
+        public Builder generateNumberOfTerraformResources(long generateNumberOfTerraformResources) {
+            Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+            this.generateNumberOfTerraformResources = Optional.ofNullable(generateNumberOfTerraformResources);
+            return this;
+        }
+
+        /**
+         * The number of terraform resources used in generation.
+         */
+        public Builder generateNumberOfTerraformResources(Optional<Long> generateNumberOfTerraformResources) {
+            Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+            this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
             return this;
         }
 
@@ -1953,6 +2176,78 @@ public class TargetSDK {
         }
 
         /**
+         * Name of the published package.
+         */
+        public Builder publishPackageName(String publishPackageName) {
+            Utils.checkNotNull(publishPackageName, "publishPackageName");
+            this.publishPackageName = Optional.ofNullable(publishPackageName);
+            return this;
+        }
+
+        /**
+         * Name of the published package.
+         */
+        public Builder publishPackageName(Optional<String> publishPackageName) {
+            Utils.checkNotNull(publishPackageName, "publishPackageName");
+            this.publishPackageName = publishPackageName;
+            return this;
+        }
+
+        /**
+         * Name of the registry where the package was published.
+         */
+        public Builder publishPackageRegistryName(String publishPackageRegistryName) {
+            Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
+            this.publishPackageRegistryName = Optional.ofNullable(publishPackageRegistryName);
+            return this;
+        }
+
+        /**
+         * Name of the registry where the package was published.
+         */
+        public Builder publishPackageRegistryName(Optional<String> publishPackageRegistryName) {
+            Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
+            this.publishPackageRegistryName = publishPackageRegistryName;
+            return this;
+        }
+
+        /**
+         * URL of the published package.
+         */
+        public Builder publishPackageUrl(String publishPackageUrl) {
+            Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
+            this.publishPackageUrl = Optional.ofNullable(publishPackageUrl);
+            return this;
+        }
+
+        /**
+         * URL of the published package.
+         */
+        public Builder publishPackageUrl(Optional<String> publishPackageUrl) {
+            Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
+            this.publishPackageUrl = publishPackageUrl;
+            return this;
+        }
+
+        /**
+         * Version of the published package.
+         */
+        public Builder publishPackageVersion(String publishPackageVersion) {
+            Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
+            this.publishPackageVersion = Optional.ofNullable(publishPackageVersion);
+            return this;
+        }
+
+        /**
+         * Version of the published package.
+         */
+        public Builder publishPackageVersion(Optional<String> publishPackageVersion) {
+            Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
+            this.publishPackageVersion = publishPackageVersion;
+            return this;
+        }
+
+        /**
          * Label of the git repository.
          */
         public Builder repoLabel(String repoLabel) {
@@ -2090,6 +2385,7 @@ public class TargetSDK {
                 generateGenLockPreVersion,
                 generateNumberOfOperationsIgnored,
                 generateNumberOfOperationsUsed,
+                generateNumberOfTerraformResources,
                 generatePublished,
                 generateTarget,
                 generateTargetName,
@@ -2109,6 +2405,10 @@ public class TargetSDK {
                 lastEventCreatedAt,
                 lastEventId,
                 lastEventInteractionType,
+                publishPackageName,
+                publishPackageRegistryName,
+                publishPackageUrl,
+                publishPackageVersion,
                 repoLabel,
                 sourceBlobDigest,
                 sourceNamespaceName,

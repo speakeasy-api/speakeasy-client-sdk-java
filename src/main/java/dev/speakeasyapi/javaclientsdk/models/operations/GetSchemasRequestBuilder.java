@@ -15,7 +15,7 @@ public class GetSchemasRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetSchemasRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasRequest request) {
+    public GetSchemasRequestBuilder request(GetSchemasRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class GetRequestFromEventLogRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetRequestFromEventLogRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogRequest request) {
+    public GetRequestFromEventLogRequestBuilder request(GetRequestFromEventLogRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

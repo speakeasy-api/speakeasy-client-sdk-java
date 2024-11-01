@@ -26,7 +26,7 @@ Delete a particular schema revision for an Api.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -34,33 +34,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DeleteSchemaRequest req = DeleteSchemaRequest.builder()
+                .apiID("<id>")
+                .revisionID("<id>")
+                .versionID("<id>")
                 .build();
 
-            DeleteSchemaRequest req = DeleteSchemaRequest.builder()
-                .apiID("<value>")
-                .revisionID("<value>")
-                .versionID("<value>")
-                .build();
-
-            DeleteSchemaResponse res = sdk.schemas().deleteSchema()
+        DeleteSchemaResponse res = sdk.schemas().deleteSchema()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -77,10 +69,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## downloadSchema
 
@@ -92,7 +84,7 @@ Download the latest schema for a particular apiID.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -100,34 +92,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DownloadSchemaRequest req = DownloadSchemaRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            DownloadSchemaRequest req = DownloadSchemaRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
-                .build();
-
-            DownloadSchemaResponse res = sdk.schemas().downloadSchema()
+        DownloadSchemaResponse res = sdk.schemas().downloadSchema()
                 .request(req)
                 .call();
 
-            if (res.twoHundredApplicationJsonSchema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.twoXXApplicationJsonSchema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -144,10 +128,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## downloadSchemaRevision
 
@@ -159,7 +143,7 @@ Download a particular schema revision for an Api.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -167,35 +151,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        DownloadSchemaRevisionRequest req = DownloadSchemaRevisionRequest.builder()
+                .apiID("<id>")
+                .revisionID("<id>")
+                .versionID("<id>")
                 .build();
 
-            DownloadSchemaRevisionRequest req = DownloadSchemaRevisionRequest.builder()
-                .apiID("<value>")
-                .revisionID("<value>")
-                .versionID("<value>")
-                .build();
-
-            DownloadSchemaRevisionResponse res = sdk.schemas().downloadSchemaRevision()
+        DownloadSchemaRevisionResponse res = sdk.schemas().downloadSchemaRevision()
                 .request(req)
                 .call();
 
-            if (res.twoHundredApplicationJsonSchema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.twoXXApplicationJsonSchema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -212,14 +188,14 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getSchema
 
-Returns information about the last uploaded schema for a particular API version. 
+Returns information about the last uploaded schema for a particular API version.
 This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
 ### Example Usage
@@ -228,7 +204,7 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -236,34 +212,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetSchemaRequest req = GetSchemaRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            GetSchemaRequest req = GetSchemaRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
-                .build();
-
-            GetSchemaResponse res = sdk.schemas().getSchema()
+        GetSchemaResponse res = sdk.schemas().getSchema()
                 .request(req)
                 .call();
 
-            if (res.schema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.schema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -280,10 +248,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getSchemaDiff
 
@@ -295,7 +263,7 @@ Get a diff of two schema revisions for an Api.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -303,36 +271,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetSchemaDiffRequest req = GetSchemaDiffRequest.builder()
+                .apiID("<id>")
+                .baseRevisionID("<id>")
+                .targetRevisionID("<id>")
+                .versionID("<id>")
                 .build();
 
-            GetSchemaDiffRequest req = GetSchemaDiffRequest.builder()
-                .apiID("<value>")
-                .baseRevisionID("<value>")
-                .targetRevisionID("<value>")
-                .versionID("<value>")
-                .build();
-
-            GetSchemaDiffResponse res = sdk.schemas().getSchemaDiff()
+        GetSchemaDiffResponse res = sdk.schemas().getSchemaDiff()
                 .request(req)
                 .call();
 
-            if (res.schemaDiff().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.schemaDiff().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -349,14 +309,14 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getSchemaRevision
 
-Returns information about the last uploaded schema for a particular schema revision. 
+Returns information about the last uploaded schema for a particular schema revision.
 This won't include the schema itself, that can be retrieved via the downloadSchema operation.
 
 ### Example Usage
@@ -365,7 +325,7 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -373,35 +333,27 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetSchemaRevisionRequest req = GetSchemaRevisionRequest.builder()
+                .apiID("<id>")
+                .revisionID("<id>")
+                .versionID("<id>")
                 .build();
 
-            GetSchemaRevisionRequest req = GetSchemaRevisionRequest.builder()
-                .apiID("<value>")
-                .revisionID("<value>")
-                .versionID("<value>")
-                .build();
-
-            GetSchemaRevisionResponse res = sdk.schemas().getSchemaRevision()
+        GetSchemaRevisionResponse res = sdk.schemas().getSchemaRevision()
                 .request(req)
                 .call();
 
-            if (res.schema().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.schema().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -418,14 +370,14 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getSchemas
 
-Returns information the schemas associated with a particular apiID. 
+Returns information the schemas associated with a particular apiID.
 This won't include the schemas themselves, they can be retrieved via the downloadSchema operation.
 
 ### Example Usage
@@ -434,7 +386,7 @@ This won't include the schemas themselves, they can be retrieved via the downloa
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -442,34 +394,26 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetSchemasRequest req = GetSchemasRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            GetSchemasRequest req = GetSchemasRequest.builder()
-                .apiID("<value>")
-                .versionID("<value>")
-                .build();
-
-            GetSchemasResponse res = sdk.schemas().getSchemas()
+        GetSchemasResponse res = sdk.schemas().getSchemas()
                 .request(req)
                 .call();
 
-            if (res.classes().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.classes().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -486,10 +430,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## registerSchema
 
@@ -502,48 +446,41 @@ This will be used to populate ApiEndpoints and used as a base for any schema gen
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            RegisterSchemaRequest req = RegisterSchemaRequest.builder()
+        RegisterSchemaRequest req = RegisterSchemaRequest.builder()
                 .requestBody(RegisterSchemaRequestBody.builder()
                     .file(RegisterSchemaFile.builder()
-                        .content("0xCAFCA03e0e".getBytes())
+                        .content("0xCFA30D144c".getBytes(StandardCharsets.UTF_8))
                         .fileName("example.file")
                         .build())
                     .build())
-                .apiID("<value>")
-                .versionID("<value>")
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-            RegisterSchemaResponse res = sdk.schemas().registerSchema()
+        RegisterSchemaResponse res = sdk.schemas().registerSchema()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -560,6 +497,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |

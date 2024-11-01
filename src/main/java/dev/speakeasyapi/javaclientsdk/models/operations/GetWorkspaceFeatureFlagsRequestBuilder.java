@@ -15,7 +15,7 @@ public class GetWorkspaceFeatureFlagsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetWorkspaceFeatureFlagsRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsRequest request) {
+    public GetWorkspaceFeatureFlagsRequestBuilder request(GetWorkspaceFeatureFlagsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -23,7 +23,7 @@ public class GetWorkspaceFeatureFlagsRequestBuilder {
 
     public GetWorkspaceFeatureFlagsResponse call() throws Exception {
 
-        return sdk.getWorkspaceFeatureFlags(
+        return sdk.getFeatureFlags(
             request);
     }
 }

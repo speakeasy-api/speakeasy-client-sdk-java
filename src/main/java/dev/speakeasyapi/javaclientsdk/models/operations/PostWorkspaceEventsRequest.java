@@ -25,17 +25,17 @@ public class PostWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
-    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspaceID")
-    private Optional<String> workspaceID;
+    @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspace_id")
+    private Optional<String> workspaceId;
 
     @JsonCreator
     public PostWorkspaceEventsRequest(
             List<CliEvent> requestBody,
-            Optional<String> workspaceID) {
+            Optional<String> workspaceId) {
         Utils.checkNotNull(requestBody, "requestBody");
-        Utils.checkNotNull(workspaceID, "workspaceID");
+        Utils.checkNotNull(workspaceId, "workspaceId");
         this.requestBody = requestBody;
-        this.workspaceID = workspaceID;
+        this.workspaceId = workspaceId;
     }
     
     public PostWorkspaceEventsRequest(
@@ -52,8 +52,8 @@ public class PostWorkspaceEventsRequest {
      * Unique identifier of the workspace.
      */
     @JsonIgnore
-    public Optional<String> workspaceID() {
-        return workspaceID;
+    public Optional<String> workspaceId() {
+        return workspaceId;
     }
 
     public final static Builder builder() {
@@ -69,18 +69,18 @@ public class PostWorkspaceEventsRequest {
     /**
      * Unique identifier of the workspace.
      */
-    public PostWorkspaceEventsRequest withWorkspaceID(String workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = Optional.ofNullable(workspaceID);
+    public PostWorkspaceEventsRequest withWorkspaceId(String workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = Optional.ofNullable(workspaceId);
         return this;
     }
 
     /**
      * Unique identifier of the workspace.
      */
-    public PostWorkspaceEventsRequest withWorkspaceID(Optional<String> workspaceID) {
-        Utils.checkNotNull(workspaceID, "workspaceID");
-        this.workspaceID = workspaceID;
+    public PostWorkspaceEventsRequest withWorkspaceId(Optional<String> workspaceId) {
+        Utils.checkNotNull(workspaceId, "workspaceId");
+        this.workspaceId = workspaceId;
         return this;
     }
     
@@ -95,28 +95,28 @@ public class PostWorkspaceEventsRequest {
         PostWorkspaceEventsRequest other = (PostWorkspaceEventsRequest) o;
         return 
             Objects.deepEquals(this.requestBody, other.requestBody) &&
-            Objects.deepEquals(this.workspaceID, other.workspaceID);
+            Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
             requestBody,
-            workspaceID);
+            workspaceId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(PostWorkspaceEventsRequest.class,
                 "requestBody", requestBody,
-                "workspaceID", workspaceID);
+                "workspaceId", workspaceId);
     }
     
     public final static class Builder {
  
         private List<CliEvent> requestBody;
  
-        private Optional<String> workspaceID = Optional.empty();  
+        private Optional<String> workspaceId = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
@@ -131,25 +131,25 @@ public class PostWorkspaceEventsRequest {
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(String workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = Optional.ofNullable(workspaceID);
+        public Builder workspaceId(String workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = Optional.ofNullable(workspaceId);
             return this;
         }
 
         /**
          * Unique identifier of the workspace.
          */
-        public Builder workspaceID(Optional<String> workspaceID) {
-            Utils.checkNotNull(workspaceID, "workspaceID");
-            this.workspaceID = workspaceID;
+        public Builder workspaceId(Optional<String> workspaceId) {
+            Utils.checkNotNull(workspaceId, "workspaceId");
+            this.workspaceId = workspaceId;
             return this;
         }
         
         public PostWorkspaceEventsRequest build() {
             return new PostWorkspaceEventsRequest(
                 requestBody,
-                workspaceID);
+                workspaceId);
         }
     }
 }

@@ -197,6 +197,13 @@ public class CliEvent {
     private Optional<Long> generateNumberOfOperationsUsed;
 
     /**
+     * The number of terraform resources used in generation.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("generate_number_of_terraform_resources")
+    private Optional<Long> generateNumberOfTerraformResources;
+
+    /**
      * Indicates whether tests were output.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -279,6 +286,13 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gh_action_version")
     private Optional<String> ghActionVersion;
+
+    /**
+     * The reference to a created pull request.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gh_pull_request")
+    private Optional<String> ghPullRequest;
 
     /**
      * Current working directory relative to the git root.
@@ -587,6 +601,7 @@ public class CliEvent {
             @JsonProperty("generate_gen_lock_pre_version") Optional<String> generateGenLockPreVersion,
             @JsonProperty("generate_number_of_operations_ignored") Optional<Long> generateNumberOfOperationsIgnored,
             @JsonProperty("generate_number_of_operations_used") Optional<Long> generateNumberOfOperationsUsed,
+            @JsonProperty("generate_number_of_terraform_resources") Optional<Long> generateNumberOfTerraformResources,
             @JsonProperty("generate_output_tests") Optional<Boolean> generateOutputTests,
             @JsonProperty("generate_published") Optional<Boolean> generatePublished,
             @JsonProperty("generate_repo_url") Optional<String> generateRepoUrl,
@@ -599,6 +614,7 @@ public class CliEvent {
             @JsonProperty("gh_action_repository") Optional<String> ghActionRepository,
             @JsonProperty("gh_action_run_link") Optional<String> ghActionRunLink,
             @JsonProperty("gh_action_version") Optional<String> ghActionVersion,
+            @JsonProperty("gh_pull_request") Optional<String> ghPullRequest,
             @JsonProperty("git_relative_cwd") Optional<String> gitRelativeCwd,
             @JsonProperty("git_remote_default_owner") Optional<String> gitRemoteDefaultOwner,
             @JsonProperty("git_remote_default_repo") Optional<String> gitRemoteDefaultRepo,
@@ -665,6 +681,7 @@ public class CliEvent {
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
         Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
         Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
+        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
         Utils.checkNotNull(generateOutputTests, "generateOutputTests");
         Utils.checkNotNull(generatePublished, "generatePublished");
         Utils.checkNotNull(generateRepoUrl, "generateRepoUrl");
@@ -677,6 +694,7 @@ public class CliEvent {
         Utils.checkNotNull(ghActionRepository, "ghActionRepository");
         Utils.checkNotNull(ghActionRunLink, "ghActionRunLink");
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
+        Utils.checkNotNull(ghPullRequest, "ghPullRequest");
         Utils.checkNotNull(gitRelativeCwd, "gitRelativeCwd");
         Utils.checkNotNull(gitRemoteDefaultOwner, "gitRemoteDefaultOwner");
         Utils.checkNotNull(gitRemoteDefaultRepo, "gitRemoteDefaultRepo");
@@ -743,6 +761,7 @@ public class CliEvent {
         this.generateGenLockPreVersion = generateGenLockPreVersion;
         this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
         this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
+        this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
         this.generateOutputTests = generateOutputTests;
         this.generatePublished = generatePublished;
         this.generateRepoUrl = generateRepoUrl;
@@ -755,6 +774,7 @@ public class CliEvent {
         this.ghActionRepository = ghActionRepository;
         this.ghActionRunLink = ghActionRunLink;
         this.ghActionVersion = ghActionVersion;
+        this.ghPullRequest = ghPullRequest;
         this.gitRelativeCwd = gitRelativeCwd;
         this.gitRemoteDefaultOwner = gitRemoteDefaultOwner;
         this.gitRemoteDefaultRepo = gitRemoteDefaultRepo;
@@ -808,7 +828,7 @@ public class CliEvent {
             String speakeasyVersion,
             boolean success,
             String workspaceId) {
-        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
+        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
     }
 
     /**
@@ -1013,6 +1033,14 @@ public class CliEvent {
     }
 
     /**
+     * The number of terraform resources used in generation.
+     */
+    @JsonIgnore
+    public Optional<Long> generateNumberOfTerraformResources() {
+        return generateNumberOfTerraformResources;
+    }
+
+    /**
      * Indicates whether tests were output.
      */
     @JsonIgnore
@@ -1106,6 +1134,14 @@ public class CliEvent {
     @JsonIgnore
     public Optional<String> ghActionVersion() {
         return ghActionVersion;
+    }
+
+    /**
+     * The reference to a created pull request.
+     */
+    @JsonIgnore
+    public Optional<String> ghPullRequest() {
+        return ghPullRequest;
     }
 
     /**
@@ -1874,6 +1910,24 @@ public class CliEvent {
     }
 
     /**
+     * The number of terraform resources used in generation.
+     */
+    public CliEvent withGenerateNumberOfTerraformResources(long generateNumberOfTerraformResources) {
+        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+        this.generateNumberOfTerraformResources = Optional.ofNullable(generateNumberOfTerraformResources);
+        return this;
+    }
+
+    /**
+     * The number of terraform resources used in generation.
+     */
+    public CliEvent withGenerateNumberOfTerraformResources(Optional<Long> generateNumberOfTerraformResources) {
+        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+        this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
+        return this;
+    }
+
+    /**
      * Indicates whether tests were output.
      */
     public CliEvent withGenerateOutputTests(boolean generateOutputTests) {
@@ -2086,6 +2140,24 @@ public class CliEvent {
     public CliEvent withGhActionVersion(Optional<String> ghActionVersion) {
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
         this.ghActionVersion = ghActionVersion;
+        return this;
+    }
+
+    /**
+     * The reference to a created pull request.
+     */
+    public CliEvent withGhPullRequest(String ghPullRequest) {
+        Utils.checkNotNull(ghPullRequest, "ghPullRequest");
+        this.ghPullRequest = Optional.ofNullable(ghPullRequest);
+        return this;
+    }
+
+    /**
+     * The reference to a created pull request.
+     */
+    public CliEvent withGhPullRequest(Optional<String> ghPullRequest) {
+        Utils.checkNotNull(ghPullRequest, "ghPullRequest");
+        this.ghPullRequest = ghPullRequest;
         return this;
     }
 
@@ -2799,6 +2871,7 @@ public class CliEvent {
             Objects.deepEquals(this.generateGenLockPreVersion, other.generateGenLockPreVersion) &&
             Objects.deepEquals(this.generateNumberOfOperationsIgnored, other.generateNumberOfOperationsIgnored) &&
             Objects.deepEquals(this.generateNumberOfOperationsUsed, other.generateNumberOfOperationsUsed) &&
+            Objects.deepEquals(this.generateNumberOfTerraformResources, other.generateNumberOfTerraformResources) &&
             Objects.deepEquals(this.generateOutputTests, other.generateOutputTests) &&
             Objects.deepEquals(this.generatePublished, other.generatePublished) &&
             Objects.deepEquals(this.generateRepoUrl, other.generateRepoUrl) &&
@@ -2811,6 +2884,7 @@ public class CliEvent {
             Objects.deepEquals(this.ghActionRepository, other.ghActionRepository) &&
             Objects.deepEquals(this.ghActionRunLink, other.ghActionRunLink) &&
             Objects.deepEquals(this.ghActionVersion, other.ghActionVersion) &&
+            Objects.deepEquals(this.ghPullRequest, other.ghPullRequest) &&
             Objects.deepEquals(this.gitRelativeCwd, other.gitRelativeCwd) &&
             Objects.deepEquals(this.gitRemoteDefaultOwner, other.gitRemoteDefaultOwner) &&
             Objects.deepEquals(this.gitRemoteDefaultRepo, other.gitRemoteDefaultRepo) &&
@@ -2882,6 +2956,7 @@ public class CliEvent {
             generateGenLockPreVersion,
             generateNumberOfOperationsIgnored,
             generateNumberOfOperationsUsed,
+            generateNumberOfTerraformResources,
             generateOutputTests,
             generatePublished,
             generateRepoUrl,
@@ -2894,6 +2969,7 @@ public class CliEvent {
             ghActionRepository,
             ghActionRunLink,
             ghActionVersion,
+            ghPullRequest,
             gitRelativeCwd,
             gitRemoteDefaultOwner,
             gitRemoteDefaultRepo,
@@ -2965,6 +3041,7 @@ public class CliEvent {
                 "generateGenLockPreVersion", generateGenLockPreVersion,
                 "generateNumberOfOperationsIgnored", generateNumberOfOperationsIgnored,
                 "generateNumberOfOperationsUsed", generateNumberOfOperationsUsed,
+                "generateNumberOfTerraformResources", generateNumberOfTerraformResources,
                 "generateOutputTests", generateOutputTests,
                 "generatePublished", generatePublished,
                 "generateRepoUrl", generateRepoUrl,
@@ -2977,6 +3054,7 @@ public class CliEvent {
                 "ghActionRepository", ghActionRepository,
                 "ghActionRunLink", ghActionRunLink,
                 "ghActionVersion", ghActionVersion,
+                "ghPullRequest", ghPullRequest,
                 "gitRelativeCwd", gitRelativeCwd,
                 "gitRemoteDefaultOwner", gitRemoteDefaultOwner,
                 "gitRemoteDefaultRepo", gitRemoteDefaultRepo,
@@ -3072,6 +3150,8 @@ public class CliEvent {
  
         private Optional<Long> generateNumberOfOperationsUsed = Optional.empty();
  
+        private Optional<Long> generateNumberOfTerraformResources = Optional.empty();
+ 
         private Optional<Boolean> generateOutputTests = Optional.empty();
  
         private Optional<Boolean> generatePublished = Optional.empty();
@@ -3095,6 +3175,8 @@ public class CliEvent {
         private Optional<String> ghActionRunLink = Optional.empty();
  
         private Optional<String> ghActionVersion = Optional.empty();
+ 
+        private Optional<String> ghPullRequest = Optional.empty();
  
         private Optional<String> gitRelativeCwd = Optional.empty();
  
@@ -3615,6 +3697,24 @@ public class CliEvent {
         }
 
         /**
+         * The number of terraform resources used in generation.
+         */
+        public Builder generateNumberOfTerraformResources(long generateNumberOfTerraformResources) {
+            Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+            this.generateNumberOfTerraformResources = Optional.ofNullable(generateNumberOfTerraformResources);
+            return this;
+        }
+
+        /**
+         * The number of terraform resources used in generation.
+         */
+        public Builder generateNumberOfTerraformResources(Optional<Long> generateNumberOfTerraformResources) {
+            Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
+            this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
+            return this;
+        }
+
+        /**
          * Indicates whether tests were output.
          */
         public Builder generateOutputTests(boolean generateOutputTests) {
@@ -3827,6 +3927,24 @@ public class CliEvent {
         public Builder ghActionVersion(Optional<String> ghActionVersion) {
             Utils.checkNotNull(ghActionVersion, "ghActionVersion");
             this.ghActionVersion = ghActionVersion;
+            return this;
+        }
+
+        /**
+         * The reference to a created pull request.
+         */
+        public Builder ghPullRequest(String ghPullRequest) {
+            Utils.checkNotNull(ghPullRequest, "ghPullRequest");
+            this.ghPullRequest = Optional.ofNullable(ghPullRequest);
+            return this;
+        }
+
+        /**
+         * The reference to a created pull request.
+         */
+        public Builder ghPullRequest(Optional<String> ghPullRequest) {
+            Utils.checkNotNull(ghPullRequest, "ghPullRequest");
+            this.ghPullRequest = ghPullRequest;
             return this;
         }
 
@@ -4532,6 +4650,7 @@ public class CliEvent {
                 generateGenLockPreVersion,
                 generateNumberOfOperationsIgnored,
                 generateNumberOfOperationsUsed,
+                generateNumberOfTerraformResources,
                 generateOutputTests,
                 generatePublished,
                 generateRepoUrl,
@@ -4544,6 +4663,7 @@ public class CliEvent {
                 ghActionRepository,
                 ghActionRunLink,
                 ghActionVersion,
+                ghPullRequest,
                 gitRelativeCwd,
                 gitRemoteDefaultOwner,
                 gitRemoteDefaultRepo,

@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.EmbedAccessTokenResponse;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -34,11 +33,6 @@ public class GetEmbedAccessTokenResponse implements Response {
     private Optional<? extends EmbedAccessTokenResponse> embedAccessTokenResponse;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -52,17 +46,14 @@ public class GetEmbedAccessTokenResponse implements Response {
     public GetEmbedAccessTokenResponse(
             String contentType,
             Optional<? extends EmbedAccessTokenResponse> embedAccessTokenResponse,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
         Utils.checkNotNull(embedAccessTokenResponse, "embedAccessTokenResponse");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
         this.embedAccessTokenResponse = embedAccessTokenResponse;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -71,7 +62,7 @@ public class GetEmbedAccessTokenResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), Optional.empty(), statusCode, rawResponse);
+        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -89,15 +80,6 @@ public class GetEmbedAccessTokenResponse implements Response {
     @JsonIgnore
     public Optional<EmbedAccessTokenResponse> embedAccessTokenResponse() {
         return (Optional<EmbedAccessTokenResponse>) embedAccessTokenResponse;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -148,24 +130,6 @@ public class GetEmbedAccessTokenResponse implements Response {
     }
 
     /**
-     * Default error response
-     */
-    public GetEmbedAccessTokenResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetEmbedAccessTokenResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public GetEmbedAccessTokenResponse withStatusCode(int statusCode) {
@@ -195,7 +159,6 @@ public class GetEmbedAccessTokenResponse implements Response {
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.embedAccessTokenResponse, other.embedAccessTokenResponse) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -205,7 +168,6 @@ public class GetEmbedAccessTokenResponse implements Response {
         return Objects.hash(
             contentType,
             embedAccessTokenResponse,
-            error,
             statusCode,
             rawResponse);
     }
@@ -215,7 +177,6 @@ public class GetEmbedAccessTokenResponse implements Response {
         return Utils.toString(GetEmbedAccessTokenResponse.class,
                 "contentType", contentType,
                 "embedAccessTokenResponse", embedAccessTokenResponse,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -225,8 +186,6 @@ public class GetEmbedAccessTokenResponse implements Response {
         private String contentType;
  
         private Optional<? extends EmbedAccessTokenResponse> embedAccessTokenResponse = Optional.empty();
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -264,24 +223,6 @@ public class GetEmbedAccessTokenResponse implements Response {
         }
 
         /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -303,7 +244,6 @@ public class GetEmbedAccessTokenResponse implements Response {
             return new GetEmbedAccessTokenResponse(
                 contentType,
                 embedAccessTokenResponse,
-                error,
                 statusCode,
                 rawResponse);
         }

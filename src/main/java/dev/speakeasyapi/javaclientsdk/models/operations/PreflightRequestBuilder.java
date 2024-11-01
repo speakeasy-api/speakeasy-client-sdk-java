@@ -17,13 +17,13 @@ public class PreflightRequestBuilder {
         this.sdk = sdk;
     }
                 
-    public PreflightRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest request) {
+    public PreflightRequestBuilder request(PreflightRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = Optional.of(request);
         return this;
     }
 
-    public PreflightRequestBuilder request(java.util.Optional<? extends dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest> request) {
+    public PreflightRequestBuilder request(Optional<? extends PreflightRequest> request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

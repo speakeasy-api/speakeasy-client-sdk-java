@@ -15,7 +15,7 @@ public class GetBlobRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetBlobRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetBlobRequest request) {
+    public GetBlobRequestBuilder request(GetBlobRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

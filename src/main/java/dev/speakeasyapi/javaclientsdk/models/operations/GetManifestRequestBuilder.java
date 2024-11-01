@@ -15,7 +15,7 @@ public class GetManifestRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetManifestRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest request) {
+    public GetManifestRequestBuilder request(GetManifestRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

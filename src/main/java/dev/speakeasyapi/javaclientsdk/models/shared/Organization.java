@@ -17,6 +17,7 @@ import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Organization - A speakeasy organization
@@ -27,45 +28,48 @@ public class Organization {
     @JsonProperty("account_type")
     private AccountType accountType;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("created_at")
-    private Optional<OffsetDateTime> createdAt;
+    private OffsetDateTime createdAt;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("free_trial_expiry")
-    private Optional<OffsetDateTime> freeTrialExpiry;
+    private JsonNullable<OffsetDateTime> freeTrialExpiry;
 
     @JsonProperty("id")
     private String id;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("internal")
+    private Optional<Boolean> internal;
+
     @JsonProperty("name")
     private String name;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("slug")
-    private Optional<String> slug;
+    private String slug;
 
     @JsonProperty("telemetry_disabled")
     private boolean telemetryDisabled;
 
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("updated_at")
-    private Optional<OffsetDateTime> updatedAt;
+    private OffsetDateTime updatedAt;
 
     @JsonCreator
     public Organization(
             @JsonProperty("account_type") AccountType accountType,
-            @JsonProperty("created_at") Optional<OffsetDateTime> createdAt,
-            @JsonProperty("free_trial_expiry") Optional<OffsetDateTime> freeTrialExpiry,
+            @JsonProperty("created_at") OffsetDateTime createdAt,
+            @JsonProperty("free_trial_expiry") JsonNullable<OffsetDateTime> freeTrialExpiry,
             @JsonProperty("id") String id,
+            @JsonProperty("internal") Optional<Boolean> internal,
             @JsonProperty("name") String name,
-            @JsonProperty("slug") Optional<String> slug,
+            @JsonProperty("slug") String slug,
             @JsonProperty("telemetry_disabled") boolean telemetryDisabled,
-            @JsonProperty("updated_at") Optional<OffsetDateTime> updatedAt) {
+            @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(accountType, "accountType");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(freeTrialExpiry, "freeTrialExpiry");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(internal, "internal");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(slug, "slug");
         Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
@@ -74,6 +78,7 @@ public class Organization {
         this.createdAt = createdAt;
         this.freeTrialExpiry = freeTrialExpiry;
         this.id = id;
+        this.internal = internal;
         this.name = name;
         this.slug = slug;
         this.telemetryDisabled = telemetryDisabled;
@@ -82,10 +87,13 @@ public class Organization {
     
     public Organization(
             AccountType accountType,
+            OffsetDateTime createdAt,
             String id,
             String name,
-            boolean telemetryDisabled) {
-        this(accountType, Optional.empty(), Optional.empty(), id, name, Optional.empty(), telemetryDisabled, Optional.empty());
+            String slug,
+            boolean telemetryDisabled,
+            OffsetDateTime updatedAt) {
+        this(accountType, createdAt, JsonNullable.undefined(), id, Optional.empty(), name, slug, telemetryDisabled, updatedAt);
     }
 
     @JsonIgnore
@@ -94,12 +102,12 @@ public class Organization {
     }
 
     @JsonIgnore
-    public Optional<OffsetDateTime> createdAt() {
+    public OffsetDateTime createdAt() {
         return createdAt;
     }
 
     @JsonIgnore
-    public Optional<OffsetDateTime> freeTrialExpiry() {
+    public JsonNullable<OffsetDateTime> freeTrialExpiry() {
         return freeTrialExpiry;
     }
 
@@ -109,12 +117,17 @@ public class Organization {
     }
 
     @JsonIgnore
+    public Optional<Boolean> internal() {
+        return internal;
+    }
+
+    @JsonIgnore
     public String name() {
         return name;
     }
 
     @JsonIgnore
-    public Optional<String> slug() {
+    public String slug() {
         return slug;
     }
 
@@ -124,7 +137,7 @@ public class Organization {
     }
 
     @JsonIgnore
-    public Optional<OffsetDateTime> updatedAt() {
+    public OffsetDateTime updatedAt() {
         return updatedAt;
     }
 
@@ -140,23 +153,17 @@ public class Organization {
 
     public Organization withCreatedAt(OffsetDateTime createdAt) {
         Utils.checkNotNull(createdAt, "createdAt");
-        this.createdAt = Optional.ofNullable(createdAt);
-        return this;
-    }
-
-    public Organization withCreatedAt(Optional<OffsetDateTime> createdAt) {
-        Utils.checkNotNull(createdAt, "createdAt");
         this.createdAt = createdAt;
         return this;
     }
 
     public Organization withFreeTrialExpiry(OffsetDateTime freeTrialExpiry) {
         Utils.checkNotNull(freeTrialExpiry, "freeTrialExpiry");
-        this.freeTrialExpiry = Optional.ofNullable(freeTrialExpiry);
+        this.freeTrialExpiry = JsonNullable.of(freeTrialExpiry);
         return this;
     }
 
-    public Organization withFreeTrialExpiry(Optional<OffsetDateTime> freeTrialExpiry) {
+    public Organization withFreeTrialExpiry(JsonNullable<OffsetDateTime> freeTrialExpiry) {
         Utils.checkNotNull(freeTrialExpiry, "freeTrialExpiry");
         this.freeTrialExpiry = freeTrialExpiry;
         return this;
@@ -168,6 +175,18 @@ public class Organization {
         return this;
     }
 
+    public Organization withInternal(boolean internal) {
+        Utils.checkNotNull(internal, "internal");
+        this.internal = Optional.ofNullable(internal);
+        return this;
+    }
+
+    public Organization withInternal(Optional<Boolean> internal) {
+        Utils.checkNotNull(internal, "internal");
+        this.internal = internal;
+        return this;
+    }
+
     public Organization withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
@@ -175,12 +194,6 @@ public class Organization {
     }
 
     public Organization withSlug(String slug) {
-        Utils.checkNotNull(slug, "slug");
-        this.slug = Optional.ofNullable(slug);
-        return this;
-    }
-
-    public Organization withSlug(Optional<String> slug) {
         Utils.checkNotNull(slug, "slug");
         this.slug = slug;
         return this;
@@ -193,12 +206,6 @@ public class Organization {
     }
 
     public Organization withUpdatedAt(OffsetDateTime updatedAt) {
-        Utils.checkNotNull(updatedAt, "updatedAt");
-        this.updatedAt = Optional.ofNullable(updatedAt);
-        return this;
-    }
-
-    public Organization withUpdatedAt(Optional<OffsetDateTime> updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
         return this;
@@ -218,6 +225,7 @@ public class Organization {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.freeTrialExpiry, other.freeTrialExpiry) &&
             Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.internal, other.internal) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.slug, other.slug) &&
             Objects.deepEquals(this.telemetryDisabled, other.telemetryDisabled) &&
@@ -231,6 +239,7 @@ public class Organization {
             createdAt,
             freeTrialExpiry,
             id,
+            internal,
             name,
             slug,
             telemetryDisabled,
@@ -244,6 +253,7 @@ public class Organization {
                 "createdAt", createdAt,
                 "freeTrialExpiry", freeTrialExpiry,
                 "id", id,
+                "internal", internal,
                 "name", name,
                 "slug", slug,
                 "telemetryDisabled", telemetryDisabled,
@@ -254,19 +264,21 @@ public class Organization {
  
         private AccountType accountType;
  
-        private Optional<OffsetDateTime> createdAt = Optional.empty();
+        private OffsetDateTime createdAt;
  
-        private Optional<OffsetDateTime> freeTrialExpiry = Optional.empty();
+        private JsonNullable<OffsetDateTime> freeTrialExpiry = JsonNullable.undefined();
  
         private String id;
  
+        private Optional<Boolean> internal = Optional.empty();
+ 
         private String name;
  
-        private Optional<String> slug = Optional.empty();
+        private String slug;
  
         private Boolean telemetryDisabled;
  
-        private Optional<OffsetDateTime> updatedAt = Optional.empty();  
+        private OffsetDateTime updatedAt;  
         
         private Builder() {
           // force use of static builder() method
@@ -280,23 +292,17 @@ public class Organization {
 
         public Builder createdAt(OffsetDateTime createdAt) {
             Utils.checkNotNull(createdAt, "createdAt");
-            this.createdAt = Optional.ofNullable(createdAt);
-            return this;
-        }
-
-        public Builder createdAt(Optional<OffsetDateTime> createdAt) {
-            Utils.checkNotNull(createdAt, "createdAt");
             this.createdAt = createdAt;
             return this;
         }
 
         public Builder freeTrialExpiry(OffsetDateTime freeTrialExpiry) {
             Utils.checkNotNull(freeTrialExpiry, "freeTrialExpiry");
-            this.freeTrialExpiry = Optional.ofNullable(freeTrialExpiry);
+            this.freeTrialExpiry = JsonNullable.of(freeTrialExpiry);
             return this;
         }
 
-        public Builder freeTrialExpiry(Optional<OffsetDateTime> freeTrialExpiry) {
+        public Builder freeTrialExpiry(JsonNullable<OffsetDateTime> freeTrialExpiry) {
             Utils.checkNotNull(freeTrialExpiry, "freeTrialExpiry");
             this.freeTrialExpiry = freeTrialExpiry;
             return this;
@@ -308,6 +314,18 @@ public class Organization {
             return this;
         }
 
+        public Builder internal(boolean internal) {
+            Utils.checkNotNull(internal, "internal");
+            this.internal = Optional.ofNullable(internal);
+            return this;
+        }
+
+        public Builder internal(Optional<Boolean> internal) {
+            Utils.checkNotNull(internal, "internal");
+            this.internal = internal;
+            return this;
+        }
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
@@ -315,12 +333,6 @@ public class Organization {
         }
 
         public Builder slug(String slug) {
-            Utils.checkNotNull(slug, "slug");
-            this.slug = Optional.ofNullable(slug);
-            return this;
-        }
-
-        public Builder slug(Optional<String> slug) {
             Utils.checkNotNull(slug, "slug");
             this.slug = slug;
             return this;
@@ -334,12 +346,6 @@ public class Organization {
 
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
-            this.updatedAt = Optional.ofNullable(updatedAt);
-            return this;
-        }
-
-        public Builder updatedAt(Optional<OffsetDateTime> updatedAt) {
-            Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
             return this;
         }
@@ -350,6 +356,7 @@ public class Organization {
                 createdAt,
                 freeTrialExpiry,
                 id,
+                internal,
                 name,
                 slug,
                 telemetryDisabled,

@@ -22,7 +22,7 @@ Filters can be applied allowing views to be filtered to things like particular c
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -30,32 +30,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetEmbedAccessTokenRequest req = GetEmbedAccessTokenRequest.builder()
                 .build();
 
-            GetEmbedAccessTokenRequest req = GetEmbedAccessTokenRequest.builder()
-                .build();
-
-            GetEmbedAccessTokenResponse res = sdk.embeds().getEmbedAccessToken()
+        GetEmbedAccessTokenResponse res = sdk.embeds().getEmbedAccessToken()
                 .request(req)
                 .call();
 
-            if (res.embedAccessTokenResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.embedAccessTokenResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -72,10 +64,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getValidEmbedAccessTokens
 
@@ -87,35 +79,27 @@ Get all valid embed access tokens for the current workspace.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetValidEmbedAccessTokensResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetValidEmbedAccessTokensResponse res = sdk.embeds().getValidEmbedAccessTokens()
+        GetValidEmbedAccessTokensResponse res = sdk.embeds().getValidEmbedAccessTokens()
                 .call();
 
-            if (res.embedTokens().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.embedTokens().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -126,10 +110,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## revokeEmbedAccessToken
 
@@ -141,7 +125,7 @@ Revoke an embed access EmbedToken.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -149,31 +133,23 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        RevokeEmbedAccessTokenRequest req = RevokeEmbedAccessTokenRequest.builder()
+                .tokenID("<id>")
                 .build();
 
-            RevokeEmbedAccessTokenRequest req = RevokeEmbedAccessTokenRequest.builder()
-                .tokenID("<value>")
-                .build();
-
-            RevokeEmbedAccessTokenResponse res = sdk.embeds().revokeEmbedAccessToken()
+        RevokeEmbedAccessTokenResponse res = sdk.embeds().revokeEmbedAccessToken()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -190,6 +166,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |

@@ -15,7 +15,7 @@ public class GetEmbedAccessTokenRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetEmbedAccessTokenRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenRequest request) {
+    public GetEmbedAccessTokenRequestBuilder request(GetEmbedAccessTokenRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class SuggestOpenAPIRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SuggestOpenAPIRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequest request) {
+    public SuggestOpenAPIRequestBuilder request(SuggestOpenAPIRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

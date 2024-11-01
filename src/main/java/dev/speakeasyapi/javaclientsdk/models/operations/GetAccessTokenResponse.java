@@ -7,7 +7,6 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.shared.AccessToken;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
@@ -34,11 +33,6 @@ public class GetAccessTokenResponse implements Response {
     private String contentType;
 
     /**
-     * Default error response
-     */
-    private Optional<? extends Error> error;
-
-    /**
      * HTTP response status code for this operation
      */
     private int statusCode;
@@ -52,17 +46,14 @@ public class GetAccessTokenResponse implements Response {
     public GetAccessTokenResponse(
             Optional<? extends AccessToken> accessToken,
             String contentType,
-            Optional<? extends Error> error,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(accessToken, "accessToken");
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.accessToken = accessToken;
         this.contentType = contentType;
-        this.error = error;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
     }
@@ -71,7 +62,7 @@ public class GetAccessTokenResponse implements Response {
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(Optional.empty(), contentType, Optional.empty(), statusCode, rawResponse);
+        this(Optional.empty(), contentType, statusCode, rawResponse);
     }
 
     /**
@@ -89,15 +80,6 @@ public class GetAccessTokenResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * Default error response
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<Error> error() {
-        return (Optional<Error>) error;
     }
 
     /**
@@ -148,24 +130,6 @@ public class GetAccessTokenResponse implements Response {
     }
 
     /**
-     * Default error response
-     */
-    public GetAccessTokenResponse withError(Error error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Default error response
-     */
-    public GetAccessTokenResponse withError(Optional<? extends Error> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
     public GetAccessTokenResponse withStatusCode(int statusCode) {
@@ -195,7 +159,6 @@ public class GetAccessTokenResponse implements Response {
         return 
             Objects.deepEquals(this.accessToken, other.accessToken) &&
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -205,7 +168,6 @@ public class GetAccessTokenResponse implements Response {
         return Objects.hash(
             accessToken,
             contentType,
-            error,
             statusCode,
             rawResponse);
     }
@@ -215,7 +177,6 @@ public class GetAccessTokenResponse implements Response {
         return Utils.toString(GetAccessTokenResponse.class,
                 "accessToken", accessToken,
                 "contentType", contentType,
-                "error", error,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -225,8 +186,6 @@ public class GetAccessTokenResponse implements Response {
         private Optional<? extends AccessToken> accessToken = Optional.empty();
  
         private String contentType;
- 
-        private Optional<? extends Error> error = Optional.empty();
  
         private Integer statusCode;
  
@@ -264,24 +223,6 @@ public class GetAccessTokenResponse implements Response {
         }
 
         /**
-         * Default error response
-         */
-        public Builder error(Error error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Default error response
-         */
-        public Builder error(Optional<? extends Error> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * HTTP response status code for this operation
          */
         public Builder statusCode(int statusCode) {
@@ -303,7 +244,6 @@ public class GetAccessTokenResponse implements Response {
             return new GetAccessTokenResponse(
                 accessToken,
                 contentType,
-                error,
                 statusCode,
                 rawResponse);
         }

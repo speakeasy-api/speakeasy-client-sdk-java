@@ -15,7 +15,7 @@ public class FindApiEndpointRequestBuilder {
         this.sdk = sdk;
     }
 
-    public FindApiEndpointRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointRequest request) {
+    public FindApiEndpointRequestBuilder request(FindApiEndpointRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

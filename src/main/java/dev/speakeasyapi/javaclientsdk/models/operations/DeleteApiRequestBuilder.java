@@ -15,7 +15,7 @@ public class DeleteApiRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteApiRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest request) {
+    public DeleteApiRequestBuilder request(DeleteApiRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

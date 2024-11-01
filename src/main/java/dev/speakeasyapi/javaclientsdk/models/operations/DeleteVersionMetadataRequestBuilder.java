@@ -15,7 +15,7 @@ public class DeleteVersionMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteVersionMetadataRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataRequest request) {
+    public DeleteVersionMetadataRequestBuilder request(DeleteVersionMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

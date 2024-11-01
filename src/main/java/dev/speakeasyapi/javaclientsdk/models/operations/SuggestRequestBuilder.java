@@ -15,7 +15,7 @@ public class SuggestRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SuggestRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest request) {
+    public SuggestRequestBuilder request(SuggestRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

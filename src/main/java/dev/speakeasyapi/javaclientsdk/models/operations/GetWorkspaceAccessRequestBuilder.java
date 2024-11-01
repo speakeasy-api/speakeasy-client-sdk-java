@@ -19,19 +19,19 @@ public class GetWorkspaceAccessRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetWorkspaceAccessRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest request) {
+    public GetWorkspaceAccessRequestBuilder request(GetWorkspaceAccessRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
     }
                 
-    public GetWorkspaceAccessRequestBuilder retryConfig(dev.speakeasyapi.javaclientsdk.utils.RetryConfig retryConfig) {
+    public GetWorkspaceAccessRequestBuilder retryConfig(RetryConfig retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = Optional.of(retryConfig);
         return this;
     }
 
-    public GetWorkspaceAccessRequestBuilder retryConfig(java.util.Optional<dev.speakeasyapi.javaclientsdk.utils.RetryConfig> retryConfig) {
+    public GetWorkspaceAccessRequestBuilder retryConfig(Optional<RetryConfig> retryConfig) {
         Utils.checkNotNull(retryConfig, "retryConfig");
         this.retryConfig = retryConfig;
         return this;
@@ -41,7 +41,7 @@ public class GetWorkspaceAccessRequestBuilder {
         Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
-        return sdk.getWorkspaceAccess(
+        return sdk.getAccess(
             request,
             options);
     }

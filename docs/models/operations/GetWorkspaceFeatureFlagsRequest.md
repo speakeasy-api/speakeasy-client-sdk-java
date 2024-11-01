@@ -5,4 +5,4 @@
 
 | Field                               | Type                                | Required                            | Description                         |
 | ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| `workspaceID`                       | *Optional<String>*                  | :heavy_minus_sign:                  | Unique identifier of the workspace. |
+| `workspaceId`                       | *Optional\<String>*                 | :heavy_minus_sign:                  | Unique identifier of the workspace. |

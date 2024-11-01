@@ -7,12 +7,13 @@ REST APIs for capturing event data
 
 ### Available Operations
 
-* [getWorkspaceEventsByTarget](#getworkspaceeventsbytarget) - Load recent events for a particular workspace
-* [getWorkspaceTargets](#getworkspacetargets) - Load targets for a particular workspace
-* [postWorkspaceEvents](#postworkspaceevents) - Post events for a specific workspace
-* [searchWorkspaceEvents](#searchworkspaceevents) - Search events for a particular workspace by any field
+* [getEventsByTarget](#geteventsbytarget) - Load recent events for a particular workspace
+* [getTargets](#gettargets) - Load targets for a particular workspace
+* [getTargetsDeprecated](#gettargetsdeprecated) - Load targets for a particular workspace
+* [post](#post) - Post events for a specific workspace
+* [search](#search) - Search events for a particular workspace by any field
 
-## getWorkspaceEventsByTarget
+## getEventsByTarget
 
 Load recent events for a particular workspace
 
@@ -22,7 +23,7 @@ Load recent events for a particular workspace
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -30,36 +31,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
+                .targetId("<id>")
                 .build();
 
-            GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
-                .targetID("<value>")
-                .build();
-
-            GetWorkspaceEventsByTargetResponse res = sdk.events().getWorkspaceEventsByTarget()
+        GetWorkspaceEventsByTargetResponse res = sdk.events().getEventsByTarget()
                 .request(req)
                 .call();
 
-            if (res.cliEventBatch().isPresent()) {
-                // handle response
-            }
-        } catch (dev.speakeasyapi.javaclientsdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.cliEventBatch().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -76,13 +66,12 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 5XX                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX                    | \*/\*                  |
 
-
-## getWorkspaceTargets
+## getTargets
 
 Load targets for a particular workspace
 
@@ -92,7 +81,7 @@ Load targets for a particular workspace
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -100,35 +89,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        GetWorkspaceTargetsRequest req = GetWorkspaceTargetsRequest.builder()
                 .build();
 
-            GetWorkspaceTargetsRequest req = GetWorkspaceTargetsRequest.builder()
-                .build();
-
-            GetWorkspaceTargetsResponse res = sdk.events().getWorkspaceTargets()
+        GetWorkspaceTargetsResponse res = sdk.events().getTargets()
                 .request(req)
                 .call();
 
-            if (res.targetSDKList().isPresent()) {
-                // handle response
-            }
-        } catch (dev.speakeasyapi.javaclientsdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.targetSDKList().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -145,13 +123,69 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 5XX                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX                    | \*/\*                  |
 
+## getTargetsDeprecated
 
-## postWorkspaceEvents
+Load targets for a particular workspace
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        GetWorkspaceTargetsDeprecatedRequest req = GetWorkspaceTargetsDeprecatedRequest.builder()
+                .build();
+
+        GetWorkspaceTargetsDeprecatedResponse res = sdk.events().getTargetsDeprecated()
+                .request(req)
+                .call();
+
+        if (res.targetSDKList().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                                               | Type                                                                                                    | Required                                                                                                | Description                                                                                             |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `request`                                                                                               | [GetWorkspaceTargetsDeprecatedRequest](../../models/operations/GetWorkspaceTargetsDeprecatedRequest.md) | :heavy_check_mark:                                                                                      | The request object to use for the request.                                                              |
+
+### Response
+
+**[GetWorkspaceTargetsDeprecatedResponse](../../models/operations/GetWorkspaceTargetsDeprecatedResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 5XX                    | application/json       |
+| models/errors/SDKError | 4XX                    | \*/\*                  |
+
+## post
 
 Sends an array of events to be stored for a particular workspace.
 
@@ -161,7 +195,7 @@ Sends an array of events to be stored for a particular workspace.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CliEvent;
@@ -173,45 +207,34 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
+        PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
                 .requestBody(List.of(
                     CliEvent.builder()
-                        .createdAt(OffsetDateTime.parse("2024-11-21T06:58:42.120Z"))
-                        .executionId("<value>")
+                        .createdAt(OffsetDateTime.parse("2023-05-08T03:24:39.583Z"))
+                        .executionId("<id>")
                         .id("<id>")
-                        .interactionType(InteractionType.CLI_EXEC)
-                        .localStartedAt(OffsetDateTime.parse("2024-05-07T12:35:47.182Z"))
+                        .interactionType(InteractionType.QUICKSTART)
+                        .localStartedAt(OffsetDateTime.parse("2023-09-09T05:59:33.876Z"))
                         .speakeasyApiKeyName("<value>")
                         .speakeasyVersion("<value>")
                         .success(false)
-                        .workspaceId("<value>")
+                        .workspaceId("<id>")
                         .build()))
                 .build();
 
-            PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
+        PostWorkspaceEventsResponse res = sdk.events().post()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (dev.speakeasyapi.javaclientsdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -228,13 +251,12 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 5XX                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX                    | \*/\*                  |
 
-
-## searchWorkspaceEvents
+## search
 
 Search events for a particular workspace by any field
 
@@ -244,7 +266,7 @@ Search events for a particular workspace by any field
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -252,35 +274,24 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
+            .build();
+
+        SearchWorkspaceEventsRequest req = SearchWorkspaceEventsRequest.builder()
                 .build();
 
-            SearchWorkspaceEventsRequest req = SearchWorkspaceEventsRequest.builder()
-                .build();
-
-            SearchWorkspaceEventsResponse res = sdk.events().searchWorkspaceEvents()
+        SearchWorkspaceEventsResponse res = sdk.events().search()
                 .request(req)
                 .call();
 
-            if (res.cliEventBatch().isPresent()) {
-                // handle response
-            }
-        } catch (dev.speakeasyapi.javaclientsdk.models.errors.Error e) {
-            // handle exception
-            throw e;
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.cliEventBatch().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -297,7 +308,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 5XX                    | application/json       |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/SDKError | 4XX                    | \*/\*                  |

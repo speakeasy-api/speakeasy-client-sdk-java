@@ -7,14 +7,79 @@ REST APIs for working with Registry artifacts
 
 ### Available Operations
 
+* [createRemoteSource](#createremotesource) - Configure a new remote source
 * [getBlob](#getblob) - Get blob for a particular digest
 * [getManifest](#getmanifest) - Get manifest for a particular reference
 * [getNamespaces](#getnamespaces) - Each namespace contains many revisions.
-* [getOASSummary](#getoassummary)
 * [getRevisions](#getrevisions)
 * [getTags](#gettags)
+* [listRemoteSources](#listremotesources) - Get remote sources attached to a particular namespace
 * [postTags](#posttags) - Add tags to an existing revision
 * [preflight](#preflight) - Get access token for communicating with OCI distribution endpoints
+
+## createRemoteSource
+
+Configure a new remote source
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        RemoteSource req = RemoteSource.builder()
+                .inputs(List.of(
+                    RemoteDocument.builder()
+                        .registryUrl("https://productive-swine.net")
+                        .build()))
+                .output(RemoteDocument.builder()
+                    .registryUrl("https://spiteful-apricot.info")
+                    .build())
+                .build();
+
+        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                           | Type                                                | Required                                            | Description                                         |
+| --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- | --------------------------------------------------- |
+| `request`                                           | [RemoteSource](../../models/shared/RemoteSource.md) | :heavy_check_mark:                                  | The request object to use for the request.          |
+
+### Response
+
+**[CreateRemoteSourceResponse](../../models/operations/CreateRemoteSourceResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getBlob
 
@@ -26,7 +91,7 @@ Get blob for a particular digest
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -34,36 +99,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetBlobRequest req = GetBlobRequest.builder()
+        GetBlobRequest req = GetBlobRequest.builder()
                 .digest("<value>")
                 .namespaceName("<value>")
                 .organizationSlug("<value>")
                 .workspaceSlug("<value>")
                 .build();
 
-            GetBlobResponse res = sdk.artifacts().getBlob()
+        GetBlobResponse res = sdk.artifacts().getBlob()
                 .request(req)
                 .call();
 
-            if (res.blob().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.blob().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -80,10 +137,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getManifest
 
@@ -95,7 +152,7 @@ Get manifest for a particular reference
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -103,36 +160,28 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetManifestRequest req = GetManifestRequest.builder()
+        GetManifestRequest req = GetManifestRequest.builder()
                 .namespaceName("<value>")
                 .organizationSlug("<value>")
                 .revisionReference("<value>")
                 .workspaceSlug("<value>")
                 .build();
 
-            GetManifestResponse res = sdk.artifacts().getManifest()
+        GetManifestResponse res = sdk.artifacts().getManifest()
                 .request(req)
                 .call();
 
-            if (res.manifest().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.manifest().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -149,10 +198,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getNamespaces
 
@@ -164,35 +213,27 @@ Each namespace contains many revisions.
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetNamespacesResponse res = sdk.artifacts().getNamespaces()
+        GetNamespacesResponse res = sdk.artifacts().getNamespaces()
                 .call();
 
-            if (res.getNamespacesResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getNamespacesResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -203,75 +244,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
-
-## getOASSummary
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetOASSummaryRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetOASSummaryResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-import java.lang.Exception;
-
-public class Application {
-
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
-                .build();
-
-            GetOASSummaryRequest req = GetOASSummaryRequest.builder()
-                .namespaceName("<value>")
-                .revisionReference("<value>")
-                .build();
-
-            GetOASSummaryResponse res = sdk.artifacts().getOASSummary()
-                .request(req)
-                .call();
-
-            if (res.oasSummary().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [GetOASSummaryRequest](../../models/operations/GetOASSummaryRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
-
-### Response
-
-**[GetOASSummaryResponse](../../models/operations/GetOASSummaryResponse.md)**
-
-### Errors
-
-| Error Object           | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getRevisions
 
@@ -281,7 +257,7 @@ public class Application {
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -289,33 +265,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetRevisionsRequest req = GetRevisionsRequest.builder()
+        GetRevisionsRequest req = GetRevisionsRequest.builder()
                 .namespaceName("<value>")
                 .build();
 
-            GetRevisionsResponse res = sdk.artifacts().getRevisions()
+        GetRevisionsResponse res = sdk.artifacts().getRevisions()
                 .request(req)
                 .call();
 
-            if (res.getRevisionsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getRevisionsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -332,10 +300,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getTags
 
@@ -345,7 +313,7 @@ public class Application {
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -353,33 +321,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            GetTagsRequest req = GetTagsRequest.builder()
+        GetTagsRequest req = GetTagsRequest.builder()
                 .namespaceName("<value>")
                 .build();
 
-            GetTagsResponse res = sdk.artifacts().getTags()
+        GetTagsResponse res = sdk.artifacts().getTags()
                 .request(req)
                 .call();
 
-            if (res.getTagsResponse().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.getTagsResponse().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -396,10 +356,68 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
+## listRemoteSources
+
+Get remote sources attached to a particular namespace
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        ListRemoteSourcesRequest req = ListRemoteSourcesRequest.builder()
+                .namespaceName("<value>")
+                .build();
+
+        ListRemoteSourcesResponse res = sdk.artifacts().listRemoteSources()
+                .request(req)
+                .call();
+
+        if (res.remoteSource().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| `request`                                                                       | [ListRemoteSourcesRequest](../../models/operations/ListRemoteSourcesRequest.md) | :heavy_check_mark:                                                              | The request object to use for the request.                                      |
+
+### Response
+
+**[ListRemoteSourcesResponse](../../models/operations/ListRemoteSourcesResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## postTags
 
@@ -411,7 +429,7 @@ Add tags to an existing revision
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -419,31 +437,23 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PostTagsRequest req = PostTagsRequest.builder()
+        PostTagsRequest req = PostTagsRequest.builder()
                 .namespaceName("<value>")
                 .build();
 
-            PostTagsResponse res = sdk.artifacts().postTags()
+        PostTagsResponse res = sdk.artifacts().postTags()
                 .request(req)
                 .call();
 
-            // handle response
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
-        }
-
+        // handle response
     }
 }
 ```
@@ -460,10 +470,10 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
-
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## preflight
 
@@ -475,7 +485,7 @@ Get access token for communicating with OCI distribution endpoints
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
-import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.PreflightResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -483,33 +493,25 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
-        try {
-            SDK sdk = SDK.builder()
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
-                .build();
+            .build();
 
-            PreflightRequest req = PreflightRequest.builder()
+        PreflightRequest req = PreflightRequest.builder()
                 .namespaceName("<value>")
                 .build();
 
-            PreflightResponse res = sdk.artifacts().preflight()
+        PreflightResponse res = sdk.artifacts().preflight()
                 .request(req)
                 .call();
 
-            if (res.preflightToken().isPresent()) {
-                // handle response
-            }
-        } catch (SDKError e) {
-            // handle exception
-            throw e;
-        } catch (Exception e) {
-            // handle exception
-            throw e;
+        if (res.preflightToken().isPresent()) {
+            // handle response
         }
-
     }
 }
 ```
@@ -526,6 +528,7 @@ public class Application {
 
 ### Errors
 
-| Error Object           | Status Code            | Content Type           |
+| Error Type             | Status Code            | Content Type           |
 | ---------------------- | ---------------------- | ---------------------- |
-| models/errors/SDKError | 4xx-5xx                | \*\/*                  |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |

@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Boolean;
+import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
@@ -30,16 +31,12 @@ public class Workspace {
     @JsonProperty("id")
     private String id;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("inactive")
+    private Optional<Boolean> inactive;
+
     @JsonProperty("name")
     private String name;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("oci_repo")
-    private Optional<String> ociRepo;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("oci_repo_created_at")
-    private Optional<OffsetDateTime> ociRepoCreatedAt;
 
     @JsonProperty("organization_id")
     private String organizationId;
@@ -47,8 +44,14 @@ public class Workspace {
     @JsonProperty("slug")
     private String slug;
 
+    /**
+     * Deprecated. Use organization.telemetry_disabled instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("telemetry_disabled")
-    private boolean telemetryDisabled;
+    @Deprecated
+    private Optional<Boolean> telemetryDisabled;
 
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
@@ -60,19 +63,17 @@ public class Workspace {
     public Workspace(
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
+            @JsonProperty("inactive") Optional<Boolean> inactive,
             @JsonProperty("name") String name,
-            @JsonProperty("oci_repo") Optional<String> ociRepo,
-            @JsonProperty("oci_repo_created_at") Optional<OffsetDateTime> ociRepoCreatedAt,
             @JsonProperty("organization_id") String organizationId,
             @JsonProperty("slug") String slug,
-            @JsonProperty("telemetry_disabled") boolean telemetryDisabled,
+            @JsonProperty("telemetry_disabled") Optional<Boolean> telemetryDisabled,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("verified") boolean verified) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(inactive, "inactive");
         Utils.checkNotNull(name, "name");
-        Utils.checkNotNull(ociRepo, "ociRepo");
-        Utils.checkNotNull(ociRepoCreatedAt, "ociRepoCreatedAt");
         Utils.checkNotNull(organizationId, "organizationId");
         Utils.checkNotNull(slug, "slug");
         Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
@@ -80,9 +81,8 @@ public class Workspace {
         Utils.checkNotNull(verified, "verified");
         this.createdAt = createdAt;
         this.id = id;
+        this.inactive = inactive;
         this.name = name;
-        this.ociRepo = ociRepo;
-        this.ociRepoCreatedAt = ociRepoCreatedAt;
         this.organizationId = organizationId;
         this.slug = slug;
         this.telemetryDisabled = telemetryDisabled;
@@ -96,10 +96,9 @@ public class Workspace {
             String name,
             String organizationId,
             String slug,
-            boolean telemetryDisabled,
             OffsetDateTime updatedAt,
             boolean verified) {
-        this(createdAt, id, name, Optional.empty(), Optional.empty(), organizationId, slug, telemetryDisabled, updatedAt, verified);
+        this(createdAt, id, Optional.empty(), name, organizationId, slug, Optional.empty(), updatedAt, verified);
     }
 
     @JsonIgnore
@@ -113,18 +112,13 @@ public class Workspace {
     }
 
     @JsonIgnore
+    public Optional<Boolean> inactive() {
+        return inactive;
+    }
+
+    @JsonIgnore
     public String name() {
         return name;
-    }
-
-    @JsonIgnore
-    public Optional<String> ociRepo() {
-        return ociRepo;
-    }
-
-    @JsonIgnore
-    public Optional<OffsetDateTime> ociRepoCreatedAt() {
-        return ociRepoCreatedAt;
     }
 
     @JsonIgnore
@@ -137,8 +131,13 @@ public class Workspace {
         return slug;
     }
 
+    /**
+     * Deprecated. Use organization.telemetry_disabled instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     @JsonIgnore
-    public boolean telemetryDisabled() {
+    public Optional<Boolean> telemetryDisabled() {
         return telemetryDisabled;
     }
 
@@ -168,33 +167,21 @@ public class Workspace {
         return this;
     }
 
+    public Workspace withInactive(boolean inactive) {
+        Utils.checkNotNull(inactive, "inactive");
+        this.inactive = Optional.ofNullable(inactive);
+        return this;
+    }
+
+    public Workspace withInactive(Optional<Boolean> inactive) {
+        Utils.checkNotNull(inactive, "inactive");
+        this.inactive = inactive;
+        return this;
+    }
+
     public Workspace withName(String name) {
         Utils.checkNotNull(name, "name");
         this.name = name;
-        return this;
-    }
-
-    public Workspace withOciRepo(String ociRepo) {
-        Utils.checkNotNull(ociRepo, "ociRepo");
-        this.ociRepo = Optional.ofNullable(ociRepo);
-        return this;
-    }
-
-    public Workspace withOciRepo(Optional<String> ociRepo) {
-        Utils.checkNotNull(ociRepo, "ociRepo");
-        this.ociRepo = ociRepo;
-        return this;
-    }
-
-    public Workspace withOciRepoCreatedAt(OffsetDateTime ociRepoCreatedAt) {
-        Utils.checkNotNull(ociRepoCreatedAt, "ociRepoCreatedAt");
-        this.ociRepoCreatedAt = Optional.ofNullable(ociRepoCreatedAt);
-        return this;
-    }
-
-    public Workspace withOciRepoCreatedAt(Optional<OffsetDateTime> ociRepoCreatedAt) {
-        Utils.checkNotNull(ociRepoCreatedAt, "ociRepoCreatedAt");
-        this.ociRepoCreatedAt = ociRepoCreatedAt;
         return this;
     }
 
@@ -210,7 +197,23 @@ public class Workspace {
         return this;
     }
 
+    /**
+     * Deprecated. Use organization.telemetry_disabled instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
     public Workspace withTelemetryDisabled(boolean telemetryDisabled) {
+        Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
+        this.telemetryDisabled = Optional.ofNullable(telemetryDisabled);
+        return this;
+    }
+
+    /**
+     * Deprecated. Use organization.telemetry_disabled instead.
+     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+     */
+    @Deprecated
+    public Workspace withTelemetryDisabled(Optional<Boolean> telemetryDisabled) {
         Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
         this.telemetryDisabled = telemetryDisabled;
         return this;
@@ -240,9 +243,8 @@ public class Workspace {
         return 
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.inactive, other.inactive) &&
             Objects.deepEquals(this.name, other.name) &&
-            Objects.deepEquals(this.ociRepo, other.ociRepo) &&
-            Objects.deepEquals(this.ociRepoCreatedAt, other.ociRepoCreatedAt) &&
             Objects.deepEquals(this.organizationId, other.organizationId) &&
             Objects.deepEquals(this.slug, other.slug) &&
             Objects.deepEquals(this.telemetryDisabled, other.telemetryDisabled) &&
@@ -255,9 +257,8 @@ public class Workspace {
         return Objects.hash(
             createdAt,
             id,
+            inactive,
             name,
-            ociRepo,
-            ociRepoCreatedAt,
             organizationId,
             slug,
             telemetryDisabled,
@@ -270,9 +271,8 @@ public class Workspace {
         return Utils.toString(Workspace.class,
                 "createdAt", createdAt,
                 "id", id,
+                "inactive", inactive,
                 "name", name,
-                "ociRepo", ociRepo,
-                "ociRepoCreatedAt", ociRepoCreatedAt,
                 "organizationId", organizationId,
                 "slug", slug,
                 "telemetryDisabled", telemetryDisabled,
@@ -286,17 +286,16 @@ public class Workspace {
  
         private String id;
  
+        private Optional<Boolean> inactive = Optional.empty();
+ 
         private String name;
- 
-        private Optional<String> ociRepo = Optional.empty();
- 
-        private Optional<OffsetDateTime> ociRepoCreatedAt = Optional.empty();
  
         private String organizationId;
  
         private String slug;
  
-        private Boolean telemetryDisabled;
+        @Deprecated
+        private Optional<Boolean> telemetryDisabled = Optional.empty();
  
         private OffsetDateTime updatedAt;
  
@@ -318,33 +317,21 @@ public class Workspace {
             return this;
         }
 
+        public Builder inactive(boolean inactive) {
+            Utils.checkNotNull(inactive, "inactive");
+            this.inactive = Optional.ofNullable(inactive);
+            return this;
+        }
+
+        public Builder inactive(Optional<Boolean> inactive) {
+            Utils.checkNotNull(inactive, "inactive");
+            this.inactive = inactive;
+            return this;
+        }
+
         public Builder name(String name) {
             Utils.checkNotNull(name, "name");
             this.name = name;
-            return this;
-        }
-
-        public Builder ociRepo(String ociRepo) {
-            Utils.checkNotNull(ociRepo, "ociRepo");
-            this.ociRepo = Optional.ofNullable(ociRepo);
-            return this;
-        }
-
-        public Builder ociRepo(Optional<String> ociRepo) {
-            Utils.checkNotNull(ociRepo, "ociRepo");
-            this.ociRepo = ociRepo;
-            return this;
-        }
-
-        public Builder ociRepoCreatedAt(OffsetDateTime ociRepoCreatedAt) {
-            Utils.checkNotNull(ociRepoCreatedAt, "ociRepoCreatedAt");
-            this.ociRepoCreatedAt = Optional.ofNullable(ociRepoCreatedAt);
-            return this;
-        }
-
-        public Builder ociRepoCreatedAt(Optional<OffsetDateTime> ociRepoCreatedAt) {
-            Utils.checkNotNull(ociRepoCreatedAt, "ociRepoCreatedAt");
-            this.ociRepoCreatedAt = ociRepoCreatedAt;
             return this;
         }
 
@@ -360,7 +347,23 @@ public class Workspace {
             return this;
         }
 
+        /**
+         * Deprecated. Use organization.telemetry_disabled instead.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
         public Builder telemetryDisabled(boolean telemetryDisabled) {
+            Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
+            this.telemetryDisabled = Optional.ofNullable(telemetryDisabled);
+            return this;
+        }
+
+        /**
+         * Deprecated. Use organization.telemetry_disabled instead.
+         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
+         */
+        @Deprecated
+        public Builder telemetryDisabled(Optional<Boolean> telemetryDisabled) {
             Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
             this.telemetryDisabled = telemetryDisabled;
             return this;
@@ -382,9 +385,8 @@ public class Workspace {
             return new Workspace(
                 createdAt,
                 id,
+                inactive,
                 name,
-                ociRepo,
-                ociRepoCreatedAt,
                 organizationId,
                 slug,
                 telemetryDisabled,

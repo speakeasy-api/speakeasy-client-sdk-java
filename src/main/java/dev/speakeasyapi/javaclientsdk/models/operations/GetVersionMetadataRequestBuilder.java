@@ -15,7 +15,7 @@ public class GetVersionMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetVersionMetadataRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataRequest request) {
+    public GetVersionMetadataRequestBuilder request(GetVersionMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

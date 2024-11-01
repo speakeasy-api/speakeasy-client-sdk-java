@@ -15,7 +15,7 @@ public class SearchWorkspaceEventsRequestBuilder {
         this.sdk = sdk;
     }
 
-    public SearchWorkspaceEventsRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsRequest request) {
+    public SearchWorkspaceEventsRequestBuilder request(SearchWorkspaceEventsRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -23,7 +23,7 @@ public class SearchWorkspaceEventsRequestBuilder {
 
     public SearchWorkspaceEventsResponse call() throws Exception {
 
-        return sdk.searchWorkspaceEvents(
+        return sdk.search(
             request);
     }
 }

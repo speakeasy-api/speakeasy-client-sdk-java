@@ -15,7 +15,7 @@ public class GetWorkspaceRequestBuilder {
         this.sdk = sdk;
     }
 
-    public GetWorkspaceRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceRequest request) {
+    public GetWorkspaceRequestBuilder request(GetWorkspaceRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;
@@ -23,7 +23,7 @@ public class GetWorkspaceRequestBuilder {
 
     public GetWorkspaceResponse call() throws Exception {
 
-        return sdk.getWorkspace(
+        return sdk.getByID(
             request);
     }
 }

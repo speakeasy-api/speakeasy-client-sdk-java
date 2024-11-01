@@ -15,7 +15,7 @@ public class CreateRequestBuilder {
         this.sdk = sdk;
     }
 
-    public CreateRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.CreateRequestBody request) {
+    public CreateRequestBuilder request(CreateRequestBody request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

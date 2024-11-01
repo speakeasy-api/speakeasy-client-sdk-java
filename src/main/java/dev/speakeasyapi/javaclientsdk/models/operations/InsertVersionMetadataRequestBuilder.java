@@ -15,7 +15,7 @@ public class InsertVersionMetadataRequestBuilder {
         this.sdk = sdk;
     }
 
-    public InsertVersionMetadataRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataRequest request) {
+    public InsertVersionMetadataRequestBuilder request(InsertVersionMetadataRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

@@ -15,7 +15,7 @@ public class DeleteSchemaRequestBuilder {
         this.sdk = sdk;
     }
 
-    public DeleteSchemaRequestBuilder request(dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaRequest request) {
+    public DeleteSchemaRequestBuilder request(DeleteSchemaRequest request) {
         Utils.checkNotNull(request, "request");
         this.request = request;
         return this;

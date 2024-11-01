@@ -16,6 +16,7 @@ import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -47,6 +48,12 @@ public class ApiKeyDetails {
     @JsonProperty("telemetry_disabled")
     private boolean telemetryDisabled;
 
+    /**
+     * Workspace creation timestamp.
+     */
+    @JsonProperty("workspace_created_at")
+    private OffsetDateTime workspaceCreatedAt;
+
     @JsonProperty("workspace_id")
     private String workspaceId;
 
@@ -61,6 +68,7 @@ public class ApiKeyDetails {
             @JsonProperty("generation_access_unlimited") Optional<Boolean> generationAccessUnlimited,
             @JsonProperty("org_slug") String orgSlug,
             @JsonProperty("telemetry_disabled") boolean telemetryDisabled,
+            @JsonProperty("workspace_created_at") OffsetDateTime workspaceCreatedAt,
             @JsonProperty("workspace_id") String workspaceId,
             @JsonProperty("workspace_slug") String workspaceSlug) {
         Utils.checkNotNull(accountTypeV2, "accountTypeV2");
@@ -69,6 +77,7 @@ public class ApiKeyDetails {
         Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
         Utils.checkNotNull(orgSlug, "orgSlug");
         Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
+        Utils.checkNotNull(workspaceCreatedAt, "workspaceCreatedAt");
         Utils.checkNotNull(workspaceId, "workspaceId");
         Utils.checkNotNull(workspaceSlug, "workspaceSlug");
         this.accountTypeV2 = accountTypeV2;
@@ -77,6 +86,7 @@ public class ApiKeyDetails {
         this.generationAccessUnlimited = generationAccessUnlimited;
         this.orgSlug = orgSlug;
         this.telemetryDisabled = telemetryDisabled;
+        this.workspaceCreatedAt = workspaceCreatedAt;
         this.workspaceId = workspaceId;
         this.workspaceSlug = workspaceSlug;
     }
@@ -86,9 +96,10 @@ public class ApiKeyDetails {
             List<String> enabledFeatures,
             String orgSlug,
             boolean telemetryDisabled,
+            OffsetDateTime workspaceCreatedAt,
             String workspaceId,
             String workspaceSlug) {
-        this(accountTypeV2, enabledFeatures, Optional.empty(), Optional.empty(), orgSlug, telemetryDisabled, workspaceId, workspaceSlug);
+        this(accountTypeV2, enabledFeatures, Optional.empty(), Optional.empty(), orgSlug, telemetryDisabled, workspaceCreatedAt, workspaceId, workspaceSlug);
     }
 
     @JsonIgnore
@@ -124,6 +135,14 @@ public class ApiKeyDetails {
     @JsonIgnore
     public boolean telemetryDisabled() {
         return telemetryDisabled;
+    }
+
+    /**
+     * Workspace creation timestamp.
+     */
+    @JsonIgnore
+    public OffsetDateTime workspaceCreatedAt() {
+        return workspaceCreatedAt;
     }
 
     @JsonIgnore
@@ -196,6 +215,15 @@ public class ApiKeyDetails {
         return this;
     }
 
+    /**
+     * Workspace creation timestamp.
+     */
+    public ApiKeyDetails withWorkspaceCreatedAt(OffsetDateTime workspaceCreatedAt) {
+        Utils.checkNotNull(workspaceCreatedAt, "workspaceCreatedAt");
+        this.workspaceCreatedAt = workspaceCreatedAt;
+        return this;
+    }
+
     public ApiKeyDetails withWorkspaceId(String workspaceId) {
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.workspaceId = workspaceId;
@@ -224,6 +252,7 @@ public class ApiKeyDetails {
             Objects.deepEquals(this.generationAccessUnlimited, other.generationAccessUnlimited) &&
             Objects.deepEquals(this.orgSlug, other.orgSlug) &&
             Objects.deepEquals(this.telemetryDisabled, other.telemetryDisabled) &&
+            Objects.deepEquals(this.workspaceCreatedAt, other.workspaceCreatedAt) &&
             Objects.deepEquals(this.workspaceId, other.workspaceId) &&
             Objects.deepEquals(this.workspaceSlug, other.workspaceSlug);
     }
@@ -237,6 +266,7 @@ public class ApiKeyDetails {
             generationAccessUnlimited,
             orgSlug,
             telemetryDisabled,
+            workspaceCreatedAt,
             workspaceId,
             workspaceSlug);
     }
@@ -250,6 +280,7 @@ public class ApiKeyDetails {
                 "generationAccessUnlimited", generationAccessUnlimited,
                 "orgSlug", orgSlug,
                 "telemetryDisabled", telemetryDisabled,
+                "workspaceCreatedAt", workspaceCreatedAt,
                 "workspaceId", workspaceId,
                 "workspaceSlug", workspaceSlug);
     }
@@ -268,6 +299,8 @@ public class ApiKeyDetails {
         private String orgSlug;
  
         private Boolean telemetryDisabled;
+ 
+        private OffsetDateTime workspaceCreatedAt;
  
         private String workspaceId;
  
@@ -333,6 +366,15 @@ public class ApiKeyDetails {
             return this;
         }
 
+        /**
+         * Workspace creation timestamp.
+         */
+        public Builder workspaceCreatedAt(OffsetDateTime workspaceCreatedAt) {
+            Utils.checkNotNull(workspaceCreatedAt, "workspaceCreatedAt");
+            this.workspaceCreatedAt = workspaceCreatedAt;
+            return this;
+        }
+
         public Builder workspaceId(String workspaceId) {
             Utils.checkNotNull(workspaceId, "workspaceId");
             this.workspaceId = workspaceId;
@@ -353,6 +395,7 @@ public class ApiKeyDetails {
                 generationAccessUnlimited,
                 orgSlug,
                 telemetryDisabled,
+                workspaceCreatedAt,
                 workspaceId,
                 workspaceSlug);
         }
