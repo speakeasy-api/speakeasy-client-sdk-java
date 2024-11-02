@@ -1697,3 +1697,13 @@ Based on:
 - [java v7.17.0] .
 ### Releases
 - [Maven Central v7.17.0] https://central.sonatype.com/artifact/dev.speakeasyapi/javaclientsdk/7.17.0 - .
+
+## 2024-11-02 00:02:49
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.424.0 (2.445.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [java v7.17.1] .
+### Releases
+- [Maven Central v7.17.1] https://central.sonatype.com/artifact/dev.speakeasyapi/javaclientsdk/7.17.1 - .

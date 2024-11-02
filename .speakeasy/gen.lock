@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 9d8960b41d01c918d779e3a2792448f5
+  docChecksum: 20ffde0fed2a54a8b864b5b7394ce01f
   docVersion: 0.4.0
-  speakeasyVersion: 1.423.5
+  speakeasyVersion: 1.424.0
   generationVersion: 2.445.1
-  releaseVersion: 7.17.0
-  configChecksum: 034969c2447bbe7f4efaa283a63ba4da
+  releaseVersion: 7.17.1
+  configChecksum: c0784180671831d9be1d0a4c8728c827
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -1541,6 +1541,7 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 670562}
+        2XX: {}
   githubConfigureCodeSamples:
     speakeasy-default-github-configure-code-samples:
       requestBody:
@@ -1573,6 +1574,7 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 252330}
+        2XX: {}
   githubTriggerAction:
     speakeasy-default-github-trigger-action:
       requestBody:

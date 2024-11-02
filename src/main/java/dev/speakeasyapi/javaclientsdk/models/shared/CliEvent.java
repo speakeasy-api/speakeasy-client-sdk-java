@@ -288,6 +288,13 @@ public class CliEvent {
     private Optional<String> ghActionVersion;
 
     /**
+     * Whether or not changes were committed from generation in the Github Action.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("gh_changes_committed")
+    private Optional<Boolean> ghChangesCommitted;
+
+    /**
      * The reference to a created pull request.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -614,6 +621,7 @@ public class CliEvent {
             @JsonProperty("gh_action_repository") Optional<String> ghActionRepository,
             @JsonProperty("gh_action_run_link") Optional<String> ghActionRunLink,
             @JsonProperty("gh_action_version") Optional<String> ghActionVersion,
+            @JsonProperty("gh_changes_committed") Optional<Boolean> ghChangesCommitted,
             @JsonProperty("gh_pull_request") Optional<String> ghPullRequest,
             @JsonProperty("git_relative_cwd") Optional<String> gitRelativeCwd,
             @JsonProperty("git_remote_default_owner") Optional<String> gitRemoteDefaultOwner,
@@ -694,6 +702,7 @@ public class CliEvent {
         Utils.checkNotNull(ghActionRepository, "ghActionRepository");
         Utils.checkNotNull(ghActionRunLink, "ghActionRunLink");
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
+        Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
         Utils.checkNotNull(ghPullRequest, "ghPullRequest");
         Utils.checkNotNull(gitRelativeCwd, "gitRelativeCwd");
         Utils.checkNotNull(gitRemoteDefaultOwner, "gitRemoteDefaultOwner");
@@ -774,6 +783,7 @@ public class CliEvent {
         this.ghActionRepository = ghActionRepository;
         this.ghActionRunLink = ghActionRunLink;
         this.ghActionVersion = ghActionVersion;
+        this.ghChangesCommitted = ghChangesCommitted;
         this.ghPullRequest = ghPullRequest;
         this.gitRelativeCwd = gitRelativeCwd;
         this.gitRemoteDefaultOwner = gitRemoteDefaultOwner;
@@ -828,7 +838,7 @@ public class CliEvent {
             String speakeasyVersion,
             boolean success,
             String workspaceId) {
-        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
+        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
     }
 
     /**
@@ -1134,6 +1144,14 @@ public class CliEvent {
     @JsonIgnore
     public Optional<String> ghActionVersion() {
         return ghActionVersion;
+    }
+
+    /**
+     * Whether or not changes were committed from generation in the Github Action.
+     */
+    @JsonIgnore
+    public Optional<Boolean> ghChangesCommitted() {
+        return ghChangesCommitted;
     }
 
     /**
@@ -2144,6 +2162,24 @@ public class CliEvent {
     }
 
     /**
+     * Whether or not changes were committed from generation in the Github Action.
+     */
+    public CliEvent withGhChangesCommitted(boolean ghChangesCommitted) {
+        Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
+        this.ghChangesCommitted = Optional.ofNullable(ghChangesCommitted);
+        return this;
+    }
+
+    /**
+     * Whether or not changes were committed from generation in the Github Action.
+     */
+    public CliEvent withGhChangesCommitted(Optional<Boolean> ghChangesCommitted) {
+        Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
+        this.ghChangesCommitted = ghChangesCommitted;
+        return this;
+    }
+
+    /**
      * The reference to a created pull request.
      */
     public CliEvent withGhPullRequest(String ghPullRequest) {
@@ -2884,6 +2920,7 @@ public class CliEvent {
             Objects.deepEquals(this.ghActionRepository, other.ghActionRepository) &&
             Objects.deepEquals(this.ghActionRunLink, other.ghActionRunLink) &&
             Objects.deepEquals(this.ghActionVersion, other.ghActionVersion) &&
+            Objects.deepEquals(this.ghChangesCommitted, other.ghChangesCommitted) &&
             Objects.deepEquals(this.ghPullRequest, other.ghPullRequest) &&
             Objects.deepEquals(this.gitRelativeCwd, other.gitRelativeCwd) &&
             Objects.deepEquals(this.gitRemoteDefaultOwner, other.gitRemoteDefaultOwner) &&
@@ -2969,6 +3006,7 @@ public class CliEvent {
             ghActionRepository,
             ghActionRunLink,
             ghActionVersion,
+            ghChangesCommitted,
             ghPullRequest,
             gitRelativeCwd,
             gitRemoteDefaultOwner,
@@ -3054,6 +3092,7 @@ public class CliEvent {
                 "ghActionRepository", ghActionRepository,
                 "ghActionRunLink", ghActionRunLink,
                 "ghActionVersion", ghActionVersion,
+                "ghChangesCommitted", ghChangesCommitted,
                 "ghPullRequest", ghPullRequest,
                 "gitRelativeCwd", gitRelativeCwd,
                 "gitRemoteDefaultOwner", gitRemoteDefaultOwner,
@@ -3175,6 +3214,8 @@ public class CliEvent {
         private Optional<String> ghActionRunLink = Optional.empty();
  
         private Optional<String> ghActionVersion = Optional.empty();
+ 
+        private Optional<Boolean> ghChangesCommitted = Optional.empty();
  
         private Optional<String> ghPullRequest = Optional.empty();
  
@@ -3931,6 +3972,24 @@ public class CliEvent {
         }
 
         /**
+         * Whether or not changes were committed from generation in the Github Action.
+         */
+        public Builder ghChangesCommitted(boolean ghChangesCommitted) {
+            Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
+            this.ghChangesCommitted = Optional.ofNullable(ghChangesCommitted);
+            return this;
+        }
+
+        /**
+         * Whether or not changes were committed from generation in the Github Action.
+         */
+        public Builder ghChangesCommitted(Optional<Boolean> ghChangesCommitted) {
+            Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
+            this.ghChangesCommitted = ghChangesCommitted;
+            return this;
+        }
+
+        /**
          * The reference to a created pull request.
          */
         public Builder ghPullRequest(String ghPullRequest) {
@@ -4663,6 +4722,7 @@ public class CliEvent {
                 ghActionRepository,
                 ghActionRunLink,
                 ghActionVersion,
+                ghChangesCommitted,
                 ghPullRequest,
                 gitRelativeCwd,
                 gitRemoteDefaultOwner,
