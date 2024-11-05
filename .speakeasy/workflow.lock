@@ -1,10 +1,10 @@
-speakeasyVersion: 1.424.0
+speakeasyVersion: 1.425.3
 sources:
     first-source: {}
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0803f7b6ba57307449d3264f0c6cf328ceb6a6dfcae6ddf481fedde924062a29
-        sourceBlobDigest: sha256:1625a76d8b2b297239c92632da0ee660057811b5b24a24167eb4bd6139806bdd
+        sourceRevisionDigest: sha256:65c020e20fd7eeca98ef27afc9df458894a9872b84d4a65a5a6852fe3219d9e0
+        sourceBlobDigest: sha256:6d8765013ce7c812f90acefdbc7c135d4c046fd580a837b0e5f44d4605067a03
         tags:
             - latest
             - main
@@ -12,10 +12,10 @@ targets:
     java-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:0803f7b6ba57307449d3264f0c6cf328ceb6a6dfcae6ddf481fedde924062a29
-        sourceBlobDigest: sha256:1625a76d8b2b297239c92632da0ee660057811b5b24a24167eb4bd6139806bdd
+        sourceRevisionDigest: sha256:65c020e20fd7eeca98ef27afc9df458894a9872b84d4a65a5a6852fe3219d9e0
+        sourceBlobDigest: sha256:6d8765013ce7c812f90acefdbc7c135d4c046fd580a837b0e5f44d4605067a03
         codeSamplesNamespace: code-samples-java-java-target
-        codeSamplesRevisionDigest: sha256:6024a375d5c0bd79727eb9f54760822515f1c2c79c6b98cb18472041e9be6ff3
+        codeSamplesRevisionDigest: sha256:cef21a96e085142ccbfe62ba18d3a76f56e0a6ff2cdbe0cea703ef177cdd6d9c
     py:
         source: first-source
     ts:

@@ -295,7 +295,7 @@ public class CliEvent {
     private Optional<Boolean> ghChangesCommitted;
 
     /**
-     * The reference to a created pull request.
+     * The reference to a created pull request URL.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gh_pull_request")
@@ -1155,7 +1155,7 @@ public class CliEvent {
     }
 
     /**
-     * The reference to a created pull request.
+     * The reference to a created pull request URL.
      */
     @JsonIgnore
     public Optional<String> ghPullRequest() {
@@ -2180,7 +2180,7 @@ public class CliEvent {
     }
 
     /**
-     * The reference to a created pull request.
+     * The reference to a created pull request URL.
      */
     public CliEvent withGhPullRequest(String ghPullRequest) {
         Utils.checkNotNull(ghPullRequest, "ghPullRequest");
@@ -2189,7 +2189,7 @@ public class CliEvent {
     }
 
     /**
-     * The reference to a created pull request.
+     * The reference to a created pull request URL.
      */
     public CliEvent withGhPullRequest(Optional<String> ghPullRequest) {
         Utils.checkNotNull(ghPullRequest, "ghPullRequest");
@@ -3990,7 +3990,7 @@ public class CliEvent {
         }
 
         /**
-         * The reference to a created pull request.
+         * The reference to a created pull request URL.
          */
         public Builder ghPullRequest(String ghPullRequest) {
             Utils.checkNotNull(ghPullRequest, "ghPullRequest");
@@ -3999,7 +3999,7 @@ public class CliEvent {
         }
 
         /**
-         * The reference to a created pull request.
+         * The reference to a created pull request URL.
          */
         public Builder ghPullRequest(Optional<String> ghPullRequest) {
             Utils.checkNotNull(ghPullRequest, "ghPullRequest");

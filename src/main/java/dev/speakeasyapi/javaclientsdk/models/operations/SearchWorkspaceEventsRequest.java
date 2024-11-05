@@ -20,6 +20,12 @@ import java.util.Optional;
 public class SearchWorkspaceEventsRequest {
 
     /**
+     * Shared execution ID for cli events across a single action.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=execution_id")
+    private Optional<String> executionId;
+
+    /**
      * A specific gen lock ID for the events.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=generate_gen_lock_id")
@@ -57,18 +63,21 @@ public class SearchWorkspaceEventsRequest {
 
     @JsonCreator
     public SearchWorkspaceEventsRequest(
+            Optional<String> executionId,
             Optional<String> generateGenLockId,
             Optional<? extends InteractionType> interactionType,
             Optional<String> lintReportDigest,
             Optional<String> openapiDiffReportDigest,
             Optional<String> sourceRevisionDigest,
             Optional<String> workspaceId) {
+        Utils.checkNotNull(executionId, "executionId");
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(interactionType, "interactionType");
         Utils.checkNotNull(lintReportDigest, "lintReportDigest");
         Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
         Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
         Utils.checkNotNull(workspaceId, "workspaceId");
+        this.executionId = executionId;
         this.generateGenLockId = generateGenLockId;
         this.interactionType = interactionType;
         this.lintReportDigest = lintReportDigest;
@@ -78,7 +87,15 @@ public class SearchWorkspaceEventsRequest {
     }
     
     public SearchWorkspaceEventsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+    }
+
+    /**
+     * Shared execution ID for cli events across a single action.
+     */
+    @JsonIgnore
+    public Optional<String> executionId() {
+        return executionId;
     }
 
     /**
@@ -132,6 +149,24 @@ public class SearchWorkspaceEventsRequest {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    /**
+     * Shared execution ID for cli events across a single action.
+     */
+    public SearchWorkspaceEventsRequest withExecutionId(String executionId) {
+        Utils.checkNotNull(executionId, "executionId");
+        this.executionId = Optional.ofNullable(executionId);
+        return this;
+    }
+
+    /**
+     * Shared execution ID for cli events across a single action.
+     */
+    public SearchWorkspaceEventsRequest withExecutionId(Optional<String> executionId) {
+        Utils.checkNotNull(executionId, "executionId");
+        this.executionId = executionId;
+        return this;
     }
 
     /**
@@ -252,6 +287,7 @@ public class SearchWorkspaceEventsRequest {
         }
         SearchWorkspaceEventsRequest other = (SearchWorkspaceEventsRequest) o;
         return 
+            Objects.deepEquals(this.executionId, other.executionId) &&
             Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
             Objects.deepEquals(this.interactionType, other.interactionType) &&
             Objects.deepEquals(this.lintReportDigest, other.lintReportDigest) &&
@@ -263,6 +299,7 @@ public class SearchWorkspaceEventsRequest {
     @Override
     public int hashCode() {
         return Objects.hash(
+            executionId,
             generateGenLockId,
             interactionType,
             lintReportDigest,
@@ -274,6 +311,7 @@ public class SearchWorkspaceEventsRequest {
     @Override
     public String toString() {
         return Utils.toString(SearchWorkspaceEventsRequest.class,
+                "executionId", executionId,
                 "generateGenLockId", generateGenLockId,
                 "interactionType", interactionType,
                 "lintReportDigest", lintReportDigest,
@@ -283,6 +321,8 @@ public class SearchWorkspaceEventsRequest {
     }
     
     public final static class Builder {
+ 
+        private Optional<String> executionId = Optional.empty();
  
         private Optional<String> generateGenLockId = Optional.empty();
  
@@ -298,6 +338,24 @@ public class SearchWorkspaceEventsRequest {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        /**
+         * Shared execution ID for cli events across a single action.
+         */
+        public Builder executionId(String executionId) {
+            Utils.checkNotNull(executionId, "executionId");
+            this.executionId = Optional.ofNullable(executionId);
+            return this;
+        }
+
+        /**
+         * Shared execution ID for cli events across a single action.
+         */
+        public Builder executionId(Optional<String> executionId) {
+            Utils.checkNotNull(executionId, "executionId");
+            this.executionId = executionId;
+            return this;
         }
 
         /**
@@ -410,6 +468,7 @@ public class SearchWorkspaceEventsRequest {
         
         public SearchWorkspaceEventsRequest build() {
             return new SearchWorkspaceEventsRequest(
+                executionId,
                 generateGenLockId,
                 interactionType,
                 lintReportDigest,
