@@ -4,6 +4,7 @@ sources:
     my-source:
         inputs:
             - location: https://speakeasy.com/openapi.yaml
+            - location: https://raw.githubusercontent.com/swagger-api/swagger-petstore/refs/heads/master/src/main/resources/openapi.yaml
         registry:
             location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/my-source
 targets:
