@@ -29,6 +29,9 @@ import dev.speakeasyapi.javaclientsdk.models.operations.GithubStorePublishingSec
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubStorePublishingSecretsResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubTriggerActionRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubTriggerActionResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.SDKMethodInterfaces.*;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
@@ -63,6 +66,7 @@ public class Github implements
             MethodCallGithubConfigureMintlifyRepo,
             MethodCallGithubConfigureTarget,
             MethodCallGetGitHubAction,
+            MethodCallLinkGithubAccess,
             MethodCallGithubStorePublishingSecrets,
             MethodCallGithubTriggerAction {
 
@@ -893,6 +897,118 @@ public class Github implements
                     "Unexpected content-type received: " + _contentType, 
                     Utils.extractByteArrayFromBody(_httpRes));
             }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    public LinkGithubAccessRequestBuilder linkGithub() {
+        return new LinkGithubAccessRequestBuilder(this);
+    }
+
+    public LinkGithubAccessResponse linkGithub(
+            LinkGithubAccessRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/v1/github/link");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                LinkGithubAccessRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "linkGithubAccess", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "linkGithubAccess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "linkGithubAccess",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "linkGithubAccess",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        LinkGithubAccessResponse.Builder _resBuilder = 
+            LinkGithubAccessResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        LinkGithubAccessResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {

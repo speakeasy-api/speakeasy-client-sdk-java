@@ -9,8 +9,9 @@ generation:
     requestResponseComponentNamesFeb2024: false
   auth:
     oAuth2ClientCredentialsEnabled: false
+    oAuth2PasswordEnabled: false
 java:
-  version: 7.17.2
+  version: 7.17.3
   additionalDependencies: []
   additionalPlugins: []
   artifactID: javaclientsdk

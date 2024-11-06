@@ -12,6 +12,7 @@
 * [configureMintlifyRepo](#configuremintlifyrepo)
 * [configureTarget](#configuretarget)
 * [getAction](#getaction)
+* [linkGithub](#linkgithub)
 * [storePublishingSecrets](#storepublishingsecrets)
 * [triggerAction](#triggeraction)
 
@@ -405,6 +406,59 @@ public class Application {
 ### Response
 
 **[GetGitHubActionResponse](../../models/operations/GetGitHubActionResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## linkGithub
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        LinkGithubAccessRequest req = LinkGithubAccessRequest.builder()
+                .build();
+
+        LinkGithubAccessResponse res = sdk.github().linkGithub()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [LinkGithubAccessRequest](../../models/operations/LinkGithubAccessRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[LinkGithubAccessResponse](../../models/operations/LinkGithubAccessResponse.md)**
 
 ### Errors
 

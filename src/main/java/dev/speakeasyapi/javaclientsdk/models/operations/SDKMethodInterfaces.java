@@ -307,6 +307,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallLinkGithubAccess {
+        LinkGithubAccessResponse linkGithub(
+            LinkGithubAccessRequest request) throws Exception;
+    }
+
+
     public interface MethodCallGithubStorePublishingSecrets {
         GithubStorePublishingSecretsResponse storePublishingSecrets(
             GithubStorePublishingSecretsRequest request) throws Exception;
