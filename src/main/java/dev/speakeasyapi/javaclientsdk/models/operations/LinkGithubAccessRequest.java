@@ -20,26 +20,37 @@ public class LinkGithubAccessRequest {
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=github_oidc_token")
     private Optional<String> githubOidcToken;
 
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=github_org")
+    private Optional<String> githubOrg;
+
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=installation_id")
     private Optional<String> installationId;
 
     @JsonCreator
     public LinkGithubAccessRequest(
             Optional<String> githubOidcToken,
+            Optional<String> githubOrg,
             Optional<String> installationId) {
         Utils.checkNotNull(githubOidcToken, "githubOidcToken");
+        Utils.checkNotNull(githubOrg, "githubOrg");
         Utils.checkNotNull(installationId, "installationId");
         this.githubOidcToken = githubOidcToken;
+        this.githubOrg = githubOrg;
         this.installationId = installationId;
     }
     
     public LinkGithubAccessRequest() {
-        this(Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
     public Optional<String> githubOidcToken() {
         return githubOidcToken;
+    }
+
+    @JsonIgnore
+    public Optional<String> githubOrg() {
+        return githubOrg;
     }
 
     @JsonIgnore
@@ -60,6 +71,18 @@ public class LinkGithubAccessRequest {
     public LinkGithubAccessRequest withGithubOidcToken(Optional<String> githubOidcToken) {
         Utils.checkNotNull(githubOidcToken, "githubOidcToken");
         this.githubOidcToken = githubOidcToken;
+        return this;
+    }
+
+    public LinkGithubAccessRequest withGithubOrg(String githubOrg) {
+        Utils.checkNotNull(githubOrg, "githubOrg");
+        this.githubOrg = Optional.ofNullable(githubOrg);
+        return this;
+    }
+
+    public LinkGithubAccessRequest withGithubOrg(Optional<String> githubOrg) {
+        Utils.checkNotNull(githubOrg, "githubOrg");
+        this.githubOrg = githubOrg;
         return this;
     }
 
@@ -86,6 +109,7 @@ public class LinkGithubAccessRequest {
         LinkGithubAccessRequest other = (LinkGithubAccessRequest) o;
         return 
             Objects.deepEquals(this.githubOidcToken, other.githubOidcToken) &&
+            Objects.deepEquals(this.githubOrg, other.githubOrg) &&
             Objects.deepEquals(this.installationId, other.installationId);
     }
     
@@ -93,6 +117,7 @@ public class LinkGithubAccessRequest {
     public int hashCode() {
         return Objects.hash(
             githubOidcToken,
+            githubOrg,
             installationId);
     }
     
@@ -100,12 +125,15 @@ public class LinkGithubAccessRequest {
     public String toString() {
         return Utils.toString(LinkGithubAccessRequest.class,
                 "githubOidcToken", githubOidcToken,
+                "githubOrg", githubOrg,
                 "installationId", installationId);
     }
     
     public final static class Builder {
  
         private Optional<String> githubOidcToken = Optional.empty();
+ 
+        private Optional<String> githubOrg = Optional.empty();
  
         private Optional<String> installationId = Optional.empty();  
         
@@ -125,6 +153,18 @@ public class LinkGithubAccessRequest {
             return this;
         }
 
+        public Builder githubOrg(String githubOrg) {
+            Utils.checkNotNull(githubOrg, "githubOrg");
+            this.githubOrg = Optional.ofNullable(githubOrg);
+            return this;
+        }
+
+        public Builder githubOrg(Optional<String> githubOrg) {
+            Utils.checkNotNull(githubOrg, "githubOrg");
+            this.githubOrg = githubOrg;
+            return this;
+        }
+
         public Builder installationId(String installationId) {
             Utils.checkNotNull(installationId, "installationId");
             this.installationId = Optional.ofNullable(installationId);
@@ -140,6 +180,7 @@ public class LinkGithubAccessRequest {
         public LinkGithubAccessRequest build() {
             return new LinkGithubAccessRequest(
                 githubOidcToken,
+                githubOrg,
                 installationId);
         }
     }
