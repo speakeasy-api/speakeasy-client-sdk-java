@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 02b88f594911af47ff6407c43e5990cb
+  docChecksum: be67da8c42c207e9bca0fa82315ff95a
   docVersion: 0.4.0
-  speakeasyVersion: 1.440.0
-  generationVersion: 2.457.9
-  releaseVersion: 7.18.0
-  configChecksum: bdbd41d67234f87ded7a8463318fd4be
+  speakeasyVersion: 1.440.1
+  generationVersion: 2.460.1
+  releaseVersion: 7.19.0
+  configChecksum: 0b8771348bbc00303247c56cc5bde950
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.31.1
+    core: 3.32.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     examples: 2.81.3
@@ -27,6 +27,7 @@ features:
     nullables: 0.1.0
     retries: 0.1.1
     sdkHooks: 0.1.0
+    serverEventsSentinels: 0.2.0
     serverIDs: 2.81.1
     tests: 0.1.0
 generatedFiles:
@@ -717,6 +718,7 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/OneOfDeserializer.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Options.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/PathParamsMetadata.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryParameter.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryParameters.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryParamsMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/RequestBody.java
@@ -731,6 +733,7 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/SpeakeasyMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/TypedObject.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Types.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Utf8UrlEncoder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Utils.java
 examples:
   deleteApi:
@@ -1746,6 +1749,7 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 128151}
+        "200": {}
   generateCodeSamplePreviewAsync:
     speakeasy-default-generate-code-sample-preview-async:
       requestBody:
@@ -1765,3 +1769,4 @@ examples:
           application/json: {"status": "pending"}
         4XX:
           application/json: {"message": "<value>", "status_code": 44984}
+        "200": {}

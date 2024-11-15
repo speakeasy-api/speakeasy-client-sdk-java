@@ -290,6 +290,20 @@ public class TargetSDK {
     private Optional<Boolean> success;
 
     /**
+     * Workflow lock file (post execution)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow_lock_post_raw")
+    private Optional<String> workflowLockPostRaw;
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("workflow_lock_pre_raw")
+    private Optional<String> workflowLockPreRaw;
+
+    /**
      * Workflow file (post execution)
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -344,6 +358,8 @@ public class TargetSDK {
             @JsonProperty("source_namespace_name") Optional<String> sourceNamespaceName,
             @JsonProperty("source_revision_digest") Optional<String> sourceRevisionDigest,
             @JsonProperty("success") Optional<Boolean> success,
+            @JsonProperty("workflow_lock_post_raw") Optional<String> workflowLockPostRaw,
+            @JsonProperty("workflow_lock_pre_raw") Optional<String> workflowLockPreRaw,
             @JsonProperty("workflow_post_raw") Optional<String> workflowPostRaw,
             @JsonProperty("workflow_pre_raw") Optional<String> workflowPreRaw) {
         Utils.checkNotNull(commitHead, "commitHead");
@@ -385,6 +401,8 @@ public class TargetSDK {
         Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
         Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
         Utils.checkNotNull(success, "success");
+        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
         Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
         Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
         this.commitHead = commitHead;
@@ -426,6 +444,8 @@ public class TargetSDK {
         this.sourceNamespaceName = sourceNamespaceName;
         this.sourceRevisionDigest = sourceRevisionDigest;
         this.success = success;
+        this.workflowLockPostRaw = workflowLockPostRaw;
+        this.workflowLockPreRaw = workflowLockPreRaw;
         this.workflowPostRaw = workflowPostRaw;
         this.workflowPreRaw = workflowPreRaw;
     }
@@ -437,7 +457,7 @@ public class TargetSDK {
             OffsetDateTime lastEventCreatedAt,
             String lastEventId,
             InteractionType lastEventInteractionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -750,6 +770,22 @@ public class TargetSDK {
     @JsonIgnore
     public Optional<Boolean> success() {
         return success;
+    }
+
+    /**
+     * Workflow lock file (post execution)
+     */
+    @JsonIgnore
+    public Optional<String> workflowLockPostRaw() {
+        return workflowLockPostRaw;
+    }
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    @JsonIgnore
+    public Optional<String> workflowLockPreRaw() {
+        return workflowLockPreRaw;
     }
 
     /**
@@ -1421,6 +1457,42 @@ public class TargetSDK {
     }
 
     /**
+     * Workflow lock file (post execution)
+     */
+    public TargetSDK withWorkflowLockPostRaw(String workflowLockPostRaw) {
+        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+        this.workflowLockPostRaw = Optional.ofNullable(workflowLockPostRaw);
+        return this;
+    }
+
+    /**
+     * Workflow lock file (post execution)
+     */
+    public TargetSDK withWorkflowLockPostRaw(Optional<String> workflowLockPostRaw) {
+        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+        this.workflowLockPostRaw = workflowLockPostRaw;
+        return this;
+    }
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    public TargetSDK withWorkflowLockPreRaw(String workflowLockPreRaw) {
+        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+        this.workflowLockPreRaw = Optional.ofNullable(workflowLockPreRaw);
+        return this;
+    }
+
+    /**
+     * Workflow lock file (prior to execution)
+     */
+    public TargetSDK withWorkflowLockPreRaw(Optional<String> workflowLockPreRaw) {
+        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+        this.workflowLockPreRaw = workflowLockPreRaw;
+        return this;
+    }
+
+    /**
      * Workflow file (post execution)
      */
     public TargetSDK withWorkflowPostRaw(String workflowPostRaw) {
@@ -1505,6 +1577,8 @@ public class TargetSDK {
             Objects.deepEquals(this.sourceNamespaceName, other.sourceNamespaceName) &&
             Objects.deepEquals(this.sourceRevisionDigest, other.sourceRevisionDigest) &&
             Objects.deepEquals(this.success, other.success) &&
+            Objects.deepEquals(this.workflowLockPostRaw, other.workflowLockPostRaw) &&
+            Objects.deepEquals(this.workflowLockPreRaw, other.workflowLockPreRaw) &&
             Objects.deepEquals(this.workflowPostRaw, other.workflowPostRaw) &&
             Objects.deepEquals(this.workflowPreRaw, other.workflowPreRaw);
     }
@@ -1551,6 +1625,8 @@ public class TargetSDK {
             sourceNamespaceName,
             sourceRevisionDigest,
             success,
+            workflowLockPostRaw,
+            workflowLockPreRaw,
             workflowPostRaw,
             workflowPreRaw);
     }
@@ -1597,6 +1673,8 @@ public class TargetSDK {
                 "sourceNamespaceName", sourceNamespaceName,
                 "sourceRevisionDigest", sourceRevisionDigest,
                 "success", success,
+                "workflowLockPostRaw", workflowLockPostRaw,
+                "workflowLockPreRaw", workflowLockPreRaw,
                 "workflowPostRaw", workflowPostRaw,
                 "workflowPreRaw", workflowPreRaw);
     }
@@ -1680,6 +1758,10 @@ public class TargetSDK {
         private Optional<String> sourceRevisionDigest = Optional.empty();
  
         private Optional<Boolean> success = Optional.empty();
+ 
+        private Optional<String> workflowLockPostRaw = Optional.empty();
+ 
+        private Optional<String> workflowLockPreRaw = Optional.empty();
  
         private Optional<String> workflowPostRaw = Optional.empty();
  
@@ -2338,6 +2420,42 @@ public class TargetSDK {
         }
 
         /**
+         * Workflow lock file (post execution)
+         */
+        public Builder workflowLockPostRaw(String workflowLockPostRaw) {
+            Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+            this.workflowLockPostRaw = Optional.ofNullable(workflowLockPostRaw);
+            return this;
+        }
+
+        /**
+         * Workflow lock file (post execution)
+         */
+        public Builder workflowLockPostRaw(Optional<String> workflowLockPostRaw) {
+            Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
+            this.workflowLockPostRaw = workflowLockPostRaw;
+            return this;
+        }
+
+        /**
+         * Workflow lock file (prior to execution)
+         */
+        public Builder workflowLockPreRaw(String workflowLockPreRaw) {
+            Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+            this.workflowLockPreRaw = Optional.ofNullable(workflowLockPreRaw);
+            return this;
+        }
+
+        /**
+         * Workflow lock file (prior to execution)
+         */
+        public Builder workflowLockPreRaw(Optional<String> workflowLockPreRaw) {
+            Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
+            this.workflowLockPreRaw = workflowLockPreRaw;
+            return this;
+        }
+
+        /**
          * Workflow file (post execution)
          */
         public Builder workflowPostRaw(String workflowPostRaw) {
@@ -2414,6 +2532,8 @@ public class TargetSDK {
                 sourceNamespaceName,
                 sourceRevisionDigest,
                 success,
+                workflowLockPostRaw,
+                workflowLockPreRaw,
                 workflowPostRaw,
                 workflowPreRaw);
         }
