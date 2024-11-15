@@ -11,7 +11,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 java:
-  version: 7.17.5
+  version: 7.18.0
   additionalDependencies: []
   additionalPlugins: []
   artifactID: javaclientsdk
@@ -19,6 +19,7 @@ java:
   companyEmail: chase@speakeasyapi.dev
   companyName: Speakeasy
   companyURL: www.speakeasyapi.dev
+  defaultErrorName: SDKError
   flattenGlobalSecurity: false
   githubURL: github.com/speakeasy-api/speakeasy-client-sdk-java
   groupID: dev.speakeasyapi

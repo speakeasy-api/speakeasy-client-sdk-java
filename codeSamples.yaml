@@ -1335,6 +1335,136 @@ actions:
                     }
                 }
             }
+  - target: $["paths"]["/v1/code_sample/preview"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateCodeSamplePreview
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.SDK;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+            import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+            import java.nio.charset.StandardCharsets;
+            import java.util.List;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                            .languages(List.of(
+                                "<value>"))
+                            .schemaFile(SchemaFile.builder()
+                                .fileName("example.file")
+                                .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                                .build())
+                            .build();
+
+                    GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+                            .request(req)
+                            .call();
+
+                    if (res.twoHundredApplicationXYamlResponseStream().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/code_sample/preview/async"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateCodeSamplePreviewAsync
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.SDK;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewAsyncResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+            import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+            import java.nio.charset.StandardCharsets;
+            import java.util.List;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                            .languages(List.of(
+                                "<value>"))
+                            .schemaFile(SchemaFile.builder()
+                                .fileName("example.file")
+                                .content("0xED5CDd177E".getBytes(StandardCharsets.UTF_8))
+                                .build())
+                            .build();
+
+                    GenerateCodeSamplePreviewAsyncResponse res = sdk.generateCodeSamplePreviewAsync()
+                            .request(req)
+                            .call();
+
+                    if (res.object().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/code_sample/preview/async/{jobID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getCodeSamplePreviewAsync
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.SDK;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetCodeSamplePreviewAsyncRequest req = GetCodeSamplePreviewAsyncRequest.builder()
+                            .jobID("<id>")
+                            .build();
+
+                    GetCodeSamplePreviewAsyncResponse res = sdk.getCodeSamplePreviewAsync()
+                            .request(req)
+                            .call();
+
+                    if (res.twoHundredApplicationXYamlResponseStream().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
   - target: $["paths"]["/v1/eventlog/query"]["get"]
     update:
       x-codeSamples:

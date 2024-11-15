@@ -4,6 +4,7 @@
 
 package dev.speakeasyapi.javaclientsdk.models.operations;
 
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest;
@@ -19,6 +20,24 @@ import java.lang.Exception;
 import java.util.Optional;
 
 public class SDKMethodInterfaces {
+
+
+    public interface MethodCallGenerateCodeSamplePreview {
+        GenerateCodeSamplePreviewResponse generateCodeSamplePreview(
+            CodeSampleSchemaInput request) throws Exception;
+    }
+
+
+    public interface MethodCallGenerateCodeSamplePreviewAsync {
+        GenerateCodeSamplePreviewAsyncResponse generateCodeSamplePreviewAsync(
+            CodeSampleSchemaInput request) throws Exception;
+    }
+
+
+    public interface MethodCallGetCodeSamplePreviewAsync {
+        GetCodeSamplePreviewAsyncResponse getCodeSamplePreviewAsync(
+            GetCodeSamplePreviewAsyncRequest request) throws Exception;
+    }
 
 
     public interface MethodCallDeleteApi {

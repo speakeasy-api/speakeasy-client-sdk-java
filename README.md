@@ -32,7 +32,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.17.5'
+implementation 'dev.speakeasyapi:javaclientsdk:7.18.0'
 ```
 
 Maven:
@@ -40,7 +40,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.17.5</version>
+    <version>7.18.0</version>
 </dependency>
 ```
 
@@ -208,6 +208,11 @@ public class Application {
 * [getSchemas](docs/sdks/schemas/README.md#getschemas) - Get information about all schemas associated with a particular apiID.
 * [registerSchema](docs/sdks/schemas/README.md#registerschema) - Register a schema.
 
+### [SDK](docs/sdks/sdk/README.md)
+
+* [generateCodeSamplePreview](docs/sdks/sdk/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
+* [generateCodeSamplePreviewAsync](docs/sdks/sdk/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
+* [getCodeSamplePreviewAsync](docs/sdks/sdk/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ### [shortURLs()](docs/sdks/shorturls/README.md)
 
@@ -252,11 +257,11 @@ public class Application {
 
 ### Select Server by Name
 
-You can override the default server globally by passing a server name to the `server` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+You can override the default server globally using the `.server(AvailableServers server)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name | Server | Variables |
-| ----- | ------ | --------- |
-| `prod` | `https://api.prod.speakeasyapi.dev` | None |
+| Name   | Server                              |
+| ------ | ----------------------------------- |
+| `prod` | `https://api.prod.speakeasyapi.dev` |
 
 #### Example
 
@@ -265,49 +270,60 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
         SDK sdk = SDK.builder()
-                .serverIndex(0)
+                .server(SDK.AvailableServers.PROD)
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
             .build();
 
-        DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<id>")
-                .versionID("<id>")
+        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                .languages(List.of(
+                    "<value>"))
+                .schemaFile(SchemaFile.builder()
+                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                    .fileName("example.file")
+                    .build())
                 .build();
 
-        DeleteApiResponse res = sdk.apis().deleteApi()
+        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
 
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverURL` builder method when initializing the SDK client instance. For example:
+The default server can also be overridden globally using the `.serverURL(String serverUrl)` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Application {
 
@@ -320,16 +336,22 @@ public class Application {
                     .build())
             .build();
 
-        DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<id>")
-                .versionID("<id>")
+        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                .languages(List.of(
+                    "<value>"))
+                .schemaFile(SchemaFile.builder()
+                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                    .fileName("example.file")
+                    .build())
                 .build();
 
-        DeleteApiResponse res = sdk.apis().deleteApi()
+        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -340,12 +362,11 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `deleteApi` method throws the following exceptions:
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `generateCodeSamplePreview` method throws the following exceptions:
 
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 4XX                    | application/json       |
-| models/errors/SDKError | 5XX                    | \*/\*                  |
+| Error Type          | Status Code | Content Type     |
+| ------------------- | ----------- | ---------------- |
+| models/errors/Error | 4XX, 5XX    | application/json |
 
 ### Example
 
@@ -354,10 +375,13 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Application {
 
@@ -369,16 +393,22 @@ public class Application {
                     .build())
             .build();
 
-        DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<id>")
-                .versionID("<id>")
+        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                .languages(List.of(
+                    "<value>"))
+                .schemaFile(SchemaFile.builder()
+                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                    .fileName("example.file")
+                    .build())
                 .build();
 
-        DeleteApiResponse res = sdk.apis().deleteApi()
+        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -391,11 +421,11 @@ public class Application {
 
 This SDK supports the following security schemes globally:
 
-| Name                  | Type                  | Scheme                |
-| --------------------- | --------------------- | --------------------- |
-| `apiKey`              | apiKey                | API key               |
-| `bearer`              | http                  | HTTP Bearer           |
-| `workspaceIdentifier` | apiKey                | API key               |
+| Name                  | Type   | Scheme      |
+| --------------------- | ------ | ----------- |
+| `apiKey`              | apiKey | API key     |
+| `bearer`              | http   | HTTP Bearer |
+| `workspaceIdentifier` | apiKey | API key     |
 
 You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```java
@@ -403,10 +433,13 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Application {
 
@@ -418,16 +451,22 @@ public class Application {
                     .build())
             .build();
 
-        DeleteApiRequest req = DeleteApiRequest.builder()
-                .apiID("<id>")
-                .versionID("<id>")
+        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                .languages(List.of(
+                    "<value>"))
+                .schemaFile(SchemaFile.builder()
+                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                    .fileName("example.file")
+                    .build())
                 .build();
 
-        DeleteApiResponse res = sdk.apis().deleteApi()
+        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -445,10 +484,9 @@ For example, you can set `workspace_id` to `"<id>"` at SDK initialization and th
 
 The following global parameter is available.
 
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| workspaceId | java.lang.String |  | The workspaceId parameter. |
-
+| Name        | Type             | Description                |
+| ----------- | ---------------- | -------------------------- |
+| workspaceId | java.lang.String | The workspaceId parameter. |
 
 ### Example
 
