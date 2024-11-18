@@ -1,9 +1,9 @@
-speakeasyVersion: 1.440.1
+speakeasyVersion: 1.441.0
 sources:
     first-source: {}
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:547accdce0cd92b73b1ace0b717109881cdbf480c2c5549efff67a02bbf1efec
+        sourceRevisionDigest: sha256:148c1be2013e60ec5822d272838c80efd40324d09f6f4343556a359bcf017af2
         sourceBlobDigest: sha256:d39499770a5703172d1906b8c9db0c851c2e4586a20a84cabb03ab7ad8bb7a27
         tags:
             - latest
@@ -12,10 +12,10 @@ targets:
     java-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:547accdce0cd92b73b1ace0b717109881cdbf480c2c5549efff67a02bbf1efec
+        sourceRevisionDigest: sha256:148c1be2013e60ec5822d272838c80efd40324d09f6f4343556a359bcf017af2
         sourceBlobDigest: sha256:d39499770a5703172d1906b8c9db0c851c2e4586a20a84cabb03ab7ad8bb7a27
         codeSamplesNamespace: code-samples-java-java-target
-        codeSamplesRevisionDigest: sha256:3c2cda8e49ddc8cb89ac4979cb86ea2893047e05a8a602f2295d40499348b9e2
+        codeSamplesRevisionDigest: sha256:fc7ec8582cd0960a58606b7d5aac06114b9b7d1066cc3a195a5a4132eebd83ab
     py:
         source: first-source
     ts:
