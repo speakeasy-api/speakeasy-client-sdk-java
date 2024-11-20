@@ -352,11 +352,6 @@ public class SDK implements
             return this;
         }
         
-        // Visible for testing, will be accessed via reflection
-        void _hooks(dev.speakeasyapi.javaclientsdk.utils.Hooks hooks) {
-            sdkConfiguration.setHooks(hooks);    
-        }
-        
         /**
          * Builds a new instance of the SDK.
          * @return The SDK instance.

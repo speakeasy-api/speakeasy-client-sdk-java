@@ -4,9 +4,7 @@
 
 package dev.speakeasyapi.javaclientsdk;
 
-import dev.speakeasyapi.javaclientsdk.hooks.SDKHooks;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPClient;
-import dev.speakeasyapi.javaclientsdk.utils.Hook.SdkInitData;
 import dev.speakeasyapi.javaclientsdk.utils.Hooks;
 import dev.speakeasyapi.javaclientsdk.utils.RetryConfig;
 import java.lang.Object;
@@ -27,8 +25,8 @@ class SDKConfiguration {
     public String server;
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.4.0";
-    public static final String SDK_VERSION = "7.19.2";
-    public static final String GEN_VERSION = "2.460.1";
+    public static final String SDK_VERSION = "7.20.0";
+    public static final String GEN_VERSION = "2.461.2";
     private static final String BASE_PACKAGE = "dev.speakeasyapi.javaclientsdk";
     public static final String USER_AGENT = 
             String.format("speakeasy-sdk/%s %s %s %s %s", 
@@ -53,11 +51,7 @@ class SDKConfiguration {
      * Initializes state (for example hooks).
      **/
     public void initialize() {
-        SDKHooks.initialize(_hooks);
-        // apply the sdk init hook immediately
-        SdkInitData data = _hooks.sdkInit(new SdkInitData(serverUrl, defaultClient));
-        this.serverUrl = data.baseUrl();
-        this.defaultClient = data.client();
+
     }
 
     @SuppressWarnings("serial")

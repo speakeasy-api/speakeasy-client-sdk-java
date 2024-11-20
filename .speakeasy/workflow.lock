@@ -1,9 +1,9 @@
-speakeasyVersion: 1.441.0
+speakeasyVersion: 1.441.1
 sources:
     first-source: {}
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:09654734784c94348a0e50bd77c928680e867102d597cfa09045e096a717ddf6
+        sourceRevisionDigest: sha256:90d3869a7f1503d27a79404a9b3dd443d204913bd5f54c5ac307f13a9a3575d9
         sourceBlobDigest: sha256:3a852c07826c5fc0bf4f450222762a1723f9fd43faf32126ffdf193260ff2d12
         tags:
             - latest
@@ -12,10 +12,10 @@ targets:
     java-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:09654734784c94348a0e50bd77c928680e867102d597cfa09045e096a717ddf6
+        sourceRevisionDigest: sha256:90d3869a7f1503d27a79404a9b3dd443d204913bd5f54c5ac307f13a9a3575d9
         sourceBlobDigest: sha256:3a852c07826c5fc0bf4f450222762a1723f9fd43faf32126ffdf193260ff2d12
-        codeSamplesNamespace: code-samples-java-java-target
-        codeSamplesRevisionDigest: sha256:75e3cdbf4f073341d31f26715aef232826c4de8b5354e85212a46d6fd0dffca2
+        codeSamplesNamespace: my-source-code-samples
+        codeSamplesRevisionDigest: sha256:57136784f7071f80c8a3898578b1e9c695d27fdda54aaf5b89404a2da1886c85
     py:
         source: first-source
     ts:
@@ -28,7 +28,7 @@ workflow:
             inputs:
                 - location: https://speakeasy.com/openapi.yaml
             registry:
-                location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/my-source
+                location: registry.speakeasyapi.dev/chase-test/chase-test/my-source
     targets:
         java-target:
             target: java
@@ -43,4 +43,4 @@ workflow:
             codeSamples:
                 output: codeSamples.yaml
                 registry:
-                    location: registry.speakeasyapi.dev/speakeasy-self/speakeasy-self/code-samples-java-java-target
+                    location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-code-samples

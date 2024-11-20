@@ -3,10 +3,10 @@ id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
   docChecksum: f29435bb099891e387e6c1c61cb02f8c
   docVersion: 0.4.0
-  speakeasyVersion: 1.441.0
-  generationVersion: 2.460.1
-  releaseVersion: 7.19.2
-  configChecksum: c54f3f736cfae30a1e5e98bd9c492fe8
+  speakeasyVersion: 1.441.1
+  generationVersion: 2.461.2
+  releaseVersion: 7.20.0
+  configChecksum: 323804e3e65ec493bca51eb21d00d75f
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.32.0
+    core: 3.32.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     examples: 2.81.3
@@ -29,7 +29,6 @@ features:
     sdkHooks: 0.1.0
     serverEventsSentinels: 0.2.0
     serverIDs: 2.81.1
-    tests: 0.1.0
 generatedFiles:
   - .gitattributes
   - CONTRIBUTING.md
