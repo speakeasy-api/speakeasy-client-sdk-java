@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: be67da8c42c207e9bca0fa82315ff95a
+  docChecksum: f29435bb099891e387e6c1c61cb02f8c
   docVersion: 0.4.0
   speakeasyVersion: 1.441.0
   generationVersion: 2.460.1
-  releaseVersion: 7.19.1
-  configChecksum: 6b1cf80da0a6a246280511e8d4f4aa69
+  releaseVersion: 7.19.2
+  configChecksum: c54f3f736cfae30a1e5e98bd9c492fe8
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -1756,7 +1756,7 @@ examples:
         multipart/form-data: {"languages": ["<value>", "<value>", "<value>"], "schema_file": {"": "example.file"}}
       responses:
         "202":
-          application/json: {"jobID": "<id>", "status": "pending"}
+          application/json: {"job_id": "<id>", "status": "pending"}
         4XX:
           application/json: {"message": "<value>", "status_code": 394086}
   getCodeSamplePreviewAsync:

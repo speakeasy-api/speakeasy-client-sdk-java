@@ -3,8 +3,8 @@ sources:
     first-source: {}
     my-source:
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:148c1be2013e60ec5822d272838c80efd40324d09f6f4343556a359bcf017af2
-        sourceBlobDigest: sha256:d39499770a5703172d1906b8c9db0c851c2e4586a20a84cabb03ab7ad8bb7a27
+        sourceRevisionDigest: sha256:09654734784c94348a0e50bd77c928680e867102d597cfa09045e096a717ddf6
+        sourceBlobDigest: sha256:3a852c07826c5fc0bf4f450222762a1723f9fd43faf32126ffdf193260ff2d12
         tags:
             - latest
             - main
@@ -12,10 +12,10 @@ targets:
     java-target:
         source: my-source
         sourceNamespace: my-source
-        sourceRevisionDigest: sha256:148c1be2013e60ec5822d272838c80efd40324d09f6f4343556a359bcf017af2
-        sourceBlobDigest: sha256:d39499770a5703172d1906b8c9db0c851c2e4586a20a84cabb03ab7ad8bb7a27
+        sourceRevisionDigest: sha256:09654734784c94348a0e50bd77c928680e867102d597cfa09045e096a717ddf6
+        sourceBlobDigest: sha256:3a852c07826c5fc0bf4f450222762a1723f9fd43faf32126ffdf193260ff2d12
         codeSamplesNamespace: code-samples-java-java-target
-        codeSamplesRevisionDigest: sha256:fc7ec8582cd0960a58606b7d5aac06114b9b7d1066cc3a195a5a4132eebd83ab
+        codeSamplesRevisionDigest: sha256:75e3cdbf4f073341d31f26715aef232826c4de8b5354e85212a46d6fd0dffca2
     py:
         source: first-source
     ts:

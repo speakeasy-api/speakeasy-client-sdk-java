@@ -23,8 +23,8 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
     /**
      * The job ID for polling
      */
-    @JsonProperty("jobID")
-    private String jobID;
+    @JsonProperty("job_id")
+    private String jobId;
 
     /**
      * The current status of the job. Possible values are `pending` or `running`.
@@ -34,11 +34,11 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
 
     @JsonCreator
     public GenerateCodeSamplePreviewAsyncResponseBody(
-            @JsonProperty("jobID") String jobID,
+            @JsonProperty("job_id") String jobId,
             @JsonProperty("status") CodeSamplesJobStatus status) {
-        Utils.checkNotNull(jobID, "jobID");
+        Utils.checkNotNull(jobId, "jobId");
         Utils.checkNotNull(status, "status");
-        this.jobID = jobID;
+        this.jobId = jobId;
         this.status = status;
     }
 
@@ -46,8 +46,8 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
      * The job ID for polling
      */
     @JsonIgnore
-    public String jobID() {
-        return jobID;
+    public String jobId() {
+        return jobId;
     }
 
     /**
@@ -65,9 +65,9 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
     /**
      * The job ID for polling
      */
-    public GenerateCodeSamplePreviewAsyncResponseBody withJobID(String jobID) {
-        Utils.checkNotNull(jobID, "jobID");
-        this.jobID = jobID;
+    public GenerateCodeSamplePreviewAsyncResponseBody withJobId(String jobId) {
+        Utils.checkNotNull(jobId, "jobId");
+        this.jobId = jobId;
         return this;
     }
 
@@ -90,27 +90,27 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
         }
         GenerateCodeSamplePreviewAsyncResponseBody other = (GenerateCodeSamplePreviewAsyncResponseBody) o;
         return 
-            Objects.deepEquals(this.jobID, other.jobID) &&
+            Objects.deepEquals(this.jobId, other.jobId) &&
             Objects.deepEquals(this.status, other.status);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            jobID,
+            jobId,
             status);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GenerateCodeSamplePreviewAsyncResponseBody.class,
-                "jobID", jobID,
+                "jobId", jobId,
                 "status", status);
     }
     
     public final static class Builder {
  
-        private String jobID;
+        private String jobId;
  
         private CodeSamplesJobStatus status;  
         
@@ -121,9 +121,9 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
         /**
          * The job ID for polling
          */
-        public Builder jobID(String jobID) {
-            Utils.checkNotNull(jobID, "jobID");
-            this.jobID = jobID;
+        public Builder jobId(String jobId) {
+            Utils.checkNotNull(jobId, "jobId");
+            this.jobId = jobId;
             return this;
         }
 
@@ -138,7 +138,7 @@ public class GenerateCodeSamplePreviewAsyncResponseBody {
         
         public GenerateCodeSamplePreviewAsyncResponseBody build() {
             return new GenerateCodeSamplePreviewAsyncResponseBody(
-                jobID,
+                jobId,
                 status);
         }
     }
