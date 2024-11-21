@@ -13,6 +13,9 @@ import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessRespons
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsResponse;
@@ -39,6 +42,7 @@ import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubGetActionResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubMissingPublishingSecretsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubPublishingPRResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.GithubSetupStateResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubStorePublishingSecretsRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubTriggerActionRequest;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPClient;
@@ -66,6 +70,7 @@ public class Github implements
             MethodCallGithubConfigureMintlifyRepo,
             MethodCallGithubConfigureTarget,
             MethodCallGetGitHubAction,
+            MethodCallGetGithubSetupState,
             MethodCallLinkGithubAccess,
             MethodCallGithubStorePublishingSecrets,
             MethodCallGithubTriggerAction {
@@ -889,6 +894,129 @@ public class Github implements
                     Utils.toUtf8AndClose(_httpRes.body()),
                     new TypeReference<GithubGetActionResponse>() {});
                 _res.withGithubGetActionResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    public GetGithubSetupStateRequestBuilder getSetup() {
+        return new GetGithubSetupStateRequestBuilder(this);
+    }
+
+    public GetGithubSetupStateResponse getSetup(
+            GetGithubSetupStateRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/v1/github/setup");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetGithubSetupStateRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "getGithubSetupState", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getGithubSetupState",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "getGithubSetupState",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "getGithubSetupState",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        GetGithubSetupStateResponse.Builder _resBuilder = 
+            GetGithubSetupStateResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        GetGithubSetupStateResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                GithubSetupStateResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<GithubSetupStateResponse>() {});
+                _res.withGithubSetupStateResponse(Optional.ofNullable(_out));
                 return _res;
             } else {
                 throw new SDKError(

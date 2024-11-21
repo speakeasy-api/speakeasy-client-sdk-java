@@ -12,6 +12,7 @@
 * [configureMintlifyRepo](#configuremintlifyrepo)
 * [configureTarget](#configuretarget)
 * [getAction](#getaction)
+* [getSetup](#getsetup)
 * [linkGithub](#linkgithub)
 * [storePublishingSecrets](#storepublishingsecrets)
 * [triggerAction](#triggeraction)
@@ -406,6 +407,64 @@ public class Application {
 ### Response
 
 **[GetGitHubActionResponse](../../models/operations/GetGitHubActionResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## getSetup
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        GetGithubSetupStateRequest req = GetGithubSetupStateRequest.builder()
+                .generateGenLockId("<id>")
+                .org("<value>")
+                .repo("<value>")
+                .build();
+
+        GetGithubSetupStateResponse res = sdk.github().getSetup()
+                .request(req)
+                .call();
+
+        if (res.githubSetupStateResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [GetGithubSetupStateRequest](../../models/operations/GetGithubSetupStateRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
+
+### Response
+
+**[GetGithubSetupStateResponse](../../models/operations/GetGithubSetupStateResponse.md)**
 
 ### Errors
 

@@ -326,6 +326,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallGetGithubSetupState {
+        GetGithubSetupStateResponse getSetup(
+            GetGithubSetupStateRequest request) throws Exception;
+    }
+
+
     public interface MethodCallLinkGithubAccess {
         LinkGithubAccessResponse linkGithub(
             LinkGithubAccessRequest request) throws Exception;
