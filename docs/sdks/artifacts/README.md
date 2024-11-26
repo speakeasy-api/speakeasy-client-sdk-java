@@ -16,6 +16,7 @@ REST APIs for working with Registry artifacts
 * [listRemoteSources](#listremotesources) - Get remote sources attached to a particular namespace
 * [postTags](#posttags) - Add tags to an existing revision
 * [preflight](#preflight) - Get access token for communicating with OCI distribution endpoints
+* [setVisibility](#setvisibility) - Set visibility of a namespace with an existing metadata entry
 
 ## createRemoteSource
 
@@ -214,6 +215,7 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
@@ -228,7 +230,11 @@ public class Application {
                     .build())
             .build();
 
+        GetNamespacesRequest req = GetNamespacesRequest.builder()
+                .build();
+
         GetNamespacesResponse res = sdk.artifacts().getNamespaces()
+                .request(req)
                 .call();
 
         if (res.getNamespacesResponse().isPresent()) {
@@ -237,6 +243,12 @@ public class Application {
     }
 }
 ```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [GetNamespacesRequest](../../models/operations/GetNamespacesRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 
@@ -525,6 +537,62 @@ public class Application {
 ### Response
 
 **[PreflightResponse](../../models/operations/PreflightResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## setVisibility
+
+Set visibility of a namespace with an existing metadata entry
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        SDK sdk = SDK.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        SetVisibilityRequest req = SetVisibilityRequest.builder()
+                .namespaceName("<value>")
+                .build();
+
+        SetVisibilityResponse res = sdk.artifacts().setVisibility()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
+| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| `request`                                                               | [SetVisibilityRequest](../../models/operations/SetVisibilityRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
+
+### Response
+
+**[SetVisibilityResponse](../../models/operations/SetVisibilityResponse.md)**
 
 ### Errors
 

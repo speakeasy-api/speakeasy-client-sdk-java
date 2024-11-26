@@ -15,6 +15,7 @@ import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsRequest;
@@ -32,6 +33,9 @@ import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.PreflightRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.PreflightResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.SDKMethodInterfaces.*;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Manifest;
 import dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.PreflightToken;
@@ -65,7 +69,8 @@ public class Artifacts implements
             MethodCallGetTags,
             MethodCallListRemoteSources,
             MethodCallPostTags,
-            MethodCallPreflight {
+            MethodCallPreflight,
+            MethodCallSetVisibility {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -479,10 +484,12 @@ public class Artifacts implements
 
     /**
      * Each namespace contains many revisions.
+     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetNamespacesResponse getNamespacesDirect() throws Exception {
+    public GetNamespacesResponse getNamespaces(
+            GetNamespacesRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -492,6 +499,11 @@ public class Artifacts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
+
+        _req.addQueryParams(Utils.getQueryParams(
+                GetNamespacesRequest.class,
+                request, 
+                this.sdkConfiguration.globals));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
@@ -1217,6 +1229,135 @@ public class Artifacts implements
                     "Unexpected content-type received: " + _contentType, 
                     Utils.extractByteArrayFromBody(_httpRes));
             }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Set visibility of a namespace with an existing metadata entry
+     * @return The call builder
+     */
+    public SetVisibilityRequestBuilder setVisibility() {
+        return new SetVisibilityRequestBuilder(this);
+    }
+
+    /**
+     * Set visibility of a namespace with an existing metadata entry
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public SetVisibilityResponse setVisibility(
+            SetVisibilityRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                SetVisibilityRequest.class,
+                _baseUrl,
+                "/v1/artifacts/namespaces/{namespace_name}/visibility",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<SetVisibilityRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "setVisibility", 
+                      Optional.of(List.of()), 
+                      sdkConfiguration.securitySource()),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "setVisibility",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "setVisibility",
+                            Optional.of(List.of()), 
+                            sdkConfiguration.securitySource()),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "setVisibility",
+                            Optional.of(List.of()),
+                            sdkConfiguration.securitySource()), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        SetVisibilityResponse.Builder _resBuilder = 
+            SetVisibilityResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        SetVisibilityResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {

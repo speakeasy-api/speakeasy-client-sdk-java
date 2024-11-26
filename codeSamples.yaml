@@ -1015,6 +1015,7 @@ actions:
 
             import dev.speakeasyapi.javaclientsdk.SDK;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
@@ -1029,7 +1030,11 @@ actions:
                                 .build())
                         .build();
 
+                    GetNamespacesRequest req = GetNamespacesRequest.builder()
+                            .build();
+
                     GetNamespacesResponse res = sdk.artifacts().getNamespaces()
+                            .request(req)
                             .call();
 
                     if (res.getNamespacesResponse().isPresent()) {
@@ -1143,6 +1148,42 @@ actions:
                             .build();
 
                     PostTagsResponse res = sdk.artifacts().postTags()
+                            .request(req)
+                            .call();
+
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/visibility"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: setVisibility
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.SDK;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    SDK sdk = SDK.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    SetVisibilityRequest req = SetVisibilityRequest.builder()
+                            .namespaceName("<value>")
+                            .build();
+
+                    SetVisibilityResponse res = sdk.artifacts().setVisibility()
                             .request(req)
                             .call();
 

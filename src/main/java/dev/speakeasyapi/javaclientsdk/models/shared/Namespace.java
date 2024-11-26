@@ -7,12 +7,16 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.time.OffsetDateTime;
 import java.util.Objects;
+import java.util.Optional;
 
 /**
  * Namespace - A namespace contains many revisions.
@@ -35,6 +39,10 @@ public class Namespace {
     @JsonProperty("name")
     private String name;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("public")
+    private Optional<Boolean> public_;
+
     @JsonProperty("updated_at")
     private OffsetDateTime updatedAt;
 
@@ -43,15 +51,26 @@ public class Namespace {
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
+            @JsonProperty("public") Optional<Boolean> public_,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
+        Utils.checkNotNull(public_, "public_");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.createdAt = createdAt;
         this.id = id;
         this.name = name;
+        this.public_ = public_;
         this.updatedAt = updatedAt;
+    }
+    
+    public Namespace(
+            OffsetDateTime createdAt,
+            String id,
+            String name,
+            OffsetDateTime updatedAt) {
+        this(createdAt, id, name, Optional.empty(), updatedAt);
     }
 
     @JsonIgnore
@@ -73,6 +92,11 @@ public class Namespace {
     @JsonIgnore
     public String name() {
         return name;
+    }
+
+    @JsonIgnore
+    public Optional<Boolean> public_() {
+        return public_;
     }
 
     @JsonIgnore
@@ -108,6 +132,18 @@ public class Namespace {
         return this;
     }
 
+    public Namespace withPublic(boolean public_) {
+        Utils.checkNotNull(public_, "public_");
+        this.public_ = Optional.ofNullable(public_);
+        return this;
+    }
+
+    public Namespace withPublic(Optional<Boolean> public_) {
+        Utils.checkNotNull(public_, "public_");
+        this.public_ = public_;
+        return this;
+    }
+
     public Namespace withUpdatedAt(OffsetDateTime updatedAt) {
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.updatedAt = updatedAt;
@@ -127,6 +163,7 @@ public class Namespace {
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.name, other.name) &&
+            Objects.deepEquals(this.public_, other.public_) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt);
     }
     
@@ -136,6 +173,7 @@ public class Namespace {
             createdAt,
             id,
             name,
+            public_,
             updatedAt);
     }
     
@@ -145,6 +183,7 @@ public class Namespace {
                 "createdAt", createdAt,
                 "id", id,
                 "name", name,
+                "public_", public_,
                 "updatedAt", updatedAt);
     }
     
@@ -155,6 +194,8 @@ public class Namespace {
         private String id;
  
         private String name;
+ 
+        private Optional<Boolean> public_ = Optional.empty();
  
         private OffsetDateTime updatedAt;  
         
@@ -186,6 +227,18 @@ public class Namespace {
             return this;
         }
 
+        public Builder public_(boolean public_) {
+            Utils.checkNotNull(public_, "public_");
+            this.public_ = Optional.ofNullable(public_);
+            return this;
+        }
+
+        public Builder public_(Optional<Boolean> public_) {
+            Utils.checkNotNull(public_, "public_");
+            this.public_ = public_;
+            return this;
+        }
+
         public Builder updatedAt(OffsetDateTime updatedAt) {
             Utils.checkNotNull(updatedAt, "updatedAt");
             this.updatedAt = updatedAt;
@@ -197,6 +250,7 @@ public class Namespace {
                 createdAt,
                 id,
                 name,
+                public_,
                 updatedAt);
         }
     }

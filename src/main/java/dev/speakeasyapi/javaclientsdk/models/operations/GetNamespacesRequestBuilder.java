@@ -4,17 +4,26 @@
 
 package dev.speakeasyapi.javaclientsdk.models.operations;
 
+import dev.speakeasyapi.javaclientsdk.utils.Utils;
 
 public class GetNamespacesRequestBuilder {
 
+    private GetNamespacesRequest request;
     private final SDKMethodInterfaces.MethodCallGetNamespaces sdk;
 
     public GetNamespacesRequestBuilder(SDKMethodInterfaces.MethodCallGetNamespaces sdk) {
         this.sdk = sdk;
     }
 
+    public GetNamespacesRequestBuilder request(GetNamespacesRequest request) {
+        Utils.checkNotNull(request, "request");
+        this.request = request;
+        return this;
+    }
+
     public GetNamespacesResponse call() throws Exception {
 
-        return sdk.getNamespacesDirect();
+        return sdk.getNamespaces(
+            request);
     }
 }

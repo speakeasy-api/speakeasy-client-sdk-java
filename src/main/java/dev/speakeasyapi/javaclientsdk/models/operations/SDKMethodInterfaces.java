@@ -209,7 +209,8 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetNamespaces {
-        GetNamespacesResponse getNamespacesDirect() throws Exception;
+        GetNamespacesResponse getNamespaces(
+            GetNamespacesRequest request) throws Exception;
     }
 
 
@@ -240,6 +241,12 @@ public class SDKMethodInterfaces {
     public interface MethodCallPreflight {
         PreflightResponse preflight(
             Optional<? extends PreflightRequest> request) throws Exception;
+    }
+
+
+    public interface MethodCallSetVisibility {
+        SetVisibilityResponse setVisibility(
+            SetVisibilityRequest request) throws Exception;
     }
 
 
