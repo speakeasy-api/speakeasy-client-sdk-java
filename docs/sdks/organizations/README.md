@@ -45,6 +45,7 @@ public class Application {
                 .id("<id>")
                 .name("<value>")
                 .slug("<value>")
+                .ssoActivated(false)
                 .telemetryDisabled(false)
                 .updatedAt(OffsetDateTime.parse("2023-04-03T12:48:32.253Z"))
                 .build();

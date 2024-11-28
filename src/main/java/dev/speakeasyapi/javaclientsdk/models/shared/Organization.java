@@ -48,6 +48,13 @@ public class Organization {
     @JsonProperty("slug")
     private String slug;
 
+    @JsonProperty("sso_activated")
+    private boolean ssoActivated;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("sso_connection_id")
+    private JsonNullable<String> ssoConnectionId;
+
     @JsonProperty("telemetry_disabled")
     private boolean telemetryDisabled;
 
@@ -63,6 +70,8 @@ public class Organization {
             @JsonProperty("internal") Optional<Boolean> internal,
             @JsonProperty("name") String name,
             @JsonProperty("slug") String slug,
+            @JsonProperty("sso_activated") boolean ssoActivated,
+            @JsonProperty("sso_connection_id") JsonNullable<String> ssoConnectionId,
             @JsonProperty("telemetry_disabled") boolean telemetryDisabled,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(accountType, "accountType");
@@ -72,6 +81,8 @@ public class Organization {
         Utils.checkNotNull(internal, "internal");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(slug, "slug");
+        Utils.checkNotNull(ssoActivated, "ssoActivated");
+        Utils.checkNotNull(ssoConnectionId, "ssoConnectionId");
         Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.accountType = accountType;
@@ -81,6 +92,8 @@ public class Organization {
         this.internal = internal;
         this.name = name;
         this.slug = slug;
+        this.ssoActivated = ssoActivated;
+        this.ssoConnectionId = ssoConnectionId;
         this.telemetryDisabled = telemetryDisabled;
         this.updatedAt = updatedAt;
     }
@@ -91,9 +104,10 @@ public class Organization {
             String id,
             String name,
             String slug,
+            boolean ssoActivated,
             boolean telemetryDisabled,
             OffsetDateTime updatedAt) {
-        this(accountType, createdAt, JsonNullable.undefined(), id, Optional.empty(), name, slug, telemetryDisabled, updatedAt);
+        this(accountType, createdAt, JsonNullable.undefined(), id, Optional.empty(), name, slug, ssoActivated, JsonNullable.undefined(), telemetryDisabled, updatedAt);
     }
 
     @JsonIgnore
@@ -129,6 +143,16 @@ public class Organization {
     @JsonIgnore
     public String slug() {
         return slug;
+    }
+
+    @JsonIgnore
+    public boolean ssoActivated() {
+        return ssoActivated;
+    }
+
+    @JsonIgnore
+    public JsonNullable<String> ssoConnectionId() {
+        return ssoConnectionId;
     }
 
     @JsonIgnore
@@ -199,6 +223,24 @@ public class Organization {
         return this;
     }
 
+    public Organization withSsoActivated(boolean ssoActivated) {
+        Utils.checkNotNull(ssoActivated, "ssoActivated");
+        this.ssoActivated = ssoActivated;
+        return this;
+    }
+
+    public Organization withSsoConnectionId(String ssoConnectionId) {
+        Utils.checkNotNull(ssoConnectionId, "ssoConnectionId");
+        this.ssoConnectionId = JsonNullable.of(ssoConnectionId);
+        return this;
+    }
+
+    public Organization withSsoConnectionId(JsonNullable<String> ssoConnectionId) {
+        Utils.checkNotNull(ssoConnectionId, "ssoConnectionId");
+        this.ssoConnectionId = ssoConnectionId;
+        return this;
+    }
+
     public Organization withTelemetryDisabled(boolean telemetryDisabled) {
         Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
         this.telemetryDisabled = telemetryDisabled;
@@ -228,6 +270,8 @@ public class Organization {
             Objects.deepEquals(this.internal, other.internal) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.slug, other.slug) &&
+            Objects.deepEquals(this.ssoActivated, other.ssoActivated) &&
+            Objects.deepEquals(this.ssoConnectionId, other.ssoConnectionId) &&
             Objects.deepEquals(this.telemetryDisabled, other.telemetryDisabled) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt);
     }
@@ -242,6 +286,8 @@ public class Organization {
             internal,
             name,
             slug,
+            ssoActivated,
+            ssoConnectionId,
             telemetryDisabled,
             updatedAt);
     }
@@ -256,6 +302,8 @@ public class Organization {
                 "internal", internal,
                 "name", name,
                 "slug", slug,
+                "ssoActivated", ssoActivated,
+                "ssoConnectionId", ssoConnectionId,
                 "telemetryDisabled", telemetryDisabled,
                 "updatedAt", updatedAt);
     }
@@ -275,6 +323,10 @@ public class Organization {
         private String name;
  
         private String slug;
+ 
+        private Boolean ssoActivated;
+ 
+        private JsonNullable<String> ssoConnectionId = JsonNullable.undefined();
  
         private Boolean telemetryDisabled;
  
@@ -338,6 +390,24 @@ public class Organization {
             return this;
         }
 
+        public Builder ssoActivated(boolean ssoActivated) {
+            Utils.checkNotNull(ssoActivated, "ssoActivated");
+            this.ssoActivated = ssoActivated;
+            return this;
+        }
+
+        public Builder ssoConnectionId(String ssoConnectionId) {
+            Utils.checkNotNull(ssoConnectionId, "ssoConnectionId");
+            this.ssoConnectionId = JsonNullable.of(ssoConnectionId);
+            return this;
+        }
+
+        public Builder ssoConnectionId(JsonNullable<String> ssoConnectionId) {
+            Utils.checkNotNull(ssoConnectionId, "ssoConnectionId");
+            this.ssoConnectionId = ssoConnectionId;
+            return this;
+        }
+
         public Builder telemetryDisabled(boolean telemetryDisabled) {
             Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
             this.telemetryDisabled = telemetryDisabled;
@@ -359,6 +429,8 @@ public class Organization {
                 internal,
                 name,
                 slug,
+                ssoActivated,
+                ssoConnectionId,
                 telemetryDisabled,
                 updatedAt);
         }

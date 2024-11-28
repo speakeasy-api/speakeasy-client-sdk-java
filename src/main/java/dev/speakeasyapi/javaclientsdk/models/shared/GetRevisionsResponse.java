@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
+import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
@@ -17,20 +18,37 @@ import java.util.Objects;
 
 public class GetRevisionsResponse {
 
+    @JsonProperty("is_composite_spec")
+    private boolean isCompositeSpec;
+
     @JsonProperty("items")
     private List<Revision> items;
 
     @JsonProperty("next_page_token")
     private String nextPageToken;
 
+    @JsonProperty("public")
+    private boolean public_;
+
     @JsonCreator
     public GetRevisionsResponse(
+            @JsonProperty("is_composite_spec") boolean isCompositeSpec,
             @JsonProperty("items") List<Revision> items,
-            @JsonProperty("next_page_token") String nextPageToken) {
+            @JsonProperty("next_page_token") String nextPageToken,
+            @JsonProperty("public") boolean public_) {
+        Utils.checkNotNull(isCompositeSpec, "isCompositeSpec");
         Utils.checkNotNull(items, "items");
         Utils.checkNotNull(nextPageToken, "nextPageToken");
+        Utils.checkNotNull(public_, "public_");
+        this.isCompositeSpec = isCompositeSpec;
         this.items = items;
         this.nextPageToken = nextPageToken;
+        this.public_ = public_;
+    }
+
+    @JsonIgnore
+    public boolean isCompositeSpec() {
+        return isCompositeSpec;
     }
 
     @JsonIgnore
@@ -43,8 +61,19 @@ public class GetRevisionsResponse {
         return nextPageToken;
     }
 
+    @JsonIgnore
+    public boolean public_() {
+        return public_;
+    }
+
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public GetRevisionsResponse withIsCompositeSpec(boolean isCompositeSpec) {
+        Utils.checkNotNull(isCompositeSpec, "isCompositeSpec");
+        this.isCompositeSpec = isCompositeSpec;
+        return this;
     }
 
     public GetRevisionsResponse withItems(List<Revision> items) {
@@ -58,6 +87,12 @@ public class GetRevisionsResponse {
         this.nextPageToken = nextPageToken;
         return this;
     }
+
+    public GetRevisionsResponse withPublic(boolean public_) {
+        Utils.checkNotNull(public_, "public_");
+        this.public_ = public_;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -69,32 +104,48 @@ public class GetRevisionsResponse {
         }
         GetRevisionsResponse other = (GetRevisionsResponse) o;
         return 
+            Objects.deepEquals(this.isCompositeSpec, other.isCompositeSpec) &&
             Objects.deepEquals(this.items, other.items) &&
-            Objects.deepEquals(this.nextPageToken, other.nextPageToken);
+            Objects.deepEquals(this.nextPageToken, other.nextPageToken) &&
+            Objects.deepEquals(this.public_, other.public_);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
+            isCompositeSpec,
             items,
-            nextPageToken);
+            nextPageToken,
+            public_);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GetRevisionsResponse.class,
+                "isCompositeSpec", isCompositeSpec,
                 "items", items,
-                "nextPageToken", nextPageToken);
+                "nextPageToken", nextPageToken,
+                "public_", public_);
     }
     
     public final static class Builder {
  
+        private Boolean isCompositeSpec;
+ 
         private List<Revision> items;
  
-        private String nextPageToken;  
+        private String nextPageToken;
+ 
+        private Boolean public_;  
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder isCompositeSpec(boolean isCompositeSpec) {
+            Utils.checkNotNull(isCompositeSpec, "isCompositeSpec");
+            this.isCompositeSpec = isCompositeSpec;
+            return this;
         }
 
         public Builder items(List<Revision> items) {
@@ -108,11 +159,19 @@ public class GetRevisionsResponse {
             this.nextPageToken = nextPageToken;
             return this;
         }
+
+        public Builder public_(boolean public_) {
+            Utils.checkNotNull(public_, "public_");
+            this.public_ = public_;
+            return this;
+        }
         
         public GetRevisionsResponse build() {
             return new GetRevisionsResponse(
+                isCompositeSpec,
                 items,
-                nextPageToken);
+                nextPageToken,
+                public_);
         }
     }
 }
