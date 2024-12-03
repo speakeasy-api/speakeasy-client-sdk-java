@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 89aa27989b46cb5f5c46967f9ea73f58
+  docChecksum: 867e0698f3110dba472ddc490d9dcf87
   docVersion: 0.4.0
-  speakeasyVersion: 1.448.2
+  speakeasyVersion: 1.449.0
   generationVersion: 2.467.4
-  releaseVersion: 7.20.8
-  configChecksum: b63cc64531c646b0275c0d6cab44480c
+  releaseVersion: 7.20.9
+  configChecksum: 67644d7dc103226cfd39152d51247eb5
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -108,7 +108,6 @@ generatedFiles:
   - docs/models/operations/GetLintingReportSignedUrlSignedAccess.md
   - docs/models/operations/GetManifestRequest.md
   - docs/models/operations/GetManifestResponse.md
-  - docs/models/operations/GetNamespacesRequest.md
   - docs/models/operations/GetNamespacesResponse.md
   - docs/models/operations/GetOrganizationRequest.md
   - docs/models/operations/GetOrganizationResponse.md
@@ -232,6 +231,7 @@ generatedFiles:
   - docs/models/shared/CliEvent.md
   - docs/models/shared/CodeSampleSchemaInput.md
   - docs/models/shared/CodeSamplesJobStatus.md
+  - docs/models/shared/CompositeSpecMetadata.md
   - docs/models/shared/Diagnostic.md
   - docs/models/shared/EmbedAccessTokenResponse.md
   - docs/models/shared/EmbedToken.md
@@ -272,6 +272,7 @@ generatedFiles:
   - docs/models/shared/Relationship.md
   - docs/models/shared/RemoteDocument.md
   - docs/models/shared/RemoteSource.md
+  - docs/models/shared/RemoteSourceSubscriptionSettings.md
   - docs/models/shared/Report.md
   - docs/models/shared/RequestMetadata.md
   - docs/models/shared/Revision.md
@@ -460,7 +461,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetManifestRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetManifestRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetManifestResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetNamespacesRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetNamespacesRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetNamespacesResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetOrganizationRequest.java
@@ -641,6 +641,7 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CliEvent.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CodeSampleSchemaInput.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CodeSamplesJobStatus.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CompositeSpecMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Diagnostic.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/EmbedAccessTokenResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/EmbedToken.java
@@ -681,6 +682,7 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Relationship.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteDocument.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteSource.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteSourceSubscriptionSettings.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Report.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RequestMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Revision.java
@@ -1178,7 +1180,7 @@ examples:
         default:
           application/json: {"message": "<value>", "status_code": 284614}
         2XX:
-          application/json: {"is_composite_spec": true, "items": [{"created_at": "2024-09-16T19:17:04.361Z", "digest": "sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f", "id": "<id>", "namespace_name": "<value>", "tags": ["<value>"], "updated_at": "2023-12-06T05:58:38.953Z"}], "next_page_token": "<value>", "public": false}
+          application/json: {"items": [{"created_at": "2024-09-16T19:17:04.361Z", "digest": "sha256:6d1ef012b5674ad8a127ecfa9b5e6f5178d171b90ee462846974177fd9bdd39f", "id": "<id>", "namespace_name": "<value>", "tags": ["<value>"], "updated_at": "2023-12-06T05:58:38.953Z"}], "next_page_token": "<value>"}
         4XX:
           application/json: {"message": "<value>", "status_code": 414389}
   getTags:

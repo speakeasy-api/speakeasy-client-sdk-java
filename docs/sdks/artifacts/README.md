@@ -215,7 +215,6 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.SDK;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
@@ -230,11 +229,7 @@ public class Application {
                     .build())
             .build();
 
-        GetNamespacesRequest req = GetNamespacesRequest.builder()
-                .build();
-
         GetNamespacesResponse res = sdk.artifacts().getNamespaces()
-                .request(req)
                 .call();
 
         if (res.getNamespacesResponse().isPresent()) {
@@ -243,12 +238,6 @@ public class Application {
     }
 }
 ```
-
-### Parameters
-
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `request`                                                               | [GetNamespacesRequest](../../models/operations/GetNamespacesRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
 ### Response
 

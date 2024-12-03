@@ -14,6 +14,7 @@ import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Boolean;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 import java.util.Optional;
@@ -23,6 +24,10 @@ import java.util.Optional;
  */
 
 public class Namespace {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("composite_spec_metadata")
+    private Optional<? extends CompositeSpecMetadata> compositeSpecMetadata;
 
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
@@ -39,6 +44,9 @@ public class Namespace {
     @JsonProperty("name")
     private String name;
 
+    /**
+     * Indicates whether the namespace is publicly accessible
+     */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("public")
     private Optional<Boolean> public_;
@@ -48,16 +56,19 @@ public class Namespace {
 
     @JsonCreator
     public Namespace(
+            @JsonProperty("composite_spec_metadata") Optional<? extends CompositeSpecMetadata> compositeSpecMetadata,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
             @JsonProperty("name") String name,
             @JsonProperty("public") Optional<Boolean> public_,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
+        Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(public_, "public_");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        this.compositeSpecMetadata = compositeSpecMetadata;
         this.createdAt = createdAt;
         this.id = id;
         this.name = name;
@@ -70,7 +81,13 @@ public class Namespace {
             String id,
             String name,
             OffsetDateTime updatedAt) {
-        this(createdAt, id, name, Optional.empty(), updatedAt);
+        this(Optional.empty(), createdAt, id, name, Optional.empty(), updatedAt);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<CompositeSpecMetadata> compositeSpecMetadata() {
+        return (Optional<CompositeSpecMetadata>) compositeSpecMetadata;
     }
 
     @JsonIgnore
@@ -94,6 +111,9 @@ public class Namespace {
         return name;
     }
 
+    /**
+     * Indicates whether the namespace is publicly accessible
+     */
     @JsonIgnore
     public Optional<Boolean> public_() {
         return public_;
@@ -106,6 +126,18 @@ public class Namespace {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public Namespace withCompositeSpecMetadata(CompositeSpecMetadata compositeSpecMetadata) {
+        Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
+        this.compositeSpecMetadata = Optional.ofNullable(compositeSpecMetadata);
+        return this;
+    }
+
+    public Namespace withCompositeSpecMetadata(Optional<? extends CompositeSpecMetadata> compositeSpecMetadata) {
+        Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
+        this.compositeSpecMetadata = compositeSpecMetadata;
+        return this;
     }
 
     public Namespace withCreatedAt(OffsetDateTime createdAt) {
@@ -132,12 +164,18 @@ public class Namespace {
         return this;
     }
 
+    /**
+     * Indicates whether the namespace is publicly accessible
+     */
     public Namespace withPublic(boolean public_) {
         Utils.checkNotNull(public_, "public_");
         this.public_ = Optional.ofNullable(public_);
         return this;
     }
 
+    /**
+     * Indicates whether the namespace is publicly accessible
+     */
     public Namespace withPublic(Optional<Boolean> public_) {
         Utils.checkNotNull(public_, "public_");
         this.public_ = public_;
@@ -160,6 +198,7 @@ public class Namespace {
         }
         Namespace other = (Namespace) o;
         return 
+            Objects.deepEquals(this.compositeSpecMetadata, other.compositeSpecMetadata) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.name, other.name) &&
@@ -170,6 +209,7 @@ public class Namespace {
     @Override
     public int hashCode() {
         return Objects.hash(
+            compositeSpecMetadata,
             createdAt,
             id,
             name,
@@ -180,6 +220,7 @@ public class Namespace {
     @Override
     public String toString() {
         return Utils.toString(Namespace.class,
+                "compositeSpecMetadata", compositeSpecMetadata,
                 "createdAt", createdAt,
                 "id", id,
                 "name", name,
@@ -188,6 +229,8 @@ public class Namespace {
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends CompositeSpecMetadata> compositeSpecMetadata = Optional.empty();
  
         private OffsetDateTime createdAt;
  
@@ -201,6 +244,18 @@ public class Namespace {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder compositeSpecMetadata(CompositeSpecMetadata compositeSpecMetadata) {
+            Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
+            this.compositeSpecMetadata = Optional.ofNullable(compositeSpecMetadata);
+            return this;
+        }
+
+        public Builder compositeSpecMetadata(Optional<? extends CompositeSpecMetadata> compositeSpecMetadata) {
+            Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
+            this.compositeSpecMetadata = compositeSpecMetadata;
+            return this;
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
@@ -227,12 +282,18 @@ public class Namespace {
             return this;
         }
 
+        /**
+         * Indicates whether the namespace is publicly accessible
+         */
         public Builder public_(boolean public_) {
             Utils.checkNotNull(public_, "public_");
             this.public_ = Optional.ofNullable(public_);
             return this;
         }
 
+        /**
+         * Indicates whether the namespace is publicly accessible
+         */
         public Builder public_(Optional<Boolean> public_) {
             Utils.checkNotNull(public_, "public_");
             this.public_ = public_;
@@ -247,6 +308,7 @@ public class Namespace {
         
         public Namespace build() {
             return new Namespace(
+                compositeSpecMetadata,
                 createdAt,
                 id,
                 name,

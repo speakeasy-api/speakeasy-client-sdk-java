@@ -1015,7 +1015,6 @@ actions:
 
             import dev.speakeasyapi.javaclientsdk.SDK;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
@@ -1030,11 +1029,7 @@ actions:
                                 .build())
                         .build();
 
-                    GetNamespacesRequest req = GetNamespacesRequest.builder()
-                            .build();
-
                     GetNamespacesResponse res = sdk.artifacts().getNamespaces()
-                            .request(req)
                             .call();
 
                     if (res.getNamespacesResponse().isPresent()) {

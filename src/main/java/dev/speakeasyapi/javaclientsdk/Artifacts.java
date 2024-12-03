@@ -15,7 +15,6 @@ import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestResponse;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsRequest;
@@ -484,12 +483,10 @@ public class Artifacts implements
 
     /**
      * Each namespace contains many revisions.
-     * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public GetNamespacesResponse getNamespaces(
-            GetNamespacesRequest request) throws Exception {
+    public GetNamespacesResponse getNamespacesDirect() throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
                 _baseUrl,
@@ -499,11 +496,6 @@ public class Artifacts implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetNamespacesRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
 
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());

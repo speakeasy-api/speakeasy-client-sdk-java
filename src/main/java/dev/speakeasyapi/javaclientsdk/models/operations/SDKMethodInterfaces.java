@@ -209,8 +209,7 @@ public class SDKMethodInterfaces {
 
 
     public interface MethodCallGetNamespaces {
-        GetNamespacesResponse getNamespaces(
-            GetNamespacesRequest request) throws Exception;
+        GetNamespacesResponse getNamespacesDirect() throws Exception;
     }
 
 
