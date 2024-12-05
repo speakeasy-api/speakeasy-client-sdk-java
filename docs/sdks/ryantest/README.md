@@ -1,4 +1,4 @@
-# SDK
+# RyanTest SDK
 
 ## Overview
 
@@ -22,7 +22,7 @@ This endpoint generates Code Sample previews from a file and configuration param
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -36,7 +36,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -88,7 +88,7 @@ This endpoint generates Code Sample previews from a file and configuration param
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewAsyncResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -102,7 +102,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -155,7 +155,7 @@ Poll for the result of an asynchronous Code Sample preview generation.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncResponse;
@@ -166,7 +166,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

@@ -23,7 +23,7 @@ Delete a particular version of an Api. The will also delete all associated ApiEn
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
@@ -34,7 +34,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -81,7 +81,7 @@ Returns the original document and the newly generated document allowing a diff t
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecResponse;
@@ -92,7 +92,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -140,7 +140,7 @@ Generates a postman collection containing all endpoints for a particular API. In
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionResponse;
@@ -151,7 +151,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -200,7 +200,7 @@ Supports filtering the versions based on metadata attributes.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsResponse;
@@ -211,7 +211,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -259,7 +259,7 @@ Supports filtering the APIs based on metadata attributes.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
@@ -270,7 +270,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -317,7 +317,7 @@ If the Api exists, it will be updated.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiResponse;
@@ -329,7 +329,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.20.12'
+implementation 'dev.speakeasyapi:javaclientsdk:7.20.13'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.20.12</version>
+    <version>7.20.13</version>
 </dependency>
 ```
 
@@ -69,7 +69,7 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
@@ -80,7 +80,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -201,6 +201,12 @@ public class Application {
 * [getRequestFromEventLog](docs/sdks/requests/README.md#getrequestfromeventlog) - Get information about a particular request.
 * [queryEventLog](docs/sdks/requests/README.md#queryeventlog) - Query the event log to retrieve a list of requests.
 
+### [RyanTest SDK](docs/sdks/ryantest/README.md)
+
+* [generateCodeSamplePreview](docs/sdks/ryantest/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
+* [generateCodeSamplePreviewAsync](docs/sdks/ryantest/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
+* [getCodeSamplePreviewAsync](docs/sdks/ryantest/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
+
 ### [schemas()](docs/sdks/schemas/README.md)
 
 * [deleteSchema](docs/sdks/schemas/README.md#deleteschema) - Delete a particular schema revision for an Api.
@@ -211,12 +217,6 @@ public class Application {
 * [getSchemaRevision](docs/sdks/schemas/README.md#getschemarevision) - Get information about a particular schema revision for an Api.
 * [getSchemas](docs/sdks/schemas/README.md#getschemas) - Get information about all schemas associated with a particular apiID.
 * [registerSchema](docs/sdks/schemas/README.md#registerschema) - Register a schema.
-
-### [SDK](docs/sdks/sdk/README.md)
-
-* [generateCodeSamplePreview](docs/sdks/sdk/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
-* [generateCodeSamplePreviewAsync](docs/sdks/sdk/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [getCodeSamplePreviewAsync](docs/sdks/sdk/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ### [shortURLs()](docs/sdks/shorturls/README.md)
 
@@ -272,7 +272,7 @@ You can override the default server globally using the `.server(AvailableServers
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -286,8 +286,8 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
-                .server(SDK.AvailableServers.PROD)
+        RyanTest sdk = RyanTest.builder()
+                .server(RyanTest.AvailableServers.PROD)
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -320,7 +320,7 @@ The default server can also be overridden globally using the `.serverURL(String 
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -334,7 +334,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .serverURL("https://api.prod.speakeasyapi.dev")
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
@@ -379,7 +379,7 @@ By default, an API error will throw a `models/errors/SDKError` exception. When c
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -393,7 +393,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -438,7 +438,7 @@ You can set the security parameters through the `security` builder method when i
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -452,7 +452,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -501,7 +501,7 @@ The following global parameter is available.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenResponse;
@@ -511,7 +511,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
             .build();
 
         GetAccessTokenRequest req = GetAccessTokenRequest.builder()
@@ -539,7 +539,7 @@ To change the default retry strategy for a single API call, you can provide a `R
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -552,7 +552,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -586,7 +586,7 @@ If you'd like to override the default retry strategy for all operations that sup
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -599,7 +599,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
                         .initialInterval(1L, TimeUnit.MILLISECONDS)

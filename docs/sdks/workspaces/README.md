@@ -29,7 +29,7 @@ Creates a workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -41,7 +41,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -94,7 +94,7 @@ Create a token for a particular workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceTokenResponse;
@@ -107,7 +107,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -159,7 +159,7 @@ Delete a token for a particular workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteWorkspaceTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteWorkspaceTokenResponse;
@@ -170,7 +170,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -215,7 +215,7 @@ Get information about a particular workspace by context.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceByContextResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -225,7 +225,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -261,7 +261,7 @@ Returns a list of workspaces a user has access too
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -271,7 +271,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -307,7 +307,7 @@ Get information about a particular workspace.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceResponse;
@@ -318,7 +318,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -364,7 +364,7 @@ Get workspace feature flags
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsResponse;
@@ -375,7 +375,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -421,7 +421,7 @@ Get settings about a particular workspace.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceSettingsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceSettingsResponse;
@@ -432,7 +432,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -478,7 +478,7 @@ Get team members for a particular workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTeamRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTeamResponse;
@@ -489,7 +489,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -535,7 +535,7 @@ Get tokens for a particular workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTokensRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTokensResponse;
@@ -546,7 +546,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -592,7 +592,7 @@ Grant a user access to a particular workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GrantUserAccessToWorkspaceRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GrantUserAccessToWorkspaceResponse;
@@ -603,7 +603,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -650,7 +650,7 @@ Revoke a user's access to a particular workspace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceResponse;
@@ -661,7 +661,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -706,7 +706,7 @@ Update information about a particular workspace.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsResponse;
@@ -719,7 +719,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -772,7 +772,7 @@ Update settings about a particular workspace.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.SDK;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsResponse;
@@ -785,7 +785,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        SDK sdk = SDK.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
