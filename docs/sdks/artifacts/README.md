@@ -27,7 +27,7 @@ Configure a new remote source
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
@@ -40,7 +40,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -91,7 +91,7 @@ Get blob for a particular digest
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobResponse;
@@ -102,7 +102,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -152,7 +152,7 @@ Get manifest for a particular reference
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestResponse;
@@ -163,7 +163,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -213,7 +213,7 @@ Each namespace contains many revisions.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -223,7 +223,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -257,7 +257,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsResponse;
@@ -268,7 +268,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -313,7 +313,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsResponse;
@@ -324,7 +324,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -371,7 +371,7 @@ Get remote sources attached to a particular namespace
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesResponse;
@@ -382,7 +382,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -429,7 +429,7 @@ Add tags to an existing revision
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsResponse;
@@ -440,7 +440,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -485,7 +485,7 @@ Get access token for communicating with OCI distribution endpoints
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.PreflightResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest;
@@ -496,7 +496,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -543,7 +543,7 @@ Set visibility of a namespace with an existing metadata entry
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityResponse;
@@ -554,7 +554,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

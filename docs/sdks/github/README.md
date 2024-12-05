@@ -24,7 +24,7 @@
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessResponse;
@@ -35,7 +35,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -79,7 +79,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsResponse;
@@ -90,7 +90,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -137,7 +137,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsResponse;
@@ -148,7 +148,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -193,7 +193,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureCodeSamplesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
@@ -204,7 +204,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -251,7 +251,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureMintlifyRepoResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
@@ -263,7 +263,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -310,7 +310,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureTargetResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest;
@@ -321,7 +321,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -365,7 +365,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionResponse;
@@ -376,7 +376,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -422,7 +422,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateResponse;
@@ -433,7 +433,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -480,7 +480,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessResponse;
@@ -491,7 +491,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -533,7 +533,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubStorePublishingSecretsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubStorePublishingSecretsRequest;
@@ -544,7 +544,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -587,7 +587,7 @@ public class Application {
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GithubTriggerActionResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.GithubTriggerActionRequest;
@@ -598,7 +598,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

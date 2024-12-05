@@ -43,7 +43,7 @@ import java.util.Optional;
  * Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
  * /docs - The Speakeasy Platform Documentation
  */
-public class RyanTest implements
+public class ChaseTest implements
             MethodCallGenerateCodeSamplePreview,
             MethodCallGenerateCodeSamplePreviewAsync,
             MethodCallGetCodeSamplePreviewAsync {
@@ -356,7 +356,7 @@ public class RyanTest implements
          * Builds a new instance of the SDK.
          * @return The SDK instance.
          */
-        public RyanTest build() {
+        public ChaseTest build() {
             if (sdkConfiguration.defaultClient == null) {
                 sdkConfiguration.defaultClient = new SpeakeasyHTTPClient();
             }
@@ -370,7 +370,7 @@ public class RyanTest implements
             if (sdkConfiguration.serverUrl.endsWith("/")) {
                 sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
             }
-            return new RyanTest(sdkConfiguration);
+            return new ChaseTest(sdkConfiguration);
         }
     }
     
@@ -382,7 +382,7 @@ public class RyanTest implements
         return new Builder();
     }
 
-    private RyanTest(SDKConfiguration sdkConfiguration) {
+    private ChaseTest(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
         this.apis = new Apis(sdkConfiguration);
         this.apiEndpoints = new ApiEndpoints(sdkConfiguration);

@@ -21,7 +21,7 @@ Checks if generation is permitted for a particular run of the CLI
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -31,7 +31,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -76,7 +76,7 @@ Get or refresh an access token for the current workspace.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenResponse;
@@ -86,7 +86,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
             .build();
 
         GetAccessTokenRequest req = GetAccessTokenRequest.builder()
@@ -130,7 +130,7 @@ Get information about the current user.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetUserResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -140,7 +140,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -176,7 +176,7 @@ Validate the current api key.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.ValidateApiKeyResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -186,7 +186,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

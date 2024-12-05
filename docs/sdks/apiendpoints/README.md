@@ -25,7 +25,7 @@ Delete an ApiEndpoint. This will also delete all associated Request Logs (if usi
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointResponse;
@@ -36,7 +36,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -84,7 +84,7 @@ This is useful for finding the ID of an ApiEndpoint to use in the /v1/apis/{apiI
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointResponse;
@@ -95,7 +95,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -145,7 +145,7 @@ Returns the original document and the newly generated document allowing a diff t
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointResponse;
@@ -156,7 +156,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -205,7 +205,7 @@ Generates a postman collection that allows the endpoint to be called from postma
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointResponse;
@@ -216,7 +216,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -265,7 +265,7 @@ Get all Api endpoints for a particular apiID.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsResponse;
@@ -276,7 +276,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -323,7 +323,7 @@ Get all ApiEndpoints for a particular apiID and versionID.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsResponse;
@@ -334,7 +334,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -382,7 +382,7 @@ Get an ApiEndpoint.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointResponse;
@@ -393,7 +393,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -442,7 +442,7 @@ Upsert an ApiEndpoint. If the ApiEndpoint does not exist it will be created, oth
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointResponse;
@@ -454,7 +454,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

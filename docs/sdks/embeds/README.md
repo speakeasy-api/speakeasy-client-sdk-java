@@ -21,7 +21,7 @@ Filters can be applied allowing views to be filtered to things like particular c
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenResponse;
@@ -32,7 +32,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -78,7 +78,7 @@ Get all valid embed access tokens for the current workspace.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetValidEmbedAccessTokensResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -88,7 +88,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -124,7 +124,7 @@ Revoke an embed access EmbedToken.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.ChaseTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenResponse;
@@ -135,7 +135,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        RyanTest sdk = RyanTest.builder()
+        ChaseTest sdk = ChaseTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
