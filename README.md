@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.20.9'
+implementation 'dev.speakeasyapi:javaclientsdk:7.20.10'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.20.9</version>
+    <version>7.20.10</version>
 </dependency>
 ```
 
@@ -295,6 +295,7 @@ public class Application {
 
         CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                 .languages(List.of(
+                    "<value>",
                     "<value>"))
                 .schemaFile(SchemaFile.builder()
                     .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
@@ -342,6 +343,7 @@ public class Application {
 
         CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                 .languages(List.of(
+                    "<value>",
                     "<value>"))
                 .schemaFile(SchemaFile.builder()
                     .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
@@ -399,6 +401,7 @@ public class Application {
 
         CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                 .languages(List.of(
+                    "<value>",
                     "<value>"))
                 .schemaFile(SchemaFile.builder()
                     .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
@@ -457,6 +460,7 @@ public class Application {
 
         CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                 .languages(List.of(
+                    "<value>",
                     "<value>"))
                 .schemaFile(SchemaFile.builder()
                     .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
@@ -511,7 +515,7 @@ public class Application {
             .build();
 
         GetAccessTokenRequest req = GetAccessTokenRequest.builder()
-                .workspaceId("<id>")
+                .workspaceId("<value>")
                 .build();
 
         GetAccessTokenResponse res = sdk.auth().getAccessToken()

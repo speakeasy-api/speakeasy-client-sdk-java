@@ -155,7 +155,7 @@ public class Application {
             .build();
 
         GithubCheckPublishingSecretsRequest req = GithubCheckPublishingSecretsRequest.builder()
-                .generateGenLockId("<id>")
+                .generateGenLockId("<value>")
                 .build();
 
         GithubCheckPublishingSecretsResponse res = sdk.github().checkPublishingSecrets()
@@ -551,7 +551,7 @@ public class Application {
             .build();
 
         GithubStorePublishingSecretsRequest req = GithubStorePublishingSecretsRequest.builder()
-                .generateGenLockId("<id>")
+                .generateGenLockId("<value>")
                 .build();
 
         GithubStorePublishingSecretsResponse res = sdk.github().storePublishingSecrets()

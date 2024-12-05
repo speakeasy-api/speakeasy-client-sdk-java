@@ -56,7 +56,7 @@ public class Application {
                             .build()))
                     .oasSummary(OASSummary.builder()
                         .info(OASInfo.builder()
-                            .description("kielbasa psst stitcher cannon devoted blindly apropos low")
+                            .description("Operative impactful monitoring")
                             .license(License.builder()
                                 .build())
                             .summary("<value>")
@@ -65,17 +65,17 @@ public class Application {
                             .build())
                         .operations(List.of(
                             OASOperation.builder()
-                                .description("via apparatus gray whether opposite what")
+                                .description("kielbasa psst stitcher cannon devoted blindly apropos low")
                                 .method("<value>")
                                 .operationId("<id>")
-                                .path("/sys")
+                                .path("/opt/share")
                                 .tags(List.of(
                                     "<value>"))
                                 .build()))
                         .build())
-                    .suggestionType(SuggestRequestBodySuggestionType.METHOD_NAMES)
+                    .suggestionType(SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY)
                     .build())
-                .xSessionId("<id>")
+                .xSessionId("<value>")
                 .build();
 
         SuggestResponse res = sdk.suggest().suggest()
@@ -199,7 +199,7 @@ public class Application {
                         .fileName("example.file")
                         .build())
                     .build())
-                .xSessionId("<id>")
+                .xSessionId("<value>")
                 .build();
 
         SuggestOpenAPIResponse res = sdk.suggest().suggestOpenAPI()
@@ -257,7 +257,7 @@ public class Application {
         SuggestOpenAPIRegistryRequest req = SuggestOpenAPIRegistryRequest.builder()
                 .namespaceName("<value>")
                 .revisionReference("<value>")
-                .xSessionId("<id>")
+                .xSessionId("<value>")
                 .build();
 
         SuggestOpenAPIRegistryResponse res = sdk.suggest().suggestOpenAPIRegistry()

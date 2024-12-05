@@ -38,10 +38,10 @@ public class Application {
             .build();
 
         DeleteVersionMetadataRequest req = DeleteVersionMetadataRequest.builder()
-                .apiID("<id>")
+                .apiID("<value>")
                 .metaKey("<value>")
                 .metaValue("<value>")
-                .versionID("<id>")
+                .versionID("<value>")
                 .build();
 
         DeleteVersionMetadataResponse res = sdk.metadata().deleteVersionMetadata()
@@ -97,8 +97,8 @@ public class Application {
             .build();
 
         GetVersionMetadataRequest req = GetVersionMetadataRequest.builder()
-                .apiID("<id>")
-                .versionID("<id>")
+                .apiID("<value>")
+                .versionID("<value>")
                 .build();
 
         GetVersionMetadataResponse res = sdk.metadata().getVersionMetadata()
@@ -161,8 +161,8 @@ public class Application {
                     .metaKey("<value>")
                     .metaValue("<value>")
                     .build())
-                .apiID("<id>")
-                .versionID("<id>")
+                .apiID("<value>")
+                .versionID("<value>")
                 .build();
 
         InsertVersionMetadataResponse res = sdk.metadata().insertVersionMetadata()

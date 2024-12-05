@@ -1401,6 +1401,7 @@ actions:
 
                     CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                             .languages(List.of(
+                                "<value>",
                                 "<value>"))
                             .schemaFile(SchemaFile.builder()
                                 .fileName("example.file")
@@ -1447,6 +1448,8 @@ actions:
 
                     CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                             .languages(List.of(
+                                "<value>",
+                                "<value>",
                                 "<value>"))
                             .schemaFile(SchemaFile.builder()
                                 .fileName("example.file")
@@ -2150,9 +2153,9 @@ actions:
                             .slug("<value>")
                             .accountType(AccountType.SCALE_UP)
                             .telemetryDisabled(false)
-                            .createdAt(OffsetDateTime.parse("2023-12-01T17:06:07.804Z"))
-                            .updatedAt(OffsetDateTime.parse("2023-04-03T12:48:32.253Z"))
-                            .ssoActivated(false)
+                            .createdAt(OffsetDateTime.parse("2023-04-03T12:48:32.253Z"))
+                            .updatedAt(OffsetDateTime.parse("2022-05-28T06:20:22.766Z"))
+                            .ssoActivated(true)
                             .build();
 
                     CreateOrganizationResponse res = sdk.organizations().create()
@@ -2624,19 +2627,19 @@ actions:
                                     .operations(List.of(
                                         OASOperation.builder()
                                             .method("<value>")
-                                            .path("/etc/ppp")
+                                            .path("/rescue")
                                             .operationId("<id>")
-                                            .description("meanwhile via apparatus gray whether opposite what down blah")
+                                            .description("kielbasa psst stitcher cannon devoted blindly apropos low")
                                             .tags(List.of(
                                                 "<value>"))
                                             .build()))
                                     .build())
-                                .suggestionType(SuggestRequestBodySuggestionType.METHOD_NAMES)
+                                .suggestionType(SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY)
                                 .diagnostics(List.of(
                                     Diagnostic.builder()
                                         .message("<value>")
                                         .path(List.of(
-                                            "/etc/mail"))
+                                            "/opt/share"))
                                         .type("<value>")
                                         .build()))
                                 .build())
@@ -2748,7 +2751,7 @@ actions:
                             .organizationId("<id>")
                             .slug("<value>")
                             .updatedAt(OffsetDateTime.parse("2023-12-01T17:06:07.804Z"))
-                            .verified(false)
+                            .verified(true)
                             .build();
 
                     CreateWorkspaceResponse res = sdk.workspaces().create()
@@ -3010,7 +3013,7 @@ actions:
                                 .organizationId("<id>")
                                 .slug("<value>")
                                 .updatedAt(OffsetDateTime.parse("2023-10-17T10:52:42.015Z"))
-                                .verified(false)
+                                .verified(true)
                                 .build())
                             .build();
 
@@ -3094,11 +3097,11 @@ actions:
                                     .executionId("<id>")
                                     .workspaceId("<id>")
                                     .speakeasyApiKeyName("<value>")
-                                    .interactionType(InteractionType.TARGET_GENERATE)
-                                    .localStartedAt(OffsetDateTime.parse("2024-03-02T10:07:28.113Z"))
-                                    .createdAt(OffsetDateTime.parse("2023-09-09T05:59:33.876Z"))
+                                    .interactionType(InteractionType.QUICKSTART)
+                                    .localStartedAt(OffsetDateTime.parse("2023-09-09T05:59:33.876Z"))
+                                    .createdAt(OffsetDateTime.parse("2024-08-12T17:54:17.538Z"))
                                     .speakeasyVersion("<value>")
-                                    .success(false)
+                                    .success(true)
                                     .build()))
                             .build();
 

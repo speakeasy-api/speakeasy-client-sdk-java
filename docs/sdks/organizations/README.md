@@ -45,9 +45,9 @@ public class Application {
                 .id("<id>")
                 .name("<value>")
                 .slug("<value>")
-                .ssoActivated(false)
-                .telemetryDisabled(false)
-                .updatedAt(OffsetDateTime.parse("2023-04-03T12:48:32.253Z"))
+                .ssoActivated(true)
+                .telemetryDisabled(true)
+                .updatedAt(OffsetDateTime.parse("2022-05-28T06:20:22.766Z"))
                 .build();
 
         CreateOrganizationResponse res = sdk.organizations().create()
@@ -149,7 +149,7 @@ public class Application {
             .build();
 
         GetOrganizationRequest req = GetOrganizationRequest.builder()
-                .organizationID("<id>")
+                .organizationID("<value>")
                 .build();
 
         GetOrganizationResponse res = sdk.organizations().get()

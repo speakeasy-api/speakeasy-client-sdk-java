@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 867e0698f3110dba472ddc490d9dcf87
+  docChecksum: 4370adb34e4b8d543b23bdcf77707fef
   docVersion: 0.4.0
-  speakeasyVersion: 1.449.0
-  generationVersion: 2.467.4
-  releaseVersion: 7.20.9
-  configChecksum: 67644d7dc103226cfd39152d51247eb5
+  speakeasyVersion: 1.451.3
+  generationVersion: 2.471.2
+  releaseVersion: 7.20.10
+  configChecksum: b9213df35a52b542e921cc8099257d3e
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true

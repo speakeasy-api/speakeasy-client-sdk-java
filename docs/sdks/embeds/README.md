@@ -142,7 +142,7 @@ public class Application {
             .build();
 
         RevokeEmbedAccessTokenRequest req = RevokeEmbedAccessTokenRequest.builder()
-                .tokenID("<id>")
+                .tokenID("<value>")
                 .build();
 
         RevokeEmbedAccessTokenResponse res = sdk.embeds().revokeEmbedAccessToken()

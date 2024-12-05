@@ -54,7 +54,7 @@ public class Application {
                 .organizationId("<id>")
                 .slug("<value>")
                 .updatedAt(OffsetDateTime.parse("2023-12-01T17:06:07.804Z"))
-                .verified(false)
+                .verified(true)
                 .build();
 
         CreateWorkspaceResponse res = sdk.workspaces().create()
@@ -733,7 +733,7 @@ public class Application {
                     .organizationId("<id>")
                     .slug("<value>")
                     .updatedAt(OffsetDateTime.parse("2023-10-17T10:52:42.015Z"))
-                    .verified(false)
+                    .verified(true)
                     .build())
                 .build();
 

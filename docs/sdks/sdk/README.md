@@ -44,6 +44,7 @@ public class Application {
 
         CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                 .languages(List.of(
+                    "<value>",
                     "<value>"))
                 .schemaFile(SchemaFile.builder()
                     .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
@@ -109,6 +110,8 @@ public class Application {
 
         CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
                 .languages(List.of(
+                    "<value>",
+                    "<value>",
                     "<value>"))
                 .schemaFile(SchemaFile.builder()
                     .content("0xED5CDd177E".getBytes(StandardCharsets.UTF_8))

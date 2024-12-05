@@ -39,7 +39,7 @@ public class Application {
             .build();
 
         GenerateRequestPostmanCollectionRequest req = GenerateRequestPostmanCollectionRequest.builder()
-                .requestID("<id>")
+                .requestID("<value>")
                 .build();
 
         GenerateRequestPostmanCollectionResponse res = sdk.requests().generateRequestPostmanCollection()
@@ -97,7 +97,7 @@ public class Application {
             .build();
 
         GetRequestFromEventLogRequest req = GetRequestFromEventLogRequest.builder()
-                .requestID("<id>")
+                .requestID("<value>")
                 .build();
 
         GetRequestFromEventLogResponse res = sdk.requests().getRequestFromEventLog()
