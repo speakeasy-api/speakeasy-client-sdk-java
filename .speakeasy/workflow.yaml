@@ -5,7 +5,7 @@ sources:
         inputs:
             - location: https://speakeasy.com/openapi.yaml
         registry:
-            location: registry.speakeasyapi.dev/chase-test/chase-test/my-source
+            location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-new
 targets:
     java-target:
         target: java
@@ -20,4 +20,4 @@ targets:
         codeSamples:
             output: codeSamples.yaml
             registry:
-                location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-code-samples
+                location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-java-code-samples
