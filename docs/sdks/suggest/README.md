@@ -21,7 +21,7 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Diagnostic;
@@ -39,7 +39,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -114,7 +114,7 @@ Generate generic suggestions for a list of items.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestItemsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import dev.speakeasyapi.javaclientsdk.models.shared.SuggestItemsRequestBody;
@@ -125,7 +125,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -173,7 +173,7 @@ Get suggestions from an LLM model for improving an OpenAPI document.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.Schema;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequestBody;
@@ -186,7 +186,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -238,7 +238,7 @@ Get suggestions from an LLM model for improving an OpenAPI document stored in th
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -248,7 +248,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

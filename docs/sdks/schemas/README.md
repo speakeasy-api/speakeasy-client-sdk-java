@@ -25,7 +25,7 @@ Delete a particular schema revision for an Api.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaResponse;
@@ -36,7 +36,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -83,7 +83,7 @@ Download the latest schema for a particular apiID.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaResponse;
@@ -94,7 +94,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -142,7 +142,7 @@ Download a particular schema revision for an Api.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionResponse;
@@ -153,7 +153,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -203,7 +203,7 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaResponse;
@@ -214,7 +214,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -262,7 +262,7 @@ Get a diff of two schema revisions for an Api.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffResponse;
@@ -273,7 +273,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -324,7 +324,7 @@ This won't include the schema itself, that can be retrieved via the downloadSche
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionResponse;
@@ -335,7 +335,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -385,7 +385,7 @@ This won't include the schemas themselves, they can be retrieved via the downloa
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasResponse;
@@ -396,7 +396,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -445,7 +445,7 @@ This will be used to populate ApiEndpoints and used as a base for any schema gen
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequest;
@@ -459,7 +459,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

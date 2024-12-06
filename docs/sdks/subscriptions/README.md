@@ -19,7 +19,7 @@ Create Subscription
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.EventType;
@@ -33,7 +33,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -88,7 +88,7 @@ List Subscriptions
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -98,7 +98,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

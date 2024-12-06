@@ -18,7 +18,7 @@ Shorten a URL.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -28,7 +28,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

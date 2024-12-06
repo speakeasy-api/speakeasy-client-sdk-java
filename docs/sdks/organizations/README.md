@@ -20,7 +20,7 @@ Creates an organization
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateOrganizationResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.AccountType;
@@ -33,7 +33,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -87,7 +87,7 @@ Creates a free trial for an organization
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateFreeTrialResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -97,7 +97,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -131,7 +131,7 @@ Get information about a particular organization.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationResponse;
@@ -142,7 +142,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -189,7 +189,7 @@ Returns a list of organizations a user has access too
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -199,7 +199,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -235,7 +235,7 @@ Returns a billing usage summary by target languages for a particular organizatio
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationUsageResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -245,7 +245,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

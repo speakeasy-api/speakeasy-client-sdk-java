@@ -20,7 +20,7 @@ Delete metadata for a particular apiID and versionID.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataResponse;
@@ -31,7 +31,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -79,7 +79,7 @@ Get all metadata for a particular apiID and versionID.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataResponse;
@@ -90,7 +90,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -138,7 +138,7 @@ Insert metadata for a particular apiID and versionID.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataResponse;
@@ -150,7 +150,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

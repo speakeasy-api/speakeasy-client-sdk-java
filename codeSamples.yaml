@@ -11,7 +11,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
@@ -22,7 +22,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -48,7 +48,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsResponse;
@@ -59,7 +59,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -86,7 +86,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiResponse;
@@ -98,7 +98,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -130,7 +130,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsResponse;
@@ -141,7 +141,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -168,7 +168,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
@@ -179,7 +179,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -205,7 +205,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsResponse;
@@ -216,7 +216,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -244,7 +244,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointResponse;
@@ -255,7 +255,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -284,7 +284,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointResponse;
@@ -295,7 +295,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -322,7 +322,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointResponse;
@@ -333,7 +333,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -362,7 +362,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointResponse;
@@ -374,7 +374,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -411,7 +411,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointResponse;
@@ -422,7 +422,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -451,7 +451,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointResponse;
@@ -462,7 +462,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -491,7 +491,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecResponse;
@@ -502,7 +502,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -530,7 +530,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionResponse;
@@ -541,7 +541,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -569,7 +569,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataResponse;
@@ -580,7 +580,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -608,7 +608,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataResponse;
@@ -620,7 +620,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -652,7 +652,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataResponse;
@@ -663,7 +663,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -691,7 +691,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaResponse;
@@ -702,7 +702,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -730,7 +730,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.File;
             import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequest;
@@ -744,7 +744,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -776,7 +776,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaResponse;
@@ -787,7 +787,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -815,7 +815,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffResponse;
@@ -826,7 +826,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -856,7 +856,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaResponse;
@@ -867,7 +867,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -894,7 +894,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionResponse;
@@ -905,7 +905,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -934,7 +934,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionResponse;
@@ -945,7 +945,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -974,7 +974,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasResponse;
@@ -985,7 +985,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1013,7 +1013,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -1023,7 +1023,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1045,7 +1045,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsResponse;
@@ -1056,7 +1056,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1083,7 +1083,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsResponse;
@@ -1094,7 +1094,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1121,7 +1121,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsResponse;
@@ -1132,7 +1132,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1157,7 +1157,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityResponse;
@@ -1168,7 +1168,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1193,7 +1193,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.PreflightResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest;
@@ -1204,7 +1204,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1231,7 +1231,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesResponse;
@@ -1242,7 +1242,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1269,7 +1269,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
@@ -1282,7 +1282,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1313,7 +1313,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenResponse;
@@ -1323,7 +1323,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                         .build();
 
                     GetAccessTokenRequest req = GetAccessTokenRequest.builder()
@@ -1347,7 +1347,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.ValidateApiKeyResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -1357,7 +1357,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1379,7 +1379,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -1393,7 +1393,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1426,7 +1426,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewAsyncResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
@@ -1440,7 +1440,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1474,7 +1474,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncResponse;
@@ -1485,7 +1485,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1512,7 +1512,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse;
@@ -1523,7 +1523,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1549,7 +1549,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse;
@@ -1560,7 +1560,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1587,7 +1587,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse;
@@ -1598,7 +1598,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1625,7 +1625,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionResponse;
@@ -1636,7 +1636,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1664,7 +1664,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessResponse;
@@ -1675,7 +1675,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1701,7 +1701,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureCodeSamplesResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
@@ -1712,7 +1712,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1741,7 +1741,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureMintlifyRepoResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
@@ -1753,7 +1753,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1782,7 +1782,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureTargetResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest;
@@ -1793,7 +1793,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1819,7 +1819,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessResponse;
@@ -1830,7 +1830,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1854,7 +1854,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsResponse;
@@ -1865,7 +1865,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1894,7 +1894,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsResponse;
@@ -1905,7 +1905,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1932,7 +1932,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubStorePublishingSecretsResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.GithubStorePublishingSecretsRequest;
@@ -1943,7 +1943,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -1968,7 +1968,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateResponse;
@@ -1979,7 +1979,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2008,7 +2008,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GithubTriggerActionResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.GithubTriggerActionRequest;
@@ -2019,7 +2019,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2046,7 +2046,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobResponse;
@@ -2057,7 +2057,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2087,7 +2087,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestResponse;
@@ -2098,7 +2098,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2128,7 +2128,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateOrganizationResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.AccountType;
@@ -2141,7 +2141,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2175,7 +2175,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateFreeTrialResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2185,7 +2185,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2205,7 +2205,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationUsageResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2215,7 +2215,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2237,7 +2237,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationResponse;
@@ -2248,7 +2248,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2275,7 +2275,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationsResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2285,7 +2285,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2307,7 +2307,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportFile;
             import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportRequestBody;
             import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportResponse;
@@ -2320,7 +2320,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2352,7 +2352,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2362,7 +2362,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2389,7 +2389,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2399,7 +2399,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2426,7 +2426,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateRequestBody;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2436,7 +2436,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2463,7 +2463,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestItemsResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import dev.speakeasyapi.javaclientsdk.models.shared.SuggestItemsRequestBody;
@@ -2474,7 +2474,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2503,7 +2503,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.Schema;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequestBody;
@@ -2516,7 +2516,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2549,7 +2549,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2559,7 +2559,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2588,7 +2588,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SuggestResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Diagnostic;
@@ -2606,7 +2606,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2662,7 +2662,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetUserResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2672,7 +2672,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2694,7 +2694,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceByContextResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2704,7 +2704,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2726,7 +2726,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2738,7 +2738,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2771,7 +2771,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2781,7 +2781,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2807,7 +2807,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenResponse;
@@ -2818,7 +2818,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2844,7 +2844,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetValidEmbedAccessTokensResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -2854,7 +2854,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2876,7 +2876,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenResponse;
@@ -2887,7 +2887,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2912,7 +2912,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsResponse;
@@ -2923,7 +2923,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2949,7 +2949,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceResponse;
@@ -2960,7 +2960,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -2986,7 +2986,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsResponse;
@@ -2999,7 +2999,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3032,7 +3032,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsResponse;
@@ -3043,7 +3043,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3069,7 +3069,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
@@ -3084,7 +3084,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3120,7 +3120,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedResponse;
@@ -3131,7 +3131,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3157,7 +3157,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse;
@@ -3168,7 +3168,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3195,7 +3195,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsResponse;
@@ -3206,7 +3206,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3232,7 +3232,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -3242,7 +3242,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3268,7 +3268,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.EventType;
@@ -3282,7 +3282,7 @@ actions:
 
                 public static void main(String[] args) throws Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3318,7 +3318,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceSettingsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceSettingsResponse;
@@ -3329,7 +3329,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3355,7 +3355,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsResponse;
@@ -3368,7 +3368,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3398,7 +3398,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTeamRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTeamResponse;
@@ -3409,7 +3409,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3435,7 +3435,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GrantUserAccessToWorkspaceRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GrantUserAccessToWorkspaceResponse;
@@ -3446,7 +3446,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3473,7 +3473,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceResponse;
@@ -3484,7 +3484,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3509,7 +3509,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTokensRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTokensResponse;
@@ -3520,7 +3520,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3546,7 +3546,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceTokenRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceTokenResponse;
@@ -3559,7 +3559,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3591,7 +3591,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteWorkspaceTokenRequest;
             import dev.speakeasyapi.javaclientsdk.models.operations.DeleteWorkspaceTokenResponse;
@@ -3602,7 +3602,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())
@@ -3627,7 +3627,7 @@ actions:
           source: |-
             package hello.world;
 
-            import dev.speakeasyapi.javaclientsdk.ChaseTest;
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
             import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspacesResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -3637,7 +3637,7 @@ actions:
 
                 public static void main(String[] args) throws Error, Exception {
 
-                    ChaseTest sdk = ChaseTest.builder()
+                    RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
                                 .apiKey("<YOUR_API_KEY_HERE>")
                                 .build())

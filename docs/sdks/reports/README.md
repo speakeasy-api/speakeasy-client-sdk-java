@@ -20,7 +20,7 @@ Get the signed access url for the change reports for a particular document.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -30,7 +30,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -76,7 +76,7 @@ Get the signed access url for the linting reports for a particular document.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
@@ -86,7 +86,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
@@ -132,7 +132,7 @@ Upload a report.
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.File;
 import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportResponse;
@@ -145,7 +145,7 @@ public class Application {
 
     public static void main(String[] args) throws Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())

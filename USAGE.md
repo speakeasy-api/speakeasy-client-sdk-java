@@ -2,7 +2,7 @@
 ```java
 package hello.world;
 
-import dev.speakeasyapi.javaclientsdk.ChaseTest;
+import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
@@ -13,7 +13,7 @@ public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
-        ChaseTest sdk = ChaseTest.builder()
+        RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
