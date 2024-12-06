@@ -2,21 +2,21 @@ speakeasyVersion: 1.453.0
 sources:
     first-source: {}
     my-source:
-        sourceNamespace: my-source
-        sourceRevisionDigest: sha256:4dff3feb94357801c9c5a3fcace052cb695cc5dfff5cdb25649485aa3bbc35f8
+        sourceNamespace: my-source-new
+        sourceRevisionDigest: sha256:215c7952851fa21bf9e7e42046591fc11a7339d464e770ac38cbf531beb2a551
         sourceBlobDigest: sha256:f6c3771ac108b66bd6ac472ceadab3b46b55de738b899dbe54bcb7a0f6a79570
         tags:
             - latest
-            - speakeasy-sdk-regen-1733505611
+            - speakeasy-sdk-regen-1733505823
             - 0.4.0
 targets:
     java-target:
         source: my-source
-        sourceNamespace: my-source
-        sourceRevisionDigest: sha256:4dff3feb94357801c9c5a3fcace052cb695cc5dfff5cdb25649485aa3bbc35f8
+        sourceNamespace: my-source-new
+        sourceRevisionDigest: sha256:215c7952851fa21bf9e7e42046591fc11a7339d464e770ac38cbf531beb2a551
         sourceBlobDigest: sha256:f6c3771ac108b66bd6ac472ceadab3b46b55de738b899dbe54bcb7a0f6a79570
-        codeSamplesNamespace: my-source-code-samples
-        codeSamplesRevisionDigest: sha256:681d2520c098b0cf3aad3a9f8480f7ba2e4123bf391d2874d2b25e71b068bd7f
+        codeSamplesNamespace: my-source-java-code-samples
+        codeSamplesRevisionDigest: sha256:4fe492f68559c71d380444c3b026d911626159216428b31f5c5e66a643451a8e
     py:
         source: first-source
     ts:
@@ -29,7 +29,7 @@ workflow:
             inputs:
                 - location: https://speakeasy.com/openapi.yaml
             registry:
-                location: registry.speakeasyapi.dev/chase-test/chase-test/my-source
+                location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-new
     targets:
         java-target:
             target: java
@@ -44,4 +44,4 @@ workflow:
             codeSamples:
                 output: codeSamples.yaml
                 registry:
-                    location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-code-samples
+                    location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-java-code-samples
