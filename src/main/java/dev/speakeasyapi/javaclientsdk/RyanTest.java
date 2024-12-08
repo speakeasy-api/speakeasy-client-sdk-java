@@ -321,7 +321,7 @@ public class RyanTest implements
          * @return The builder instance.
          */
         public Builder server(AvailableServers server) {
-            this.sdkConfiguration.server = server.toString();
+            this.sdkConfiguration.server = server.server();
             this.sdkConfiguration.serverUrl = SERVERS.get(server);
             return this;
         }
@@ -365,7 +365,7 @@ public class RyanTest implements
 	        }
             if (sdkConfiguration.serverUrl == null || sdkConfiguration.serverUrl.isBlank()) {
                 sdkConfiguration.serverUrl = SERVERS.get(AvailableServers.PROD);
-                sdkConfiguration.server = AvailableServers.PROD.toString();
+                sdkConfiguration.server = AvailableServers.PROD.server();
             }
             if (sdkConfiguration.serverUrl.endsWith("/")) {
                 sdkConfiguration.serverUrl = sdkConfiguration.serverUrl.substring(0, sdkConfiguration.serverUrl.length() - 1);
@@ -443,10 +443,10 @@ public class RyanTest implements
         _req.addHeader("Accept", "application/json;q=1, application/x-yaml;q=0")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -454,7 +454,7 @@ public class RyanTest implements
                   new BeforeRequestContextImpl(
                       "generateCodeSamplePreview", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -465,7 +465,7 @@ public class RyanTest implements
                         new AfterErrorContextImpl(
                             "generateCodeSamplePreview",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -474,7 +474,7 @@ public class RyanTest implements
                         new AfterSuccessContextImpl(
                             "generateCodeSamplePreview",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -483,7 +483,7 @@ public class RyanTest implements
                         new AfterErrorContextImpl(
                             "generateCodeSamplePreview",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -581,10 +581,10 @@ public class RyanTest implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -592,7 +592,7 @@ public class RyanTest implements
                   new BeforeRequestContextImpl(
                       "generateCodeSamplePreviewAsync", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -603,7 +603,7 @@ public class RyanTest implements
                         new AfterErrorContextImpl(
                             "generateCodeSamplePreviewAsync",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -612,7 +612,7 @@ public class RyanTest implements
                         new AfterSuccessContextImpl(
                             "generateCodeSamplePreviewAsync",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -621,7 +621,7 @@ public class RyanTest implements
                         new AfterErrorContextImpl(
                             "generateCodeSamplePreviewAsync",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -704,10 +704,10 @@ public class RyanTest implements
         _req.addHeader("Accept", "application/json;q=1, application/x-yaml;q=0")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -715,7 +715,7 @@ public class RyanTest implements
                   new BeforeRequestContextImpl(
                       "getCodeSamplePreviewAsync", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -726,7 +726,7 @@ public class RyanTest implements
                         new AfterErrorContextImpl(
                             "getCodeSamplePreviewAsync",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -735,7 +735,7 @@ public class RyanTest implements
                         new AfterSuccessContextImpl(
                             "getCodeSamplePreviewAsync",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -744,7 +744,7 @@ public class RyanTest implements
                         new AfterErrorContextImpl(
                             "getCodeSamplePreviewAsync",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

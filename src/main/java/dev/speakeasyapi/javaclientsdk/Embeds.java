@@ -81,10 +81,10 @@ public class Embeds implements
                 GetEmbedAccessTokenRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -92,7 +92,7 @@ public class Embeds implements
                   new BeforeRequestContextImpl(
                       "getEmbedAccessToken", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -103,7 +103,7 @@ public class Embeds implements
                         new AfterErrorContextImpl(
                             "getEmbedAccessToken",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -112,7 +112,7 @@ public class Embeds implements
                         new AfterSuccessContextImpl(
                             "getEmbedAccessToken",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -121,7 +121,7 @@ public class Embeds implements
                         new AfterErrorContextImpl(
                             "getEmbedAccessToken",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -207,10 +207,10 @@ public class Embeds implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -218,7 +218,7 @@ public class Embeds implements
                   new BeforeRequestContextImpl(
                       "getValidEmbedAccessTokens", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -229,7 +229,7 @@ public class Embeds implements
                         new AfterErrorContextImpl(
                             "getValidEmbedAccessTokens",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -238,7 +238,7 @@ public class Embeds implements
                         new AfterSuccessContextImpl(
                             "getValidEmbedAccessTokens",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -247,7 +247,7 @@ public class Embeds implements
                         new AfterErrorContextImpl(
                             "getValidEmbedAccessTokens",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -337,10 +337,10 @@ public class Embeds implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -348,7 +348,7 @@ public class Embeds implements
                   new BeforeRequestContextImpl(
                       "revokeEmbedAccessToken", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -359,7 +359,7 @@ public class Embeds implements
                         new AfterErrorContextImpl(
                             "revokeEmbedAccessToken",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -368,7 +368,7 @@ public class Embeds implements
                         new AfterSuccessContextImpl(
                             "revokeEmbedAccessToken",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -377,7 +377,7 @@ public class Embeds implements
                         new AfterErrorContextImpl(
                             "revokeEmbedAccessToken",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

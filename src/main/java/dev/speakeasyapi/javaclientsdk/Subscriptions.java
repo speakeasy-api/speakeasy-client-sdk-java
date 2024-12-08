@@ -85,10 +85,10 @@ public class Subscriptions implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -96,7 +96,7 @@ public class Subscriptions implements
                   new BeforeRequestContextImpl(
                       "createSubscription", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -107,7 +107,7 @@ public class Subscriptions implements
                         new AfterErrorContextImpl(
                             "createSubscription",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -116,7 +116,7 @@ public class Subscriptions implements
                         new AfterSuccessContextImpl(
                             "createSubscription",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -125,7 +125,7 @@ public class Subscriptions implements
                         new AfterErrorContextImpl(
                             "createSubscription",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -206,10 +206,10 @@ public class Subscriptions implements
                 ListRegistrySubscriptionsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -217,7 +217,7 @@ public class Subscriptions implements
                   new BeforeRequestContextImpl(
                       "listRegistrySubscriptions", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -228,7 +228,7 @@ public class Subscriptions implements
                         new AfterErrorContextImpl(
                             "listRegistrySubscriptions",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -237,7 +237,7 @@ public class Subscriptions implements
                         new AfterSuccessContextImpl(
                             "listRegistrySubscriptions",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -246,7 +246,7 @@ public class Subscriptions implements
                         new AfterErrorContextImpl(
                             "listRegistrySubscriptions",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

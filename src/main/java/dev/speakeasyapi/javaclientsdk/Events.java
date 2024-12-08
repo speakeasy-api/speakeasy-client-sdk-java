@@ -99,10 +99,10 @@ public class Events implements
                 GetWorkspaceEventsByTargetRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -110,7 +110,7 @@ public class Events implements
                   new BeforeRequestContextImpl(
                       "getWorkspaceEventsByTarget", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -121,7 +121,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "getWorkspaceEventsByTarget",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -130,7 +130,7 @@ public class Events implements
                         new AfterSuccessContextImpl(
                             "getWorkspaceEventsByTarget",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -139,7 +139,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "getWorkspaceEventsByTarget",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -232,10 +232,10 @@ public class Events implements
                 GetWorkspaceTargetsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -243,7 +243,7 @@ public class Events implements
                   new BeforeRequestContextImpl(
                       "getWorkspaceTargets", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -254,7 +254,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "getWorkspaceTargets",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -263,7 +263,7 @@ public class Events implements
                         new AfterSuccessContextImpl(
                             "getWorkspaceTargets",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -272,7 +272,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "getWorkspaceTargets",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -367,10 +367,10 @@ public class Events implements
                 GetWorkspaceTargetsDeprecatedRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -378,7 +378,7 @@ public class Events implements
                   new BeforeRequestContextImpl(
                       "getWorkspaceTargetsDeprecated", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -389,7 +389,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "getWorkspaceTargetsDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -398,7 +398,7 @@ public class Events implements
                         new AfterSuccessContextImpl(
                             "getWorkspaceTargetsDeprecated",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -407,7 +407,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "getWorkspaceTargetsDeprecated",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -530,10 +530,10 @@ public class Events implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HTTPRequest _finalReq = _req;
         RetryConfig _retryConfig;
@@ -566,7 +566,7 @@ public class Events implements
                             new BeforeRequestContextImpl(
                                 "postWorkspaceEvents", 
                                 Optional.of(List.of()), 
-                                sdkConfiguration.securitySource()),
+                                _hookSecuritySource),
                             _finalReq.build());
                 } catch (Exception _e) {
                     throw new NonRetryableException(_e);
@@ -579,7 +579,7 @@ public class Events implements
                             new AfterErrorContextImpl(
                                 "postWorkspaceEvents",
                                  Optional.of(List.of()),
-                                 sdkConfiguration.securitySource()), 
+                                 _hookSecuritySource), 
                             Optional.empty(),
                             Optional.of(_e));
                 }
@@ -592,7 +592,7 @@ public class Events implements
                      new AfterSuccessContextImpl(
                          "postWorkspaceEvents", 
                          Optional.of(List.of()), 
-                         sdkConfiguration.securitySource()),
+                         _hookSecuritySource),
                      _retries.run());
         String _contentType = _httpRes
             .headers()
@@ -674,10 +674,10 @@ public class Events implements
                 SearchWorkspaceEventsRequest.class,
                 request, 
                 this.sdkConfiguration.globals));
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -685,7 +685,7 @@ public class Events implements
                   new BeforeRequestContextImpl(
                       "searchWorkspaceEvents", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -696,7 +696,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "searchWorkspaceEvents",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -705,7 +705,7 @@ public class Events implements
                         new AfterSuccessContextImpl(
                             "searchWorkspaceEvents",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -714,7 +714,7 @@ public class Events implements
                         new AfterErrorContextImpl(
                             "searchWorkspaceEvents",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

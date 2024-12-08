@@ -100,10 +100,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -111,7 +111,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "deleteApiEndpoint", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -122,7 +122,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "deleteApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -131,7 +131,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "deleteApiEndpoint",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -140,7 +140,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "deleteApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -223,10 +223,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -234,7 +234,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "findApiEndpoint", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -245,7 +245,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "findApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -254,7 +254,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "findApiEndpoint",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -263,7 +263,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "findApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -357,10 +357,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -368,7 +368,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "generateOpenApiSpecForApiEndpoint", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -379,7 +379,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "generateOpenApiSpecForApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -388,7 +388,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "generateOpenApiSpecForApiEndpoint",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -397,7 +397,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "generateOpenApiSpecForApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -489,10 +489,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/octet-stream")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -500,7 +500,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "generatePostmanCollectionForApiEndpoint", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -511,7 +511,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "generatePostmanCollectionForApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -520,7 +520,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "generatePostmanCollectionForApiEndpoint",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -529,7 +529,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "generatePostmanCollectionForApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -618,10 +618,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -629,7 +629,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "getAllApiEndpoints", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -640,7 +640,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "getAllApiEndpoints",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -649,7 +649,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "getAllApiEndpoints",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -658,7 +658,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "getAllApiEndpoints",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -748,10 +748,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -759,7 +759,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "getAllForVersionApiEndpoints", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -770,7 +770,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "getAllForVersionApiEndpoints",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -779,7 +779,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "getAllForVersionApiEndpoints",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -788,7 +788,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "getAllForVersionApiEndpoints",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -878,10 +878,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -889,7 +889,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "getApiEndpoint", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -900,7 +900,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "getApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -909,7 +909,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "getApiEndpoint",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -918,7 +918,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "getApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }
@@ -1023,10 +1023,10 @@ public class ApiEndpoints implements
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
                 this.sdkConfiguration.securitySource.getSecurity());
-
         HTTPClient _client = this.sdkConfiguration.defaultClient;
         HttpRequest _r = 
             sdkConfiguration.hooks()
@@ -1034,7 +1034,7 @@ public class ApiEndpoints implements
                   new BeforeRequestContextImpl(
                       "upsertApiEndpoint", 
                       Optional.of(List.of()), 
-                      sdkConfiguration.securitySource()),
+                      _hookSecuritySource),
                   _req.build());
         HttpResponse<InputStream> _httpRes;
         try {
@@ -1045,7 +1045,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "upsertApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                         Optional.of(_httpRes),
                         Optional.empty());
             } else {
@@ -1054,7 +1054,7 @@ public class ApiEndpoints implements
                         new AfterSuccessContextImpl(
                             "upsertApiEndpoint",
                             Optional.of(List.of()), 
-                            sdkConfiguration.securitySource()),
+                            _hookSecuritySource),
                          _httpRes);
             }
         } catch (Exception _e) {
@@ -1063,7 +1063,7 @@ public class ApiEndpoints implements
                         new AfterErrorContextImpl(
                             "upsertApiEndpoint",
                             Optional.of(List.of()),
-                            sdkConfiguration.securitySource()), 
+                            _hookSecuritySource), 
                         Optional.empty(),
                         Optional.of(_e));
         }

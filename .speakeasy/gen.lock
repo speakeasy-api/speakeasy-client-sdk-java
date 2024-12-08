@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 4370adb34e4b8d543b23bdcf77707fef
+  docChecksum: 09696cca6dbcaa4fa372f51b4fa17ebc
   docVersion: 0.4.0
-  speakeasyVersion: 1.453.0
-  generationVersion: 2.472.1
-  releaseVersion: 7.20.18
-  configChecksum: fb96cc1716651293815a2e46733b2ff1
+  speakeasyVersion: 1.453.3
+  generationVersion: 2.474.6
+  releaseVersion: 7.21.0
+  configChecksum: 2e68dfe0e94320387a02a8895bfd82f8
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.32.2
+    core: 3.33.0
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     examples: 2.81.3
@@ -750,6 +750,7 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Security.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/SecurityMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/SerializedBody.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/SessionManager.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/SpeakeasyHTTPClient.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/SpeakeasyMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/TypedObject.java
