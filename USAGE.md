@@ -4,10 +4,13 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Application {
 
@@ -19,14 +22,21 @@ public class Application {
                     .build())
             .build();
 
-        GetApisRequest req = GetApisRequest.builder()
+        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                .languages(List.of(
+                    "<value>",
+                    "<value>"))
+                .schemaFile(SchemaFile.builder()
+                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                    .fileName("example.file")
+                    .build())
                 .build();
 
-        GetApisResponse res = sdk.apis().getApis()
+        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
                 .request(req)
                 .call();
 
-        if (res.apis().isPresent()) {
+        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
             // handle response
         }
     }

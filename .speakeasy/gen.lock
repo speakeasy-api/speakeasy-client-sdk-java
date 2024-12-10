@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 09696cca6dbcaa4fa372f51b4fa17ebc
+  docChecksum: d5a331da222343db2b92613baf751e36
   docVersion: 0.4.0
-  speakeasyVersion: 1.453.3
-  generationVersion: 2.474.6
-  releaseVersion: 7.21.0
-  configChecksum: 2e68dfe0e94320387a02a8895bfd82f8
+  speakeasyVersion: 1.453.8
+  generationVersion: 2.474.15
+  releaseVersion: 7.22.0
+  configChecksum: b4e347c0e14379393bb34fd6d8c40b21
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,20 +14,17 @@ features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.33.0
+    core: 3.33.1
     deprecations: 2.81.1
     downloadStreams: 0.1.1
-    examples: 2.81.3
     globalSecurity: 2.82.7
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
     globals: 2.82.1
-    inputOutputModels: 2.83.0
     nameOverrides: 2.81.3
     nullables: 0.1.0
     retries: 0.1.1
     sdkHooks: 0.1.0
-    serverEventsSentinels: 0.2.0
     serverIDs: 2.81.1
 generatedFiles:
   - .gitattributes
@@ -47,48 +44,14 @@ generatedFiles:
   - docs/models/operations/CreateWorkspaceResponse.md
   - docs/models/operations/CreateWorkspaceTokenRequest.md
   - docs/models/operations/CreateWorkspaceTokenResponse.md
-  - docs/models/operations/DeleteApiEndpointRequest.md
-  - docs/models/operations/DeleteApiEndpointResponse.md
-  - docs/models/operations/DeleteApiRequest.md
-  - docs/models/operations/DeleteApiResponse.md
-  - docs/models/operations/DeleteSchemaRequest.md
-  - docs/models/operations/DeleteSchemaResponse.md
-  - docs/models/operations/DeleteVersionMetadataRequest.md
-  - docs/models/operations/DeleteVersionMetadataResponse.md
   - docs/models/operations/DeleteWorkspaceTokenRequest.md
   - docs/models/operations/DeleteWorkspaceTokenResponse.md
-  - docs/models/operations/DownloadSchemaRequest.md
-  - docs/models/operations/DownloadSchemaResponse.md
-  - docs/models/operations/DownloadSchemaRevisionRequest.md
-  - docs/models/operations/DownloadSchemaRevisionResponse.md
   - docs/models/operations/File.md
-  - docs/models/operations/FindApiEndpointRequest.md
-  - docs/models/operations/FindApiEndpointResponse.md
   - docs/models/operations/GenerateCodeSamplePreviewAsyncResponse.md
   - docs/models/operations/GenerateCodeSamplePreviewAsyncResponseBody.md
   - docs/models/operations/GenerateCodeSamplePreviewResponse.md
-  - docs/models/operations/GenerateOpenApiSpecForApiEndpointRequest.md
-  - docs/models/operations/GenerateOpenApiSpecForApiEndpointResponse.md
-  - docs/models/operations/GenerateOpenApiSpecRequest.md
-  - docs/models/operations/GenerateOpenApiSpecResponse.md
-  - docs/models/operations/GeneratePostmanCollectionForApiEndpointRequest.md
-  - docs/models/operations/GeneratePostmanCollectionForApiEndpointResponse.md
-  - docs/models/operations/GeneratePostmanCollectionRequest.md
-  - docs/models/operations/GeneratePostmanCollectionResponse.md
-  - docs/models/operations/GenerateRequestPostmanCollectionRequest.md
-  - docs/models/operations/GenerateRequestPostmanCollectionResponse.md
   - docs/models/operations/GetAccessTokenRequest.md
   - docs/models/operations/GetAccessTokenResponse.md
-  - docs/models/operations/GetAllApiEndpointsRequest.md
-  - docs/models/operations/GetAllApiEndpointsResponse.md
-  - docs/models/operations/GetAllApiVersionsRequest.md
-  - docs/models/operations/GetAllApiVersionsResponse.md
-  - docs/models/operations/GetAllForVersionApiEndpointsRequest.md
-  - docs/models/operations/GetAllForVersionApiEndpointsResponse.md
-  - docs/models/operations/GetApiEndpointRequest.md
-  - docs/models/operations/GetApiEndpointResponse.md
-  - docs/models/operations/GetApisRequest.md
-  - docs/models/operations/GetApisResponse.md
   - docs/models/operations/GetBlobRequest.md
   - docs/models/operations/GetBlobResponse.md
   - docs/models/operations/GetChangesReportSignedUrlRequest.md
@@ -97,8 +60,6 @@ generatedFiles:
   - docs/models/operations/GetCodeSamplePreviewAsyncRequest.md
   - docs/models/operations/GetCodeSamplePreviewAsyncResponse.md
   - docs/models/operations/GetCodeSamplePreviewAsyncResponseBody.md
-  - docs/models/operations/GetEmbedAccessTokenRequest.md
-  - docs/models/operations/GetEmbedAccessTokenResponse.md
   - docs/models/operations/GetGitHubActionRequest.md
   - docs/models/operations/GetGitHubActionResponse.md
   - docs/models/operations/GetGithubSetupStateRequest.md
@@ -113,24 +74,11 @@ generatedFiles:
   - docs/models/operations/GetOrganizationResponse.md
   - docs/models/operations/GetOrganizationUsageResponse.md
   - docs/models/operations/GetOrganizationsResponse.md
-  - docs/models/operations/GetRequestFromEventLogRequest.md
-  - docs/models/operations/GetRequestFromEventLogResponse.md
   - docs/models/operations/GetRevisionsRequest.md
   - docs/models/operations/GetRevisionsResponse.md
-  - docs/models/operations/GetSchemaDiffRequest.md
-  - docs/models/operations/GetSchemaDiffResponse.md
-  - docs/models/operations/GetSchemaRequest.md
-  - docs/models/operations/GetSchemaResponse.md
-  - docs/models/operations/GetSchemaRevisionRequest.md
-  - docs/models/operations/GetSchemaRevisionResponse.md
-  - docs/models/operations/GetSchemasRequest.md
-  - docs/models/operations/GetSchemasResponse.md
   - docs/models/operations/GetTagsRequest.md
   - docs/models/operations/GetTagsResponse.md
   - docs/models/operations/GetUserResponse.md
-  - docs/models/operations/GetValidEmbedAccessTokensResponse.md
-  - docs/models/operations/GetVersionMetadataRequest.md
-  - docs/models/operations/GetVersionMetadataResponse.md
   - docs/models/operations/GetWorkspaceAccessRequest.md
   - docs/models/operations/GetWorkspaceAccessResponse.md
   - docs/models/operations/GetWorkspaceByContextResponse.md
@@ -162,29 +110,17 @@ generatedFiles:
   - docs/models/operations/GithubTriggerActionResponse.md
   - docs/models/operations/GrantUserAccessToWorkspaceRequest.md
   - docs/models/operations/GrantUserAccessToWorkspaceResponse.md
-  - docs/models/operations/InsertVersionMetadataRequest.md
-  - docs/models/operations/InsertVersionMetadataResponse.md
   - docs/models/operations/LinkGithubAccessRequest.md
   - docs/models/operations/LinkGithubAccessResponse.md
   - docs/models/operations/ListRegistrySubscriptionsRequest.md
   - docs/models/operations/ListRegistrySubscriptionsResponse.md
   - docs/models/operations/ListRemoteSourcesRequest.md
   - docs/models/operations/ListRemoteSourcesResponse.md
-  - docs/models/operations/Op.md
   - docs/models/operations/PostTagsRequest.md
   - docs/models/operations/PostTagsResponse.md
   - docs/models/operations/PostWorkspaceEventsRequest.md
   - docs/models/operations/PostWorkspaceEventsResponse.md
   - docs/models/operations/PreflightResponse.md
-  - docs/models/operations/QueryEventLogRequest.md
-  - docs/models/operations/QueryEventLogResponse.md
-  - docs/models/operations/QueryParamOp.md
-  - docs/models/operations/RegisterSchemaFile.md
-  - docs/models/operations/RegisterSchemaRequest.md
-  - docs/models/operations/RegisterSchemaRequestBody.md
-  - docs/models/operations/RegisterSchemaResponse.md
-  - docs/models/operations/RevokeEmbedAccessTokenRequest.md
-  - docs/models/operations/RevokeEmbedAccessTokenResponse.md
   - docs/models/operations/RevokeUserAccessToWorkspaceRequest.md
   - docs/models/operations/RevokeUserAccessToWorkspaceResponse.md
   - docs/models/operations/Schema.md
@@ -208,10 +144,6 @@ generatedFiles:
   - docs/models/operations/UploadReportRequestBody.md
   - docs/models/operations/UploadReportResponse.md
   - docs/models/operations/UploadReportUploadedReport.md
-  - docs/models/operations/UpsertApiEndpointRequest.md
-  - docs/models/operations/UpsertApiEndpointResponse.md
-  - docs/models/operations/UpsertApiRequest.md
-  - docs/models/operations/UpsertApiResponse.md
   - docs/models/operations/ValidateApiKeyResponse.md
   - docs/models/shared/AccessDetails.md
   - docs/models/shared/AccessToken.md
@@ -220,27 +152,17 @@ generatedFiles:
   - docs/models/shared/Actions.md
   - docs/models/shared/AddTags.md
   - docs/models/shared/Annotations.md
-  - docs/models/shared/Api.md
-  - docs/models/shared/ApiEndpoint.md
-  - docs/models/shared/ApiEndpointInput.md
-  - docs/models/shared/ApiInput.md
   - docs/models/shared/ApiKeyDetails.md
   - docs/models/shared/Auth.md
-  - docs/models/shared/BoundedRequest.md
   - docs/models/shared/Claims.md
   - docs/models/shared/CliEvent.md
   - docs/models/shared/CodeSampleSchemaInput.md
   - docs/models/shared/CodeSamplesJobStatus.md
   - docs/models/shared/CompositeSpecMetadata.md
   - docs/models/shared/Diagnostic.md
-  - docs/models/shared/EmbedAccessTokenResponse.md
-  - docs/models/shared/EmbedToken.md
   - docs/models/shared/EventType.md
   - docs/models/shared/FeatureFlag.md
-  - docs/models/shared/Filter.md
-  - docs/models/shared/Filters.md
   - docs/models/shared/GenerateBumpType.md
-  - docs/models/shared/GenerateOpenApiSpecDiff.md
   - docs/models/shared/GetNamespacesResponse.md
   - docs/models/shared/GetRevisionsResponse.md
   - docs/models/shared/GetTagsResponse.md
@@ -274,11 +196,8 @@ generatedFiles:
   - docs/models/shared/RemoteSource.md
   - docs/models/shared/RemoteSourceSubscriptionSettings.md
   - docs/models/shared/Report.md
-  - docs/models/shared/RequestMetadata.md
   - docs/models/shared/Revision.md
   - docs/models/shared/SSOMetadata.md
-  - docs/models/shared/Schema.md
-  - docs/models/shared/SchemaDiff.md
   - docs/models/shared/SchemaFile.md
   - docs/models/shared/Secrets.md
   - docs/models/shared/Security.md
@@ -292,12 +211,8 @@ generatedFiles:
   - docs/models/shared/Tag.md
   - docs/models/shared/TargetSDK.md
   - docs/models/shared/Type.md
-  - docs/models/shared/UnboundedRequest.md
   - docs/models/shared/User.md
   - docs/models/shared/V2Descriptor.md
-  - docs/models/shared/ValueChange.md
-  - docs/models/shared/VersionMetadata.md
-  - docs/models/shared/VersionMetadataInput.md
   - docs/models/shared/WorkflowDocument.md
   - docs/models/shared/Workspace.md
   - docs/models/shared/WorkspaceAndOrganization.md
@@ -307,19 +222,13 @@ generatedFiles:
   - docs/models/shared/WorkspaceTeamResponse.md
   - docs/models/shared/WorkspaceToken.md
   - docs/models/shared/Workspaces.md
-  - docs/sdks/apiendpoints/README.md
-  - docs/sdks/apis/README.md
   - docs/sdks/artifacts/README.md
   - docs/sdks/auth/README.md
-  - docs/sdks/embeds/README.md
   - docs/sdks/events/README.md
   - docs/sdks/github/README.md
-  - docs/sdks/metadata/README.md
   - docs/sdks/organizations/README.md
   - docs/sdks/reports/README.md
-  - docs/sdks/requests/README.md
   - docs/sdks/ryantest/README.md
-  - docs/sdks/schemas/README.md
   - docs/sdks/shorturls/README.md
   - docs/sdks/subscriptions/README.md
   - docs/sdks/suggest/README.md
@@ -329,20 +238,14 @@ generatedFiles:
   - gradlew
   - gradlew.bat
   - settings.gradle
-  - src/main/java/dev/speakeasyapi/javaclientsdk/ApiEndpoints.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/Apis.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Artifacts.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Auth.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/Embeds.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Events.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Github.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/Metadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Organizations.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Reports.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/Requests.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/RyanTest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/SDKConfiguration.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/Schemas.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/SecuritySource.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/ShortURLs.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Subscriptions.java
@@ -371,69 +274,18 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateWorkspaceTokenRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateWorkspaceTokenRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateWorkspaceTokenResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteApiEndpointRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteApiEndpointRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteApiEndpointResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteApiRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteApiRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteApiResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteSchemaRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteSchemaRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteSchemaResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteVersionMetadataRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteVersionMetadataRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteVersionMetadataResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteWorkspaceTokenRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteWorkspaceTokenRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DeleteWorkspaceTokenResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DownloadSchemaRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DownloadSchemaRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DownloadSchemaResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DownloadSchemaRevisionRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DownloadSchemaRevisionRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/DownloadSchemaRevisionResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/File.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/FindApiEndpointRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/FindApiEndpointRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/FindApiEndpointResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateCodeSamplePreviewAsyncRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateCodeSamplePreviewAsyncResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateCodeSamplePreviewAsyncResponseBody.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateCodeSamplePreviewRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateCodeSamplePreviewResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateOpenApiSpecForApiEndpointRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateOpenApiSpecForApiEndpointRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateOpenApiSpecForApiEndpointResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateOpenApiSpecRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateOpenApiSpecRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateOpenApiSpecResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GeneratePostmanCollectionForApiEndpointRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GeneratePostmanCollectionForApiEndpointRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GeneratePostmanCollectionForApiEndpointResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GeneratePostmanCollectionRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GeneratePostmanCollectionRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GeneratePostmanCollectionResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateRequestPostmanCollectionRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateRequestPostmanCollectionRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GenerateRequestPostmanCollectionResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAccessTokenRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAccessTokenRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAccessTokenResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllApiEndpointsRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllApiEndpointsRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllApiEndpointsResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllApiVersionsRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllApiVersionsRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllApiVersionsResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllForVersionApiEndpointsRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllForVersionApiEndpointsRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetAllForVersionApiEndpointsResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetApiEndpointRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetApiEndpointRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetApiEndpointResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetApisRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetApisRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetApisResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetBlobRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetBlobRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetBlobResponse.java
@@ -445,9 +297,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncResponseBody.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetEmbedAccessTokenRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetEmbedAccessTokenRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetEmbedAccessTokenResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionResponse.java
@@ -470,34 +319,14 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetOrganizationUsageResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetOrganizationsRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetOrganizationsResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetRequestFromEventLogRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetRequestFromEventLogRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetRequestFromEventLogResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetRevisionsRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetRevisionsRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetRevisionsResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaDiffRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaDiffRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaDiffResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaRevisionRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaRevisionRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemaRevisionResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemasRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemasRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetSchemasResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetTagsRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetTagsRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetTagsResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetUserRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetUserResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetValidEmbedAccessTokensRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetValidEmbedAccessTokensResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetVersionMetadataRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetVersionMetadataRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetVersionMetadataResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetWorkspaceAccessRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetWorkspaceAccessRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetWorkspaceAccessResponse.java
@@ -548,9 +377,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GrantUserAccessToWorkspaceRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GrantUserAccessToWorkspaceRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GrantUserAccessToWorkspaceResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/InsertVersionMetadataRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/InsertVersionMetadataRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/InsertVersionMetadataResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/LinkGithubAccessRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/LinkGithubAccessRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/LinkGithubAccessResponse.java
@@ -560,7 +386,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRemoteSourcesRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRemoteSourcesRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRemoteSourcesResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/Op.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/PostTagsRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/PostTagsRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/PostTagsResponse.java
@@ -569,18 +394,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/PostWorkspaceEventsResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/PreflightRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/PreflightResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/QueryEventLogRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/QueryEventLogRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/QueryEventLogResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/QueryParamOp.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RegisterSchemaFile.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RegisterSchemaRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RegisterSchemaRequestBody.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RegisterSchemaRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RegisterSchemaResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RevokeEmbedAccessTokenRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RevokeEmbedAccessTokenRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RevokeEmbedAccessTokenResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RevokeUserAccessToWorkspaceRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RevokeUserAccessToWorkspaceRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/RevokeUserAccessToWorkspaceResponse.java
@@ -615,12 +428,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UploadReportRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UploadReportResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UploadReportUploadedReport.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UpsertApiEndpointRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UpsertApiEndpointRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UpsertApiEndpointResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UpsertApiRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UpsertApiRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/UpsertApiResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ValidateApiKeyRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ValidateApiKeyResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/AccessDetails.java
@@ -630,27 +437,17 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Actions.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/AddTags.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Annotations.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Api.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/ApiEndpoint.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/ApiEndpointInput.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/ApiInput.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/ApiKeyDetails.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Auth.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/BoundedRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Claims.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CliEvent.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CodeSampleSchemaInput.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CodeSamplesJobStatus.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CompositeSpecMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Diagnostic.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/EmbedAccessTokenResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/EmbedToken.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/EventType.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/FeatureFlag.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Filter.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Filters.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GenerateBumpType.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GenerateOpenApiSpecDiff.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GetNamespacesResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GetRevisionsResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GetTagsResponse.java
@@ -684,11 +481,8 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteSource.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteSourceSubscriptionSettings.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Report.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RequestMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Revision.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SSOMetadata.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Schema.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SchemaDiff.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SchemaFile.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Secrets.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Security.java
@@ -702,12 +496,8 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Tag.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/TargetSDK.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Type.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/UnboundedRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/User.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/V2Descriptor.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/ValueChange.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/VersionMetadata.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/VersionMetadataInput.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkflowDocument.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Workspace.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceAndOrganization.java

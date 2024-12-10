@@ -71,6 +71,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional; 
 
+/**
+ * REST APIs for managing Workspaces (speakeasy tenancy)
+ */
 public class Workspaces implements
             MethodCallCreateWorkspace,
             MethodCallCreateWorkspaceToken,

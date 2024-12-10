@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.21.0'
+implementation 'dev.speakeasyapi:javaclientsdk:7.22.0'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.21.0</version>
+    <version>7.22.0</version>
 </dependency>
 ```
 
@@ -71,10 +71,13 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
+import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 public class Application {
 
@@ -86,14 +89,21 @@ public class Application {
                     .build())
             .build();
 
-        GetApisRequest req = GetApisRequest.builder()
+        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
+                .languages(List.of(
+                    "<value>",
+                    "<value>"))
+                .schemaFile(SchemaFile.builder()
+                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
+                    .fileName("example.file")
+                    .build())
                 .build();
 
-        GetApisResponse res = sdk.apis().getApis()
+        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
                 .request(req)
                 .call();
 
-        if (res.apis().isPresent()) {
+        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
             // handle response
         }
     }
@@ -106,26 +116,6 @@ public class Application {
 
 <details open>
 <summary>Available methods</summary>
-
-### [apiEndpoints()](docs/sdks/apiendpoints/README.md)
-
-* [deleteApiEndpoint](docs/sdks/apiendpoints/README.md#deleteapiendpoint) - Delete an ApiEndpoint.
-* [findApiEndpoint](docs/sdks/apiendpoints/README.md#findapiendpoint) - Find an ApiEndpoint via its displayName.
-* [generateOpenApiSpecForApiEndpoint](docs/sdks/apiendpoints/README.md#generateopenapispecforapiendpoint) - Generate an OpenAPI specification for a particular ApiEndpoint.
-* [generatePostmanCollectionForApiEndpoint](docs/sdks/apiendpoints/README.md#generatepostmancollectionforapiendpoint) - Generate a Postman collection for a particular ApiEndpoint.
-* [getAllApiEndpoints](docs/sdks/apiendpoints/README.md#getallapiendpoints) - Get all Api endpoints for a particular apiID.
-* [getAllForVersionApiEndpoints](docs/sdks/apiendpoints/README.md#getallforversionapiendpoints) - Get all ApiEndpoints for a particular apiID and versionID.
-* [getApiEndpoint](docs/sdks/apiendpoints/README.md#getapiendpoint) - Get an ApiEndpoint.
-* [upsertApiEndpoint](docs/sdks/apiendpoints/README.md#upsertapiendpoint) - Upsert an ApiEndpoint.
-
-### [apis()](docs/sdks/apis/README.md)
-
-* [deleteApi](docs/sdks/apis/README.md#deleteapi) - Delete an Api.
-* [generateOpenApiSpec](docs/sdks/apis/README.md#generateopenapispec) - Generate an OpenAPI specification for a particular Api.
-* [generatePostmanCollection](docs/sdks/apis/README.md#generatepostmancollection) - Generate a Postman collection for a particular Api.
-* [getAllApiVersions](docs/sdks/apis/README.md#getallapiversions) - Get all Api versions for a particular ApiEndpoint.
-* [getApis](docs/sdks/apis/README.md#getapis) - Get a list of Apis for a given workspace
-* [upsertApi](docs/sdks/apis/README.md#upsertapi) - Upsert an Api
 
 ### [artifacts()](docs/sdks/artifacts/README.md)
 
@@ -146,12 +136,6 @@ public class Application {
 * [getAccessToken](docs/sdks/auth/README.md#getaccesstoken) - Get or refresh an access token for the current workspace.
 * [getUser](docs/sdks/auth/README.md#getuser) - Get information about the current user.
 * [validateApiKey](docs/sdks/auth/README.md#validateapikey) - Validate the current api key.
-
-### [embeds()](docs/sdks/embeds/README.md)
-
-* [getEmbedAccessToken](docs/sdks/embeds/README.md#getembedaccesstoken) - Get an embed access token for the current workspace.
-* [getValidEmbedAccessTokens](docs/sdks/embeds/README.md#getvalidembedaccesstokens) - Get all valid embed access tokens for the current workspace.
-* [revokeEmbedAccessToken](docs/sdks/embeds/README.md#revokeembedaccesstoken) - Revoke an embed access EmbedToken.
 
 ### [events()](docs/sdks/events/README.md)
 
@@ -175,12 +159,6 @@ public class Application {
 * [storePublishingSecrets](docs/sdks/github/README.md#storepublishingsecrets)
 * [triggerAction](docs/sdks/github/README.md#triggeraction)
 
-### [metadata()](docs/sdks/metadata/README.md)
-
-* [deleteVersionMetadata](docs/sdks/metadata/README.md#deleteversionmetadata) - Delete metadata for a particular apiID and versionID.
-* [getVersionMetadata](docs/sdks/metadata/README.md#getversionmetadata) - Get all metadata for a particular apiID and versionID.
-* [insertVersionMetadata](docs/sdks/metadata/README.md#insertversionmetadata) - Insert metadata for a particular apiID and versionID.
-
 ### [organizations()](docs/sdks/organizations/README.md)
 
 * [create](docs/sdks/organizations/README.md#create) - Create an organization
@@ -195,28 +173,11 @@ public class Application {
 * [getLintingReportSignedUrl](docs/sdks/reports/README.md#getlintingreportsignedurl) - Get the signed access url for the linting reports for a particular document.
 * [uploadReport](docs/sdks/reports/README.md#uploadreport) - Upload a report.
 
-### [requests()](docs/sdks/requests/README.md)
-
-* [generateRequestPostmanCollection](docs/sdks/requests/README.md#generaterequestpostmancollection) - Generate a Postman collection for a particular request.
-* [getRequestFromEventLog](docs/sdks/requests/README.md#getrequestfromeventlog) - Get information about a particular request.
-* [queryEventLog](docs/sdks/requests/README.md#queryeventlog) - Query the event log to retrieve a list of requests.
-
 ### [RyanTest SDK](docs/sdks/ryantest/README.md)
 
 * [generateCodeSamplePreview](docs/sdks/ryantest/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
 * [generateCodeSamplePreviewAsync](docs/sdks/ryantest/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
 * [getCodeSamplePreviewAsync](docs/sdks/ryantest/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
-
-### [schemas()](docs/sdks/schemas/README.md)
-
-* [deleteSchema](docs/sdks/schemas/README.md#deleteschema) - Delete a particular schema revision for an Api.
-* [downloadSchema](docs/sdks/schemas/README.md#downloadschema) - Download the latest schema for a particular apiID.
-* [downloadSchemaRevision](docs/sdks/schemas/README.md#downloadschemarevision) - Download a particular schema revision for an Api.
-* [getSchema](docs/sdks/schemas/README.md#getschema) - Get information about the latest schema.
-* [getSchemaDiff](docs/sdks/schemas/README.md#getschemadiff) - Get a diff of two schema revisions for an Api.
-* [getSchemaRevision](docs/sdks/schemas/README.md#getschemarevision) - Get information about a particular schema revision for an Api.
-* [getSchemas](docs/sdks/schemas/README.md#getschemas) - Get information about all schemas associated with a particular apiID.
-* [registerSchema](docs/sdks/schemas/README.md#registerschema) - Register a schema.
 
 ### [shortURLs()](docs/sdks/shorturls/README.md)
 

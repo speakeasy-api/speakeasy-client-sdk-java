@@ -38,6 +38,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional; 
 
+/**
+ * REST APIs for managing Organizations (speakeasy L1 Tenancy construct)
+ */
 public class Organizations implements
             MethodCallCreateOrganization,
             MethodCallCreateFreeTrial,

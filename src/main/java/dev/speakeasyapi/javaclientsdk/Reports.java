@@ -37,7 +37,7 @@ import java.util.List;
 import java.util.Optional; 
 
 /**
- * REST APIs for managing reports
+ * REST APIs for managing reports (lint reports, change reports, etc)
  */
 public class Reports implements
             MethodCallGetChangesReportSignedUrl,

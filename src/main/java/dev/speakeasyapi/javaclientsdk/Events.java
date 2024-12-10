@@ -51,7 +51,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit; 
 
 /**
- * REST APIs for capturing event data
+ * REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
  */
 public class Events implements
             MethodCallGetWorkspaceEventsByTarget,

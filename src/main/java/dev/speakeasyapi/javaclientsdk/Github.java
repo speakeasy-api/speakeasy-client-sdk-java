@@ -62,6 +62,9 @@ import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.Optional; 
 
+/**
+ * REST APIs for managing the github integration
+ */
 public class Github implements
             MethodCallCheckGithubAccess,
             MethodCallGithubCheckPublishingPRs,

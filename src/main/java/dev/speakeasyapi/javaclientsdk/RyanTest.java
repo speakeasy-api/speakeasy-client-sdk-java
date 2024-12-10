@@ -74,26 +74,6 @@ public class RyanTest implements
     }};
 
     /**
-     * REST APIs for managing Api entities
-     */
-    private final Apis apis;
-
-    /**
-     * REST APIs for managing ApiEndpoint entities
-     */
-    private final ApiEndpoints apiEndpoints;
-
-    /**
-     * REST APIs for managing Version Metadata entities
-     */
-    private final Metadata metadata;
-
-    /**
-     * REST APIs for managing Schema entities
-     */
-    private final Schemas schemas;
-
-    /**
      * REST APIs for working with Registry artifacts
      */
     private final Artifacts artifacts;
@@ -104,16 +84,17 @@ public class RyanTest implements
     private final Auth auth;
 
     /**
-     * REST APIs for retrieving request information
+     * REST APIs for managing the github integration
      */
-    private final Requests requests;
-
     private final Github github;
 
+    /**
+     * REST APIs for managing Organizations (speakeasy L1 Tenancy construct)
+     */
     private final Organizations organizations;
 
     /**
-     * REST APIs for managing reports
+     * REST APIs for managing reports (lint reports, change reports, etc)
      */
     private final Reports reports;
 
@@ -127,15 +108,13 @@ public class RyanTest implements
      */
     private final Suggest suggest;
 
+    /**
+     * REST APIs for managing Workspaces (speakeasy tenancy)
+     */
     private final Workspaces workspaces;
 
     /**
-     * REST APIs for managing embeds
-     */
-    private final Embeds embeds;
-
-    /**
-     * REST APIs for capturing event data
+     * REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
      */
     private final Events events;
 
@@ -143,34 +122,6 @@ public class RyanTest implements
      * REST APIs for managing subscriptions
      */
     private final Subscriptions subscriptions;
-
-    /**
-     * REST APIs for managing Api entities
-     */
-    public Apis apis() {
-        return apis;
-    }
-
-    /**
-     * REST APIs for managing ApiEndpoint entities
-     */
-    public ApiEndpoints apiEndpoints() {
-        return apiEndpoints;
-    }
-
-    /**
-     * REST APIs for managing Version Metadata entities
-     */
-    public Metadata metadata() {
-        return metadata;
-    }
-
-    /**
-     * REST APIs for managing Schema entities
-     */
-    public Schemas schemas() {
-        return schemas;
-    }
 
     /**
      * REST APIs for working with Registry artifacts
@@ -187,22 +138,21 @@ public class RyanTest implements
     }
 
     /**
-     * REST APIs for retrieving request information
+     * REST APIs for managing the github integration
      */
-    public Requests requests() {
-        return requests;
-    }
-
     public Github github() {
         return github;
     }
 
+    /**
+     * REST APIs for managing Organizations (speakeasy L1 Tenancy construct)
+     */
     public Organizations organizations() {
         return organizations;
     }
 
     /**
-     * REST APIs for managing reports
+     * REST APIs for managing reports (lint reports, change reports, etc)
      */
     public Reports reports() {
         return reports;
@@ -222,19 +172,15 @@ public class RyanTest implements
         return suggest;
     }
 
+    /**
+     * REST APIs for managing Workspaces (speakeasy tenancy)
+     */
     public Workspaces workspaces() {
         return workspaces;
     }
 
     /**
-     * REST APIs for managing embeds
-     */
-    public Embeds embeds() {
-        return embeds;
-    }
-
-    /**
-     * REST APIs for capturing event data
+     * REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
      */
     public Events events() {
         return events;
@@ -384,20 +330,14 @@ public class RyanTest implements
 
     private RyanTest(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.apis = new Apis(sdkConfiguration);
-        this.apiEndpoints = new ApiEndpoints(sdkConfiguration);
-        this.metadata = new Metadata(sdkConfiguration);
-        this.schemas = new Schemas(sdkConfiguration);
         this.artifacts = new Artifacts(sdkConfiguration);
         this.auth = new Auth(sdkConfiguration);
-        this.requests = new Requests(sdkConfiguration);
         this.github = new Github(sdkConfiguration);
         this.organizations = new Organizations(sdkConfiguration);
         this.reports = new Reports(sdkConfiguration);
         this.shortURLs = new ShortURLs(sdkConfiguration);
         this.suggest = new Suggest(sdkConfiguration);
         this.workspaces = new Workspaces(sdkConfiguration);
-        this.embeds = new Embeds(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
         this.subscriptions = new Subscriptions(sdkConfiguration);
         this.sdkConfiguration.initialize();
