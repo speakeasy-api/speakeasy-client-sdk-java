@@ -11,7 +11,7 @@ generation:
     oAuth2ClientCredentialsEnabled: false
     oAuth2PasswordEnabled: false
 java:
-  version: 7.22.0
+  version: 7.22.1
   additionalDependencies: []
   additionalPlugins: []
   artifactID: javaclientsdk

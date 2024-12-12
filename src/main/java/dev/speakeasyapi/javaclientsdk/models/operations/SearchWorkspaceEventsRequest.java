@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import dev.speakeasyapi.javaclientsdk.models.shared.InteractionType;
 import dev.speakeasyapi.javaclientsdk.utils.SpeakeasyMetadata;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
+import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.SuppressWarnings;
@@ -38,6 +40,12 @@ public class SearchWorkspaceEventsRequest {
     private Optional<? extends InteractionType> interactionType;
 
     /**
+     * Number of results to return.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=limit")
+    private Optional<Long> limit;
+
+    /**
      * Unique identifier of the lint report digest.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=lint_report_digest")
@@ -56,6 +64,12 @@ public class SearchWorkspaceEventsRequest {
     private Optional<String> sourceRevisionDigest;
 
     /**
+     * Whether the event was successful or not.
+     */
+    @SpeakeasyMetadata("queryParam:style=form,explode=true,name=success")
+    private Optional<Boolean> success;
+
+    /**
      * Unique identifier of the workspace.
      */
     @SpeakeasyMetadata("pathParam:style=simple,explode=false,name=workspace_id")
@@ -66,28 +80,34 @@ public class SearchWorkspaceEventsRequest {
             Optional<String> executionId,
             Optional<String> generateGenLockId,
             Optional<? extends InteractionType> interactionType,
+            Optional<Long> limit,
             Optional<String> lintReportDigest,
             Optional<String> openapiDiffReportDigest,
             Optional<String> sourceRevisionDigest,
+            Optional<Boolean> success,
             Optional<String> workspaceId) {
         Utils.checkNotNull(executionId, "executionId");
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(interactionType, "interactionType");
+        Utils.checkNotNull(limit, "limit");
         Utils.checkNotNull(lintReportDigest, "lintReportDigest");
         Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
         Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
+        Utils.checkNotNull(success, "success");
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.executionId = executionId;
         this.generateGenLockId = generateGenLockId;
         this.interactionType = interactionType;
+        this.limit = limit;
         this.lintReportDigest = lintReportDigest;
         this.openapiDiffReportDigest = openapiDiffReportDigest;
         this.sourceRevisionDigest = sourceRevisionDigest;
+        this.success = success;
         this.workspaceId = workspaceId;
     }
     
     public SearchWorkspaceEventsRequest() {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -116,6 +136,14 @@ public class SearchWorkspaceEventsRequest {
     }
 
     /**
+     * Number of results to return.
+     */
+    @JsonIgnore
+    public Optional<Long> limit() {
+        return limit;
+    }
+
+    /**
      * Unique identifier of the lint report digest.
      */
     @JsonIgnore
@@ -137,6 +165,14 @@ public class SearchWorkspaceEventsRequest {
     @JsonIgnore
     public Optional<String> sourceRevisionDigest() {
         return sourceRevisionDigest;
+    }
+
+    /**
+     * Whether the event was successful or not.
+     */
+    @JsonIgnore
+    public Optional<Boolean> success() {
+        return success;
     }
 
     /**
@@ -206,6 +242,24 @@ public class SearchWorkspaceEventsRequest {
     }
 
     /**
+     * Number of results to return.
+     */
+    public SearchWorkspaceEventsRequest withLimit(long limit) {
+        Utils.checkNotNull(limit, "limit");
+        this.limit = Optional.ofNullable(limit);
+        return this;
+    }
+
+    /**
+     * Number of results to return.
+     */
+    public SearchWorkspaceEventsRequest withLimit(Optional<Long> limit) {
+        Utils.checkNotNull(limit, "limit");
+        this.limit = limit;
+        return this;
+    }
+
+    /**
      * Unique identifier of the lint report digest.
      */
     public SearchWorkspaceEventsRequest withLintReportDigest(String lintReportDigest) {
@@ -260,6 +314,24 @@ public class SearchWorkspaceEventsRequest {
     }
 
     /**
+     * Whether the event was successful or not.
+     */
+    public SearchWorkspaceEventsRequest withSuccess(boolean success) {
+        Utils.checkNotNull(success, "success");
+        this.success = Optional.ofNullable(success);
+        return this;
+    }
+
+    /**
+     * Whether the event was successful or not.
+     */
+    public SearchWorkspaceEventsRequest withSuccess(Optional<Boolean> success) {
+        Utils.checkNotNull(success, "success");
+        this.success = success;
+        return this;
+    }
+
+    /**
      * Unique identifier of the workspace.
      */
     public SearchWorkspaceEventsRequest withWorkspaceId(String workspaceId) {
@@ -290,9 +362,11 @@ public class SearchWorkspaceEventsRequest {
             Objects.deepEquals(this.executionId, other.executionId) &&
             Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
             Objects.deepEquals(this.interactionType, other.interactionType) &&
+            Objects.deepEquals(this.limit, other.limit) &&
             Objects.deepEquals(this.lintReportDigest, other.lintReportDigest) &&
             Objects.deepEquals(this.openapiDiffReportDigest, other.openapiDiffReportDigest) &&
             Objects.deepEquals(this.sourceRevisionDigest, other.sourceRevisionDigest) &&
+            Objects.deepEquals(this.success, other.success) &&
             Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
@@ -302,9 +376,11 @@ public class SearchWorkspaceEventsRequest {
             executionId,
             generateGenLockId,
             interactionType,
+            limit,
             lintReportDigest,
             openapiDiffReportDigest,
             sourceRevisionDigest,
+            success,
             workspaceId);
     }
     
@@ -314,9 +390,11 @@ public class SearchWorkspaceEventsRequest {
                 "executionId", executionId,
                 "generateGenLockId", generateGenLockId,
                 "interactionType", interactionType,
+                "limit", limit,
                 "lintReportDigest", lintReportDigest,
                 "openapiDiffReportDigest", openapiDiffReportDigest,
                 "sourceRevisionDigest", sourceRevisionDigest,
+                "success", success,
                 "workspaceId", workspaceId);
     }
     
@@ -328,11 +406,15 @@ public class SearchWorkspaceEventsRequest {
  
         private Optional<? extends InteractionType> interactionType = Optional.empty();
  
+        private Optional<Long> limit = Optional.empty();
+ 
         private Optional<String> lintReportDigest = Optional.empty();
  
         private Optional<String> openapiDiffReportDigest = Optional.empty();
  
         private Optional<String> sourceRevisionDigest = Optional.empty();
+ 
+        private Optional<Boolean> success = Optional.empty();
  
         private Optional<String> workspaceId = Optional.empty();  
         
@@ -395,6 +477,24 @@ public class SearchWorkspaceEventsRequest {
         }
 
         /**
+         * Number of results to return.
+         */
+        public Builder limit(long limit) {
+            Utils.checkNotNull(limit, "limit");
+            this.limit = Optional.ofNullable(limit);
+            return this;
+        }
+
+        /**
+         * Number of results to return.
+         */
+        public Builder limit(Optional<Long> limit) {
+            Utils.checkNotNull(limit, "limit");
+            this.limit = limit;
+            return this;
+        }
+
+        /**
          * Unique identifier of the lint report digest.
          */
         public Builder lintReportDigest(String lintReportDigest) {
@@ -449,6 +549,24 @@ public class SearchWorkspaceEventsRequest {
         }
 
         /**
+         * Whether the event was successful or not.
+         */
+        public Builder success(boolean success) {
+            Utils.checkNotNull(success, "success");
+            this.success = Optional.ofNullable(success);
+            return this;
+        }
+
+        /**
+         * Whether the event was successful or not.
+         */
+        public Builder success(Optional<Boolean> success) {
+            Utils.checkNotNull(success, "success");
+            this.success = success;
+            return this;
+        }
+
+        /**
          * Unique identifier of the workspace.
          */
         public Builder workspaceId(String workspaceId) {
@@ -471,9 +589,11 @@ public class SearchWorkspaceEventsRequest {
                 executionId,
                 generateGenLockId,
                 interactionType,
+                limit,
                 lintReportDigest,
                 openapiDiffReportDigest,
                 sourceRevisionDigest,
+                success,
                 workspaceId);
         }
     }
