@@ -7,21 +7,17 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.shared.RegistrySubscription;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 
-public class ListRegistrySubscriptionsResponse implements Response {
+public class IgnoreSubscriptionNamespaceResponse implements Response {
 
     /**
      * HTTP response content type for this operation
@@ -38,32 +34,17 @@ public class ListRegistrySubscriptionsResponse implements Response {
      */
     private HttpResponse<InputStream> rawResponse;
 
-    /**
-     * OK
-     */
-    private Optional<? extends List<RegistrySubscription>> classes;
-
     @JsonCreator
-    public ListRegistrySubscriptionsResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<InputStream> rawResponse,
-            Optional<? extends List<RegistrySubscription>> classes) {
-        Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(statusCode, "statusCode");
-        Utils.checkNotNull(rawResponse, "rawResponse");
-        Utils.checkNotNull(classes, "classes");
-        this.contentType = contentType;
-        this.statusCode = statusCode;
-        this.rawResponse = rawResponse;
-        this.classes = classes;
-    }
-    
-    public ListRegistrySubscriptionsResponse(
+    public IgnoreSubscriptionNamespaceResponse(
             String contentType,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
-        this(contentType, statusCode, rawResponse, Optional.empty());
+        Utils.checkNotNull(contentType, "contentType");
+        Utils.checkNotNull(statusCode, "statusCode");
+        Utils.checkNotNull(rawResponse, "rawResponse");
+        this.contentType = contentType;
+        this.statusCode = statusCode;
+        this.rawResponse = rawResponse;
     }
 
     /**
@@ -90,15 +71,6 @@ public class ListRegistrySubscriptionsResponse implements Response {
         return rawResponse;
     }
 
-    /**
-     * OK
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<RegistrySubscription>> classes() {
-        return (Optional<List<RegistrySubscription>>) classes;
-    }
-
     public final static Builder builder() {
         return new Builder();
     }
@@ -106,7 +78,7 @@ public class ListRegistrySubscriptionsResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public ListRegistrySubscriptionsResponse withContentType(String contentType) {
+    public IgnoreSubscriptionNamespaceResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
@@ -115,7 +87,7 @@ public class ListRegistrySubscriptionsResponse implements Response {
     /**
      * HTTP response status code for this operation
      */
-    public ListRegistrySubscriptionsResponse withStatusCode(int statusCode) {
+    public IgnoreSubscriptionNamespaceResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -124,27 +96,9 @@ public class ListRegistrySubscriptionsResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public ListRegistrySubscriptionsResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public IgnoreSubscriptionNamespaceResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
-        return this;
-    }
-
-    /**
-     * OK
-     */
-    public ListRegistrySubscriptionsResponse withClasses(List<RegistrySubscription> classes) {
-        Utils.checkNotNull(classes, "classes");
-        this.classes = Optional.ofNullable(classes);
-        return this;
-    }
-
-    /**
-     * OK
-     */
-    public ListRegistrySubscriptionsResponse withClasses(Optional<? extends List<RegistrySubscription>> classes) {
-        Utils.checkNotNull(classes, "classes");
-        this.classes = classes;
         return this;
     }
     
@@ -156,12 +110,11 @@ public class ListRegistrySubscriptionsResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ListRegistrySubscriptionsResponse other = (ListRegistrySubscriptionsResponse) o;
+        IgnoreSubscriptionNamespaceResponse other = (IgnoreSubscriptionNamespaceResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
-            Objects.deepEquals(this.rawResponse, other.rawResponse) &&
-            Objects.deepEquals(this.classes, other.classes);
+            Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
     
     @Override
@@ -169,17 +122,15 @@ public class ListRegistrySubscriptionsResponse implements Response {
         return Objects.hash(
             contentType,
             statusCode,
-            rawResponse,
-            classes);
+            rawResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(ListRegistrySubscriptionsResponse.class,
+        return Utils.toString(IgnoreSubscriptionNamespaceResponse.class,
                 "contentType", contentType,
                 "statusCode", statusCode,
-                "rawResponse", rawResponse,
-                "classes", classes);
+                "rawResponse", rawResponse);
     }
     
     public final static class Builder {
@@ -188,9 +139,7 @@ public class ListRegistrySubscriptionsResponse implements Response {
  
         private Integer statusCode;
  
-        private HttpResponse<InputStream> rawResponse;
- 
-        private Optional<? extends List<RegistrySubscription>> classes = Optional.empty();  
+        private HttpResponse<InputStream> rawResponse;  
         
         private Builder() {
           // force use of static builder() method
@@ -222,31 +171,12 @@ public class ListRegistrySubscriptionsResponse implements Response {
             this.rawResponse = rawResponse;
             return this;
         }
-
-        /**
-         * OK
-         */
-        public Builder classes(List<RegistrySubscription> classes) {
-            Utils.checkNotNull(classes, "classes");
-            this.classes = Optional.ofNullable(classes);
-            return this;
-        }
-
-        /**
-         * OK
-         */
-        public Builder classes(Optional<? extends List<RegistrySubscription>> classes) {
-            Utils.checkNotNull(classes, "classes");
-            this.classes = classes;
-            return this;
-        }
         
-        public ListRegistrySubscriptionsResponse build() {
-            return new ListRegistrySubscriptionsResponse(
+        public IgnoreSubscriptionNamespaceResponse build() {
+            return new IgnoreSubscriptionNamespaceResponse(
                 contentType,
                 statusCode,
-                rawResponse,
-                classes);
+                rawResponse);
         }
     }
 }

@@ -1340,6 +1340,80 @@ actions:
                     }
                 }
             }
+  - target: $["paths"]["/v1/subscriptions/{subscriptionID}/{namespaceName}/activate"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: activateSubscriptionNamespace
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    ActivateSubscriptionNamespaceRequest req = ActivateSubscriptionNamespaceRequest.builder()
+                            .subscriptionID("<id>")
+                            .namespaceName("<value>")
+                            .build();
+
+                    ActivateSubscriptionNamespaceResponse res = sdk.subscriptions().activateSubscriptionNamespace()
+                            .request(req)
+                            .call();
+
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/v1/subscriptions/{subscriptionID}/{namespaceName}/ignore"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: ignoreSubscriptionNamespace
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    IgnoreSubscriptionNamespaceRequest req = IgnoreSubscriptionNamespaceRequest.builder()
+                            .subscriptionID("<id>")
+                            .namespaceName("<value>")
+                            .build();
+
+                    IgnoreSubscriptionNamespaceResponse res = sdk.subscriptions().ignoreSubscriptionNamespace()
+                            .request(req)
+                            .call();
+
+                    // handle response
+                }
+            }
   - target: $["paths"]["/v1/suggest/items"]["post"]
     update:
       x-codeSamples:
@@ -2000,92 +2074,6 @@ actions:
                             .call();
 
                     if (res.workspaceFeatureFlagResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/registry_subscriptions"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: listRegistrySubscriptions
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    ListRegistrySubscriptionsRequest req = ListRegistrySubscriptionsRequest.builder()
-                            .build();
-
-                    ListRegistrySubscriptionsResponse res = sdk.subscriptions().listRegistrySubscriptions()
-                            .request(req)
-                            .call();
-
-                    if (res.registrySubscriptions().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/registry_subscriptions"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: createSubscription
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.EventType;
-            import dev.speakeasyapi.javaclientsdk.models.shared.RegistrySubscription;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.SubscriptionType;
-            import java.lang.Exception;
-            import java.time.OffsetDateTime;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    CreateSubscriptionRequest req = CreateSubscriptionRequest.builder()
-                            .registrySubscription(RegistrySubscription.builder()
-                                .id("<id>")
-                                .workspaceId("<id>")
-                                .eventType(EventType.UPDATE)
-                                .namespaceName("<value>")
-                                .subscriptionType(SubscriptionType.CLI)
-                                .subscriptionSettings("<value>")
-                                .createdAt(OffsetDateTime.parse("2022-06-08T17:58:57.702Z"))
-                                .updatedAt(OffsetDateTime.parse("2022-07-20T08:51:35.776Z"))
-                                .build())
-                            .build();
-
-                    CreateSubscriptionResponse res = sdk.subscriptions().createSubscription()
-                            .request(req)
-                            .call();
-
-                    if (res.registrySubscription().isPresent()) {
                         // handle response
                     }
                 }

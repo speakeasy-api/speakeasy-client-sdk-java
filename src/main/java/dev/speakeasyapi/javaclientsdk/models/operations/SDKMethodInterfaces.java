@@ -239,6 +239,18 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallActivateSubscriptionNamespace {
+        ActivateSubscriptionNamespaceResponse activateSubscriptionNamespace(
+            ActivateSubscriptionNamespaceRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallIgnoreSubscriptionNamespace {
+        IgnoreSubscriptionNamespaceResponse ignoreSubscriptionNamespace(
+            IgnoreSubscriptionNamespaceRequest request) throws Exception;
+    }
+
+
     public interface MethodCallSuggest {
         SuggestResponse suggest(
             SuggestRequest request) throws Exception;
@@ -373,18 +385,6 @@ public class SDKMethodInterfaces {
     public interface MethodCallSearchWorkspaceEvents {
         SearchWorkspaceEventsResponse search(
             SearchWorkspaceEventsRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallCreateSubscription {
-        CreateSubscriptionResponse createSubscription(
-            CreateSubscriptionRequest request) throws Exception;
-    }
-
-
-    public interface MethodCallListRegistrySubscriptions {
-        ListRegistrySubscriptionsResponse listRegistrySubscriptions(
-            ListRegistrySubscriptionsRequest request) throws Exception;
     }
 
 

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: cfe5bd9d0515c386691a5c79ddd69e6a
+  docChecksum: a776550f34009612df62ba6268f834e3
   docVersion: 0.4.0
-  speakeasyVersion: 1.454.0
-  generationVersion: 2.477.0
-  releaseVersion: 7.22.1
-  configChecksum: 40b8a7291195d941a3d7faf240b4cd40
+  speakeasyVersion: 1.454.2
+  generationVersion: 2.477.4
+  releaseVersion: 7.22.2
+  configChecksum: 0b95a856ed24b181ff7e220c904eed08
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -32,6 +32,8 @@ generatedFiles:
   - USAGE.md
   - build.gradle
   - docs/models/errors/Error.md
+  - docs/models/operations/ActivateSubscriptionNamespaceRequest.md
+  - docs/models/operations/ActivateSubscriptionNamespaceResponse.md
   - docs/models/operations/CheckGithubAccessRequest.md
   - docs/models/operations/CheckGithubAccessResponse.md
   - docs/models/operations/CreateFreeTrialResponse.md
@@ -39,8 +41,6 @@ generatedFiles:
   - docs/models/operations/CreateRemoteSourceResponse.md
   - docs/models/operations/CreateRequestBody.md
   - docs/models/operations/CreateResponse.md
-  - docs/models/operations/CreateSubscriptionRequest.md
-  - docs/models/operations/CreateSubscriptionResponse.md
   - docs/models/operations/CreateWorkspaceResponse.md
   - docs/models/operations/CreateWorkspaceTokenRequest.md
   - docs/models/operations/CreateWorkspaceTokenResponse.md
@@ -110,10 +110,10 @@ generatedFiles:
   - docs/models/operations/GithubTriggerActionResponse.md
   - docs/models/operations/GrantUserAccessToWorkspaceRequest.md
   - docs/models/operations/GrantUserAccessToWorkspaceResponse.md
+  - docs/models/operations/IgnoreSubscriptionNamespaceRequest.md
+  - docs/models/operations/IgnoreSubscriptionNamespaceResponse.md
   - docs/models/operations/LinkGithubAccessRequest.md
   - docs/models/operations/LinkGithubAccessResponse.md
-  - docs/models/operations/ListRegistrySubscriptionsRequest.md
-  - docs/models/operations/ListRegistrySubscriptionsResponse.md
   - docs/models/operations/ListRemoteSourcesRequest.md
   - docs/models/operations/ListRemoteSourcesResponse.md
   - docs/models/operations/PostTagsRequest.md
@@ -160,7 +160,6 @@ generatedFiles:
   - docs/models/shared/CodeSamplesJobStatus.md
   - docs/models/shared/CompositeSpecMetadata.md
   - docs/models/shared/Diagnostic.md
-  - docs/models/shared/EventType.md
   - docs/models/shared/FeatureFlag.md
   - docs/models/shared/GenerateBumpType.md
   - docs/models/shared/GetNamespacesResponse.md
@@ -190,7 +189,6 @@ generatedFiles:
   - docs/models/shared/OrganizationUsageResponse.md
   - docs/models/shared/PreflightRequest.md
   - docs/models/shared/PreflightToken.md
-  - docs/models/shared/RegistrySubscription.md
   - docs/models/shared/Relationship.md
   - docs/models/shared/RemoteDocument.md
   - docs/models/shared/RemoteSource.md
@@ -202,7 +200,6 @@ generatedFiles:
   - docs/models/shared/Secrets.md
   - docs/models/shared/Security.md
   - docs/models/shared/ShortURL.md
-  - docs/models/shared/SubscriptionType.md
   - docs/models/shared/SuggestItemsRequestBody.md
   - docs/models/shared/SuggestOptsOld.md
   - docs/models/shared/SuggestRequestBody.md
@@ -254,6 +251,9 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/errors/AuthException.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/errors/Error.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/errors/SDKError.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ActivateSubscriptionNamespaceRequest.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ActivateSubscriptionNamespaceRequestBuilder.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ActivateSubscriptionNamespaceResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CheckGithubAccessRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CheckGithubAccessRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CheckGithubAccessResponse.java
@@ -266,9 +266,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateRequestBody.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateSubscriptionRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateSubscriptionRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateSubscriptionResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateWorkspaceRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateWorkspaceResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/CreateWorkspaceTokenRequest.java
@@ -377,12 +374,12 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GrantUserAccessToWorkspaceRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GrantUserAccessToWorkspaceRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GrantUserAccessToWorkspaceResponse.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/IgnoreSubscriptionNamespaceRequest.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/IgnoreSubscriptionNamespaceRequestBuilder.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/IgnoreSubscriptionNamespaceResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/LinkGithubAccessRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/LinkGithubAccessRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/LinkGithubAccessResponse.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRegistrySubscriptionsRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRegistrySubscriptionsRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRegistrySubscriptionsResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRemoteSourcesRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRemoteSourcesRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/ListRemoteSourcesResponse.java
@@ -445,7 +442,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CodeSamplesJobStatus.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/CompositeSpecMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Diagnostic.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/EventType.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/FeatureFlag.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GenerateBumpType.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/GetNamespacesResponse.java
@@ -475,7 +471,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/OrganizationUsageResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/PreflightRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/PreflightToken.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RegistrySubscription.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Relationship.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteDocument.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteSource.java
@@ -487,7 +482,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Secrets.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Security.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/ShortURL.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SubscriptionType.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SuggestItemsRequestBody.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SuggestOptsOld.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/SuggestRequestBody.java
@@ -1602,4 +1596,22 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 651364}
+  activateSubscriptionNamespace:
+    speakeasy-default-activate-subscription-namespace:
+      parameters:
+        path:
+          subscriptionID: "<id>"
+          namespaceName: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 566510}
+  ignoreSubscriptionNamespace:
+    speakeasy-default-ignore-subscription-namespace:
+      parameters:
+        path:
+          subscriptionID: "<id>"
+          namespaceName: "<value>"
+      responses:
+        4XX:
+          application/json: {"message": "<value>", "status_code": 844164}
 generatedTests: {}

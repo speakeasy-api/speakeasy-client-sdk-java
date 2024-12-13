@@ -7,30 +7,22 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import dev.speakeasyapi.javaclientsdk.models.shared.RegistrySubscription;
 import dev.speakeasyapi.javaclientsdk.utils.Response;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Integer;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
 import java.net.http.HttpResponse;
 import java.util.Objects;
-import java.util.Optional;
 
 
-public class CreateSubscriptionResponse implements Response {
+public class ActivateSubscriptionNamespaceResponse implements Response {
 
     /**
      * HTTP response content type for this operation
      */
     private String contentType;
-
-    /**
-     * OK
-     */
-    private Optional<? extends RegistrySubscription> registrySubscription;
 
     /**
      * HTTP response status code for this operation
@@ -43,26 +35,16 @@ public class CreateSubscriptionResponse implements Response {
     private HttpResponse<InputStream> rawResponse;
 
     @JsonCreator
-    public CreateSubscriptionResponse(
+    public ActivateSubscriptionNamespaceResponse(
             String contentType,
-            Optional<? extends RegistrySubscription> registrySubscription,
             int statusCode,
             HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(contentType, "contentType");
-        Utils.checkNotNull(registrySubscription, "registrySubscription");
         Utils.checkNotNull(statusCode, "statusCode");
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.contentType = contentType;
-        this.registrySubscription = registrySubscription;
         this.statusCode = statusCode;
         this.rawResponse = rawResponse;
-    }
-    
-    public CreateSubscriptionResponse(
-            String contentType,
-            int statusCode,
-            HttpResponse<InputStream> rawResponse) {
-        this(contentType, Optional.empty(), statusCode, rawResponse);
     }
 
     /**
@@ -71,15 +53,6 @@ public class CreateSubscriptionResponse implements Response {
     @JsonIgnore
     public String contentType() {
         return contentType;
-    }
-
-    /**
-     * OK
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<RegistrySubscription> registrySubscription() {
-        return (Optional<RegistrySubscription>) registrySubscription;
     }
 
     /**
@@ -105,34 +78,16 @@ public class CreateSubscriptionResponse implements Response {
     /**
      * HTTP response content type for this operation
      */
-    public CreateSubscriptionResponse withContentType(String contentType) {
+    public ActivateSubscriptionNamespaceResponse withContentType(String contentType) {
         Utils.checkNotNull(contentType, "contentType");
         this.contentType = contentType;
         return this;
     }
 
     /**
-     * OK
-     */
-    public CreateSubscriptionResponse withRegistrySubscription(RegistrySubscription registrySubscription) {
-        Utils.checkNotNull(registrySubscription, "registrySubscription");
-        this.registrySubscription = Optional.ofNullable(registrySubscription);
-        return this;
-    }
-
-    /**
-     * OK
-     */
-    public CreateSubscriptionResponse withRegistrySubscription(Optional<? extends RegistrySubscription> registrySubscription) {
-        Utils.checkNotNull(registrySubscription, "registrySubscription");
-        this.registrySubscription = registrySubscription;
-        return this;
-    }
-
-    /**
      * HTTP response status code for this operation
      */
-    public CreateSubscriptionResponse withStatusCode(int statusCode) {
+    public ActivateSubscriptionNamespaceResponse withStatusCode(int statusCode) {
         Utils.checkNotNull(statusCode, "statusCode");
         this.statusCode = statusCode;
         return this;
@@ -141,7 +96,7 @@ public class CreateSubscriptionResponse implements Response {
     /**
      * Raw HTTP response; suitable for custom response parsing
      */
-    public CreateSubscriptionResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
+    public ActivateSubscriptionNamespaceResponse withRawResponse(HttpResponse<InputStream> rawResponse) {
         Utils.checkNotNull(rawResponse, "rawResponse");
         this.rawResponse = rawResponse;
         return this;
@@ -155,10 +110,9 @@ public class CreateSubscriptionResponse implements Response {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateSubscriptionResponse other = (CreateSubscriptionResponse) o;
+        ActivateSubscriptionNamespaceResponse other = (ActivateSubscriptionNamespaceResponse) o;
         return 
             Objects.deepEquals(this.contentType, other.contentType) &&
-            Objects.deepEquals(this.registrySubscription, other.registrySubscription) &&
             Objects.deepEquals(this.statusCode, other.statusCode) &&
             Objects.deepEquals(this.rawResponse, other.rawResponse);
     }
@@ -167,16 +121,14 @@ public class CreateSubscriptionResponse implements Response {
     public int hashCode() {
         return Objects.hash(
             contentType,
-            registrySubscription,
             statusCode,
             rawResponse);
     }
     
     @Override
     public String toString() {
-        return Utils.toString(CreateSubscriptionResponse.class,
+        return Utils.toString(ActivateSubscriptionNamespaceResponse.class,
                 "contentType", contentType,
-                "registrySubscription", registrySubscription,
                 "statusCode", statusCode,
                 "rawResponse", rawResponse);
     }
@@ -184,8 +136,6 @@ public class CreateSubscriptionResponse implements Response {
     public final static class Builder {
  
         private String contentType;
- 
-        private Optional<? extends RegistrySubscription> registrySubscription = Optional.empty();
  
         private Integer statusCode;
  
@@ -201,24 +151,6 @@ public class CreateSubscriptionResponse implements Response {
         public Builder contentType(String contentType) {
             Utils.checkNotNull(contentType, "contentType");
             this.contentType = contentType;
-            return this;
-        }
-
-        /**
-         * OK
-         */
-        public Builder registrySubscription(RegistrySubscription registrySubscription) {
-            Utils.checkNotNull(registrySubscription, "registrySubscription");
-            this.registrySubscription = Optional.ofNullable(registrySubscription);
-            return this;
-        }
-
-        /**
-         * OK
-         */
-        public Builder registrySubscription(Optional<? extends RegistrySubscription> registrySubscription) {
-            Utils.checkNotNull(registrySubscription, "registrySubscription");
-            this.registrySubscription = registrySubscription;
             return this;
         }
 
@@ -240,10 +172,9 @@ public class CreateSubscriptionResponse implements Response {
             return this;
         }
         
-        public CreateSubscriptionResponse build() {
-            return new CreateSubscriptionResponse(
+        public ActivateSubscriptionNamespaceResponse build() {
+            return new ActivateSubscriptionNamespaceResponse(
                 contentType,
-                registrySubscription,
                 statusCode,
                 rawResponse);
         }

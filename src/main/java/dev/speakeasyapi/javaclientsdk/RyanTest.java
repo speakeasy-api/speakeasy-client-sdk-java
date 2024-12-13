@@ -104,6 +104,11 @@ public class RyanTest implements
     private final ShortURLs shortURLs;
 
     /**
+     * REST APIs for managing subscriptions
+     */
+    private final Subscriptions subscriptions;
+
+    /**
      * REST APIs for managing LLM OAS suggestions
      */
     private final Suggest suggest;
@@ -117,11 +122,6 @@ public class RyanTest implements
      * REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
      */
     private final Events events;
-
-    /**
-     * REST APIs for managing subscriptions
-     */
-    private final Subscriptions subscriptions;
 
     /**
      * REST APIs for working with Registry artifacts
@@ -166,6 +166,13 @@ public class RyanTest implements
     }
 
     /**
+     * REST APIs for managing subscriptions
+     */
+    public Subscriptions subscriptions() {
+        return subscriptions;
+    }
+
+    /**
      * REST APIs for managing LLM OAS suggestions
      */
     public Suggest suggest() {
@@ -184,13 +191,6 @@ public class RyanTest implements
      */
     public Events events() {
         return events;
-    }
-
-    /**
-     * REST APIs for managing subscriptions
-     */
-    public Subscriptions subscriptions() {
-        return subscriptions;
     }
 
     private final SDKConfiguration sdkConfiguration;
@@ -336,10 +336,10 @@ public class RyanTest implements
         this.organizations = new Organizations(sdkConfiguration);
         this.reports = new Reports(sdkConfiguration);
         this.shortURLs = new ShortURLs(sdkConfiguration);
+        this.subscriptions = new Subscriptions(sdkConfiguration);
         this.suggest = new Suggest(sdkConfiguration);
         this.workspaces = new Workspaces(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
-        this.subscriptions = new Subscriptions(sdkConfiguration);
         this.sdkConfiguration.initialize();
     }
 

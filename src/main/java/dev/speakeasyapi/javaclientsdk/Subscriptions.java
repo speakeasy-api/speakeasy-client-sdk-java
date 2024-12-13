@@ -5,26 +5,23 @@
 package dev.speakeasyapi.javaclientsdk;
 
 import com.fasterxml.jackson.core.type.TypeReference;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionRequestBuilder;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateSubscriptionResponse;
-import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsRequestBuilder;
-import dev.speakeasyapi.javaclientsdk.models.operations.ListRegistrySubscriptionsResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.SDKMethodInterfaces.*;
-import dev.speakeasyapi.javaclientsdk.models.shared.RegistrySubscription;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPClient;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPRequest;
 import dev.speakeasyapi.javaclientsdk.utils.Hook.AfterErrorContextImpl;
 import dev.speakeasyapi.javaclientsdk.utils.Hook.AfterSuccessContextImpl;
 import dev.speakeasyapi.javaclientsdk.utils.Hook.BeforeRequestContextImpl;
-import dev.speakeasyapi.javaclientsdk.utils.SerializedBody;
-import dev.speakeasyapi.javaclientsdk.utils.Utils.JsonShape;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.io.InputStream;
 import java.lang.Exception;
-import java.lang.Object;
 import java.lang.String;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -35,8 +32,8 @@ import java.util.Optional;
  * REST APIs for managing subscriptions
  */
 public class Subscriptions implements
-            MethodCallCreateSubscription,
-            MethodCallListRegistrySubscriptions {
+            MethodCallActivateSubscriptionNamespace,
+            MethodCallIgnoreSubscriptionNamespace {
 
     private final SDKConfiguration sdkConfiguration;
 
@@ -46,42 +43,29 @@ public class Subscriptions implements
 
 
     /**
-     * Create Subscription
+     * Activate an ignored namespace for a subscription
      * @return The call builder
      */
-    public CreateSubscriptionRequestBuilder createSubscription() {
-        return new CreateSubscriptionRequestBuilder(this);
+    public ActivateSubscriptionNamespaceRequestBuilder activateSubscriptionNamespace() {
+        return new ActivateSubscriptionNamespaceRequestBuilder(this);
     }
 
     /**
-     * Create Subscription
+     * Activate an ignored namespace for a subscription
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public CreateSubscriptionResponse createSubscription(
-            CreateSubscriptionRequest request) throws Exception {
+    public ActivateSubscriptionNamespaceResponse activateSubscriptionNamespace(
+            ActivateSubscriptionNamespaceRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                CreateSubscriptionRequest.class,
+                ActivateSubscriptionNamespaceRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspace_id}/registry_subscriptions",
+                "/v1/subscriptions/{subscriptionID}/{namespaceName}/activate",
                 request, this.sdkConfiguration.globals);
         
         HTTPRequest _req = new HTTPRequest(_url, "POST");
-        Object _convertedRequest = Utils.convertToShape(
-                request, 
-                JsonShape.DEFAULT,
-                new TypeReference<CreateSubscriptionRequest>() {});
-        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
-                _convertedRequest, 
-                "registrySubscription",
-                "json",
-                false);
-        if (_serializedRequestBody == null) {
-            throw new Exception("Request body is required");
-        }
-        _req.setBody(Optional.ofNullable(_serializedRequestBody));
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
@@ -94,7 +78,7 @@ public class Subscriptions implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
-                      "createSubscription", 
+                      "activateSubscriptionNamespace", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
@@ -105,7 +89,7 @@ public class Subscriptions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
-                            "createSubscription",
+                            "activateSubscriptionNamespace",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -114,7 +98,7 @@ public class Subscriptions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
-                            "createSubscription",
+                            "activateSubscriptionNamespace",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -123,7 +107,7 @@ public class Subscriptions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
-                            "createSubscription",
+                            "activateSubscriptionNamespace",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -133,22 +117,25 @@ public class Subscriptions implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        CreateSubscriptionResponse.Builder _resBuilder = 
-            CreateSubscriptionResponse
+        ActivateSubscriptionNamespaceResponse.Builder _resBuilder = 
+            ActivateSubscriptionNamespaceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        CreateSubscriptionResponse _res = _resBuilder.build();
+        ActivateSubscriptionNamespaceResponse _res = _resBuilder.build();
         
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                RegistrySubscription _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<RegistrySubscription>() {});
-                _res.withRegistrySubscription(Optional.ofNullable(_out));
-                return _res;
+                    new TypeReference<Error>() {});
+                throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
@@ -157,7 +144,7 @@ public class Subscriptions implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             // no content 
             throw new SDKError(
                     _httpRes, 
@@ -175,37 +162,32 @@ public class Subscriptions implements
 
 
     /**
-     * List Subscriptions
+     * Ignored a namespace for a subscription
      * @return The call builder
      */
-    public ListRegistrySubscriptionsRequestBuilder listRegistrySubscriptions() {
-        return new ListRegistrySubscriptionsRequestBuilder(this);
+    public IgnoreSubscriptionNamespaceRequestBuilder ignoreSubscriptionNamespace() {
+        return new IgnoreSubscriptionNamespaceRequestBuilder(this);
     }
 
     /**
-     * List Subscriptions
+     * Ignored a namespace for a subscription
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
      */
-    public ListRegistrySubscriptionsResponse listRegistrySubscriptions(
-            ListRegistrySubscriptionsRequest request) throws Exception {
+    public IgnoreSubscriptionNamespaceResponse ignoreSubscriptionNamespace(
+            IgnoreSubscriptionNamespaceRequest request) throws Exception {
         String _baseUrl = this.sdkConfiguration.serverUrl;
         String _url = Utils.generateURL(
-                ListRegistrySubscriptionsRequest.class,
+                IgnoreSubscriptionNamespaceRequest.class,
                 _baseUrl,
-                "/v1/workspace/{workspace_id}/registry_subscriptions",
+                "/v1/subscriptions/{subscriptionID}/{namespaceName}/ignore",
                 request, this.sdkConfiguration.globals);
         
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
         _req.addHeader("Accept", "application/json")
             .addHeader("user-agent", 
                 SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                ListRegistrySubscriptionsRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
         
         Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
         Utils.configureSecurity(_req,  
@@ -215,7 +197,7 @@ public class Subscriptions implements
             sdkConfiguration.hooks()
                .beforeRequest(
                   new BeforeRequestContextImpl(
-                      "listRegistrySubscriptions", 
+                      "ignoreSubscriptionNamespace", 
                       Optional.of(List.of()), 
                       _hookSecuritySource),
                   _req.build());
@@ -226,7 +208,7 @@ public class Subscriptions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
-                            "listRegistrySubscriptions",
+                            "ignoreSubscriptionNamespace",
                             Optional.of(List.of()),
                             _hookSecuritySource),
                         Optional.of(_httpRes),
@@ -235,7 +217,7 @@ public class Subscriptions implements
                 _httpRes = sdkConfiguration.hooks()
                     .afterSuccess(
                         new AfterSuccessContextImpl(
-                            "listRegistrySubscriptions",
+                            "ignoreSubscriptionNamespace",
                             Optional.of(List.of()), 
                             _hookSecuritySource),
                          _httpRes);
@@ -244,7 +226,7 @@ public class Subscriptions implements
             _httpRes = sdkConfiguration.hooks()
                     .afterError(
                         new AfterErrorContextImpl(
-                            "listRegistrySubscriptions",
+                            "ignoreSubscriptionNamespace",
                             Optional.of(List.of()),
                             _hookSecuritySource), 
                         Optional.empty(),
@@ -254,22 +236,25 @@ public class Subscriptions implements
             .headers()
             .firstValue("Content-Type")
             .orElse("application/octet-stream");
-        ListRegistrySubscriptionsResponse.Builder _resBuilder = 
-            ListRegistrySubscriptionsResponse
+        IgnoreSubscriptionNamespaceResponse.Builder _resBuilder = 
+            IgnoreSubscriptionNamespaceResponse
                 .builder()
                 .contentType(_contentType)
                 .statusCode(_httpRes.statusCode())
                 .rawResponse(_httpRes);
 
-        ListRegistrySubscriptionsResponse _res = _resBuilder.build();
+        IgnoreSubscriptionNamespaceResponse _res = _resBuilder.build();
         
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
+            // no content 
+            return _res;
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                List<RegistrySubscription> _out = Utils.mapper().readValue(
+                Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<List<RegistrySubscription>>() {});
-                _res.withClasses(Optional.ofNullable(_out));
-                return _res;
+                    new TypeReference<Error>() {});
+                throw _out;
             } else {
                 throw new SDKError(
                     _httpRes, 
@@ -278,7 +263,7 @@ public class Subscriptions implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             // no content 
             throw new SDKError(
                     _httpRes, 
