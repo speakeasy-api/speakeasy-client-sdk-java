@@ -25,7 +25,7 @@ public class SuggestOpenAPIRequestBody {
     @SpeakeasyMetadata("multipartForm:name=opts,json")
     private Optional<? extends SuggestOptsOld> opts;
 
-    @SpeakeasyMetadata("multipartForm:file")
+    @SpeakeasyMetadata("multipartForm:file,name=schema")
     private Schema schema;
 
     @JsonCreator

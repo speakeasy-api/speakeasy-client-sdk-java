@@ -23,7 +23,7 @@ public class UploadReportRequestBody {
     @SpeakeasyMetadata("multipartForm:name=data,json")
     private Report data;
 
-    @SpeakeasyMetadata("multipartForm:file")
+    @SpeakeasyMetadata("multipartForm:file,name=file")
     private File file;
 
     @JsonCreator

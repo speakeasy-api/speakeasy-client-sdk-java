@@ -19,7 +19,7 @@ public class SchemaFile {
     @SpeakeasyMetadata("multipartForm:content")
     private byte[] content;
 
-    @SpeakeasyMetadata("multipartForm:name=schema_file")
+    @SpeakeasyMetadata("multipartForm:name=fileName")
     private String fileName;
 
     @JsonCreator

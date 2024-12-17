@@ -7,18 +7,26 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class RemoteSourceSubscriptionSettings {
 
     @JsonProperty("base_spec_namespaces")
     private List<String> baseSpecNamespaces;
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("ignored_namespaces")
+    private Optional<? extends List<String>> ignoredNamespaces;
 
     @JsonProperty("output_namespace")
     private String outputNamespace;
@@ -29,19 +37,35 @@ public class RemoteSourceSubscriptionSettings {
     @JsonCreator
     public RemoteSourceSubscriptionSettings(
             @JsonProperty("base_spec_namespaces") List<String> baseSpecNamespaces,
+            @JsonProperty("ignored_namespaces") Optional<? extends List<String>> ignoredNamespaces,
             @JsonProperty("output_namespace") String outputNamespace,
             @JsonProperty("overlay_namespaces") List<String> overlayNamespaces) {
         Utils.checkNotNull(baseSpecNamespaces, "baseSpecNamespaces");
+        Utils.checkNotNull(ignoredNamespaces, "ignoredNamespaces");
         Utils.checkNotNull(outputNamespace, "outputNamespace");
         Utils.checkNotNull(overlayNamespaces, "overlayNamespaces");
         this.baseSpecNamespaces = baseSpecNamespaces;
+        this.ignoredNamespaces = ignoredNamespaces;
         this.outputNamespace = outputNamespace;
         this.overlayNamespaces = overlayNamespaces;
+    }
+    
+    public RemoteSourceSubscriptionSettings(
+            List<String> baseSpecNamespaces,
+            String outputNamespace,
+            List<String> overlayNamespaces) {
+        this(baseSpecNamespaces, Optional.empty(), outputNamespace, overlayNamespaces);
     }
 
     @JsonIgnore
     public List<String> baseSpecNamespaces() {
         return baseSpecNamespaces;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<List<String>> ignoredNamespaces() {
+        return (Optional<List<String>>) ignoredNamespaces;
     }
 
     @JsonIgnore
@@ -61,6 +85,18 @@ public class RemoteSourceSubscriptionSettings {
     public RemoteSourceSubscriptionSettings withBaseSpecNamespaces(List<String> baseSpecNamespaces) {
         Utils.checkNotNull(baseSpecNamespaces, "baseSpecNamespaces");
         this.baseSpecNamespaces = baseSpecNamespaces;
+        return this;
+    }
+
+    public RemoteSourceSubscriptionSettings withIgnoredNamespaces(List<String> ignoredNamespaces) {
+        Utils.checkNotNull(ignoredNamespaces, "ignoredNamespaces");
+        this.ignoredNamespaces = Optional.ofNullable(ignoredNamespaces);
+        return this;
+    }
+
+    public RemoteSourceSubscriptionSettings withIgnoredNamespaces(Optional<? extends List<String>> ignoredNamespaces) {
+        Utils.checkNotNull(ignoredNamespaces, "ignoredNamespaces");
+        this.ignoredNamespaces = ignoredNamespaces;
         return this;
     }
 
@@ -87,6 +123,7 @@ public class RemoteSourceSubscriptionSettings {
         RemoteSourceSubscriptionSettings other = (RemoteSourceSubscriptionSettings) o;
         return 
             Objects.deepEquals(this.baseSpecNamespaces, other.baseSpecNamespaces) &&
+            Objects.deepEquals(this.ignoredNamespaces, other.ignoredNamespaces) &&
             Objects.deepEquals(this.outputNamespace, other.outputNamespace) &&
             Objects.deepEquals(this.overlayNamespaces, other.overlayNamespaces);
     }
@@ -95,6 +132,7 @@ public class RemoteSourceSubscriptionSettings {
     public int hashCode() {
         return Objects.hash(
             baseSpecNamespaces,
+            ignoredNamespaces,
             outputNamespace,
             overlayNamespaces);
     }
@@ -103,6 +141,7 @@ public class RemoteSourceSubscriptionSettings {
     public String toString() {
         return Utils.toString(RemoteSourceSubscriptionSettings.class,
                 "baseSpecNamespaces", baseSpecNamespaces,
+                "ignoredNamespaces", ignoredNamespaces,
                 "outputNamespace", outputNamespace,
                 "overlayNamespaces", overlayNamespaces);
     }
@@ -110,6 +149,8 @@ public class RemoteSourceSubscriptionSettings {
     public final static class Builder {
  
         private List<String> baseSpecNamespaces;
+ 
+        private Optional<? extends List<String>> ignoredNamespaces = Optional.empty();
  
         private String outputNamespace;
  
@@ -122,6 +163,18 @@ public class RemoteSourceSubscriptionSettings {
         public Builder baseSpecNamespaces(List<String> baseSpecNamespaces) {
             Utils.checkNotNull(baseSpecNamespaces, "baseSpecNamespaces");
             this.baseSpecNamespaces = baseSpecNamespaces;
+            return this;
+        }
+
+        public Builder ignoredNamespaces(List<String> ignoredNamespaces) {
+            Utils.checkNotNull(ignoredNamespaces, "ignoredNamespaces");
+            this.ignoredNamespaces = Optional.ofNullable(ignoredNamespaces);
+            return this;
+        }
+
+        public Builder ignoredNamespaces(Optional<? extends List<String>> ignoredNamespaces) {
+            Utils.checkNotNull(ignoredNamespaces, "ignoredNamespaces");
+            this.ignoredNamespaces = ignoredNamespaces;
             return this;
         }
 
@@ -140,6 +193,7 @@ public class RemoteSourceSubscriptionSettings {
         public RemoteSourceSubscriptionSettings build() {
             return new RemoteSourceSubscriptionSettings(
                 baseSpecNamespaces,
+                ignoredNamespaces,
                 outputNamespace,
                 overlayNamespaces);
         }

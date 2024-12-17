@@ -33,7 +33,7 @@ public class CodeSampleSchemaInput {
     /**
      * The OpenAPI file to be uploaded
      */
-    @SpeakeasyMetadata("multipartForm:file")
+    @SpeakeasyMetadata("multipartForm:file,name=schema_file")
     private SchemaFile schemaFile;
 
     /**
