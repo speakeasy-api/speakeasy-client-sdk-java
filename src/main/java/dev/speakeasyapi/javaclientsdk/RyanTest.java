@@ -32,6 +32,7 @@ import java.io.InputStream;
 import java.lang.Exception;
 import java.lang.Object;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.HashMap;
@@ -69,6 +70,7 @@ public class RyanTest implements
     /**
      * SERVERS contains the list of server urls available to the SDK.
      */
+    @SuppressWarnings("serial")
     public static final Map<AvailableServers, String> SERVERS = new HashMap<>() { {
     put(AvailableServers.PROD, "https://api.prod.speakeasyapi.dev");
     }};
@@ -290,7 +292,7 @@ public class RyanTest implements
          */
         public Builder workspaceId(String workspaceId) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("pathParam")) {
-                this.sdkConfiguration.globals.get("parameters").put("pathParam", new java.util.HashMap<>());
+                this.sdkConfiguration.globals.get("parameters").put("pathParam", new HashMap<>());
             }
 
             this.sdkConfiguration.globals.get("parameters").get("pathParam").put("workspaceId", workspaceId);

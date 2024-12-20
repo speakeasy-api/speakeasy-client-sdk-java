@@ -227,6 +227,20 @@ public class TargetSDK {
     private InteractionType lastEventInteractionType;
 
     /**
+     * Timestamp when the last publishing event was created.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_publish_created_at")
+    private Optional<OffsetDateTime> lastPublishCreatedAt;
+
+    /**
+     * Link to the GitHub action run for the last publishing event.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("last_publish_gh_action_run_link")
+    private Optional<String> lastPublishGhActionRunLink;
+
+    /**
      * Name of the published package.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -349,6 +363,8 @@ public class TargetSDK {
             @JsonProperty("last_event_created_at") OffsetDateTime lastEventCreatedAt,
             @JsonProperty("last_event_id") String lastEventId,
             @JsonProperty("last_event_interaction_type") InteractionType lastEventInteractionType,
+            @JsonProperty("last_publish_created_at") Optional<OffsetDateTime> lastPublishCreatedAt,
+            @JsonProperty("last_publish_gh_action_run_link") Optional<String> lastPublishGhActionRunLink,
             @JsonProperty("publish_package_name") Optional<String> publishPackageName,
             @JsonProperty("publish_package_registry_name") Optional<String> publishPackageRegistryName,
             @JsonProperty("publish_package_url") Optional<String> publishPackageUrl,
@@ -392,6 +408,8 @@ public class TargetSDK {
         Utils.checkNotNull(lastEventCreatedAt, "lastEventCreatedAt");
         Utils.checkNotNull(lastEventId, "lastEventId");
         Utils.checkNotNull(lastEventInteractionType, "lastEventInteractionType");
+        Utils.checkNotNull(lastPublishCreatedAt, "lastPublishCreatedAt");
+        Utils.checkNotNull(lastPublishGhActionRunLink, "lastPublishGhActionRunLink");
         Utils.checkNotNull(publishPackageName, "publishPackageName");
         Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
         Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
@@ -435,6 +453,8 @@ public class TargetSDK {
         this.lastEventCreatedAt = lastEventCreatedAt;
         this.lastEventId = lastEventId;
         this.lastEventInteractionType = lastEventInteractionType;
+        this.lastPublishCreatedAt = lastPublishCreatedAt;
+        this.lastPublishGhActionRunLink = lastPublishGhActionRunLink;
         this.publishPackageName = publishPackageName;
         this.publishPackageRegistryName = publishPackageRegistryName;
         this.publishPackageUrl = publishPackageUrl;
@@ -457,7 +477,7 @@ public class TargetSDK {
             OffsetDateTime lastEventCreatedAt,
             String lastEventId,
             InteractionType lastEventInteractionType) {
-        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
+        this(Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateGenLockId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), generateTarget, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, lastEventCreatedAt, lastEventId, lastEventInteractionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     /**
@@ -698,6 +718,22 @@ public class TargetSDK {
     @JsonIgnore
     public InteractionType lastEventInteractionType() {
         return lastEventInteractionType;
+    }
+
+    /**
+     * Timestamp when the last publishing event was created.
+     */
+    @JsonIgnore
+    public Optional<OffsetDateTime> lastPublishCreatedAt() {
+        return lastPublishCreatedAt;
+    }
+
+    /**
+     * Link to the GitHub action run for the last publishing event.
+     */
+    @JsonIgnore
+    public Optional<String> lastPublishGhActionRunLink() {
+        return lastPublishGhActionRunLink;
     }
 
     /**
@@ -1295,6 +1331,42 @@ public class TargetSDK {
     }
 
     /**
+     * Timestamp when the last publishing event was created.
+     */
+    public TargetSDK withLastPublishCreatedAt(OffsetDateTime lastPublishCreatedAt) {
+        Utils.checkNotNull(lastPublishCreatedAt, "lastPublishCreatedAt");
+        this.lastPublishCreatedAt = Optional.ofNullable(lastPublishCreatedAt);
+        return this;
+    }
+
+    /**
+     * Timestamp when the last publishing event was created.
+     */
+    public TargetSDK withLastPublishCreatedAt(Optional<OffsetDateTime> lastPublishCreatedAt) {
+        Utils.checkNotNull(lastPublishCreatedAt, "lastPublishCreatedAt");
+        this.lastPublishCreatedAt = lastPublishCreatedAt;
+        return this;
+    }
+
+    /**
+     * Link to the GitHub action run for the last publishing event.
+     */
+    public TargetSDK withLastPublishGhActionRunLink(String lastPublishGhActionRunLink) {
+        Utils.checkNotNull(lastPublishGhActionRunLink, "lastPublishGhActionRunLink");
+        this.lastPublishGhActionRunLink = Optional.ofNullable(lastPublishGhActionRunLink);
+        return this;
+    }
+
+    /**
+     * Link to the GitHub action run for the last publishing event.
+     */
+    public TargetSDK withLastPublishGhActionRunLink(Optional<String> lastPublishGhActionRunLink) {
+        Utils.checkNotNull(lastPublishGhActionRunLink, "lastPublishGhActionRunLink");
+        this.lastPublishGhActionRunLink = lastPublishGhActionRunLink;
+        return this;
+    }
+
+    /**
      * Name of the published package.
      */
     public TargetSDK withPublishPackageName(String publishPackageName) {
@@ -1568,6 +1640,8 @@ public class TargetSDK {
             Objects.deepEquals(this.lastEventCreatedAt, other.lastEventCreatedAt) &&
             Objects.deepEquals(this.lastEventId, other.lastEventId) &&
             Objects.deepEquals(this.lastEventInteractionType, other.lastEventInteractionType) &&
+            Objects.deepEquals(this.lastPublishCreatedAt, other.lastPublishCreatedAt) &&
+            Objects.deepEquals(this.lastPublishGhActionRunLink, other.lastPublishGhActionRunLink) &&
             Objects.deepEquals(this.publishPackageName, other.publishPackageName) &&
             Objects.deepEquals(this.publishPackageRegistryName, other.publishPackageRegistryName) &&
             Objects.deepEquals(this.publishPackageUrl, other.publishPackageUrl) &&
@@ -1616,6 +1690,8 @@ public class TargetSDK {
             lastEventCreatedAt,
             lastEventId,
             lastEventInteractionType,
+            lastPublishCreatedAt,
+            lastPublishGhActionRunLink,
             publishPackageName,
             publishPackageRegistryName,
             publishPackageUrl,
@@ -1664,6 +1740,8 @@ public class TargetSDK {
                 "lastEventCreatedAt", lastEventCreatedAt,
                 "lastEventId", lastEventId,
                 "lastEventInteractionType", lastEventInteractionType,
+                "lastPublishCreatedAt", lastPublishCreatedAt,
+                "lastPublishGhActionRunLink", lastPublishGhActionRunLink,
                 "publishPackageName", publishPackageName,
                 "publishPackageRegistryName", publishPackageRegistryName,
                 "publishPackageUrl", publishPackageUrl,
@@ -1740,6 +1818,10 @@ public class TargetSDK {
         private String lastEventId;
  
         private InteractionType lastEventInteractionType;
+ 
+        private Optional<OffsetDateTime> lastPublishCreatedAt = Optional.empty();
+ 
+        private Optional<String> lastPublishGhActionRunLink = Optional.empty();
  
         private Optional<String> publishPackageName = Optional.empty();
  
@@ -2258,6 +2340,42 @@ public class TargetSDK {
         }
 
         /**
+         * Timestamp when the last publishing event was created.
+         */
+        public Builder lastPublishCreatedAt(OffsetDateTime lastPublishCreatedAt) {
+            Utils.checkNotNull(lastPublishCreatedAt, "lastPublishCreatedAt");
+            this.lastPublishCreatedAt = Optional.ofNullable(lastPublishCreatedAt);
+            return this;
+        }
+
+        /**
+         * Timestamp when the last publishing event was created.
+         */
+        public Builder lastPublishCreatedAt(Optional<OffsetDateTime> lastPublishCreatedAt) {
+            Utils.checkNotNull(lastPublishCreatedAt, "lastPublishCreatedAt");
+            this.lastPublishCreatedAt = lastPublishCreatedAt;
+            return this;
+        }
+
+        /**
+         * Link to the GitHub action run for the last publishing event.
+         */
+        public Builder lastPublishGhActionRunLink(String lastPublishGhActionRunLink) {
+            Utils.checkNotNull(lastPublishGhActionRunLink, "lastPublishGhActionRunLink");
+            this.lastPublishGhActionRunLink = Optional.ofNullable(lastPublishGhActionRunLink);
+            return this;
+        }
+
+        /**
+         * Link to the GitHub action run for the last publishing event.
+         */
+        public Builder lastPublishGhActionRunLink(Optional<String> lastPublishGhActionRunLink) {
+            Utils.checkNotNull(lastPublishGhActionRunLink, "lastPublishGhActionRunLink");
+            this.lastPublishGhActionRunLink = lastPublishGhActionRunLink;
+            return this;
+        }
+
+        /**
          * Name of the published package.
          */
         public Builder publishPackageName(String publishPackageName) {
@@ -2523,6 +2641,8 @@ public class TargetSDK {
                 lastEventCreatedAt,
                 lastEventId,
                 lastEventInteractionType,
+                lastPublishCreatedAt,
+                lastPublishGhActionRunLink,
                 publishPackageName,
                 publishPackageRegistryName,
                 publishPackageUrl,

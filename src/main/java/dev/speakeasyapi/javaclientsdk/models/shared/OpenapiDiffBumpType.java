@@ -6,6 +6,8 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * OpenapiDiffBumpType - Bump type of the lock file (calculated semver delta, or a custom change (manual release))
@@ -25,5 +27,14 @@ public enum OpenapiDiffBumpType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<OpenapiDiffBumpType> fromValue(String value) {
+        for (OpenapiDiffBumpType o: OpenapiDiffBumpType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

@@ -6,6 +6,8 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 /**
  * GenerateBumpType - Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
@@ -28,5 +30,14 @@ public enum GenerateBumpType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<GenerateBumpType> fromValue(String value) {
+        for (GenerateBumpType o: GenerateBumpType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }

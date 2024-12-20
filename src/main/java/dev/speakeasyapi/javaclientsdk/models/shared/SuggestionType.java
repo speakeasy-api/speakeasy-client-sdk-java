@@ -6,6 +6,8 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.lang.String;
+import java.util.Objects;
+import java.util.Optional;
 
 public enum SuggestionType {
     METHOD_NAMES("method-names"),
@@ -20,5 +22,14 @@ public enum SuggestionType {
     
     public String value() {
         return value;
+    }
+    
+    public static Optional<SuggestionType> fromValue(String value) {
+        for (SuggestionType o: SuggestionType.values()) {
+            if (Objects.deepEquals(o.value, value)) {
+                return Optional.of(o);
+            }
+        }
+        return Optional.empty();
     }
 }
