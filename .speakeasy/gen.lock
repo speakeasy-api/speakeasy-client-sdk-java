@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 17684e14e65fca2909aaf49de5c6b935
+  docChecksum: bb7b102d1334d2d3e66e7cd8d8b866d8
   docVersion: 0.4.0
-  speakeasyVersion: 1.456.1
-  generationVersion: 2.481.0
-  releaseVersion: 7.23.0
-  configChecksum: 5d7c27b1f1b374fab2fcc487b2b00375
+  speakeasyVersion: 1.462.2
+  generationVersion: 2.486.1
+  releaseVersion: 7.23.1
+  configChecksum: 3839c0e909c6d495dbacab4306d16a8a
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,7 +14,7 @@ features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.33.3
+    core: 3.33.4
     deprecations: 2.81.1
     downloadStreams: 0.1.1
     globalSecurity: 2.82.7
@@ -61,6 +61,8 @@ generatedFiles:
   - docs/models/operations/GetCodeSamplePreviewAsyncRequest.md
   - docs/models/operations/GetCodeSamplePreviewAsyncResponse.md
   - docs/models/operations/GetCodeSamplePreviewAsyncResponseBody.md
+  - docs/models/operations/GetCodeSamplesRequest.md
+  - docs/models/operations/GetCodeSamplesResponse.md
   - docs/models/operations/GetGitHubActionRequest.md
   - docs/models/operations/GetGitHubActionResponse.md
   - docs/models/operations/GetGithubSetupStateRequest.md
@@ -209,6 +211,8 @@ generatedFiles:
   - docs/models/shared/Tag.md
   - docs/models/shared/TargetSDK.md
   - docs/models/shared/Type.md
+  - docs/models/shared/UsageSnippet.md
+  - docs/models/shared/UsageSnippets.md
   - docs/models/shared/User.md
   - docs/models/shared/V2Descriptor.md
   - docs/models/shared/WorkflowDocument.md
@@ -222,6 +226,7 @@ generatedFiles:
   - docs/models/shared/Workspaces.md
   - docs/sdks/artifacts/README.md
   - docs/sdks/auth/README.md
+  - docs/sdks/codesamples/README.md
   - docs/sdks/events/README.md
   - docs/sdks/github/README.md
   - docs/sdks/organizations/README.md
@@ -238,6 +243,7 @@ generatedFiles:
   - settings.gradle
   - src/main/java/dev/speakeasyapi/javaclientsdk/Artifacts.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Auth.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/CodeSamples.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Events.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Github.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/Organizations.java
@@ -295,6 +301,9 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncResponseBody.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplesRequest.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplesRequestBuilder.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplesResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionResponse.java
@@ -491,6 +500,8 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Tag.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/TargetSDK.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Type.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/UsageSnippet.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/UsageSnippets.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/User.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/V2Descriptor.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkflowDocument.java
@@ -1297,6 +1308,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 217594}
   getWorkspace:
     speakeasy-default-get-workspace:
+      parameters:
+        path:
+          workspace_id: "<id>"
       responses:
         "200":
           application/json: {"created_at": "2024-06-17T21:39:51.489Z", "id": "<id>", "name": "<value>", "organization_id": "<value>", "slug": "<value>", "telemetry_disabled": true, "updated_at": "2022-01-05T09:55:04.665Z", "verified": false}
@@ -1308,6 +1322,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 868924}
   getWorkspaceFeatureFlags:
     speakeasy-default-get-workspace-feature-flags:
+      parameters:
+        path:
+          workspace_id: "<id>"
       responses:
         5XX:
           application/json: {"message": "<value>", "status_code": 365854}
@@ -1319,6 +1336,7 @@ examples:
         path:
           targetID: "<value>"
           target_id: "<id>"
+          workspace_id: "<id>"
         query: {}
       responses:
         "200":
@@ -1334,6 +1352,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 966013}
   postWorkspaceEvents:
     speakeasy-default-post-workspace-events:
+      parameters:
+        path:
+          workspace_id: "<id>"
       requestBody:
         application/json: []
       responses:
@@ -1341,6 +1362,10 @@ examples:
           application/json: {"message": "<value>", "status_code": 962857}
   searchWorkspaceEvents:
     speakeasy-default-search-workspace-events:
+      parameters:
+        path:
+          workspace_id: "<id>"
+        query: {}
       responses:
         "200":
           application/json: []
@@ -1450,6 +1475,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 951062}
   createWorkspaceToken:
     speakeasy-default-create-workspace-token:
+      parameters:
+        path:
+          workspace_id: "<id>"
       requestBody:
         application/json: {"alg": "<value>", "created_at": "2022-08-16T02:33:00.784Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}
       responses:
@@ -1460,6 +1488,7 @@ examples:
       parameters:
         path:
           tokenID: "<id>"
+          workspace_id: "<id>"
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 120260}
@@ -1479,6 +1508,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 16308}
   getWorkspaceSettings:
     speakeasy-default-get-workspace-settings:
+      parameters:
+        path:
+          workspace_id: "<id>"
       responses:
         2XX:
           application/json: {"created_at": "2024-05-29T22:34:47.605Z", "updated_at": "2023-02-24T21:50:01.663Z", "webhook_url": "https://different-amendment.com/", "workspace_id": "<id>"}
@@ -1486,6 +1518,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 864485}
   getWorkspaceTeam:
     speakeasy-default-get-workspace-team:
+      parameters:
+        path:
+          workspace_id: "<id>"
       responses:
         2XX:
           application/json: {"users": []}
@@ -1493,6 +1528,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 194974}
   getWorkspaceTokens:
     speakeasy-default-get-workspace-tokens:
+      parameters:
+        path:
+          workspace_id: "<id>"
       responses:
         2XX:
           application/json: [{"alg": "<value>", "created_at": "2023-07-01T03:05:24.969Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}, {"alg": "<value>", "created_at": "2023-11-10T11:33:52.654Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}, {"alg": "<value>", "created_at": "2023-11-06T09:03:46.133Z", "id": "<id>", "key": "<key>", "name": "<value>", "workspace_id": "<id>"}]
@@ -1503,6 +1541,7 @@ examples:
       parameters:
         path:
           email: "Lucinda.Batz8@hotmail.com"
+          workspace_id: "<id>"
       responses:
         "200":
           application/json: {"relationship": {"user_id": "<id>", "workspace_id": "<id>"}}
@@ -1513,11 +1552,15 @@ examples:
       parameters:
         path:
           userId: "<id>"
+          workspace_id: "<id>"
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 243814}
   updateWorkspaceDetails:
     speakeasy-default-update-workspace-details:
+      parameters:
+        path:
+          workspace_id: "<id>"
       requestBody:
         application/json: {"created_at": "2024-07-28T19:04:48.565Z", "id": "<id>", "name": "<value>", "organization_id": "<id>", "slug": "<value>", "updated_at": "2023-10-17T10:52:42.015Z", "verified": true}
       responses:
@@ -1525,6 +1568,9 @@ examples:
           application/json: {"message": "<value>", "status_code": 991464}
   updateWorkspaceSettings:
     speakeasy-default-update-workspace-settings:
+      parameters:
+        path:
+          workspace_id: "<id>"
       requestBody:
         application/json: {"created_at": "2022-07-05T11:43:28.305Z", "updated_at": "2023-05-15T05:39:21.874Z", "webhook_url": "https://grown-pharmacopoeia.net", "workspace_id": "<id>"}
       responses:
@@ -1532,6 +1578,10 @@ examples:
           application/json: {"message": "<value>", "status_code": 54657}
   getWorkspaceTargetsDeprecated:
     speakeasy-default-get-workspace-targets-deprecated:
+      parameters:
+        path:
+          workspace_id: "<id>"
+        query: {}
       responses:
         "200":
           application/json: []
@@ -1620,4 +1670,14 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 844164}
+  getCodeSamples:
+    speakeasy-default-get-code-samples:
+      parameters:
+        query:
+          registry_url: "https://normal-making.name"
+      responses:
+        2XX:
+          application/json: {"snippets": [{"code": "<value>", "language": "<value>", "operationId": "<id>"}, {"code": "<value>", "language": "<value>", "operationId": "<id>"}, {"code": "<value>", "language": "<value>", "operationId": "<id>"}]}
+        4XX:
+          application/json: {"message": "<value>", "status_code": 458049}
 generatedTests: {}

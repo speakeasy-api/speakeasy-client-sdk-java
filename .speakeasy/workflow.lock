@@ -1,22 +1,22 @@
-speakeasyVersion: 1.456.1
+speakeasyVersion: 1.462.2
 sources:
     first-source: {}
     my-source:
         sourceNamespace: my-source-new
-        sourceRevisionDigest: sha256:f08996695e52a6fc8590c6c35188f35a85e78fadf56d5416552bfb849574302f
-        sourceBlobDigest: sha256:2b1030ee3c1d82bb205f4230146d4632dcd59cc07c2eb266d5f294390b1188c3
+        sourceRevisionDigest: sha256:a6dee05b9ddb3b90328103f374c78e6369b99f3f48c9e7ffc6811c003ec699ff
+        sourceBlobDigest: sha256:e7aec57fcab24b90b71218efd6d6ddec717e6187121af68b9910031461f3d529
         tags:
             - latest
-            - speakeasy-sdk-regen-1734652951
+            - speakeasy-sdk-regen-1735948930
             - 0.4.0
 targets:
     java-target:
         source: my-source
         sourceNamespace: my-source-new
-        sourceRevisionDigest: sha256:f08996695e52a6fc8590c6c35188f35a85e78fadf56d5416552bfb849574302f
-        sourceBlobDigest: sha256:2b1030ee3c1d82bb205f4230146d4632dcd59cc07c2eb266d5f294390b1188c3
+        sourceRevisionDigest: sha256:a6dee05b9ddb3b90328103f374c78e6369b99f3f48c9e7ffc6811c003ec699ff
+        sourceBlobDigest: sha256:e7aec57fcab24b90b71218efd6d6ddec717e6187121af68b9910031461f3d529
         codeSamplesNamespace: my-source-java-code-samples
-        codeSamplesRevisionDigest: sha256:6ca7e356051de301fca3ca4128d777ba96f70074493f0c59ed3b4a3890b47e71
+        codeSamplesRevisionDigest: sha256:0afcdce17c2cb8393aeea20f761baacd8bc2589f68634ff6447ecd2e1a8b552e
     py:
         source: first-source
     ts:

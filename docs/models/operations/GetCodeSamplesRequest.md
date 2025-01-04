@@ -1,0 +1,10 @@
+# GetCodeSamplesRequest
+
+
+## Fields
+
+| Field                                                                                                  | Type                                                                                                   | Required                                                                                               | Description                                                                                            |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `languages`                                                                                            | List\<*String*>                                                                                        | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |
+| `operationIds`                                                                                         | List\<*String*>                                                                                        | :heavy_minus_sign:                                                                                     | N/A                                                                                                    |
+| `registryUrl`                                                                                          | *String*                                                                                               | :heavy_check_mark:                                                                                     | The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source |

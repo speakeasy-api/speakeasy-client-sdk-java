@@ -369,6 +369,44 @@ actions:
                     }
                 }
             }
+  - target: $["paths"]["/v1/code_sample"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getCodeSamples
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Error, Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetCodeSamplesRequest req = GetCodeSamplesRequest.builder()
+                            .registryUrl("https://normal-making.name")
+                            .build();
+
+                    GetCodeSamplesResponse res = sdk.codeSamples().get()
+                            .request(req)
+                            .call();
+
+                    if (res.usageSnippets().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
   - target: $["paths"]["/v1/code_sample/preview"]["post"]
     update:
       x-codeSamples:
@@ -407,7 +445,7 @@ actions:
                                 .build())
                             .build();
 
-                    GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+                    GenerateCodeSamplePreviewResponse res = sdk.codeSamples().generateCodeSamplePreview()
                             .request(req)
                             .call();
 
@@ -455,7 +493,7 @@ actions:
                                 .build())
                             .build();
 
-                    GenerateCodeSamplePreviewAsyncResponse res = sdk.generateCodeSamplePreviewAsync()
+                    GenerateCodeSamplePreviewAsyncResponse res = sdk.codeSamples().generateCodeSamplePreviewAsync()
                             .request(req)
                             .call();
 
@@ -493,7 +531,7 @@ actions:
                             .jobID("<id>")
                             .build();
 
-                    GetCodeSamplePreviewAsyncResponse res = sdk.getCodeSamplePreviewAsync()
+                    GetCodeSamplePreviewAsyncResponse res = sdk.codeSamples().getCodeSamplePreviewAsync()
                             .request(req)
                             .call();
 
@@ -1038,8 +1076,8 @@ actions:
                             .slug("<value>")
                             .accountType(AccountType.SCALE_UP)
                             .telemetryDisabled(false)
-                            .createdAt(OffsetDateTime.parse("2023-04-03T12:48:32.253Z"))
-                            .updatedAt(OffsetDateTime.parse("2022-05-28T06:20:22.766Z"))
+                            .createdAt(OffsetDateTime.parse("2024-04-02T12:48:32.253Z"))
+                            .updatedAt(OffsetDateTime.parse("2023-05-28T06:20:22.766Z"))
                             .ssoActivated(true)
                             .build();
 
@@ -1704,12 +1742,12 @@ actions:
                         .build();
 
                     Workspace req = Workspace.builder()
-                            .createdAt(OffsetDateTime.parse("2023-06-18T07:14:55.338Z"))
+                            .createdAt(OffsetDateTime.parse("2024-06-17T07:14:55.338Z"))
                             .id("<id>")
                             .name("<value>")
                             .organizationId("<id>")
                             .slug("<value>")
-                            .updatedAt(OffsetDateTime.parse("2023-12-01T17:06:07.804Z"))
+                            .updatedAt(OffsetDateTime.parse("2024-11-30T17:06:07.804Z"))
                             .verified(true)
                             .build();
 
@@ -1821,6 +1859,7 @@ actions:
                         .build();
 
                     GetWorkspaceRequest req = GetWorkspaceRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceResponse res = sdk.workspaces().getByID()
@@ -1861,14 +1900,15 @@ actions:
 
                     UpdateWorkspaceDetailsRequest req = UpdateWorkspaceDetailsRequest.builder()
                             .workspace(Workspace.builder()
-                                .createdAt(OffsetDateTime.parse("2024-07-28T19:04:48.565Z"))
+                                .createdAt(OffsetDateTime.parse("2025-07-28T19:04:48.565Z"))
                                 .id("<id>")
                                 .name("<value>")
                                 .organizationId("<id>")
                                 .slug("<value>")
-                                .updatedAt(OffsetDateTime.parse("2023-10-17T10:52:42.015Z"))
+                                .updatedAt(OffsetDateTime.parse("2024-10-16T10:52:42.015Z"))
                                 .verified(true)
                                 .build())
+                            .workspaceId("<id>")
                             .build();
 
                     UpdateWorkspaceDetailsResponse res = sdk.workspaces().update()
@@ -1904,6 +1944,7 @@ actions:
                         .build();
 
                     SearchWorkspaceEventsRequest req = SearchWorkspaceEventsRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     SearchWorkspaceEventsResponse res = sdk.events().search()
@@ -1952,11 +1993,12 @@ actions:
                                     .workspaceId("<id>")
                                     .speakeasyApiKeyName("<value>")
                                     .interactionType(InteractionType.QUICKSTART)
-                                    .localStartedAt(OffsetDateTime.parse("2023-09-09T05:59:33.876Z"))
-                                    .createdAt(OffsetDateTime.parse("2024-08-12T17:54:17.538Z"))
+                                    .localStartedAt(OffsetDateTime.parse("2024-09-08T05:59:33.876Z"))
+                                    .createdAt(OffsetDateTime.parse("2025-08-12T17:54:17.538Z"))
                                     .speakeasyVersion("<value>")
                                     .success(true)
                                     .build()))
+                            .workspaceId("<id>")
                             .build();
 
                     PostWorkspaceEventsResponse res = sdk.events().post()
@@ -1992,6 +2034,7 @@ actions:
                         .build();
 
                     GetWorkspaceTargetsDeprecatedRequest req = GetWorkspaceTargetsDeprecatedRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceTargetsDeprecatedResponse res = sdk.events().getTargetsDeprecated()
@@ -2030,6 +2073,7 @@ actions:
 
                     GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
                             .targetId("<id>")
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceEventsByTargetResponse res = sdk.events().getEventsByTarget()
@@ -2067,6 +2111,7 @@ actions:
                         .build();
 
                     GetWorkspaceFeatureFlagsRequest req = GetWorkspaceFeatureFlagsRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceFeatureFlagsResponse res = sdk.workspaces().getFeatureFlags()
@@ -2104,6 +2149,7 @@ actions:
                         .build();
 
                     GetWorkspaceSettingsRequest req = GetWorkspaceSettingsRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceSettingsResponse res = sdk.workspaces().getSettings()
@@ -2146,9 +2192,10 @@ actions:
                             .workspaceSettings(WorkspaceSettings.builder()
                                 .workspaceId("<id>")
                                 .webhookUrl("https://last-suspension.info/")
-                                .createdAt(OffsetDateTime.parse("2023-12-29T06:46:35.807Z"))
-                                .updatedAt(OffsetDateTime.parse("2024-02-04T10:37:56.725Z"))
+                                .createdAt(OffsetDateTime.parse("2024-12-28T06:46:35.807Z"))
+                                .updatedAt(OffsetDateTime.parse("2025-02-03T10:37:56.725Z"))
                                 .build())
+                            .workspaceId("<id>")
                             .build();
 
                     UpdateWorkspaceSettingsResponse res = sdk.workspaces().updateSettings()
@@ -2184,6 +2231,7 @@ actions:
                         .build();
 
                     GetWorkspaceTeamRequest req = GetWorkspaceTeamRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceTeamResponse res = sdk.workspaces().getTeam()
@@ -2222,6 +2270,7 @@ actions:
 
                     GrantUserAccessToWorkspaceRequest req = GrantUserAccessToWorkspaceRequest.builder()
                             .email("Lucinda.Batz8@hotmail.com")
+                            .workspaceId("<id>")
                             .build();
 
                     GrantUserAccessToWorkspaceResponse res = sdk.workspaces().grantAccess()
@@ -2260,6 +2309,7 @@ actions:
 
                     RevokeUserAccessToWorkspaceRequest req = RevokeUserAccessToWorkspaceRequest.builder()
                             .userId("<id>")
+                            .workspaceId("<id>")
                             .build();
 
                     RevokeUserAccessToWorkspaceResponse res = sdk.workspaces().revokeAccess()
@@ -2295,6 +2345,7 @@ actions:
                         .build();
 
                     GetWorkspaceTokensRequest req = GetWorkspaceTokensRequest.builder()
+                            .workspaceId("<id>")
                             .build();
 
                     GetWorkspaceTokensResponse res = sdk.workspaces().getTokens()
@@ -2340,8 +2391,9 @@ actions:
                                 .workspaceId("<id>")
                                 .alg("<value>")
                                 .key("<key>")
-                                .createdAt(OffsetDateTime.parse("2022-08-16T02:33:00.784Z"))
+                                .createdAt(OffsetDateTime.parse("2023-08-16T02:33:00.784Z"))
                                 .build())
+                            .workspaceId("<id>")
                             .build();
 
                     CreateWorkspaceTokenResponse res = sdk.workspaces().createToken()
@@ -2378,6 +2430,7 @@ actions:
 
                     DeleteWorkspaceTokenRequest req = DeleteWorkspaceTokenRequest.builder()
                             .tokenID("<id>")
+                            .workspaceId("<id>")
                             .build();
 
                     DeleteWorkspaceTokenResponse res = sdk.workspaces().deleteToken()

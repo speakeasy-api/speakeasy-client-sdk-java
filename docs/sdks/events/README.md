@@ -41,6 +41,7 @@ public class Application {
 
         GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
                 .targetId("<id>")
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceEventsByTargetResponse res = sdk.events().getEventsByTarget()
@@ -155,6 +156,7 @@ public class Application {
             .build();
 
         GetWorkspaceTargetsDeprecatedRequest req = GetWorkspaceTargetsDeprecatedRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceTargetsDeprecatedResponse res = sdk.events().getTargetsDeprecated()
@@ -218,16 +220,17 @@ public class Application {
         PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
                 .requestBody(List.of(
                     CliEvent.builder()
-                        .createdAt(OffsetDateTime.parse("2023-05-08T03:24:39.583Z"))
+                        .createdAt(OffsetDateTime.parse("2024-05-07T03:24:39.583Z"))
                         .executionId("<id>")
                         .id("<id>")
                         .interactionType(InteractionType.QUICKSTART)
-                        .localStartedAt(OffsetDateTime.parse("2023-09-09T05:59:33.876Z"))
+                        .localStartedAt(OffsetDateTime.parse("2024-09-08T05:59:33.876Z"))
                         .speakeasyApiKeyName("<value>")
                         .speakeasyVersion("<value>")
                         .success(false)
                         .workspaceId("<id>")
                         .build()))
+                .workspaceId("<id>")
                 .build();
 
         PostWorkspaceEventsResponse res = sdk.events().post()
@@ -283,6 +286,7 @@ public class Application {
             .build();
 
         SearchWorkspaceEventsRequest req = SearchWorkspaceEventsRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         SearchWorkspaceEventsResponse res = sdk.events().search()

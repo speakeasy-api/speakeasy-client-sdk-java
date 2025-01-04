@@ -22,24 +22,6 @@ import java.util.Optional;
 public class SDKMethodInterfaces {
 
 
-    public interface MethodCallGenerateCodeSamplePreview {
-        GenerateCodeSamplePreviewResponse generateCodeSamplePreview(
-            CodeSampleSchemaInput request) throws Exception;
-    }
-
-
-    public interface MethodCallGenerateCodeSamplePreviewAsync {
-        GenerateCodeSamplePreviewAsyncResponse generateCodeSamplePreviewAsync(
-            CodeSampleSchemaInput request) throws Exception;
-    }
-
-
-    public interface MethodCallGetCodeSamplePreviewAsync {
-        GetCodeSamplePreviewAsyncResponse getCodeSamplePreviewAsync(
-            GetCodeSamplePreviewAsyncRequest request) throws Exception;
-    }
-
-
     public interface MethodCallCreateRemoteSource {
         CreateRemoteSourceResponse createRemoteSource(
             Optional<? extends RemoteSource> request) throws Exception;
@@ -119,6 +101,30 @@ public class SDKMethodInterfaces {
 
     public interface MethodCallValidateApiKey {
         ValidateApiKeyResponse validateApiKeyDirect() throws Exception;
+    }
+
+
+    public interface MethodCallGenerateCodeSamplePreview {
+        GenerateCodeSamplePreviewResponse generateCodeSamplePreview(
+            CodeSampleSchemaInput request) throws Exception;
+    }
+
+
+    public interface MethodCallGenerateCodeSamplePreviewAsync {
+        GenerateCodeSamplePreviewAsyncResponse generateCodeSamplePreviewAsync(
+            CodeSampleSchemaInput request) throws Exception;
+    }
+
+
+    public interface MethodCallGetCodeSamples {
+        GetCodeSamplesResponse get(
+            GetCodeSamplesRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallGetCodeSamplePreviewAsync {
+        GetCodeSamplePreviewAsyncResponse getCodeSamplePreviewAsync(
+            GetCodeSamplePreviewAsyncRequest request) throws Exception;
     }
 
 

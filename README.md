@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.23.0'
+implementation 'dev.speakeasyapi:javaclientsdk:7.23.1'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.23.0</version>
+    <version>7.23.1</version>
 </dependency>
 ```
 
@@ -71,12 +71,11 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -89,23 +88,21 @@ public class Application {
                     .build())
             .build();
 
-        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                .languages(List.of(
-                    "<value>",
-                    "<value>"))
-                .schemaFile(SchemaFile.builder()
-                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
-                    .fileName("example.file")
+        RemoteSource req = RemoteSource.builder()
+                .inputs(List.of(
+                    RemoteDocument.builder()
+                        .registryUrl("https://productive-swine.net")
+                        .build()))
+                .output(RemoteDocument.builder()
+                    .registryUrl("https://spiteful-apricot.info")
                     .build())
                 .build();
 
-        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
                 .request(req)
                 .call();
 
-        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -136,6 +133,13 @@ public class Application {
 * [getAccessToken](docs/sdks/auth/README.md#getaccesstoken) - Get or refresh an access token for the current workspace.
 * [getUser](docs/sdks/auth/README.md#getuser) - Get information about the current user.
 * [validateApiKey](docs/sdks/auth/README.md#validateapikey) - Validate the current api key.
+
+### [codeSamples()](docs/sdks/codesamples/README.md)
+
+* [generateCodeSamplePreview](docs/sdks/codesamples/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
+* [generateCodeSamplePreviewAsync](docs/sdks/codesamples/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
+* [get](docs/sdks/codesamples/README.md#get) - Retrieve usage snippets from document stored in the registry
+* [getCodeSamplePreviewAsync](docs/sdks/codesamples/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ### [events()](docs/sdks/events/README.md)
 
@@ -173,11 +177,6 @@ public class Application {
 * [getLintingReportSignedUrl](docs/sdks/reports/README.md#getlintingreportsignedurl) - Get the signed access url for the linting reports for a particular document.
 * [uploadReport](docs/sdks/reports/README.md#uploadreport) - Upload a report.
 
-### [RyanTest SDK](docs/sdks/ryantest/README.md)
-
-* [generateCodeSamplePreview](docs/sdks/ryantest/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
-* [generateCodeSamplePreviewAsync](docs/sdks/ryantest/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [getCodeSamplePreviewAsync](docs/sdks/ryantest/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ### [shortURLs()](docs/sdks/shorturls/README.md)
 
@@ -235,12 +234,11 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -248,29 +246,27 @@ public class Application {
     public static void main(String[] args) throws Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
-                .server(RyanTest.AvailableServers.PROD)
+                .serverIndex(0)
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
             .build();
 
-        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                .languages(List.of(
-                    "<value>",
-                    "<value>"))
-                .schemaFile(SchemaFile.builder()
-                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
-                    .fileName("example.file")
+        RemoteSource req = RemoteSource.builder()
+                .inputs(List.of(
+                    RemoteDocument.builder()
+                        .registryUrl("https://productive-swine.net")
+                        .build()))
+                .output(RemoteDocument.builder()
+                    .registryUrl("https://spiteful-apricot.info")
                     .build())
                 .build();
 
-        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
                 .request(req)
                 .call();
 
-        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -283,12 +279,11 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -302,23 +297,21 @@ public class Application {
                     .build())
             .build();
 
-        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                .languages(List.of(
-                    "<value>",
-                    "<value>"))
-                .schemaFile(SchemaFile.builder()
-                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
-                    .fileName("example.file")
+        RemoteSource req = RemoteSource.builder()
+                .inputs(List.of(
+                    RemoteDocument.builder()
+                        .registryUrl("https://productive-swine.net")
+                        .build()))
+                .output(RemoteDocument.builder()
+                    .registryUrl("https://spiteful-apricot.info")
                     .build())
                 .build();
 
-        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
                 .request(req)
                 .call();
 
-        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -329,11 +322,12 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `generateCodeSamplePreview` method throws the following exceptions:
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createRemoteSource` method throws the following exceptions:
 
-| Error Type          | Status Code | Content Type     |
-| ------------------- | ----------- | ---------------- |
-| models/errors/Error | 4XX, 5XX    | application/json |
+| Error Type             | Status Code | Content Type     |
+| ---------------------- | ----------- | ---------------- |
+| models/errors/Error    | 4XX         | application/json |
+| models/errors/SDKError | 5XX         | \*/\*            |
 
 ### Example
 
@@ -342,12 +336,11 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -360,23 +353,21 @@ public class Application {
                     .build())
             .build();
 
-        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                .languages(List.of(
-                    "<value>",
-                    "<value>"))
-                .schemaFile(SchemaFile.builder()
-                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
-                    .fileName("example.file")
+        RemoteSource req = RemoteSource.builder()
+                .inputs(List.of(
+                    RemoteDocument.builder()
+                        .registryUrl("https://productive-swine.net")
+                        .build()))
+                .output(RemoteDocument.builder()
+                    .registryUrl("https://spiteful-apricot.info")
                     .build())
                 .build();
 
-        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
                 .request(req)
                 .call();
 
-        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -401,12 +392,11 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
+import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
+import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class Application {
@@ -419,23 +409,21 @@ public class Application {
                     .build())
             .build();
 
-        CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                .languages(List.of(
-                    "<value>",
-                    "<value>"))
-                .schemaFile(SchemaFile.builder()
-                    .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
-                    .fileName("example.file")
+        RemoteSource req = RemoteSource.builder()
+                .inputs(List.of(
+                    RemoteDocument.builder()
+                        .registryUrl("https://productive-swine.net")
+                        .build()))
+                .output(RemoteDocument.builder()
+                    .registryUrl("https://spiteful-apricot.info")
                     .build())
                 .build();
 
-        GenerateCodeSamplePreviewResponse res = sdk.generateCodeSamplePreview()
+        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
                 .request(req)
                 .call();
 
-        if (res.twoHundredApplicationJsonResponseStream().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

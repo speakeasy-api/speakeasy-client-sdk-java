@@ -124,6 +124,7 @@ public class Application {
                     .name("<value>")
                     .workspaceId("<id>")
                     .build())
+                .workspaceId("<id>")
                 .build();
 
         CreateWorkspaceTokenResponse res = sdk.workspaces().createToken()
@@ -180,6 +181,7 @@ public class Application {
 
         DeleteWorkspaceTokenRequest req = DeleteWorkspaceTokenRequest.builder()
                 .tokenID("<id>")
+                .workspaceId("<id>")
                 .build();
 
         DeleteWorkspaceTokenResponse res = sdk.workspaces().deleteToken()
@@ -327,6 +329,7 @@ public class Application {
             .build();
 
         GetWorkspaceRequest req = GetWorkspaceRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceResponse res = sdk.workspaces().getByID()
@@ -384,6 +387,7 @@ public class Application {
             .build();
 
         GetWorkspaceFeatureFlagsRequest req = GetWorkspaceFeatureFlagsRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceFeatureFlagsResponse res = sdk.workspaces().getFeatureFlags()
@@ -441,6 +445,7 @@ public class Application {
             .build();
 
         GetWorkspaceSettingsRequest req = GetWorkspaceSettingsRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceSettingsResponse res = sdk.workspaces().getSettings()
@@ -498,6 +503,7 @@ public class Application {
             .build();
 
         GetWorkspaceTeamRequest req = GetWorkspaceTeamRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceTeamResponse res = sdk.workspaces().getTeam()
@@ -555,6 +561,7 @@ public class Application {
             .build();
 
         GetWorkspaceTokensRequest req = GetWorkspaceTokensRequest.builder()
+                .workspaceId("<id>")
                 .build();
 
         GetWorkspaceTokensResponse res = sdk.workspaces().getTokens()
@@ -613,6 +620,7 @@ public class Application {
 
         GrantUserAccessToWorkspaceRequest req = GrantUserAccessToWorkspaceRequest.builder()
                 .email("Lucinda.Batz8@hotmail.com")
+                .workspaceId("<id>")
                 .build();
 
         GrantUserAccessToWorkspaceResponse res = sdk.workspaces().grantAccess()
@@ -671,6 +679,7 @@ public class Application {
 
         RevokeUserAccessToWorkspaceRequest req = RevokeUserAccessToWorkspaceRequest.builder()
                 .userId("<id>")
+                .workspaceId("<id>")
                 .build();
 
         RevokeUserAccessToWorkspaceResponse res = sdk.workspaces().revokeAccess()
@@ -737,6 +746,7 @@ public class Application {
                     .updatedAt(OffsetDateTime.parse("2023-10-17T10:52:42.015Z"))
                     .verified(true)
                     .build())
+                .workspaceId("<id>")
                 .build();
 
         UpdateWorkspaceDetailsResponse res = sdk.workspaces().update()
@@ -800,6 +810,7 @@ public class Application {
                     .webhookUrl("https://grown-pharmacopoeia.net")
                     .workspaceId("<id>")
                     .build())
+                .workspaceId("<id>")
                 .build();
 
         UpdateWorkspaceSettingsResponse res = sdk.workspaces().updateSettings()
