@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -23,30 +24,35 @@ import java.util.Optional;
 public class GithubPublishingPRResponse {
 
     @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generation_pull_request")
-    private Optional<String> generationPullRequest;
-
-    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("pending_version")
     private Optional<String> pendingVersion;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pull_request")
+    private Optional<String> pullRequest;
+
+    /**
+     * This can only be populated when the github app is installed for a repo
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pull_request_metadata")
+    private Optional<? extends PullRequestMetadata> pullRequestMetadata;
+
     @JsonCreator
     public GithubPublishingPRResponse(
-            @JsonProperty("generation_pull_request") Optional<String> generationPullRequest,
-            @JsonProperty("pending_version") Optional<String> pendingVersion) {
-        Utils.checkNotNull(generationPullRequest, "generationPullRequest");
+            @JsonProperty("pending_version") Optional<String> pendingVersion,
+            @JsonProperty("pull_request") Optional<String> pullRequest,
+            @JsonProperty("pull_request_metadata") Optional<? extends PullRequestMetadata> pullRequestMetadata) {
         Utils.checkNotNull(pendingVersion, "pendingVersion");
-        this.generationPullRequest = generationPullRequest;
+        Utils.checkNotNull(pullRequest, "pullRequest");
+        Utils.checkNotNull(pullRequestMetadata, "pullRequestMetadata");
         this.pendingVersion = pendingVersion;
+        this.pullRequest = pullRequest;
+        this.pullRequestMetadata = pullRequestMetadata;
     }
     
     public GithubPublishingPRResponse() {
-        this(Optional.empty(), Optional.empty());
-    }
-
-    @JsonIgnore
-    public Optional<String> generationPullRequest() {
-        return generationPullRequest;
+        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
@@ -54,20 +60,22 @@ public class GithubPublishingPRResponse {
         return pendingVersion;
     }
 
+    @JsonIgnore
+    public Optional<String> pullRequest() {
+        return pullRequest;
+    }
+
+    /**
+     * This can only be populated when the github app is installed for a repo
+     */
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<PullRequestMetadata> pullRequestMetadata() {
+        return (Optional<PullRequestMetadata>) pullRequestMetadata;
+    }
+
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public GithubPublishingPRResponse withGenerationPullRequest(String generationPullRequest) {
-        Utils.checkNotNull(generationPullRequest, "generationPullRequest");
-        this.generationPullRequest = Optional.ofNullable(generationPullRequest);
-        return this;
-    }
-
-    public GithubPublishingPRResponse withGenerationPullRequest(Optional<String> generationPullRequest) {
-        Utils.checkNotNull(generationPullRequest, "generationPullRequest");
-        this.generationPullRequest = generationPullRequest;
-        return this;
     }
 
     public GithubPublishingPRResponse withPendingVersion(String pendingVersion) {
@@ -81,6 +89,36 @@ public class GithubPublishingPRResponse {
         this.pendingVersion = pendingVersion;
         return this;
     }
+
+    public GithubPublishingPRResponse withPullRequest(String pullRequest) {
+        Utils.checkNotNull(pullRequest, "pullRequest");
+        this.pullRequest = Optional.ofNullable(pullRequest);
+        return this;
+    }
+
+    public GithubPublishingPRResponse withPullRequest(Optional<String> pullRequest) {
+        Utils.checkNotNull(pullRequest, "pullRequest");
+        this.pullRequest = pullRequest;
+        return this;
+    }
+
+    /**
+     * This can only be populated when the github app is installed for a repo
+     */
+    public GithubPublishingPRResponse withPullRequestMetadata(PullRequestMetadata pullRequestMetadata) {
+        Utils.checkNotNull(pullRequestMetadata, "pullRequestMetadata");
+        this.pullRequestMetadata = Optional.ofNullable(pullRequestMetadata);
+        return this;
+    }
+
+    /**
+     * This can only be populated when the github app is installed for a repo
+     */
+    public GithubPublishingPRResponse withPullRequestMetadata(Optional<? extends PullRequestMetadata> pullRequestMetadata) {
+        Utils.checkNotNull(pullRequestMetadata, "pullRequestMetadata");
+        this.pullRequestMetadata = pullRequestMetadata;
+        return this;
+    }
     
     @Override
     public boolean equals(java.lang.Object o) {
@@ -92,44 +130,37 @@ public class GithubPublishingPRResponse {
         }
         GithubPublishingPRResponse other = (GithubPublishingPRResponse) o;
         return 
-            Objects.deepEquals(this.generationPullRequest, other.generationPullRequest) &&
-            Objects.deepEquals(this.pendingVersion, other.pendingVersion);
+            Objects.deepEquals(this.pendingVersion, other.pendingVersion) &&
+            Objects.deepEquals(this.pullRequest, other.pullRequest) &&
+            Objects.deepEquals(this.pullRequestMetadata, other.pullRequestMetadata);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            generationPullRequest,
-            pendingVersion);
+            pendingVersion,
+            pullRequest,
+            pullRequestMetadata);
     }
     
     @Override
     public String toString() {
         return Utils.toString(GithubPublishingPRResponse.class,
-                "generationPullRequest", generationPullRequest,
-                "pendingVersion", pendingVersion);
+                "pendingVersion", pendingVersion,
+                "pullRequest", pullRequest,
+                "pullRequestMetadata", pullRequestMetadata);
     }
     
     public final static class Builder {
  
-        private Optional<String> generationPullRequest = Optional.empty();
+        private Optional<String> pendingVersion = Optional.empty();
  
-        private Optional<String> pendingVersion = Optional.empty();  
+        private Optional<String> pullRequest = Optional.empty();
+ 
+        private Optional<? extends PullRequestMetadata> pullRequestMetadata = Optional.empty();  
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder generationPullRequest(String generationPullRequest) {
-            Utils.checkNotNull(generationPullRequest, "generationPullRequest");
-            this.generationPullRequest = Optional.ofNullable(generationPullRequest);
-            return this;
-        }
-
-        public Builder generationPullRequest(Optional<String> generationPullRequest) {
-            Utils.checkNotNull(generationPullRequest, "generationPullRequest");
-            this.generationPullRequest = generationPullRequest;
-            return this;
         }
 
         public Builder pendingVersion(String pendingVersion) {
@@ -143,11 +174,42 @@ public class GithubPublishingPRResponse {
             this.pendingVersion = pendingVersion;
             return this;
         }
+
+        public Builder pullRequest(String pullRequest) {
+            Utils.checkNotNull(pullRequest, "pullRequest");
+            this.pullRequest = Optional.ofNullable(pullRequest);
+            return this;
+        }
+
+        public Builder pullRequest(Optional<String> pullRequest) {
+            Utils.checkNotNull(pullRequest, "pullRequest");
+            this.pullRequest = pullRequest;
+            return this;
+        }
+
+        /**
+         * This can only be populated when the github app is installed for a repo
+         */
+        public Builder pullRequestMetadata(PullRequestMetadata pullRequestMetadata) {
+            Utils.checkNotNull(pullRequestMetadata, "pullRequestMetadata");
+            this.pullRequestMetadata = Optional.ofNullable(pullRequestMetadata);
+            return this;
+        }
+
+        /**
+         * This can only be populated when the github app is installed for a repo
+         */
+        public Builder pullRequestMetadata(Optional<? extends PullRequestMetadata> pullRequestMetadata) {
+            Utils.checkNotNull(pullRequestMetadata, "pullRequestMetadata");
+            this.pullRequestMetadata = pullRequestMetadata;
+            return this;
+        }
         
         public GithubPublishingPRResponse build() {
             return new GithubPublishingPRResponse(
-                generationPullRequest,
-                pendingVersion);
+                pendingVersion,
+                pullRequest,
+                pullRequestMetadata);
         }
     }
 }

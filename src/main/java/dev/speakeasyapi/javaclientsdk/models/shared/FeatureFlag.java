@@ -23,8 +23,11 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class FeatureFlag {
 
+    /**
+     * enum value workspace feature flag
+     */
     @JsonProperty("feature_flag")
-    private String featureFlag;
+    private WorkspaceFeatureFlag featureFlag;
 
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("trial_ends_at")
@@ -32,7 +35,7 @@ public class FeatureFlag {
 
     @JsonCreator
     public FeatureFlag(
-            @JsonProperty("feature_flag") String featureFlag,
+            @JsonProperty("feature_flag") WorkspaceFeatureFlag featureFlag,
             @JsonProperty("trial_ends_at") JsonNullable<OffsetDateTime> trialEndsAt) {
         Utils.checkNotNull(featureFlag, "featureFlag");
         Utils.checkNotNull(trialEndsAt, "trialEndsAt");
@@ -41,12 +44,15 @@ public class FeatureFlag {
     }
     
     public FeatureFlag(
-            String featureFlag) {
+            WorkspaceFeatureFlag featureFlag) {
         this(featureFlag, JsonNullable.undefined());
     }
 
+    /**
+     * enum value workspace feature flag
+     */
     @JsonIgnore
-    public String featureFlag() {
+    public WorkspaceFeatureFlag featureFlag() {
         return featureFlag;
     }
 
@@ -59,7 +65,10 @@ public class FeatureFlag {
         return new Builder();
     }
 
-    public FeatureFlag withFeatureFlag(String featureFlag) {
+    /**
+     * enum value workspace feature flag
+     */
+    public FeatureFlag withFeatureFlag(WorkspaceFeatureFlag featureFlag) {
         Utils.checkNotNull(featureFlag, "featureFlag");
         this.featureFlag = featureFlag;
         return this;
@@ -107,7 +116,7 @@ public class FeatureFlag {
     
     public final static class Builder {
  
-        private String featureFlag;
+        private WorkspaceFeatureFlag featureFlag;
  
         private JsonNullable<OffsetDateTime> trialEndsAt = JsonNullable.undefined();  
         
@@ -115,7 +124,10 @@ public class FeatureFlag {
           // force use of static builder() method
         }
 
-        public Builder featureFlag(String featureFlag) {
+        /**
+         * enum value workspace feature flag
+         */
+        public Builder featureFlag(WorkspaceFeatureFlag featureFlag) {
             Utils.checkNotNull(featureFlag, "featureFlag");
             this.featureFlag = featureFlag;
             return this;

@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.23.1'
+implementation 'dev.speakeasyapi:javaclientsdk:7.23.2'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.23.1</version>
+    <version>7.23.2</version>
 </dependency>
 ```
 
@@ -208,6 +208,7 @@ public class Application {
 * [getTokens](docs/sdks/workspaces/README.md#gettokens) - Get tokens for a particular workspace
 * [grantAccess](docs/sdks/workspaces/README.md#grantaccess) - Grant a user access to a particular workspace
 * [revokeAccess](docs/sdks/workspaces/README.md#revokeaccess) - Revoke a user's access to a particular workspace
+* [setFeatureFlags](docs/sdks/workspaces/README.md#setfeatureflags) - Set workspace feature flags
 * [update](docs/sdks/workspaces/README.md#update) - Update workspace details
 * [updateSettings](docs/sdks/workspaces/README.md#updatesettings) - Update workspace settings
 

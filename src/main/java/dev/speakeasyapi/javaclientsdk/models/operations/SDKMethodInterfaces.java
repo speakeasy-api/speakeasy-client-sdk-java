@@ -15,6 +15,7 @@ import dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
 import dev.speakeasyapi.javaclientsdk.models.shared.SuggestItemsRequestBody;
 import dev.speakeasyapi.javaclientsdk.models.shared.Workspace;
+import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlagRequest;
 import dev.speakeasyapi.javaclientsdk.utils.Options;
 import java.lang.Exception;
 import java.util.Optional;
@@ -348,6 +349,12 @@ public class SDKMethodInterfaces {
     public interface MethodCallRevokeUserAccessToWorkspace {
         RevokeUserAccessToWorkspaceResponse revokeAccess(
             RevokeUserAccessToWorkspaceRequest request) throws Exception;
+    }
+
+
+    public interface MethodCallSetWorkspaceFeatureFlags {
+        SetWorkspaceFeatureFlagsResponse setFeatureFlags(
+            WorkspaceFeatureFlagRequest request) throws Exception;
     }
 
 

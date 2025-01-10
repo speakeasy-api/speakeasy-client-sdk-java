@@ -41,6 +41,8 @@ import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorksp
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.SDKMethodInterfaces.*;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetWorkspaceFeatureFlagsRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetWorkspaceFeatureFlagsResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsResponse;
@@ -49,6 +51,7 @@ import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsR
 import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Workspace;
 import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceAndOrganization;
+import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlagRequest;
 import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlagResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceInviteResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceSettings;
@@ -87,6 +90,7 @@ public class Workspaces implements
             MethodCallGetWorkspaceTokens,
             MethodCallGrantUserAccessToWorkspace,
             MethodCallRevokeUserAccessToWorkspace,
+            MethodCallSetWorkspaceFeatureFlags,
             MethodCallUpdateWorkspaceDetails,
             MethodCallUpdateWorkspaceSettings {
 
@@ -1640,6 +1644,147 @@ public class Workspaces implements
                     _httpRes.statusCode(), 
                     "API error occurred", 
                     Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Set workspace feature flags
+     * @return The call builder
+     */
+    public SetWorkspaceFeatureFlagsRequestBuilder setFeatureFlags() {
+        return new SetWorkspaceFeatureFlagsRequestBuilder(this);
+    }
+
+    /**
+     * Set workspace feature flags
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public SetWorkspaceFeatureFlagsResponse setFeatureFlags(
+            WorkspaceFeatureFlagRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                _baseUrl,
+                "/v1/workspace/feature_flags");
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<WorkspaceFeatureFlagRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "request",
+                "json",
+                false);
+        if (_serializedRequestBody == null) {
+            throw new Exception("Request body is required");
+        }
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "setWorkspaceFeatureFlags", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "setWorkspaceFeatureFlags",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "setWorkspaceFeatureFlags",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "setWorkspaceFeatureFlags",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        SetWorkspaceFeatureFlagsResponse.Builder _resBuilder = 
+            SetWorkspaceFeatureFlagsResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        SetWorkspaceFeatureFlagsResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "200")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                WorkspaceFeatureFlagResponse _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<WorkspaceFeatureFlagResponse>() {});
+                _res.withWorkspaceFeatureFlagResponse(Optional.ofNullable(_out));
+                return _res;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
         }
         throw new SDKError(
             _httpRes, 

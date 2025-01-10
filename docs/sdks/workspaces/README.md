@@ -19,6 +19,7 @@ REST APIs for managing Workspaces (speakeasy tenancy)
 * [getTokens](#gettokens) - Get tokens for a particular workspace
 * [grantAccess](#grantaccess) - Grant a user access to a particular workspace
 * [revokeAccess](#revokeaccess) - Revoke a user's access to a particular workspace
+* [setFeatureFlags](#setfeatureflags) - Set workspace feature flags
 * [update](#update) - Update workspace details
 * [updateSettings](#updatesettings) - Update workspace settings
 
@@ -707,6 +708,68 @@ public class Application {
 | ---------------------- | ---------------------- | ---------------------- |
 | models/errors/Error    | 4XX                    | application/json       |
 | models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## setFeatureFlags
+
+Set workspace feature flags
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.SetWorkspaceFeatureFlagsResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlag;
+import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlagRequest;
+import java.lang.Exception;
+import java.util.List;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        RyanTest sdk = RyanTest.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        WorkspaceFeatureFlagRequest req = WorkspaceFeatureFlagRequest.builder()
+                .featureFlags(List.of(
+                    WorkspaceFeatureFlag.SKIP_SCHEMA_REGISTRY,
+                    WorkspaceFeatureFlag.WEBHOOKS))
+                .build();
+
+        SetWorkspaceFeatureFlagsResponse res = sdk.workspaces().setFeatureFlags()
+                .request(req)
+                .call();
+
+        if (res.workspaceFeatureFlagResponse().isPresent()) {
+            // handle response
+        }
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                         | Type                                                                              | Required                                                                          | Description                                                                       |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `request`                                                                         | [WorkspaceFeatureFlagRequest](../../models/shared/WorkspaceFeatureFlagRequest.md) | :heavy_check_mark:                                                                | The request object to use for the request.                                        |
+
+### Response
+
+**[SetWorkspaceFeatureFlagsResponse](../../models/operations/SetWorkspaceFeatureFlagsResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 5XX                    | application/json       |
+| models/errors/SDKError | 4XX                    | \*/\*                  |
 
 ## update
 

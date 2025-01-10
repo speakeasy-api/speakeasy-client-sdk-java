@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: bb7b102d1334d2d3e66e7cd8d8b866d8
+  docChecksum: 52df6f1f34dfe76968f8ed009cc2bfd3
   docVersion: 0.4.0
-  speakeasyVersion: 1.462.2
-  generationVersion: 2.486.1
-  releaseVersion: 7.23.1
-  configChecksum: 3839c0e909c6d495dbacab4306d16a8a
+  speakeasyVersion: 1.467.0
+  generationVersion: 2.492.3
+  releaseVersion: 7.23.2
+  configChecksum: c999baa7bd474ddc6c221bb1fe4d805e
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -132,6 +132,7 @@ generatedFiles:
   - docs/models/operations/SetVisibilityRequest.md
   - docs/models/operations/SetVisibilityRequestBody.md
   - docs/models/operations/SetVisibilityResponse.md
+  - docs/models/operations/SetWorkspaceFeatureFlagsResponse.md
   - docs/models/operations/SuggestItemsResponse.md
   - docs/models/operations/SuggestOpenAPIRegistryRequest.md
   - docs/models/operations/SuggestOpenAPIRegistryResponse.md
@@ -192,6 +193,7 @@ generatedFiles:
   - docs/models/shared/OrganizationUsageResponse.md
   - docs/models/shared/PreflightRequest.md
   - docs/models/shared/PreflightToken.md
+  - docs/models/shared/PullRequestMetadata.md
   - docs/models/shared/Relationship.md
   - docs/models/shared/RemoteDocument.md
   - docs/models/shared/RemoteSource.md
@@ -218,6 +220,8 @@ generatedFiles:
   - docs/models/shared/WorkflowDocument.md
   - docs/models/shared/Workspace.md
   - docs/models/shared/WorkspaceAndOrganization.md
+  - docs/models/shared/WorkspaceFeatureFlag.md
+  - docs/models/shared/WorkspaceFeatureFlagRequest.md
   - docs/models/shared/WorkspaceFeatureFlagResponse.md
   - docs/models/shared/WorkspaceInviteResponse.md
   - docs/models/shared/WorkspaceSettings.md
@@ -413,6 +417,8 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SetVisibilityRequestBody.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SetVisibilityRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SetVisibilityResponse.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SetWorkspaceFeatureFlagsRequestBuilder.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SetWorkspaceFeatureFlagsResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SuggestItemsRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SuggestItemsResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/SuggestOpenAPIRegistryRequest.java
@@ -481,6 +487,7 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/OrganizationUsageResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/PreflightRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/PreflightToken.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/PullRequestMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Relationship.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteDocument.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/RemoteSource.java
@@ -507,6 +514,8 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkflowDocument.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Workspace.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceAndOrganization.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceFeatureFlag.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceFeatureFlagRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceFeatureFlagResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceInviteResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkspaceSettings.java
@@ -1680,4 +1689,13 @@ examples:
           application/json: {"snippets": [{"code": "<value>", "language": "<value>", "operationId": "<id>"}, {"code": "<value>", "language": "<value>", "operationId": "<id>"}, {"code": "<value>", "language": "<value>", "operationId": "<id>"}]}
         4XX:
           application/json: {"message": "<value>", "status_code": 458049}
+  setWorkspaceFeatureFlags:
+    speakeasy-default-set-workspace-feature-flags:
+      requestBody:
+        application/json: {"feature_flags": ["skip_schema_registry", "webhooks"]}
+      responses:
+        "200":
+          application/json: {}
+        5XX:
+          application/json: {"message": "<value>", "status_code": 264889}
 generatedTests: {}
