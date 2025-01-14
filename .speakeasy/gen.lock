@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 52df6f1f34dfe76968f8ed009cc2bfd3
+  docChecksum: 53c59e9888ffa48d7fef9b0017efc602
   docVersion: 0.4.0
-  speakeasyVersion: 1.467.0
-  generationVersion: 2.492.3
-  releaseVersion: 7.23.2
-  configChecksum: c999baa7bd474ddc6c221bb1fe4d805e
+  speakeasyVersion: 1.468.6
+  generationVersion: 2.493.13
+  releaseVersion: 7.23.3
+  configChecksum: 45a4c11a1f20830d4335c2eda694383f
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -29,7 +29,6 @@ features:
     serverIDs: 2.81.1
 generatedFiles:
   - .gitattributes
-  - CONTRIBUTING.md
   - USAGE.md
   - build.gradle
   - docs/models/errors/Error.md
@@ -932,7 +931,8 @@ examples:
       responses:
         default:
           application/json: {"message": "<value>", "status_code": 115307}
-        2XX: {}
+        2XX:
+          application/octet-stream: "x-file: example.file"
         4XX:
           application/json: {"message": "<value>", "status_code": 115307}
   getManifest:
@@ -1033,7 +1033,7 @@ examples:
         default:
           application/json: {"message": "<value>", "status_code": 299050}
         2XX:
-          application/json: {"access_token": "<value>"}
+          application/json: {"access_token": "<value>", "claims": {}, "user": {}}
         4XX:
           application/json: {"message": "<value>", "status_code": 299050}
   getUser:
@@ -1246,7 +1246,7 @@ examples:
   uploadReport:
     speakeasy-default-upload-report:
       requestBody:
-        multipart/form-data: {"file": {"": "example.file"}}
+        multipart/form-data: {"data": {}, "file": {"": "example.file"}}
       responses:
         "200":
           application/json: {"url": "http://earnest-upgrade.com"}
@@ -1267,7 +1267,10 @@ examples:
         header:
           x-session-id: "<value>"
       requestBody:
-        application/json: {"diagnostics": [], "oas_summary": {"info": {"description": "Operative impactful monitoring", "summary": "<value>", "title": "<value>", "version": "<value>"}, "operations": []}, "suggestion_type": "diagnostics-only"}
+        application/json: {"diagnostics": [], "oas_summary": {"info": {"description": "Operative impactful monitoring", "license": {}, "summary": "<value>", "title": "<value>", "version": "<value>"}, "operations": []}, "suggestion_type": "diagnostics-only"}
+      responses:
+        2XX:
+          application/json: "x-file: example.file"
   suggestOpenAPI:
     speakeasy-default-suggest-open-API:
       parameters:
@@ -1275,6 +1278,9 @@ examples:
           x-session-id: "<value>"
       requestBody:
         multipart/form-data: {"schema": {"": "example.file"}}
+      responses:
+        2XX:
+          application/json: "x-file: example.file"
   suggestOpenAPIRegistry:
     speakeasy-default-suggest-open-API-registry:
       parameters:
@@ -1283,6 +1289,9 @@ examples:
           revision_reference: "<value>"
         header:
           x-session-id: "<value>"
+      responses:
+        2XX:
+          application/json: "x-file: example.file"
   getEmbedAccessToken:
     speakeasy-default-get-embed-access-token:
       responses:
@@ -1620,7 +1629,9 @@ examples:
       responses:
         4XX:
           application/json: {"message": "<value>", "status_code": 128151}
-        "200": {}
+        "200":
+          application/json: "x-file: example.file"
+          application/x-yaml: "x-file: example.file"
   generateCodeSamplePreviewAsync:
     speakeasy-default-generate-code-sample-preview-async:
       requestBody:
@@ -1640,7 +1651,9 @@ examples:
           application/json: {"status": "pending"}
         4XX:
           application/json: {"message": "<value>", "status_code": 44984}
-        "200": {}
+        "200":
+          application/json: "x-file: example.file"
+          application/x-yaml: "x-file: example.file"
   getGithubSetupState:
     speakeasy-default-get-github-setup-state:
       parameters:

@@ -100,6 +100,13 @@ public class User {
     private JsonNullable<String> photoUrl;
 
     /**
+     * Hash used for pylon identity verification returned on v1/user.
+     */
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("pylon_identity_hash")
+    private Optional<String> pylonIdentityHash;
+
+    /**
      * Timestamp of the user's last update.
      */
     @JsonProperty("updated_at")
@@ -125,6 +132,7 @@ public class User {
             @JsonProperty("internal") Optional<Boolean> internal,
             @JsonProperty("last_login_at") JsonNullable<OffsetDateTime> lastLoginAt,
             @JsonProperty("photo_url") JsonNullable<String> photoUrl,
+            @JsonProperty("pylon_identity_hash") Optional<String> pylonIdentityHash,
             @JsonProperty("updated_at") OffsetDateTime updatedAt,
             @JsonProperty("whitelisted") boolean whitelisted) {
         Utils.checkNotNull(admin, "admin");
@@ -139,6 +147,7 @@ public class User {
         Utils.checkNotNull(internal, "internal");
         Utils.checkNotNull(lastLoginAt, "lastLoginAt");
         Utils.checkNotNull(photoUrl, "photoUrl");
+        Utils.checkNotNull(pylonIdentityHash, "pylonIdentityHash");
         Utils.checkNotNull(updatedAt, "updatedAt");
         Utils.checkNotNull(whitelisted, "whitelisted");
         this.admin = admin;
@@ -153,6 +162,7 @@ public class User {
         this.internal = internal;
         this.lastLoginAt = lastLoginAt;
         this.photoUrl = photoUrl;
+        this.pylonIdentityHash = pylonIdentityHash;
         this.updatedAt = updatedAt;
         this.whitelisted = whitelisted;
     }
@@ -167,7 +177,7 @@ public class User {
             String id,
             OffsetDateTime updatedAt,
             boolean whitelisted) {
-        this(admin, confirmed, createdAt, JsonNullable.undefined(), displayName, email, emailVerified, JsonNullable.undefined(), id, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), updatedAt, whitelisted);
+        this(admin, confirmed, createdAt, JsonNullable.undefined(), displayName, email, emailVerified, JsonNullable.undefined(), id, Optional.empty(), JsonNullable.undefined(), JsonNullable.undefined(), Optional.empty(), updatedAt, whitelisted);
     }
 
     /**
@@ -264,6 +274,14 @@ public class User {
     @JsonIgnore
     public JsonNullable<String> photoUrl() {
         return photoUrl;
+    }
+
+    /**
+     * Hash used for pylon identity verification returned on v1/user.
+     */
+    @JsonIgnore
+    public Optional<String> pylonIdentityHash() {
+        return pylonIdentityHash;
     }
 
     /**
@@ -440,6 +458,24 @@ public class User {
     }
 
     /**
+     * Hash used for pylon identity verification returned on v1/user.
+     */
+    public User withPylonIdentityHash(String pylonIdentityHash) {
+        Utils.checkNotNull(pylonIdentityHash, "pylonIdentityHash");
+        this.pylonIdentityHash = Optional.ofNullable(pylonIdentityHash);
+        return this;
+    }
+
+    /**
+     * Hash used for pylon identity verification returned on v1/user.
+     */
+    public User withPylonIdentityHash(Optional<String> pylonIdentityHash) {
+        Utils.checkNotNull(pylonIdentityHash, "pylonIdentityHash");
+        this.pylonIdentityHash = pylonIdentityHash;
+        return this;
+    }
+
+    /**
      * Timestamp of the user's last update.
      */
     public User withUpdatedAt(OffsetDateTime updatedAt) {
@@ -479,6 +515,7 @@ public class User {
             Objects.deepEquals(this.internal, other.internal) &&
             Objects.deepEquals(this.lastLoginAt, other.lastLoginAt) &&
             Objects.deepEquals(this.photoUrl, other.photoUrl) &&
+            Objects.deepEquals(this.pylonIdentityHash, other.pylonIdentityHash) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt) &&
             Objects.deepEquals(this.whitelisted, other.whitelisted);
     }
@@ -498,6 +535,7 @@ public class User {
             internal,
             lastLoginAt,
             photoUrl,
+            pylonIdentityHash,
             updatedAt,
             whitelisted);
     }
@@ -517,6 +555,7 @@ public class User {
                 "internal", internal,
                 "lastLoginAt", lastLoginAt,
                 "photoUrl", photoUrl,
+                "pylonIdentityHash", pylonIdentityHash,
                 "updatedAt", updatedAt,
                 "whitelisted", whitelisted);
     }
@@ -546,6 +585,8 @@ public class User {
         private JsonNullable<OffsetDateTime> lastLoginAt = JsonNullable.undefined();
  
         private JsonNullable<String> photoUrl = JsonNullable.undefined();
+ 
+        private Optional<String> pylonIdentityHash = Optional.empty();
  
         private OffsetDateTime updatedAt;
  
@@ -709,6 +750,24 @@ public class User {
         }
 
         /**
+         * Hash used for pylon identity verification returned on v1/user.
+         */
+        public Builder pylonIdentityHash(String pylonIdentityHash) {
+            Utils.checkNotNull(pylonIdentityHash, "pylonIdentityHash");
+            this.pylonIdentityHash = Optional.ofNullable(pylonIdentityHash);
+            return this;
+        }
+
+        /**
+         * Hash used for pylon identity verification returned on v1/user.
+         */
+        public Builder pylonIdentityHash(Optional<String> pylonIdentityHash) {
+            Utils.checkNotNull(pylonIdentityHash, "pylonIdentityHash");
+            this.pylonIdentityHash = pylonIdentityHash;
+            return this;
+        }
+
+        /**
          * Timestamp of the user's last update.
          */
         public Builder updatedAt(OffsetDateTime updatedAt) {
@@ -740,6 +799,7 @@ public class User {
                 internal,
                 lastLoginAt,
                 photoUrl,
+                pylonIdentityHash,
                 updatedAt,
                 whitelisted);
         }

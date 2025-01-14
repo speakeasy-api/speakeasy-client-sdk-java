@@ -200,11 +200,8 @@ import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.CliEvent;
-import dev.speakeasyapi.javaclientsdk.models.shared.InteractionType;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.time.OffsetDateTime;
 import java.util.List;
 
 public class Application {
@@ -219,17 +216,7 @@ public class Application {
 
         PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
                 .requestBody(List.of(
-                    CliEvent.builder()
-                        .createdAt(OffsetDateTime.parse("2024-05-07T03:24:39.583Z"))
-                        .executionId("<id>")
-                        .id("<id>")
-                        .interactionType(InteractionType.QUICKSTART)
-                        .localStartedAt(OffsetDateTime.parse("2024-09-08T05:59:33.876Z"))
-                        .speakeasyApiKeyName("<value>")
-                        .speakeasyVersion("<value>")
-                        .success(false)
-                        .workspaceId("<id>")
-                        .build()))
+                ))
                 .workspaceId("<id>")
                 .build();
 

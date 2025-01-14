@@ -24,10 +24,8 @@ package hello.world;
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.Diagnostic;
 import dev.speakeasyapi.javaclientsdk.models.shared.License;
 import dev.speakeasyapi.javaclientsdk.models.shared.OASInfo;
-import dev.speakeasyapi.javaclientsdk.models.shared.OASOperation;
 import dev.speakeasyapi.javaclientsdk.models.shared.OASSummary;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import dev.speakeasyapi.javaclientsdk.models.shared.SuggestRequestBody;
@@ -48,12 +46,7 @@ public class Application {
         SuggestRequest req = SuggestRequest.builder()
                 .suggestRequestBody(SuggestRequestBody.builder()
                     .diagnostics(List.of(
-                        Diagnostic.builder()
-                            .message("<value>")
-                            .path(List.of(
-                                "/rescue"))
-                            .type("<value>")
-                            .build()))
+                    ))
                     .oasSummary(OASSummary.builder()
                         .info(OASInfo.builder()
                             .description("Operative impactful monitoring")
@@ -64,14 +57,7 @@ public class Application {
                             .version("<value>")
                             .build())
                         .operations(List.of(
-                            OASOperation.builder()
-                                .description("kielbasa psst stitcher cannon devoted blindly apropos low")
-                                .method("<value>")
-                                .operationId("<id>")
-                                .path("/opt/share")
-                                .tags(List.of(
-                                    "<value>"))
-                                .build()))
+                        ))
                         .build())
                     .suggestionType(SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY)
                     .build())
@@ -133,7 +119,7 @@ public class Application {
 
         SuggestItemsRequestBody req = SuggestItemsRequestBody.builder()
                 .items(List.of(
-                    "<value>"))
+                ))
                 .prompt("<value>")
                 .build();
 
