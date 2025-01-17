@@ -9,7 +9,7 @@ REST APIs for retrieving Code Samples
 
 * [generateCodeSamplePreview](#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
 * [generateCodeSamplePreviewAsync](#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [get](#get) - Retrieve usage snippets from document stored in the registry
+* [get](#get) - Retrieve usage snippets
 * [getCodeSamplePreviewAsync](#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ## generateCodeSamplePreview
@@ -33,7 +33,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Error, Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -76,7 +76,8 @@ public class Application {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| models/errors/Error | 4XX, 5XX            | application/json    |
+| models/errors/Error | 4XX                 | application/json    |
+| models/errors/Error | 5XX                 | application/json    |
 
 ## generateCodeSamplePreviewAsync
 
@@ -99,7 +100,7 @@ import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Error, Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -143,11 +144,13 @@ public class Application {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| models/errors/Error | 4XX, 5XX            | application/json    |
+| models/errors/Error | 4XX                 | application/json    |
+| models/errors/Error | 5XX                 | application/json    |
 
 ## get
 
-Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
+
 
 ### Example Usage
 
@@ -160,6 +163,7 @@ import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.util.List;
 
 public class Application {
 
@@ -172,7 +176,11 @@ public class Application {
             .build();
 
         GetCodeSamplesRequest req = GetCodeSamplesRequest.builder()
-                .registryUrl("https://normal-making.name")
+                .registryUrl("https://spec.speakeasy.com/my-org/my-workspace/my-source")
+                .languages(List.of(
+                    "python"))
+                .operationIds(List.of(
+                    "getPetById"))
                 .build();
 
         GetCodeSamplesResponse res = sdk.codeSamples().get()
@@ -221,7 +229,7 @@ import java.lang.Exception;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Error, Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -258,4 +266,5 @@ public class Application {
 
 | Error Type          | Status Code         | Content Type        |
 | ------------------- | ------------------- | ------------------- |
-| models/errors/Error | 4XX, 5XX            | application/json    |
+| models/errors/Error | 4XX                 | application/json    |
+| models/errors/Error | 5XX                 | application/json    |

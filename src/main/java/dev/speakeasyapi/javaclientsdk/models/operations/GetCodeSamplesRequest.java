@@ -19,14 +19,20 @@ import java.util.Optional;
 
 public class GetCodeSamplesRequest {
 
+    /**
+     * The languages to retrieve snippets for.
+     */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=languages")
     private Optional<? extends List<String>> languages;
 
+    /**
+     * The operation IDs to retrieve snippets for.
+     */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=operation_ids")
     private Optional<? extends List<String>> operationIds;
 
     /**
-     * The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source
+     * The registry URL from which to retrieve the snippets.
      */
     @SpeakeasyMetadata("queryParam:style=form,explode=true,name=registry_url")
     private String registryUrl;
@@ -49,12 +55,18 @@ public class GetCodeSamplesRequest {
         this(Optional.empty(), Optional.empty(), registryUrl);
     }
 
+    /**
+     * The languages to retrieve snippets for.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> languages() {
         return (Optional<List<String>>) languages;
     }
 
+    /**
+     * The operation IDs to retrieve snippets for.
+     */
     @SuppressWarnings("unchecked")
     @JsonIgnore
     public Optional<List<String>> operationIds() {
@@ -62,7 +74,7 @@ public class GetCodeSamplesRequest {
     }
 
     /**
-     * The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source
+     * The registry URL from which to retrieve the snippets.
      */
     @JsonIgnore
     public String registryUrl() {
@@ -73,24 +85,36 @@ public class GetCodeSamplesRequest {
         return new Builder();
     }
 
+    /**
+     * The languages to retrieve snippets for.
+     */
     public GetCodeSamplesRequest withLanguages(List<String> languages) {
         Utils.checkNotNull(languages, "languages");
         this.languages = Optional.ofNullable(languages);
         return this;
     }
 
+    /**
+     * The languages to retrieve snippets for.
+     */
     public GetCodeSamplesRequest withLanguages(Optional<? extends List<String>> languages) {
         Utils.checkNotNull(languages, "languages");
         this.languages = languages;
         return this;
     }
 
+    /**
+     * The operation IDs to retrieve snippets for.
+     */
     public GetCodeSamplesRequest withOperationIds(List<String> operationIds) {
         Utils.checkNotNull(operationIds, "operationIds");
         this.operationIds = Optional.ofNullable(operationIds);
         return this;
     }
 
+    /**
+     * The operation IDs to retrieve snippets for.
+     */
     public GetCodeSamplesRequest withOperationIds(Optional<? extends List<String>> operationIds) {
         Utils.checkNotNull(operationIds, "operationIds");
         this.operationIds = operationIds;
@@ -98,7 +122,7 @@ public class GetCodeSamplesRequest {
     }
 
     /**
-     * The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source
+     * The registry URL from which to retrieve the snippets.
      */
     public GetCodeSamplesRequest withRegistryUrl(String registryUrl) {
         Utils.checkNotNull(registryUrl, "registryUrl");
@@ -149,24 +173,36 @@ public class GetCodeSamplesRequest {
           // force use of static builder() method
         }
 
+        /**
+         * The languages to retrieve snippets for.
+         */
         public Builder languages(List<String> languages) {
             Utils.checkNotNull(languages, "languages");
             this.languages = Optional.ofNullable(languages);
             return this;
         }
 
+        /**
+         * The languages to retrieve snippets for.
+         */
         public Builder languages(Optional<? extends List<String>> languages) {
             Utils.checkNotNull(languages, "languages");
             this.languages = languages;
             return this;
         }
 
+        /**
+         * The operation IDs to retrieve snippets for.
+         */
         public Builder operationIds(List<String> operationIds) {
             Utils.checkNotNull(operationIds, "operationIds");
             this.operationIds = Optional.ofNullable(operationIds);
             return this;
         }
 
+        /**
+         * The operation IDs to retrieve snippets for.
+         */
         public Builder operationIds(Optional<? extends List<String>> operationIds) {
             Utils.checkNotNull(operationIds, "operationIds");
             this.operationIds = operationIds;
@@ -174,7 +210,7 @@ public class GetCodeSamplesRequest {
         }
 
         /**
-         * The registry URL from which to retrieve the snippets. E.g. https://spec.speakeasy.com/org/ws/my-source
+         * The registry URL from which to retrieve the snippets.
          */
         public Builder registryUrl(String registryUrl) {
             Utils.checkNotNull(registryUrl, "registryUrl");

@@ -61,7 +61,7 @@ tasks.withType(Javadoc) {
 }
 
 group = "dev.speakeasyapi"
-version = "7.23.3"
+version = "7.23.4"
 
 sourcesJar {
     archiveBaseName = "javaclientsdk"
@@ -88,7 +88,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'dev.speakeasyapi'
             artifactId = 'javaclientsdk'
-            version = '7.23.3'
+            version = '7.23.4'
 
             from components.java
 

@@ -171,7 +171,21 @@ public class CodeSamples implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -306,7 +320,21 @@ public class CodeSamples implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),
@@ -330,8 +358,9 @@ public class CodeSamples implements
 
 
     /**
-     * Retrieve usage snippets from document stored in the registry
-     * Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+     * Retrieve usage snippets
+     * Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
+     * 
      * @return The call builder
      */
     public GetCodeSamplesRequestBuilder get() {
@@ -339,8 +368,9 @@ public class CodeSamples implements
     }
 
     /**
-     * Retrieve usage snippets from document stored in the registry
-     * Retrieve usage snippets from document stored in the registry. Supports filtering by language and operation ID.
+     * Retrieve usage snippets
+     * Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
+     * 
      * @param request The request object containing all of the parameters for the API call.
      * @return The response from the API call
      * @throws Exception if the API call fails
@@ -584,7 +614,21 @@ public class CodeSamples implements
                     Utils.extractByteArrayFromBody(_httpRes));
             }
         }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {
                 Error _out = Utils.mapper().readValue(
                     Utils.toUtf8AndClose(_httpRes.body()),

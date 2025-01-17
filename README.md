@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.23.3'
+implementation 'dev.speakeasyapi:javaclientsdk:7.23.4'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.23.3</version>
+    <version>7.23.4</version>
 </dependency>
 ```
 
@@ -138,7 +138,7 @@ public class Application {
 
 * [generateCodeSamplePreview](docs/sdks/codesamples/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
 * [generateCodeSamplePreviewAsync](docs/sdks/codesamples/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [get](docs/sdks/codesamples/README.md#get) - Retrieve usage snippets from document stored in the registry
+* [get](docs/sdks/codesamples/README.md#get) - Retrieve usage snippets
 * [getCodeSamplePreviewAsync](docs/sdks/codesamples/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ### [events()](docs/sdks/events/README.md)
