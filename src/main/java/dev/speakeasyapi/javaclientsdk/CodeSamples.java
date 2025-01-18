@@ -16,12 +16,8 @@ import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyn
 import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncResponseBody;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesRequestBuilder;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.SDKMethodInterfaces.*;
 import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-import dev.speakeasyapi.javaclientsdk.models.shared.UsageSnippets;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPClient;
 import dev.speakeasyapi.javaclientsdk.utils.HTTPRequest;
 import dev.speakeasyapi.javaclientsdk.utils.Hook.AfterErrorContextImpl;
@@ -45,7 +41,6 @@ import java.util.Optional;
 public class CodeSamples implements
             MethodCallGenerateCodeSamplePreview,
             MethodCallGenerateCodeSamplePreviewAsync,
-            MethodCallGetCodeSamples,
             MethodCallGetCodeSamplePreviewAsync {
 
     private final SDKConfiguration sdkConfiguration;
@@ -347,143 +342,6 @@ public class CodeSamples implements
                     "Unexpected content-type received: " + _contentType, 
                     Utils.extractByteArrayFromBody(_httpRes));
             }
-        }
-        throw new SDKError(
-            _httpRes, 
-            _httpRes.statusCode(), 
-            "Unexpected status code received: " + _httpRes.statusCode(), 
-            Utils.extractByteArrayFromBody(_httpRes));
-    }
-
-
-
-    /**
-     * Retrieve usage snippets
-     * Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
-     * 
-     * @return The call builder
-     */
-    public GetCodeSamplesRequestBuilder get() {
-        return new GetCodeSamplesRequestBuilder(this);
-    }
-
-    /**
-     * Retrieve usage snippets
-     * Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
-     * 
-     * @param request The request object containing all of the parameters for the API call.
-     * @return The response from the API call
-     * @throws Exception if the API call fails
-     */
-    public GetCodeSamplesResponse get(
-            GetCodeSamplesRequest request) throws Exception {
-        String _baseUrl = this.sdkConfiguration.serverUrl;
-        String _url = Utils.generateURL(
-                _baseUrl,
-                "/v1/code_sample");
-        
-        HTTPRequest _req = new HTTPRequest(_url, "GET");
-        _req.addHeader("Accept", "application/json")
-            .addHeader("user-agent", 
-                SDKConfiguration.USER_AGENT);
-
-        _req.addQueryParams(Utils.getQueryParams(
-                GetCodeSamplesRequest.class,
-                request, 
-                this.sdkConfiguration.globals));
-        
-        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
-        Utils.configureSecurity(_req,  
-                this.sdkConfiguration.securitySource.getSecurity());
-        HTTPClient _client = this.sdkConfiguration.defaultClient;
-        HttpRequest _r = 
-            sdkConfiguration.hooks()
-               .beforeRequest(
-                  new BeforeRequestContextImpl(
-                      "getCodeSamples", 
-                      Optional.of(List.of()), 
-                      _hookSecuritySource),
-                  _req.build());
-        HttpResponse<InputStream> _httpRes;
-        try {
-            _httpRes = _client.send(_r);
-            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            "getCodeSamples",
-                            Optional.of(List.of()),
-                            _hookSecuritySource),
-                        Optional.of(_httpRes),
-                        Optional.empty());
-            } else {
-                _httpRes = sdkConfiguration.hooks()
-                    .afterSuccess(
-                        new AfterSuccessContextImpl(
-                            "getCodeSamples",
-                            Optional.of(List.of()), 
-                            _hookSecuritySource),
-                         _httpRes);
-            }
-        } catch (Exception _e) {
-            _httpRes = sdkConfiguration.hooks()
-                    .afterError(
-                        new AfterErrorContextImpl(
-                            "getCodeSamples",
-                            Optional.of(List.of()),
-                            _hookSecuritySource), 
-                        Optional.empty(),
-                        Optional.of(_e));
-        }
-        String _contentType = _httpRes
-            .headers()
-            .firstValue("Content-Type")
-            .orElse("application/octet-stream");
-        GetCodeSamplesResponse.Builder _resBuilder = 
-            GetCodeSamplesResponse
-                .builder()
-                .contentType(_contentType)
-                .statusCode(_httpRes.statusCode())
-                .rawResponse(_httpRes);
-
-        GetCodeSamplesResponse _res = _resBuilder.build();
-        
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                UsageSnippets _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<UsageSnippets>() {});
-                _res.withUsageSnippets(Optional.ofNullable(_out));
-                return _res;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
-            if (Utils.contentTypeMatches(_contentType, "application/json")) {
-                Error _out = Utils.mapper().readValue(
-                    Utils.toUtf8AndClose(_httpRes.body()),
-                    new TypeReference<Error>() {});
-                throw _out;
-            } else {
-                throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "Unexpected content-type received: " + _contentType, 
-                    Utils.extractByteArrayFromBody(_httpRes));
-            }
-        }
-        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
-            // no content 
-            throw new SDKError(
-                    _httpRes, 
-                    _httpRes.statusCode(), 
-                    "API error occurred", 
-                    Utils.extractByteArrayFromBody(_httpRes));
         }
         throw new SDKError(
             _httpRes, 

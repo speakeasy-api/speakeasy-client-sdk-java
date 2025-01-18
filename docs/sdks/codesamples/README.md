@@ -9,7 +9,6 @@ REST APIs for retrieving Code Samples
 
 * [generateCodeSamplePreview](#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
 * [generateCodeSamplePreviewAsync](#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [get](#get) - Retrieve usage snippets
 * [getCodeSamplePreviewAsync](#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
 
 ## generateCodeSamplePreview
@@ -146,70 +145,6 @@ public class Application {
 | ------------------- | ------------------- | ------------------- |
 | models/errors/Error | 4XX                 | application/json    |
 | models/errors/Error | 5XX                 | application/json    |
-
-## get
-
-Retrieve usage snippets from an OpenAPI document stored in the registry. Supports filtering by language and operation ID.
-
-
-### Example Usage
-
-```java
-package hello.world;
-
-import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplesResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-import java.lang.Exception;
-import java.util.List;
-
-public class Application {
-
-    public static void main(String[] args) throws Error, Exception {
-
-        RyanTest sdk = RyanTest.builder()
-                .security(Security.builder()
-                    .apiKey("<YOUR_API_KEY_HERE>")
-                    .build())
-            .build();
-
-        GetCodeSamplesRequest req = GetCodeSamplesRequest.builder()
-                .registryUrl("https://spec.speakeasy.com/my-org/my-workspace/my-source")
-                .languages(List.of(
-                    "python"))
-                .operationIds(List.of(
-                    "getPetById"))
-                .build();
-
-        GetCodeSamplesResponse res = sdk.codeSamples().get()
-                .request(req)
-                .call();
-
-        if (res.usageSnippets().isPresent()) {
-            // handle response
-        }
-    }
-}
-```
-
-### Parameters
-
-| Parameter                                                                 | Type                                                                      | Required                                                                  | Description                                                               |
-| ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| `request`                                                                 | [GetCodeSamplesRequest](../../models/operations/GetCodeSamplesRequest.md) | :heavy_check_mark:                                                        | The request object to use for the request.                                |
-
-### Response
-
-**[GetCodeSamplesResponse](../../models/operations/GetCodeSamplesResponse.md)**
-
-### Errors
-
-| Error Type             | Status Code            | Content Type           |
-| ---------------------- | ---------------------- | ---------------------- |
-| models/errors/Error    | 4XX                    | application/json       |
-| models/errors/SDKError | 5XX                    | \*/\*                  |
 
 ## getCodeSamplePreviewAsync
 

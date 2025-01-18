@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
-  docChecksum: 37a13cf25882217bb6883efc4407294c
+  docChecksum: 1766b7749df601fc084985fa6f54c7be
   docVersion: 0.4.0
-  speakeasyVersion: 1.468.9
+  speakeasyVersion: 1.469.1
   generationVersion: 2.493.21
-  releaseVersion: 7.23.4
-  configChecksum: b3d006d07d722b89a2a5bb3377a19d5f
+  releaseVersion: 7.23.5
+  configChecksum: d082ce24ea380ee644f55c1749bfd393
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -60,8 +60,6 @@ generatedFiles:
   - docs/models/operations/GetCodeSamplePreviewAsyncRequest.md
   - docs/models/operations/GetCodeSamplePreviewAsyncResponse.md
   - docs/models/operations/GetCodeSamplePreviewAsyncResponseBody.md
-  - docs/models/operations/GetCodeSamplesRequest.md
-  - docs/models/operations/GetCodeSamplesResponse.md
   - docs/models/operations/GetGitHubActionRequest.md
   - docs/models/operations/GetGitHubActionResponse.md
   - docs/models/operations/GetGithubSetupStateRequest.md
@@ -212,8 +210,6 @@ generatedFiles:
   - docs/models/shared/Tag.md
   - docs/models/shared/TargetSDK.md
   - docs/models/shared/Type.md
-  - docs/models/shared/UsageSnippet.md
-  - docs/models/shared/UsageSnippets.md
   - docs/models/shared/User.md
   - docs/models/shared/V2Descriptor.md
   - docs/models/shared/WorkflowDocument.md
@@ -304,9 +300,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplePreviewAsyncResponseBody.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplesRequest.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplesRequestBuilder.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetCodeSamplesResponse.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionRequest.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionRequestBuilder.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/operations/GetGitHubActionResponse.java
@@ -506,8 +499,6 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Tag.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/TargetSDK.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/Type.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/UsageSnippet.java
-  - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/UsageSnippets.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/User.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/V2Descriptor.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/models/shared/WorkflowDocument.java

@@ -31,7 +31,7 @@ class SDKConfiguration {
     public String server;
     private static final String LANGUAGE = "java";
     public static final String OPENAPI_DOC_VERSION = "0.4.0";
-    public static final String SDK_VERSION = "7.23.4";
+    public static final String SDK_VERSION = "7.23.5";
     public static final String GEN_VERSION = "2.493.21";
     private static final String BASE_PACKAGE = "dev.speakeasyapi.javaclientsdk";
     public static final String USER_AGENT = 

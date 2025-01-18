@@ -117,12 +117,6 @@ public class SDKMethodInterfaces {
     }
 
 
-    public interface MethodCallGetCodeSamples {
-        GetCodeSamplesResponse get(
-            GetCodeSamplesRequest request) throws Exception;
-    }
-
-
     public interface MethodCallGetCodeSamplePreviewAsync {
         GetCodeSamplePreviewAsyncResponse getCodeSamplePreviewAsync(
             GetCodeSamplePreviewAsyncRequest request) throws Exception;
