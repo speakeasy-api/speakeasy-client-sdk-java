@@ -43,13 +43,13 @@ public class Application {
 
         Organization req = Organization.builder()
                 .accountType(AccountType.SCALE_UP)
-                .createdAt(OffsetDateTime.parse("2023-12-01T17:06:07.804Z"))
+                .createdAt(OffsetDateTime.parse("2024-11-30T17:06:07.804Z"))
                 .id("<id>")
                 .name("<value>")
                 .slug("<value>")
                 .ssoActivated(true)
                 .telemetryDisabled(true)
-                .updatedAt(OffsetDateTime.parse("2022-05-28T06:20:22.766Z"))
+                .updatedAt(OffsetDateTime.parse("2023-03-17T15:39:20.911Z"))
                 .build();
 
         CreateOrganizationResponse res = sdk.organizations().create()
@@ -151,7 +151,7 @@ public class Application {
             .build();
 
         GetOrganizationRequest req = GetOrganizationRequest.builder()
-                .organizationID("<value>")
+                .organizationID("<id>")
                 .build();
 
         GetOrganizationResponse res = sdk.organizations().get()

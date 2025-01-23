@@ -24,8 +24,10 @@ package hello.world;
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest;
 import dev.speakeasyapi.javaclientsdk.models.operations.SuggestResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Diagnostic;
 import dev.speakeasyapi.javaclientsdk.models.shared.License;
 import dev.speakeasyapi.javaclientsdk.models.shared.OASInfo;
+import dev.speakeasyapi.javaclientsdk.models.shared.OASOperation;
 import dev.speakeasyapi.javaclientsdk.models.shared.OASSummary;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import dev.speakeasyapi.javaclientsdk.models.shared.SuggestRequestBody;
@@ -46,10 +48,22 @@ public class Application {
         SuggestRequest req = SuggestRequest.builder()
                 .suggestRequestBody(SuggestRequestBody.builder()
                     .diagnostics(List.of(
-                    ))
+                        Diagnostic.builder()
+                            .message("<value>")
+                            .path(List.of(
+                                "/opt/include",
+                                "/opt/share"))
+                            .type("<value>")
+                            .build(),
+                        Diagnostic.builder()
+                            .message("<value>")
+                            .path(List.of(
+                            ))
+                            .type("<value>")
+                            .build()))
                     .oasSummary(OASSummary.builder()
                         .info(OASInfo.builder()
-                            .description("Operative impactful monitoring")
+                            .description("amid traffic the unfortunately underneath what father lovely out")
                             .license(License.builder()
                                 .build())
                             .summary("<value>")
@@ -57,11 +71,19 @@ public class Application {
                             .version("<value>")
                             .build())
                         .operations(List.of(
-                        ))
+                            OASOperation.builder()
+                                .description("times dull than except")
+                                .method("<value>")
+                                .operationId("<id>")
+                                .path("/mnt")
+                                .tags(List.of(
+                                    "<value>",
+                                    "<value>"))
+                                .build()))
                         .build())
                     .suggestionType(SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY)
                     .build())
-                .xSessionId("<value>")
+                .xSessionId("<id>")
                 .build();
 
         SuggestResponse res = sdk.suggest().suggest()
@@ -185,7 +207,7 @@ public class Application {
                         .fileName("example.file")
                         .build())
                     .build())
-                .xSessionId("<value>")
+                .xSessionId("<id>")
                 .build();
 
         SuggestOpenAPIResponse res = sdk.suggest().suggestOpenAPI()
@@ -243,7 +265,7 @@ public class Application {
         SuggestOpenAPIRegistryRequest req = SuggestOpenAPIRegistryRequest.builder()
                 .namespaceName("<value>")
                 .revisionReference("<value>")
-                .xSessionId("<value>")
+                .xSessionId("<id>")
                 .build();
 
         SuggestOpenAPIRegistryResponse res = sdk.suggest().suggestOpenAPIRegistry()

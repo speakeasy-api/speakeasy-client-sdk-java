@@ -90,7 +90,7 @@ public class Application {
             .build();
 
         GetAccessTokenRequest req = GetAccessTokenRequest.builder()
-                .workspaceId("<value>")
+                .workspaceId("<id>")
                 .build();
 
         GetAccessTokenResponse res = sdk.auth().getAccessToken()

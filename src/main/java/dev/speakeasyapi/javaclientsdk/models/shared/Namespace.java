@@ -38,6 +38,10 @@ public class Namespace {
     @JsonProperty("id")
     private String id;
 
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("latest_revision_metadata")
+    private Optional<? extends RevisionContentsMetadata> latestRevisionMetadata;
+
     /**
      * A human-readable name for the namespace.
      */
@@ -59,18 +63,21 @@ public class Namespace {
             @JsonProperty("composite_spec_metadata") Optional<? extends CompositeSpecMetadata> compositeSpecMetadata,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
+            @JsonProperty("latest_revision_metadata") Optional<? extends RevisionContentsMetadata> latestRevisionMetadata,
             @JsonProperty("name") String name,
             @JsonProperty("public") Optional<Boolean> public_,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
         Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
+        Utils.checkNotNull(latestRevisionMetadata, "latestRevisionMetadata");
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(public_, "public_");
         Utils.checkNotNull(updatedAt, "updatedAt");
         this.compositeSpecMetadata = compositeSpecMetadata;
         this.createdAt = createdAt;
         this.id = id;
+        this.latestRevisionMetadata = latestRevisionMetadata;
         this.name = name;
         this.public_ = public_;
         this.updatedAt = updatedAt;
@@ -81,7 +88,7 @@ public class Namespace {
             String id,
             String name,
             OffsetDateTime updatedAt) {
-        this(Optional.empty(), createdAt, id, name, Optional.empty(), updatedAt);
+        this(Optional.empty(), createdAt, id, Optional.empty(), name, Optional.empty(), updatedAt);
     }
 
     @SuppressWarnings("unchecked")
@@ -101,6 +108,12 @@ public class Namespace {
     @JsonIgnore
     public String id() {
         return id;
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RevisionContentsMetadata> latestRevisionMetadata() {
+        return (Optional<RevisionContentsMetadata>) latestRevisionMetadata;
     }
 
     /**
@@ -155,6 +168,18 @@ public class Namespace {
         return this;
     }
 
+    public Namespace withLatestRevisionMetadata(RevisionContentsMetadata latestRevisionMetadata) {
+        Utils.checkNotNull(latestRevisionMetadata, "latestRevisionMetadata");
+        this.latestRevisionMetadata = Optional.ofNullable(latestRevisionMetadata);
+        return this;
+    }
+
+    public Namespace withLatestRevisionMetadata(Optional<? extends RevisionContentsMetadata> latestRevisionMetadata) {
+        Utils.checkNotNull(latestRevisionMetadata, "latestRevisionMetadata");
+        this.latestRevisionMetadata = latestRevisionMetadata;
+        return this;
+    }
+
     /**
      * A human-readable name for the namespace.
      */
@@ -201,6 +226,7 @@ public class Namespace {
             Objects.deepEquals(this.compositeSpecMetadata, other.compositeSpecMetadata) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.id, other.id) &&
+            Objects.deepEquals(this.latestRevisionMetadata, other.latestRevisionMetadata) &&
             Objects.deepEquals(this.name, other.name) &&
             Objects.deepEquals(this.public_, other.public_) &&
             Objects.deepEquals(this.updatedAt, other.updatedAt);
@@ -212,6 +238,7 @@ public class Namespace {
             compositeSpecMetadata,
             createdAt,
             id,
+            latestRevisionMetadata,
             name,
             public_,
             updatedAt);
@@ -223,6 +250,7 @@ public class Namespace {
                 "compositeSpecMetadata", compositeSpecMetadata,
                 "createdAt", createdAt,
                 "id", id,
+                "latestRevisionMetadata", latestRevisionMetadata,
                 "name", name,
                 "public_", public_,
                 "updatedAt", updatedAt);
@@ -235,6 +263,8 @@ public class Namespace {
         private OffsetDateTime createdAt;
  
         private String id;
+ 
+        private Optional<? extends RevisionContentsMetadata> latestRevisionMetadata = Optional.empty();
  
         private String name;
  
@@ -270,6 +300,18 @@ public class Namespace {
         public Builder id(String id) {
             Utils.checkNotNull(id, "id");
             this.id = id;
+            return this;
+        }
+
+        public Builder latestRevisionMetadata(RevisionContentsMetadata latestRevisionMetadata) {
+            Utils.checkNotNull(latestRevisionMetadata, "latestRevisionMetadata");
+            this.latestRevisionMetadata = Optional.ofNullable(latestRevisionMetadata);
+            return this;
+        }
+
+        public Builder latestRevisionMetadata(Optional<? extends RevisionContentsMetadata> latestRevisionMetadata) {
+            Utils.checkNotNull(latestRevisionMetadata, "latestRevisionMetadata");
+            this.latestRevisionMetadata = latestRevisionMetadata;
             return this;
         }
 
@@ -311,6 +353,7 @@ public class Namespace {
                 compositeSpecMetadata,
                 createdAt,
                 id,
+                latestRevisionMetadata,
                 name,
                 public_,
                 updatedAt);

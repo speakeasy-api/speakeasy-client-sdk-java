@@ -7,16 +7,24 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
+import java.lang.SuppressWarnings;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 
 public class Revision {
+
+    @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("contents_metadata")
+    private Optional<? extends RevisionContentsMetadata> contentsMetadata;
 
     @JsonProperty("created_at")
     private OffsetDateTime createdAt;
@@ -41,24 +49,43 @@ public class Revision {
 
     @JsonCreator
     public Revision(
+            @JsonProperty("contents_metadata") Optional<? extends RevisionContentsMetadata> contentsMetadata,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("digest") String digest,
             @JsonProperty("id") String id,
             @JsonProperty("namespace_name") String namespaceName,
             @JsonProperty("tags") List<String> tags,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
+        Utils.checkNotNull(contentsMetadata, "contentsMetadata");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(digest, "digest");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(namespaceName, "namespaceName");
         Utils.checkNotNull(tags, "tags");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        this.contentsMetadata = contentsMetadata;
         this.createdAt = createdAt;
         this.digest = digest;
         this.id = id;
         this.namespaceName = namespaceName;
         this.tags = tags;
         this.updatedAt = updatedAt;
+    }
+    
+    public Revision(
+            OffsetDateTime createdAt,
+            String digest,
+            String id,
+            String namespaceName,
+            List<String> tags,
+            OffsetDateTime updatedAt) {
+        this(Optional.empty(), createdAt, digest, id, namespaceName, tags, updatedAt);
+    }
+
+    @SuppressWarnings("unchecked")
+    @JsonIgnore
+    public Optional<RevisionContentsMetadata> contentsMetadata() {
+        return (Optional<RevisionContentsMetadata>) contentsMetadata;
     }
 
     @JsonIgnore
@@ -96,6 +123,18 @@ public class Revision {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public Revision withContentsMetadata(RevisionContentsMetadata contentsMetadata) {
+        Utils.checkNotNull(contentsMetadata, "contentsMetadata");
+        this.contentsMetadata = Optional.ofNullable(contentsMetadata);
+        return this;
+    }
+
+    public Revision withContentsMetadata(Optional<? extends RevisionContentsMetadata> contentsMetadata) {
+        Utils.checkNotNull(contentsMetadata, "contentsMetadata");
+        this.contentsMetadata = contentsMetadata;
+        return this;
     }
 
     public Revision withCreatedAt(OffsetDateTime createdAt) {
@@ -147,6 +186,7 @@ public class Revision {
         }
         Revision other = (Revision) o;
         return 
+            Objects.deepEquals(this.contentsMetadata, other.contentsMetadata) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.digest, other.digest) &&
             Objects.deepEquals(this.id, other.id) &&
@@ -158,6 +198,7 @@ public class Revision {
     @Override
     public int hashCode() {
         return Objects.hash(
+            contentsMetadata,
             createdAt,
             digest,
             id,
@@ -169,6 +210,7 @@ public class Revision {
     @Override
     public String toString() {
         return Utils.toString(Revision.class,
+                "contentsMetadata", contentsMetadata,
                 "createdAt", createdAt,
                 "digest", digest,
                 "id", id,
@@ -178,6 +220,8 @@ public class Revision {
     }
     
     public final static class Builder {
+ 
+        private Optional<? extends RevisionContentsMetadata> contentsMetadata = Optional.empty();
  
         private OffsetDateTime createdAt;
  
@@ -193,6 +237,18 @@ public class Revision {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder contentsMetadata(RevisionContentsMetadata contentsMetadata) {
+            Utils.checkNotNull(contentsMetadata, "contentsMetadata");
+            this.contentsMetadata = Optional.ofNullable(contentsMetadata);
+            return this;
+        }
+
+        public Builder contentsMetadata(Optional<? extends RevisionContentsMetadata> contentsMetadata) {
+            Utils.checkNotNull(contentsMetadata, "contentsMetadata");
+            this.contentsMetadata = contentsMetadata;
+            return this;
         }
 
         public Builder createdAt(OffsetDateTime createdAt) {
@@ -236,6 +292,7 @@ public class Revision {
         
         public Revision build() {
             return new Revision(
+                contentsMetadata,
                 createdAt,
                 digest,
                 id,
