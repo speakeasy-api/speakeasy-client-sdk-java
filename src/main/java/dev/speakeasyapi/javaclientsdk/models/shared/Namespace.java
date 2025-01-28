@@ -26,6 +26,10 @@ import java.util.Optional;
 public class Namespace {
 
     @JsonInclude(Include.NON_ABSENT)
+    @JsonProperty("archived_at")
+    private Optional<OffsetDateTime> archivedAt;
+
+    @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("composite_spec_metadata")
     private Optional<? extends CompositeSpecMetadata> compositeSpecMetadata;
 
@@ -60,6 +64,7 @@ public class Namespace {
 
     @JsonCreator
     public Namespace(
+            @JsonProperty("archived_at") Optional<OffsetDateTime> archivedAt,
             @JsonProperty("composite_spec_metadata") Optional<? extends CompositeSpecMetadata> compositeSpecMetadata,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("id") String id,
@@ -67,6 +72,7 @@ public class Namespace {
             @JsonProperty("name") String name,
             @JsonProperty("public") Optional<Boolean> public_,
             @JsonProperty("updated_at") OffsetDateTime updatedAt) {
+        Utils.checkNotNull(archivedAt, "archivedAt");
         Utils.checkNotNull(compositeSpecMetadata, "compositeSpecMetadata");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(id, "id");
@@ -74,6 +80,7 @@ public class Namespace {
         Utils.checkNotNull(name, "name");
         Utils.checkNotNull(public_, "public_");
         Utils.checkNotNull(updatedAt, "updatedAt");
+        this.archivedAt = archivedAt;
         this.compositeSpecMetadata = compositeSpecMetadata;
         this.createdAt = createdAt;
         this.id = id;
@@ -88,7 +95,12 @@ public class Namespace {
             String id,
             String name,
             OffsetDateTime updatedAt) {
-        this(Optional.empty(), createdAt, id, Optional.empty(), name, Optional.empty(), updatedAt);
+        this(Optional.empty(), Optional.empty(), createdAt, id, Optional.empty(), name, Optional.empty(), updatedAt);
+    }
+
+    @JsonIgnore
+    public Optional<OffsetDateTime> archivedAt() {
+        return archivedAt;
     }
 
     @SuppressWarnings("unchecked")
@@ -139,6 +151,18 @@ public class Namespace {
 
     public final static Builder builder() {
         return new Builder();
+    }
+
+    public Namespace withArchivedAt(OffsetDateTime archivedAt) {
+        Utils.checkNotNull(archivedAt, "archivedAt");
+        this.archivedAt = Optional.ofNullable(archivedAt);
+        return this;
+    }
+
+    public Namespace withArchivedAt(Optional<OffsetDateTime> archivedAt) {
+        Utils.checkNotNull(archivedAt, "archivedAt");
+        this.archivedAt = archivedAt;
+        return this;
     }
 
     public Namespace withCompositeSpecMetadata(CompositeSpecMetadata compositeSpecMetadata) {
@@ -223,6 +247,7 @@ public class Namespace {
         }
         Namespace other = (Namespace) o;
         return 
+            Objects.deepEquals(this.archivedAt, other.archivedAt) &&
             Objects.deepEquals(this.compositeSpecMetadata, other.compositeSpecMetadata) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.id, other.id) &&
@@ -235,6 +260,7 @@ public class Namespace {
     @Override
     public int hashCode() {
         return Objects.hash(
+            archivedAt,
             compositeSpecMetadata,
             createdAt,
             id,
@@ -247,6 +273,7 @@ public class Namespace {
     @Override
     public String toString() {
         return Utils.toString(Namespace.class,
+                "archivedAt", archivedAt,
                 "compositeSpecMetadata", compositeSpecMetadata,
                 "createdAt", createdAt,
                 "id", id,
@@ -257,6 +284,8 @@ public class Namespace {
     }
     
     public final static class Builder {
+ 
+        private Optional<OffsetDateTime> archivedAt = Optional.empty();
  
         private Optional<? extends CompositeSpecMetadata> compositeSpecMetadata = Optional.empty();
  
@@ -274,6 +303,18 @@ public class Namespace {
         
         private Builder() {
           // force use of static builder() method
+        }
+
+        public Builder archivedAt(OffsetDateTime archivedAt) {
+            Utils.checkNotNull(archivedAt, "archivedAt");
+            this.archivedAt = Optional.ofNullable(archivedAt);
+            return this;
+        }
+
+        public Builder archivedAt(Optional<OffsetDateTime> archivedAt) {
+            Utils.checkNotNull(archivedAt, "archivedAt");
+            this.archivedAt = archivedAt;
+            return this;
         }
 
         public Builder compositeSpecMetadata(CompositeSpecMetadata compositeSpecMetadata) {
@@ -350,6 +391,7 @@ public class Namespace {
         
         public Namespace build() {
             return new Namespace(
+                archivedAt,
                 compositeSpecMetadata,
                 createdAt,
                 id,

@@ -16,6 +16,7 @@ REST APIs for working with Registry artifacts
 * [listRemoteSources](#listremotesources) - Get remote sources attached to a particular namespace
 * [postTags](#posttags) - Add tags to an existing revision
 * [preflight](#preflight) - Get access token for communicating with OCI distribution endpoints
+* [setArchived](#setarchived) - Set whether a namespace is archived
 * [setVisibility](#setvisibility) - Set visibility of a namespace with an existing metadata entry
 
 ## createRemoteSource
@@ -526,6 +527,62 @@ public class Application {
 ### Response
 
 **[PreflightResponse](../../models/operations/PreflightResponse.md)**
+
+### Errors
+
+| Error Type             | Status Code            | Content Type           |
+| ---------------------- | ---------------------- | ---------------------- |
+| models/errors/Error    | 4XX                    | application/json       |
+| models/errors/SDKError | 5XX                    | \*/\*                  |
+
+## setArchived
+
+Set whether a namespace is archived
+
+### Example Usage
+
+```java
+package hello.world;
+
+import dev.speakeasyapi.javaclientsdk.RyanTest;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+import java.lang.Exception;
+
+public class Application {
+
+    public static void main(String[] args) throws Error, Exception {
+
+        RyanTest sdk = RyanTest.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
+            .build();
+
+        ArchiveNamespaceRequest req = ArchiveNamespaceRequest.builder()
+                .namespaceName("<value>")
+                .build();
+
+        ArchiveNamespaceResponse res = sdk.artifacts().setArchived()
+                .request(req)
+                .call();
+
+        // handle response
+    }
+}
+```
+
+### Parameters
+
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [ArchiveNamespaceRequest](../../models/operations/ArchiveNamespaceRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
+
+### Response
+
+**[ArchiveNamespaceResponse](../../models/operations/ArchiveNamespaceResponse.md)**
 
 ### Errors
 

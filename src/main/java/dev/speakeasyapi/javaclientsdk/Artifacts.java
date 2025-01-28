@@ -7,6 +7,9 @@ package dev.speakeasyapi.javaclientsdk;
 import com.fasterxml.jackson.core.type.TypeReference;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
 import dev.speakeasyapi.javaclientsdk.models.errors.SDKError;
+import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceRequestBuilder;
+import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceRequestBuilder;
 import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
 import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobRequest;
@@ -69,6 +72,7 @@ public class Artifacts implements
             MethodCallListRemoteSources,
             MethodCallPostTags,
             MethodCallPreflight,
+            MethodCallArchiveNamespace,
             MethodCallSetVisibility {
 
     private final SDKConfiguration sdkConfiguration;
@@ -1221,6 +1225,135 @@ public class Artifacts implements
                     "Unexpected content-type received: " + _contentType, 
                     Utils.extractByteArrayFromBody(_httpRes));
             }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
+            if (Utils.contentTypeMatches(_contentType, "application/json")) {
+                Error _out = Utils.mapper().readValue(
+                    Utils.toUtf8AndClose(_httpRes.body()),
+                    new TypeReference<Error>() {});
+                throw _out;
+            } else {
+                throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "Unexpected content-type received: " + _contentType, 
+                    Utils.extractByteArrayFromBody(_httpRes));
+            }
+        }
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "5XX")) {
+            // no content 
+            throw new SDKError(
+                    _httpRes, 
+                    _httpRes.statusCode(), 
+                    "API error occurred", 
+                    Utils.extractByteArrayFromBody(_httpRes));
+        }
+        throw new SDKError(
+            _httpRes, 
+            _httpRes.statusCode(), 
+            "Unexpected status code received: " + _httpRes.statusCode(), 
+            Utils.extractByteArrayFromBody(_httpRes));
+    }
+
+
+
+    /**
+     * Set whether a namespace is archived
+     * @return The call builder
+     */
+    public ArchiveNamespaceRequestBuilder setArchived() {
+        return new ArchiveNamespaceRequestBuilder(this);
+    }
+
+    /**
+     * Set whether a namespace is archived
+     * @param request The request object containing all of the parameters for the API call.
+     * @return The response from the API call
+     * @throws Exception if the API call fails
+     */
+    public ArchiveNamespaceResponse setArchived(
+            ArchiveNamespaceRequest request) throws Exception {
+        String _baseUrl = this.sdkConfiguration.serverUrl;
+        String _url = Utils.generateURL(
+                ArchiveNamespaceRequest.class,
+                _baseUrl,
+                "/v1/artifacts/namespaces/{namespace_name}/archive",
+                request, this.sdkConfiguration.globals);
+        
+        HTTPRequest _req = new HTTPRequest(_url, "POST");
+        Object _convertedRequest = Utils.convertToShape(
+                request, 
+                JsonShape.DEFAULT,
+                new TypeReference<ArchiveNamespaceRequest>() {});
+        SerializedBody _serializedRequestBody = Utils.serializeRequestBody(
+                _convertedRequest, 
+                "requestBody",
+                "json",
+                false);
+        _req.setBody(Optional.ofNullable(_serializedRequestBody));
+        _req.addHeader("Accept", "application/json")
+            .addHeader("user-agent", 
+                SDKConfiguration.USER_AGENT);
+        
+        Optional<SecuritySource> _hookSecuritySource = this.sdkConfiguration.securitySource();
+        Utils.configureSecurity(_req,  
+                this.sdkConfiguration.securitySource.getSecurity());
+        HTTPClient _client = this.sdkConfiguration.defaultClient;
+        HttpRequest _r = 
+            sdkConfiguration.hooks()
+               .beforeRequest(
+                  new BeforeRequestContextImpl(
+                      "archiveNamespace", 
+                      Optional.of(List.of()), 
+                      _hookSecuritySource),
+                  _req.build());
+        HttpResponse<InputStream> _httpRes;
+        try {
+            _httpRes = _client.send(_r);
+            if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX", "5XX")) {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "archiveNamespace",
+                            Optional.of(List.of()),
+                            _hookSecuritySource),
+                        Optional.of(_httpRes),
+                        Optional.empty());
+            } else {
+                _httpRes = sdkConfiguration.hooks()
+                    .afterSuccess(
+                        new AfterSuccessContextImpl(
+                            "archiveNamespace",
+                            Optional.of(List.of()), 
+                            _hookSecuritySource),
+                         _httpRes);
+            }
+        } catch (Exception _e) {
+            _httpRes = sdkConfiguration.hooks()
+                    .afterError(
+                        new AfterErrorContextImpl(
+                            "archiveNamespace",
+                            Optional.of(List.of()),
+                            _hookSecuritySource), 
+                        Optional.empty(),
+                        Optional.of(_e));
+        }
+        String _contentType = _httpRes
+            .headers()
+            .firstValue("Content-Type")
+            .orElse("application/octet-stream");
+        ArchiveNamespaceResponse.Builder _resBuilder = 
+            ArchiveNamespaceResponse
+                .builder()
+                .contentType(_contentType)
+                .statusCode(_httpRes.statusCode())
+                .rawResponse(_httpRes);
+
+        ArchiveNamespaceResponse _res = _resBuilder.build();
+        
+        if (Utils.statusCodeMatches(_httpRes.statusCode(), "2XX")) {
+            // no content 
+            return _res;
         }
         if (Utils.statusCodeMatches(_httpRes.statusCode(), "4XX")) {
             if (Utils.contentTypeMatches(_contentType, "application/json")) {

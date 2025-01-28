@@ -76,6 +76,12 @@ public class SDKMethodInterfaces {
     }
 
 
+    public interface MethodCallArchiveNamespace {
+        ArchiveNamespaceResponse setArchived(
+            ArchiveNamespaceRequest request) throws Exception;
+    }
+
+
     public interface MethodCallSetVisibility {
         SetVisibilityResponse setVisibility(
             SetVisibilityRequest request) throws Exception;
