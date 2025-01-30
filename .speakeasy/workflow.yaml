@@ -3,7 +3,7 @@ speakeasyVersion: latest
 sources:
     my-source:
         inputs:
-            - location: https://speakeasy.com/openapi.yaml
+            - location: openapi.yaml
         registry:
             location: registry.speakeasyapi.dev/chase-test/chase-test/my-source-new
 targets:
