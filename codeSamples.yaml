@@ -3,23 +3,23 @@ info:
   title: CodeSamples overlay for java target
   version: 0.0.0
 actions:
-  - target: $["paths"]["/v1/artifacts/namespaces"]["get"]
+  - target: $["paths"]["/v1/apis"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: getNamespaces
+          label: getApis
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetNamespacesResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -27,32 +27,35 @@ actions:
                                 .build())
                         .build();
 
-                    GetNamespacesResponse res = sdk.artifacts().getNamespaces()
+                    GetApisRequest req = GetApisRequest.builder()
+                            .build();
+
+                    GetApisResponse res = sdk.apis().getApis()
+                            .request(req)
                             .call();
 
-                    if (res.getNamespacesResponse().isPresent()) {
+                    if (res.apis().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/archive"]["post"]
+  - target: $["paths"]["/v1/apis/{apiID}"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: archiveNamespace
+          label: getAllApiVersions
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ArchiveNamespaceResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiVersionsResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -60,35 +63,152 @@ actions:
                                 .build())
                         .build();
 
-                    ArchiveNamespaceRequest req = ArchiveNamespaceRequest.builder()
-                            .namespaceName("<value>")
+                    GetAllApiVersionsRequest req = GetAllApiVersionsRequest.builder()
+                            .apiID("<id>")
                             .build();
 
-                    ArchiveNamespaceResponse res = sdk.artifacts().setArchived()
+                    GetAllApiVersionsResponse res = sdk.apis().getAllApiVersions()
+                            .request(req)
+                            .call();
+
+                    if (res.apis().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: upsertApi
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.ApiInput;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    UpsertApiRequest req = UpsertApiRequest.builder()
+                            .apiID("<id>")
+                            .api(ApiInput.builder()
+                                .apiId("<id>")
+                                .description("consequently brr happily yowza however gosh investigate joyfully direct")
+                                .versionId("<id>")
+                                .build())
+                            .build();
+
+                    UpsertApiResponse res = sdk.apis().upsertApi()
+                            .request(req)
+                            .call();
+
+                    if (res.api().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/api_endpoints"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getAllApiEndpoints
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetAllApiEndpointsResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetAllApiEndpointsRequest req = GetAllApiEndpointsRequest.builder()
+                            .apiID("<id>")
+                            .build();
+
+                    GetAllApiEndpointsResponse res = sdk.apiEndpoints().getAllApiEndpoints()
+                            .request(req)
+                            .call();
+
+                    if (res.apiEndpoints().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteApi
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    DeleteApiRequest req = DeleteApiRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .build();
+
+                    DeleteApiResponse res = sdk.apis().deleteApi()
                             .request(req)
                             .call();
 
                     // handle response
                 }
             }
-  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/revisions"]["get"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: getRevisions
+          label: getAllForVersionApiEndpoints
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetRevisionsResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetAllForVersionApiEndpointsResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -96,37 +216,37 @@ actions:
                                 .build())
                         .build();
 
-                    GetRevisionsRequest req = GetRevisionsRequest.builder()
-                            .namespaceName("<value>")
+                    GetAllForVersionApiEndpointsRequest req = GetAllForVersionApiEndpointsRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
                             .build();
 
-                    GetRevisionsResponse res = sdk.artifacts().getRevisions()
+                    GetAllForVersionApiEndpointsResponse res = sdk.apiEndpoints().getAllForVersionApiEndpoints()
                             .request(req)
                             .call();
 
-                    if (res.getRevisionsResponse().isPresent()) {
+                    if (res.apiEndpoints().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/tags"]["get"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/find/{displayName}"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: getTags
+          label: findApiEndpoint
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetTagsResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.FindApiEndpointResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -134,37 +254,38 @@ actions:
                                 .build())
                         .build();
 
-                    GetTagsRequest req = GetTagsRequest.builder()
-                            .namespaceName("<value>")
+                    FindApiEndpointRequest req = FindApiEndpointRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .displayName("Don_Kihn39")
                             .build();
 
-                    GetTagsResponse res = sdk.artifacts().getTags()
+                    FindApiEndpointResponse res = sdk.apiEndpoints().findApiEndpoint()
                             .request(req)
                             .call();
 
-                    if (res.getTagsResponse().isPresent()) {
+                    if (res.apiEndpoint().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/tags"]["post"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["delete"]
     update:
       x-codeSamples:
         - lang: java
-          label: postTags
+          label: deleteApiEndpoint
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.PostTagsResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiEndpointResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -172,35 +293,36 @@ actions:
                                 .build())
                         .build();
 
-                    PostTagsRequest req = PostTagsRequest.builder()
-                            .namespaceName("<value>")
+                    DeleteApiEndpointRequest req = DeleteApiEndpointRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .apiEndpointID("<id>")
                             .build();
 
-                    PostTagsResponse res = sdk.artifacts().postTags()
+                    DeleteApiEndpointResponse res = sdk.apiEndpoints().deleteApiEndpoint()
                             .request(req)
                             .call();
 
                     // handle response
                 }
             }
-  - target: $["paths"]["/v1/artifacts/namespaces/{namespace_name}/visibility"]["post"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: setVisibility
+          label: getApiEndpoint
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SetVisibilityResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetApiEndpointResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -208,35 +330,359 @@ actions:
                                 .build())
                         .build();
 
-                    SetVisibilityRequest req = SetVisibilityRequest.builder()
-                            .namespaceName("<value>")
+                    GetApiEndpointRequest req = GetApiEndpointRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .apiEndpointID("<id>")
                             .build();
 
-                    SetVisibilityResponse res = sdk.artifacts().setVisibility()
+                    GetApiEndpointResponse res = sdk.apiEndpoints().getApiEndpoint()
+                            .request(req)
+                            .call();
+
+                    if (res.apiEndpoint().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}"]["put"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: upsertApiEndpoint
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.UpsertApiEndpointResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.ApiEndpointInput;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    UpsertApiEndpointRequest req = UpsertApiEndpointRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .apiEndpointID("<id>")
+                            .apiEndpoint(ApiEndpointInput.builder()
+                                .apiEndpointId("<id>")
+                                .description("commandeer equate pish psst hoot ugh frankly supposing")
+                                .displayName("Eliseo.Little15")
+                                .method("<value>")
+                                .path("/etc/defaults")
+                                .versionId("<id>")
+                                .build())
+                            .build();
+
+                    UpsertApiEndpointResponse res = sdk.apiEndpoints().upsertApiEndpoint()
+                            .request(req)
+                            .call();
+
+                    if (res.apiEndpoint().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/openapi"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateOpenApiSpecForApiEndpoint
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecForApiEndpointResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GenerateOpenApiSpecForApiEndpointRequest req = GenerateOpenApiSpecForApiEndpointRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .apiEndpointID("<id>")
+                            .build();
+
+                    GenerateOpenApiSpecForApiEndpointResponse res = sdk.apiEndpoints().generateOpenApiSpecForApiEndpoint()
+                            .request(req)
+                            .call();
+
+                    if (res.generateOpenApiSpecDiff().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/api_endpoints/{apiEndpointID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generatePostmanCollectionForApiEndpoint
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionForApiEndpointResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GeneratePostmanCollectionForApiEndpointRequest req = GeneratePostmanCollectionForApiEndpointRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .apiEndpointID("<id>")
+                            .build();
+
+                    GeneratePostmanCollectionForApiEndpointResponse res = sdk.apiEndpoints().generatePostmanCollectionForApiEndpoint()
+                            .request(req)
+                            .call();
+
+                    if (res.postmanCollection().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/generate/openapi"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generateOpenApiSpec
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateOpenApiSpecResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GenerateOpenApiSpecRequest req = GenerateOpenApiSpecRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .build();
+
+                    GenerateOpenApiSpecResponse res = sdk.apis().generateOpenApiSpec()
+                            .request(req)
+                            .call();
+
+                    if (res.generateOpenApiSpecDiff().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/generate/postman"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: generatePostmanCollection
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GeneratePostmanCollectionResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GeneratePostmanCollectionRequest req = GeneratePostmanCollectionRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .build();
+
+                    GeneratePostmanCollectionResponse res = sdk.apis().generatePostmanCollection()
+                            .request(req)
+                            .call();
+
+                    if (res.postmanCollection().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getVersionMetadata
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetVersionMetadataResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetVersionMetadataRequest req = GetVersionMetadataRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .build();
+
+                    GetVersionMetadataResponse res = sdk.metadata().getVersionMetadata()
+                            .request(req)
+                            .call();
+
+                    if (res.versionMetadata().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata"]["post"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: insertVersionMetadata
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.InsertVersionMetadataResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import dev.speakeasyapi.javaclientsdk.models.shared.VersionMetadataInput;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    InsertVersionMetadataRequest req = InsertVersionMetadataRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .versionMetadata(VersionMetadataInput.builder()
+                                .metaKey("<value>")
+                                .metaValue("<value>")
+                                .build())
+                            .build();
+
+                    InsertVersionMetadataResponse res = sdk.metadata().insertVersionMetadata()
+                            .request(req)
+                            .call();
+
+                    if (res.versionMetadata().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/metadata/{metaKey}/{metaValue}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteVersionMetadata
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteVersionMetadataResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    DeleteVersionMetadataRequest req = DeleteVersionMetadataRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .metaKey("<value>")
+                            .metaValue("<value>")
+                            .build();
+
+                    DeleteVersionMetadataResponse res = sdk.metadata().deleteVersionMetadata()
                             .request(req)
                             .call();
 
                     // handle response
                 }
             }
-  - target: $["paths"]["/v1/artifacts/preflight"]["post"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: preflight
+          label: getSchema
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.PreflightResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.PreflightRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -244,37 +690,40 @@ actions:
                                 .build())
                         .build();
 
-                    PreflightRequest req = PreflightRequest.builder()
-                            .namespaceName("<value>")
+                    GetSchemaRequest req = GetSchemaRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
                             .build();
 
-                    PreflightResponse res = sdk.artifacts().preflight()
+                    GetSchemaResponse res = sdk.schemas().getSchema()
                             .request(req)
                             .call();
 
-                    if (res.preflightToken().isPresent()) {
+                    if (res.schema().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/artifacts/remote_sources"]["get"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema"]["post"]
     update:
       x-codeSamples:
         - lang: java
-          label: listRemoteSources
+          label: registerSchema
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ListRemoteSourcesResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.File;
+            import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaRequestBody;
+            import dev.speakeasyapi.javaclientsdk.models.operations.RegisterSchemaResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
+            import java.nio.charset.StandardCharsets;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -282,93 +731,251 @@ actions:
                                 .build())
                         .build();
 
-                    ListRemoteSourcesRequest req = ListRemoteSourcesRequest.builder()
-                            .namespaceName("<value>")
-                            .build();
-
-                    ListRemoteSourcesResponse res = sdk.artifacts().listRemoteSources()
-                            .request(req)
-                            .call();
-
-                    if (res.remoteSource().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/artifacts/remote_sources"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: createRemoteSource
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-            import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    RemoteSource req = RemoteSource.builder()
-                            .inputs(List.of(
-                                RemoteDocument.builder()
-                                    .registryUrl("https://productive-swine.net")
-                                    .build()))
-                            .output(RemoteDocument.builder()
-                                .registryUrl("https://spiteful-apricot.info")
+                    RegisterSchemaRequest req = RegisterSchemaRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .requestBody(RegisterSchemaRequestBody.builder()
+                                .file(File.builder()
+                                    .fileName("example.file")
+                                    .content("0xCFA30D144c".getBytes(StandardCharsets.UTF_8))
+                                    .build())
                                 .build())
                             .build();
 
-                    CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+                    RegisterSchemaResponse res = sdk.schemas().registerSchema()
                             .request(req)
                             .call();
 
                     // handle response
                 }
             }
-  - target: $["paths"]["/v1/auth/access_token"]["get"]
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/download"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: getAccessToken
+          label: downloadSchema
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
                         .build();
 
-                    GetAccessTokenRequest req = GetAccessTokenRequest.builder()
-                            .workspaceId("<id>")
+                    DownloadSchemaRequest req = DownloadSchemaRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
                             .build();
 
-                    GetAccessTokenResponse res = sdk.auth().getAccessToken()
+                    DownloadSchemaResponse res = sdk.schemas().downloadSchema()
                             .request(req)
                             .call();
 
-                    if (res.accessToken().isPresent()) {
+                    if (res.twoHundredApplicationJsonSchema().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{baseRevisionID}/diff/{targetRevisionID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchemaDiff
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaDiffResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetSchemaDiffRequest req = GetSchemaDiffRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .baseRevisionID("<id>")
+                            .targetRevisionID("<id>")
+                            .build();
+
+                    GetSchemaDiffResponse res = sdk.schemas().getSchemaDiff()
+                            .request(req)
+                            .call();
+
+                    if (res.schemaDiff().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: deleteSchema
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteSchemaResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    DeleteSchemaRequest req = DeleteSchemaRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .revisionID("<id>")
+                            .build();
+
+                    DeleteSchemaResponse res = sdk.schemas().deleteSchema()
+                            .request(req)
+                            .call();
+
+                    // handle response
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchemaRevision
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemaRevisionResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetSchemaRevisionRequest req = GetSchemaRevisionRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .revisionID("<id>")
+                            .build();
+
+                    GetSchemaRevisionResponse res = sdk.schemas().getSchemaRevision()
+                            .request(req)
+                            .call();
+
+                    if (res.schema().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schema/{revisionID}/download"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: downloadSchemaRevision
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.DownloadSchemaRevisionResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    DownloadSchemaRevisionRequest req = DownloadSchemaRevisionRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .revisionID("<id>")
+                            .build();
+
+                    DownloadSchemaRevisionResponse res = sdk.schemas().downloadSchemaRevision()
+                            .request(req)
+                            .call();
+
+                    if (res.twoHundredApplicationJsonSchema().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/apis/{apiID}/version/{versionID}/schemas"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getSchemas
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetSchemasResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetSchemasRequest req = GetSchemasRequest.builder()
+                            .apiID("<id>")
+                            .versionID("<id>")
+                            .build();
+
+                    GetSchemasResponse res = sdk.schemas().getSchemas()
+                            .request(req)
+                            .call();
+
+                    if (res.schemata().isPresent()) {
                         // handle response
                     }
                 }
@@ -382,14 +989,13 @@ actions:
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
             import dev.speakeasyapi.javaclientsdk.models.operations.ValidateApiKeyResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -405,877 +1011,17 @@ actions:
                     }
                 }
             }
-  - target: $["paths"]["/v1/code_sample/preview"]["post"]
+  - target: $["paths"]["/v1/eventlog/query"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: generateCodeSamplePreview
+          label: queryEventLog
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-            import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.nio.charset.StandardCharsets;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                            .languages(List.of(
-                                "<value>",
-                                "<value>"))
-                            .schemaFile(SchemaFile.builder()
-                                .fileName("example.file")
-                                .content("0xc3dD8BfBef".getBytes(StandardCharsets.UTF_8))
-                                .build())
-                            .build();
-
-                    GenerateCodeSamplePreviewResponse res = sdk.codeSamples().generateCodeSamplePreview()
-                            .request(req)
-                            .call();
-
-                    if (res.twoHundredApplicationXYamlResponseStream().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/code_sample/preview/async"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: generateCodeSamplePreviewAsync
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateCodeSamplePreviewAsyncResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.CodeSampleSchemaInput;
-            import dev.speakeasyapi.javaclientsdk.models.shared.SchemaFile;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.nio.charset.StandardCharsets;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    CodeSampleSchemaInput req = CodeSampleSchemaInput.builder()
-                            .languages(List.of(
-                                "<value>",
-                                "<value>",
-                                "<value>"))
-                            .schemaFile(SchemaFile.builder()
-                                .fileName("example.file")
-                                .content("0xED5CDd177E".getBytes(StandardCharsets.UTF_8))
-                                .build())
-                            .build();
-
-                    GenerateCodeSamplePreviewAsyncResponse res = sdk.codeSamples().generateCodeSamplePreviewAsync()
-                            .request(req)
-                            .call();
-
-                    if (res.object().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/code_sample/preview/async/{jobID}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getCodeSamplePreviewAsync
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetCodeSamplePreviewAsyncResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetCodeSamplePreviewAsyncRequest req = GetCodeSamplePreviewAsyncRequest.builder()
-                            .jobID("<id>")
-                            .build();
-
-                    GetCodeSamplePreviewAsyncResponse res = sdk.codeSamples().getCodeSamplePreviewAsync()
-                            .request(req)
-                            .call();
-
-                    if (res.twoHundredApplicationXYamlResponseStream().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/github/action"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getGitHubAction
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetGitHubActionResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetGitHubActionRequest req = GetGitHubActionRequest.builder()
-                            .org("<value>")
-                            .repo("<value>")
-                            .build();
-
-                    GetGitHubActionResponse res = sdk.github().getAction()
-                            .request(req)
-                            .call();
-
-                    if (res.githubGetActionResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/github/check_access"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: checkGithubAccess
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CheckGithubAccessResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    CheckGithubAccessRequest req = CheckGithubAccessRequest.builder()
-                            .org("<value>")
-                            .repo("<value>")
-                            .build();
-
-                    CheckGithubAccessResponse res = sdk.github().checkAccess()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/github/configure_code_samples"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubConfigureCodeSamples
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureCodeSamplesResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureCodeSamplesRequest;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubConfigureCodeSamplesRequest req = GithubConfigureCodeSamplesRequest.builder()
-                            .org("<value>")
-                            .repo("<value>")
-                            .targetName("<value>")
-                            .build();
-
-                    GithubConfigureCodeSamplesResponse res = sdk.github().configureCodeSamples()
-                            .request(req)
-                            .call();
-
-                    if (res.githubConfigureCodeSamplesResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/github/configure_mintlify_repo"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubConfigureMintlifyRepo
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureMintlifyRepoResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureMintlifyRepoRequest;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubConfigureMintlifyRepoRequest req = GithubConfigureMintlifyRepoRequest.builder()
-                            .org("<value>")
-                            .repo("<value>")
-                            .input("<value>")
-                            .overlays(List.of(
-                                "<value>"))
-                            .build();
-
-                    GithubConfigureMintlifyRepoResponse res = sdk.github().configureMintlifyRepo()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/github/configure_target"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubConfigureTarget
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubConfigureTargetResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.GithubConfigureTargetRequest;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubConfigureTargetRequest req = GithubConfigureTargetRequest.builder()
-                            .org("<value>")
-                            .repoName("<value>")
-                            .build();
-
-                    GithubConfigureTargetResponse res = sdk.github().configureTarget()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/github/link"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: linkGithubAccess
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.LinkGithubAccessResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    LinkGithubAccessRequest req = LinkGithubAccessRequest.builder()
-                            .build();
-
-                    LinkGithubAccessResponse res = sdk.github().linkGithub()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/github/publishing_prs"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubCheckPublishingPRs
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingPRsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubCheckPublishingPRsRequest req = GithubCheckPublishingPRsRequest.builder()
-                            .generateGenLockId("<id>")
-                            .org("<value>")
-                            .repo("<value>")
-                            .build();
-
-                    GithubCheckPublishingPRsResponse res = sdk.github().checkPublishingPRs()
-                            .request(req)
-                            .call();
-
-                    if (res.githubPublishingPRResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/github/publishing_secrets"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubCheckPublishingSecrets
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubCheckPublishingSecretsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubCheckPublishingSecretsRequest req = GithubCheckPublishingSecretsRequest.builder()
-                            .generateGenLockId("<id>")
-                            .build();
-
-                    GithubCheckPublishingSecretsResponse res = sdk.github().checkPublishingSecrets()
-                            .request(req)
-                            .call();
-
-                    if (res.githubMissingPublishingSecretsResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/github/publishing_secrets"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubStorePublishingSecrets
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubStorePublishingSecretsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.GithubStorePublishingSecretsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubStorePublishingSecretsRequest req = GithubStorePublishingSecretsRequest.builder()
-                            .generateGenLockId("<id>")
-                            .build();
-
-                    GithubStorePublishingSecretsResponse res = sdk.github().storePublishingSecrets()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/github/setup"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getGithubSetupState
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetGithubSetupStateResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetGithubSetupStateRequest req = GetGithubSetupStateRequest.builder()
-                            .org("<value>")
-                            .repo("<value>")
-                            .generateGenLockId("<id>")
-                            .build();
-
-                    GetGithubSetupStateResponse res = sdk.github().getSetup()
-                            .request(req)
-                            .call();
-
-                    if (res.githubSetupStateResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/github/trigger_action"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: githubTriggerAction
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GithubTriggerActionResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.GithubTriggerActionRequest;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GithubTriggerActionRequest req = GithubTriggerActionRequest.builder()
-                            .org("<value>")
-                            .repoName("<value>")
-                            .genLockId("<id>")
-                            .build();
-
-                    GithubTriggerActionResponse res = sdk.github().triggerAction()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/blobs/{digest}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getBlob
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetBlobResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetBlobRequest req = GetBlobRequest.builder()
-                            .organizationSlug("<value>")
-                            .workspaceSlug("<value>")
-                            .namespaceName("<value>")
-                            .digest("<value>")
-                            .build();
-
-                    GetBlobResponse res = sdk.artifacts().getBlob()
-                            .request(req)
-                            .call();
-
-                    if (res.blob().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/oci/v2/{organization_slug}/{workspace_slug}/{namespace_name}/manifests/{revision_reference}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getManifest
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetManifestResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetManifestRequest req = GetManifestRequest.builder()
-                            .organizationSlug("<value>")
-                            .workspaceSlug("<value>")
-                            .namespaceName("<value>")
-                            .revisionReference("<value>")
-                            .build();
-
-                    GetManifestResponse res = sdk.artifacts().getManifest()
-                            .request(req)
-                            .call();
-
-                    if (res.manifest().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/organization"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: createOrganization
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateOrganizationResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.AccountType;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Organization;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.time.OffsetDateTime;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    Organization req = Organization.builder()
-                            .id("<id>")
-                            .name("<value>")
-                            .slug("<value>")
-                            .accountType(AccountType.SCALE_UP)
-                            .telemetryDisabled(false)
-                            .createdAt(OffsetDateTime.parse("2024-04-02T12:48:32.253Z"))
-                            .updatedAt(OffsetDateTime.parse("2023-05-28T06:20:22.766Z"))
-                            .ssoActivated(true)
-                            .build();
-
-                    CreateOrganizationResponse res = sdk.organizations().create()
-                            .request(req)
-                            .call();
-
-                    if (res.organization().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/organization/free_trial"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: createFreeTrial
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateFreeTrialResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    CreateFreeTrialResponse res = sdk.organizations().createFreeTrial()
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/organization/usage"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getOrganizationUsage
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationUsageResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetOrganizationUsageResponse res = sdk.organizations().getUsage()
-                            .call();
-
-                    if (res.organizationUsageResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/organization/{organizationID}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getOrganization
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetOrganizationRequest req = GetOrganizationRequest.builder()
-                            .organizationID("<id>")
-                            .build();
-
-                    GetOrganizationResponse res = sdk.organizations().get()
-                            .request(req)
-                            .call();
-
-                    if (res.organization().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/organizations"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getOrganizations
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetOrganizationsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetOrganizationsResponse res = sdk.organizations().getAll()
-                            .call();
-
-                    if (res.organizations().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/reports"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: uploadReport
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.File;
-            import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportRequestBody;
-            import dev.speakeasyapi.javaclientsdk.models.operations.UploadReportResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Report;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.nio.charset.StandardCharsets;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    UploadReportRequestBody req = UploadReportRequestBody.builder()
-                            .data(Report.builder()
-                                .build())
-                            .file(File.builder()
-                                .fileName("example.file")
-                                .content("0xA2Ca85EFA5".getBytes(StandardCharsets.UTF_8))
-                                .build())
-                            .build();
-
-                    UploadReportResponse res = sdk.reports().uploadReport()
-                            .request(req)
-                            .call();
-
-                    if (res.uploadedReport().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/reports/changes/{documentChecksum}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getChangesReportSignedUrl
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetChangesReportSignedUrlResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.QueryEventLogResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
@@ -1289,30 +1035,29 @@ actions:
                                 .build())
                         .build();
 
-                    GetChangesReportSignedUrlRequest req = GetChangesReportSignedUrlRequest.builder()
-                            .documentChecksum("<value>")
+                    QueryEventLogRequest req = QueryEventLogRequest.builder()
                             .build();
 
-                    GetChangesReportSignedUrlResponse res = sdk.reports().getChangesReportSignedUrl()
+                    QueryEventLogResponse res = sdk.requests().queryEventLog()
                             .request(req)
                             .call();
 
-                    if (res.signedAccess().isPresent()) {
+                    if (res.boundedRequests().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/reports/linting/{documentChecksum}"]["get"]
+  - target: $["paths"]["/v1/eventlog/{requestID}"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: getLintingReportSignedUrl
+          label: getRequestFromEventLog
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetLintingReportSignedUrlResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetRequestFromEventLogResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
@@ -1326,30 +1071,30 @@ actions:
                                 .build())
                         .build();
 
-                    GetLintingReportSignedUrlRequest req = GetLintingReportSignedUrlRequest.builder()
-                            .documentChecksum("<value>")
+                    GetRequestFromEventLogRequest req = GetRequestFromEventLogRequest.builder()
+                            .requestID("<id>")
                             .build();
 
-                    GetLintingReportSignedUrlResponse res = sdk.reports().getLintingReportSignedUrl()
+                    GetRequestFromEventLogResponse res = sdk.requests().getRequestFromEventLog()
                             .request(req)
                             .call();
 
-                    if (res.signedAccess().isPresent()) {
+                    if (res.unboundedRequest().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/short_urls"]["post"]
+  - target: $["paths"]["/v1/eventlog/{requestID}/generate/postman"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: create
+          label: generateRequestPostmanCollection
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateRequestBody;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GenerateRequestPostmanCollectionResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
@@ -1363,37 +1108,36 @@ actions:
                                 .build())
                         .build();
 
-                    CreateRequestBody req = CreateRequestBody.builder()
-                            .url("https://probable-heating.com/")
+                    GenerateRequestPostmanCollectionRequest req = GenerateRequestPostmanCollectionRequest.builder()
+                            .requestID("<id>")
                             .build();
 
-                    CreateResponse res = sdk.shortURLs().create()
+                    GenerateRequestPostmanCollectionResponse res = sdk.requests().generateRequestPostmanCollection()
                             .request(req)
                             .call();
 
-                    if (res.shortURL().isPresent()) {
+                    if (res.postmanCollection().isPresent()) {
                         // handle response
                     }
                 }
             }
-  - target: $["paths"]["/v1/subscriptions/{subscriptionID}/{namespaceName}/activate"]["post"]
+  - target: $["paths"]["/v1/workspace/embed-access-token"]["get"]
     update:
       x-codeSamples:
         - lang: java
-          label: activateSubscriptionNamespace
+          label: getEmbedAccessToken
           source: |-
             package hello.world;
 
             import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.ActivateSubscriptionNamespaceResponse;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetEmbedAccessTokenResponse;
             import dev.speakeasyapi.javaclientsdk.models.shared.Security;
             import java.lang.Exception;
 
             public class Application {
 
-                public static void main(String[] args) throws Error, Exception {
+                public static void main(String[] args) throws Exception {
 
                     RyanTest sdk = RyanTest.builder()
                             .security(Security.builder()
@@ -1401,588 +1145,85 @@ actions:
                                 .build())
                         .build();
 
-                    ActivateSubscriptionNamespaceRequest req = ActivateSubscriptionNamespaceRequest.builder()
-                            .subscriptionID("<id>")
-                            .namespaceName("<value>")
+                    GetEmbedAccessTokenRequest req = GetEmbedAccessTokenRequest.builder()
                             .build();
 
-                    ActivateSubscriptionNamespaceResponse res = sdk.subscriptions().activateSubscriptionNamespace()
+                    GetEmbedAccessTokenResponse res = sdk.embeds().getEmbedAccessToken()
+                            .request(req)
+                            .call();
+
+                    if (res.embedAccessTokenResponse().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/workspace/embed-access-tokens/valid"]["get"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: getValidEmbedAccessTokens
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.GetValidEmbedAccessTokensResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    GetValidEmbedAccessTokensResponse res = sdk.embeds().getValidEmbedAccessTokens()
+                            .call();
+
+                    if (res.embedTokens().isPresent()) {
+                        // handle response
+                    }
+                }
+            }
+  - target: $["paths"]["/v1/workspace/embed-access-tokens/{tokenID}"]["delete"]
+    update:
+      x-codeSamples:
+        - lang: java
+          label: revokeEmbedAccessToken
+          source: |-
+            package hello.world;
+
+            import dev.speakeasyapi.javaclientsdk.RyanTest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenRequest;
+            import dev.speakeasyapi.javaclientsdk.models.operations.RevokeEmbedAccessTokenResponse;
+            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
+            import java.lang.Exception;
+
+            public class Application {
+
+                public static void main(String[] args) throws Exception {
+
+                    RyanTest sdk = RyanTest.builder()
+                            .security(Security.builder()
+                                .apiKey("<YOUR_API_KEY_HERE>")
+                                .build())
+                        .build();
+
+                    RevokeEmbedAccessTokenRequest req = RevokeEmbedAccessTokenRequest.builder()
+                            .tokenID("<id>")
+                            .build();
+
+                    RevokeEmbedAccessTokenResponse res = sdk.embeds().revokeEmbedAccessToken()
                             .request(req)
                             .call();
 
                     // handle response
                 }
             }
-  - target: $["paths"]["/v1/subscriptions/{subscriptionID}/{namespaceName}/ignore"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: ignoreSubscriptionNamespace
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.IgnoreSubscriptionNamespaceResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    IgnoreSubscriptionNamespaceRequest req = IgnoreSubscriptionNamespaceRequest.builder()
-                            .subscriptionID("<id>")
-                            .namespaceName("<value>")
-                            .build();
-
-                    IgnoreSubscriptionNamespaceResponse res = sdk.subscriptions().ignoreSubscriptionNamespace()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/suggest/items"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: suggestItems
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestItemsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.SuggestItemsRequestBody;
-            import java.lang.Exception;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    SuggestItemsRequestBody req = SuggestItemsRequestBody.builder()
-                            .prompt("<value>")
-                            .items(List.of(
-                            ))
-                            .build();
-
-                    SuggestItemsResponse res = sdk.suggest().suggestItems()
-                            .request(req)
-                            .call();
-
-                    if (res.strings().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/suggest/openapi"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: suggestOpenAPI
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.Schema;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRequestBody;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-            import java.nio.charset.StandardCharsets;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    SuggestOpenAPIRequest req = SuggestOpenAPIRequest.builder()
-                            .xSessionId("<id>")
-                            .requestBody(SuggestOpenAPIRequestBody.builder()
-                                .schema(Schema.builder()
-                                    .fileName("example.file")
-                                    .content("0x0beEcB7cF6".getBytes(StandardCharsets.UTF_8))
-                                    .build())
-                                .build())
-                            .build();
-
-                    SuggestOpenAPIResponse res = sdk.suggest().suggestOpenAPI()
-                            .request(req)
-                            .call();
-
-                    if (res.schema().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/suggest/openapi/{namespace_name}/{revision_reference}"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: suggestOpenAPIRegistry
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestOpenAPIRegistryResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    SuggestOpenAPIRegistryRequest req = SuggestOpenAPIRegistryRequest.builder()
-                            .namespaceName("<value>")
-                            .revisionReference("<value>")
-                            .xSessionId("<id>")
-                            .build();
-
-                    SuggestOpenAPIRegistryResponse res = sdk.suggest().suggestOpenAPIRegistry()
-                            .request(req)
-                            .call();
-
-                    if (res.schema().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/suggest/openapi_from_summary"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: suggest
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SuggestResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.License;
-            import dev.speakeasyapi.javaclientsdk.models.shared.OASInfo;
-            import dev.speakeasyapi.javaclientsdk.models.shared.OASSummary;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.SuggestRequestBody;
-            import dev.speakeasyapi.javaclientsdk.models.shared.SuggestRequestBodySuggestionType;
-            import java.lang.Exception;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    SuggestRequest req = SuggestRequest.builder()
-                            .xSessionId("<id>")
-                            .suggestRequestBody(SuggestRequestBody.builder()
-                                .oasSummary(OASSummary.builder()
-                                    .info(OASInfo.builder()
-                                        .title("<value>")
-                                        .summary("<value>")
-                                        .description("ugh which garrote ashamed sarong fiddle really")
-                                        .version("<value>")
-                                        .license(License.builder()
-                                            .build())
-                                        .build())
-                                    .operations(List.of(
-                                    ))
-                                    .build())
-                                .suggestionType(SuggestRequestBodySuggestionType.DIAGNOSTICS_ONLY)
-                                .diagnostics(List.of(
-                                ))
-                                .build())
-                            .build();
-
-                    SuggestResponse res = sdk.suggest().suggest()
-                            .request(req)
-                            .call();
-
-                    if (res.schema().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/user"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getUser
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetUserResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetUserResponse res = sdk.auth().getUser()
-                            .call();
-
-                    if (res.user().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceByContext
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceByContextResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceByContextResponse res = sdk.workspaces().get()
-                            .call();
-
-                    if (res.workspaceAndOrganization().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: createWorkspace
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Workspace;
-            import java.lang.Exception;
-            import java.time.OffsetDateTime;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    Workspace req = Workspace.builder()
-                            .createdAt(OffsetDateTime.parse("2024-06-17T07:14:55.338Z"))
-                            .id("<id>")
-                            .name("<value>")
-                            .organizationId("<id>")
-                            .slug("<value>")
-                            .updatedAt(OffsetDateTime.parse("2024-11-30T17:06:07.804Z"))
-                            .verified(true)
-                            .build();
-
-                    CreateWorkspaceResponse res = sdk.workspaces().create()
-                            .request(req)
-                            .call();
-
-                    if (res.workspace().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/access"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceAccess
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
-                            .build();
-
-                    GetWorkspaceAccessResponse res = sdk.auth().getAccess()
-                            .request(req)
-                            .call();
-
-                    if (res.accessDetails().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/events/targets"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceTargets
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceTargetsRequest req = GetWorkspaceTargetsRequest.builder()
-                            .build();
-
-                    GetWorkspaceTargetsResponse res = sdk.events().getTargets()
-                            .request(req)
-                            .call();
-
-                    if (res.targetSDKList().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/feature_flags"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: setWorkspaceFeatureFlags
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SetWorkspaceFeatureFlagsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlag;
-            import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceFeatureFlagRequest;
-            import java.lang.Exception;
-            import java.util.List;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    WorkspaceFeatureFlagRequest req = WorkspaceFeatureFlagRequest.builder()
-                            .featureFlags(List.of(
-                                WorkspaceFeatureFlag.SKIP_SCHEMA_REGISTRY,
-                                WorkspaceFeatureFlag.WEBHOOKS))
-                            .build();
-
-                    SetWorkspaceFeatureFlagsResponse res = sdk.workspaces().setFeatureFlags()
-                            .request(req)
-                            .call();
-
-                    if (res.workspaceFeatureFlagResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspace
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceRequest req = GetWorkspaceRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceResponse res = sdk.workspaces().getByID()
-                            .request(req)
-                            .call();
-
-                    if (res.workspace().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/details"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: updateWorkspaceDetails
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceDetailsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Workspace;
-            import java.lang.Exception;
-            import java.time.OffsetDateTime;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    UpdateWorkspaceDetailsRequest req = UpdateWorkspaceDetailsRequest.builder()
-                            .workspace(Workspace.builder()
-                                .createdAt(OffsetDateTime.parse("2025-07-28T19:04:48.565Z"))
-                                .id("<id>")
-                                .name("<value>")
-                                .organizationId("<id>")
-                                .slug("<value>")
-                                .updatedAt(OffsetDateTime.parse("2024-10-16T10:52:42.015Z"))
-                                .verified(true)
-                                .build())
-                            .workspaceId("<id>")
-                            .build();
-
-                    UpdateWorkspaceDetailsResponse res = sdk.workspaces().update()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/events"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: searchWorkspaceEvents
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.SearchWorkspaceEventsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    SearchWorkspaceEventsRequest req = SearchWorkspaceEventsRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    SearchWorkspaceEventsResponse res = sdk.events().search()
-                            .request(req)
-                            .call();
-
-                    if (res.cliEventBatch().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/events"]["post"]
+  - target: $["paths"]["/v1/workspace/{workspaceID}/events"]["post"]
     update:
       x-codeSamples:
         - lang: java
@@ -2018,483 +1259,41 @@ actions:
                                     .executionId("<id>")
                                     .workspaceId("<id>")
                                     .speakeasyApiKeyName("<value>")
-                                    .interactionType(InteractionType.QUICKSTART)
-                                    .localStartedAt(OffsetDateTime.parse("2024-09-08T05:59:33.876Z"))
-                                    .createdAt(OffsetDateTime.parse("2025-08-12T17:54:17.538Z"))
+                                    .interactionType(InteractionType.TARGET_GENERATE)
+                                    .localStartedAt(OffsetDateTime.parse("2024-02-23T15:36:59.809Z"))
+                                    .createdAt(OffsetDateTime.parse("2025-11-03T15:10:38.542Z"))
+                                    .speakeasyVersion("<value>")
+                                    .success(false)
+                                    .build(),
+                                CliEvent.builder()
+                                    .id("<id>")
+                                    .executionId("<id>")
+                                    .workspaceId("<id>")
+                                    .speakeasyApiKeyName("<value>")
+                                    .interactionType(InteractionType.CLI_EXEC)
+                                    .localStartedAt(OffsetDateTime.parse("2024-11-02T18:39:29.949Z"))
+                                    .createdAt(OffsetDateTime.parse("2023-07-17T16:15:35.191Z"))
+                                    .speakeasyVersion("<value>")
+                                    .success(true)
+                                    .build(),
+                                CliEvent.builder()
+                                    .id("<id>")
+                                    .executionId("<id>")
+                                    .workspaceId("<id>")
+                                    .speakeasyApiKeyName("<value>")
+                                    .interactionType(InteractionType.TARGET_GENERATE)
+                                    .localStartedAt(OffsetDateTime.parse("2025-07-20T12:49:37.190Z"))
+                                    .createdAt(OffsetDateTime.parse("2023-06-08T00:19:02.158Z"))
                                     .speakeasyVersion("<value>")
                                     .success(true)
                                     .build()))
-                            .workspaceId("<id>")
+                            .workspaceID("<id>")
                             .build();
 
-                    PostWorkspaceEventsResponse res = sdk.events().post()
+                    PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
                             .request(req)
                             .call();
 
                     // handle response
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/events/targets"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceTargetsDeprecated
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTargetsDeprecatedResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceTargetsDeprecatedRequest req = GetWorkspaceTargetsDeprecatedRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceTargetsDeprecatedResponse res = sdk.events().getTargetsDeprecated()
-                            .request(req)
-                            .call();
-
-                    if (res.targetSDKList().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/events/targets/{target_id}/events"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceEventsByTarget
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceEventsByTargetResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceEventsByTargetRequest req = GetWorkspaceEventsByTargetRequest.builder()
-                            .targetId("<id>")
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceEventsByTargetResponse res = sdk.events().getEventsByTarget()
-                            .request(req)
-                            .call();
-
-                    if (res.cliEventBatch().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/feature_flags"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceFeatureFlags
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceFeatureFlagsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceFeatureFlagsRequest req = GetWorkspaceFeatureFlagsRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceFeatureFlagsResponse res = sdk.workspaces().getFeatureFlags()
-                            .request(req)
-                            .call();
-
-                    if (res.workspaceFeatureFlagResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/settings"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceSettings
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceSettingsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceSettingsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceSettingsRequest req = GetWorkspaceSettingsRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceSettingsResponse res = sdk.workspaces().getSettings()
-                            .request(req)
-                            .call();
-
-                    if (res.workspaceSettings().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/settings"]["put"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: updateWorkspaceSettings
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.UpdateWorkspaceSettingsResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceSettings;
-            import java.lang.Exception;
-            import java.time.OffsetDateTime;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    UpdateWorkspaceSettingsRequest req = UpdateWorkspaceSettingsRequest.builder()
-                            .workspaceSettings(WorkspaceSettings.builder()
-                                .workspaceId("<id>")
-                                .webhookUrl("https://last-suspension.info/")
-                                .createdAt(OffsetDateTime.parse("2024-12-28T06:46:35.807Z"))
-                                .updatedAt(OffsetDateTime.parse("2025-02-03T10:37:56.725Z"))
-                                .build())
-                            .workspaceId("<id>")
-                            .build();
-
-                    UpdateWorkspaceSettingsResponse res = sdk.workspaces().updateSettings()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/team"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceTeam
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTeamRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTeamResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceTeamRequest req = GetWorkspaceTeamRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceTeamResponse res = sdk.workspaces().getTeam()
-                            .request(req)
-                            .call();
-
-                    if (res.workspaceTeamResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/team/email/{email}"]["put"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: grantUserAccessToWorkspace
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GrantUserAccessToWorkspaceRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GrantUserAccessToWorkspaceResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GrantUserAccessToWorkspaceRequest req = GrantUserAccessToWorkspaceRequest.builder()
-                            .email("Lucinda.Batz8@hotmail.com")
-                            .workspaceId("<id>")
-                            .build();
-
-                    GrantUserAccessToWorkspaceResponse res = sdk.workspaces().grantAccess()
-                            .request(req)
-                            .call();
-
-                    if (res.workspaceInviteResponse().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/team/{userId}"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: revokeUserAccessToWorkspace
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.RevokeUserAccessToWorkspaceResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    RevokeUserAccessToWorkspaceRequest req = RevokeUserAccessToWorkspaceRequest.builder()
-                            .userId("<id>")
-                            .workspaceId("<id>")
-                            .build();
-
-                    RevokeUserAccessToWorkspaceResponse res = sdk.workspaces().revokeAccess()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/tokens"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaceTokens
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTokensRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceTokensResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspaceTokensRequest req = GetWorkspaceTokensRequest.builder()
-                            .workspaceId("<id>")
-                            .build();
-
-                    GetWorkspaceTokensResponse res = sdk.workspaces().getTokens()
-                            .request(req)
-                            .call();
-
-                    if (res.workspaceTokens().isPresent()) {
-                        // handle response
-                    }
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/tokens"]["post"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: createWorkspaceToken
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceTokenRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.CreateWorkspaceTokenResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import dev.speakeasyapi.javaclientsdk.models.shared.WorkspaceToken;
-            import java.lang.Exception;
-            import java.time.OffsetDateTime;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    CreateWorkspaceTokenRequest req = CreateWorkspaceTokenRequest.builder()
-                            .workspaceToken(WorkspaceToken.builder()
-                                .id("<id>")
-                                .name("<value>")
-                                .workspaceId("<id>")
-                                .alg("<value>")
-                                .key("<key>")
-                                .createdAt(OffsetDateTime.parse("2023-08-16T02:33:00.784Z"))
-                                .build())
-                            .workspaceId("<id>")
-                            .build();
-
-                    CreateWorkspaceTokenResponse res = sdk.workspaces().createToken()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/workspace/{workspace_id}/tokens/{tokenID}"]["delete"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: deleteWorkspaceToken
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteWorkspaceTokenRequest;
-            import dev.speakeasyapi.javaclientsdk.models.operations.DeleteWorkspaceTokenResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    DeleteWorkspaceTokenRequest req = DeleteWorkspaceTokenRequest.builder()
-                            .tokenID("<id>")
-                            .workspaceId("<id>")
-                            .build();
-
-                    DeleteWorkspaceTokenResponse res = sdk.workspaces().deleteToken()
-                            .request(req)
-                            .call();
-
-                    // handle response
-                }
-            }
-  - target: $["paths"]["/v1/workspaces"]["get"]
-    update:
-      x-codeSamples:
-        - lang: java
-          label: getWorkspaces
-          source: |-
-            package hello.world;
-
-            import dev.speakeasyapi.javaclientsdk.RyanTest;
-            import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-            import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspacesResponse;
-            import dev.speakeasyapi.javaclientsdk.models.shared.Security;
-            import java.lang.Exception;
-
-            public class Application {
-
-                public static void main(String[] args) throws Error, Exception {
-
-                    RyanTest sdk = RyanTest.builder()
-                            .security(Security.builder()
-                                .apiKey("<YOUR_API_KEY_HERE>")
-                                .build())
-                        .build();
-
-                    GetWorkspacesResponse res = sdk.workspaces().getAll()
-                            .call();
-
-                    if (res.workspaces().isPresent()) {
-                        // handle response
-                    }
                 }
             }

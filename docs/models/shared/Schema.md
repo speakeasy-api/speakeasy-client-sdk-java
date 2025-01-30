@@ -1,0 +1,15 @@
+# Schema
+
+A Schema represents an API schema for a particular Api and Version.
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `apiId`                                                                                   | *String*                                                                                  | :heavy_check_mark:                                                                        | The ID of the Api this Schema belongs to.                                                 |
+| `createdAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | Creation timestamp.                                                                       |
+| `description`                                                                             | *String*                                                                                  | :heavy_check_mark:                                                                        | A detailed description of the Schema.                                                     |
+| `revisionId`                                                                              | *String*                                                                                  | :heavy_check_mark:                                                                        | An ID referencing this particular revision of the Schema.                                 |
+| `versionId`                                                                               | *String*                                                                                  | :heavy_check_mark:                                                                        | The version ID of the Api this Schema belongs to.                                         |
+| `workspaceId`                                                                             | *String*                                                                                  | :heavy_check_mark:                                                                        | The workspace ID this Schema belongs to.                                                  |

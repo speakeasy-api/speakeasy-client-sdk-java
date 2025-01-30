@@ -12,50 +12,23 @@ import dev.speakeasyapi.javaclientsdk.utils.Utils;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Objects;
-import java.util.Optional;
 
 
 public class Security {
 
     @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=x-api-key")
-    private Optional<String> apiKey;
-
-    @SpeakeasyMetadata("security:scheme=true,type=http,subtype=bearer,name=Authorization")
-    private Optional<String> bearer;
-
-    @SpeakeasyMetadata("security:scheme=true,type=apiKey,subtype=header,name=x-workspace-identifier")
-    private Optional<String> workspaceIdentifier;
+    private String apiKey;
 
     @JsonCreator
     public Security(
-            Optional<String> apiKey,
-            Optional<String> bearer,
-            Optional<String> workspaceIdentifier) {
+            String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
-        Utils.checkNotNull(bearer, "bearer");
-        Utils.checkNotNull(workspaceIdentifier, "workspaceIdentifier");
         this.apiKey = apiKey;
-        this.bearer = bearer;
-        this.workspaceIdentifier = workspaceIdentifier;
-    }
-    
-    public Security() {
-        this(Optional.empty(), Optional.empty(), Optional.empty());
     }
 
     @JsonIgnore
-    public Optional<String> apiKey() {
+    public String apiKey() {
         return apiKey;
-    }
-
-    @JsonIgnore
-    public Optional<String> bearer() {
-        return bearer;
-    }
-
-    @JsonIgnore
-    public Optional<String> workspaceIdentifier() {
-        return workspaceIdentifier;
     }
 
     public final static Builder builder() {
@@ -64,37 +37,7 @@ public class Security {
 
     public Security withAPIKey(String apiKey) {
         Utils.checkNotNull(apiKey, "apiKey");
-        this.apiKey = Optional.ofNullable(apiKey);
-        return this;
-    }
-
-    public Security withAPIKey(Optional<String> apiKey) {
-        Utils.checkNotNull(apiKey, "apiKey");
         this.apiKey = apiKey;
-        return this;
-    }
-
-    public Security withBearer(String bearer) {
-        Utils.checkNotNull(bearer, "bearer");
-        this.bearer = Optional.ofNullable(bearer);
-        return this;
-    }
-
-    public Security withBearer(Optional<String> bearer) {
-        Utils.checkNotNull(bearer, "bearer");
-        this.bearer = bearer;
-        return this;
-    }
-
-    public Security withWorkspaceIdentifier(String workspaceIdentifier) {
-        Utils.checkNotNull(workspaceIdentifier, "workspaceIdentifier");
-        this.workspaceIdentifier = Optional.ofNullable(workspaceIdentifier);
-        return this;
-    }
-
-    public Security withWorkspaceIdentifier(Optional<String> workspaceIdentifier) {
-        Utils.checkNotNull(workspaceIdentifier, "workspaceIdentifier");
-        this.workspaceIdentifier = workspaceIdentifier;
         return this;
     }
     
@@ -108,34 +51,24 @@ public class Security {
         }
         Security other = (Security) o;
         return 
-            Objects.deepEquals(this.apiKey, other.apiKey) &&
-            Objects.deepEquals(this.bearer, other.bearer) &&
-            Objects.deepEquals(this.workspaceIdentifier, other.workspaceIdentifier);
+            Objects.deepEquals(this.apiKey, other.apiKey);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            apiKey,
-            bearer,
-            workspaceIdentifier);
+            apiKey);
     }
     
     @Override
     public String toString() {
         return Utils.toString(Security.class,
-                "apiKey", apiKey,
-                "bearer", bearer,
-                "workspaceIdentifier", workspaceIdentifier);
+                "apiKey", apiKey);
     }
     
     public final static class Builder {
  
-        private Optional<String> apiKey = Optional.empty();
- 
-        private Optional<String> bearer = Optional.empty();
- 
-        private Optional<String> workspaceIdentifier = Optional.empty();  
+        private String apiKey;  
         
         private Builder() {
           // force use of static builder() method
@@ -143,45 +76,13 @@ public class Security {
 
         public Builder apiKey(String apiKey) {
             Utils.checkNotNull(apiKey, "apiKey");
-            this.apiKey = Optional.ofNullable(apiKey);
-            return this;
-        }
-
-        public Builder apiKey(Optional<String> apiKey) {
-            Utils.checkNotNull(apiKey, "apiKey");
             this.apiKey = apiKey;
-            return this;
-        }
-
-        public Builder bearer(String bearer) {
-            Utils.checkNotNull(bearer, "bearer");
-            this.bearer = Optional.ofNullable(bearer);
-            return this;
-        }
-
-        public Builder bearer(Optional<String> bearer) {
-            Utils.checkNotNull(bearer, "bearer");
-            this.bearer = bearer;
-            return this;
-        }
-
-        public Builder workspaceIdentifier(String workspaceIdentifier) {
-            Utils.checkNotNull(workspaceIdentifier, "workspaceIdentifier");
-            this.workspaceIdentifier = Optional.ofNullable(workspaceIdentifier);
-            return this;
-        }
-
-        public Builder workspaceIdentifier(Optional<String> workspaceIdentifier) {
-            Utils.checkNotNull(workspaceIdentifier, "workspaceIdentifier");
-            this.workspaceIdentifier = workspaceIdentifier;
             return this;
         }
         
         public Security build() {
             return new Security(
-                apiKey,
-                bearer,
-                workspaceIdentifier);
+                apiKey);
         }
     }
 }

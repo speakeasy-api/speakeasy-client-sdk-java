@@ -41,7 +41,7 @@ public class PostWorkspaceEventsRequestBuilder {
         Optional<Options> options = Optional.of(Options.builder()
                                                     .retryConfig(retryConfig)
                                                     .build());
-        return sdk.post(
+        return sdk.postWorkspaceEvents(
             request,
             options);
     }

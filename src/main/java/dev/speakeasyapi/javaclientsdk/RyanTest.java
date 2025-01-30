@@ -15,7 +15,7 @@ import java.util.Map;
 import java.util.Optional;
 
 /**
- * Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
+ * Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
  * /docs - The Speakeasy Platform Documentation
  */
 public class RyanTest {
@@ -47,9 +47,24 @@ public class RyanTest {
     }};
 
     /**
-     * REST APIs for working with Registry artifacts
+     * REST APIs for managing Api entities
      */
-    private final Artifacts artifacts;
+    private final Apis apis;
+
+    /**
+     * REST APIs for managing ApiEndpoint entities
+     */
+    private final ApiEndpoints apiEndpoints;
+
+    /**
+     * REST APIs for managing Version Metadata entities
+     */
+    private final Metadata metadata;
+
+    /**
+     * REST APIs for managing Schema entities
+     */
+    private final Schemas schemas;
 
     /**
      * REST APIs for managing Authentication
@@ -57,55 +72,46 @@ public class RyanTest {
     private final Auth auth;
 
     /**
-     * REST APIs for retrieving Code Samples
+     * REST APIs for retrieving request information
      */
-    private final CodeSamples codeSamples;
+    private final Requests requests;
 
     /**
-     * REST APIs for managing the github integration
+     * REST APIs for managing embeds
      */
-    private final Github github;
+    private final Embeds embeds;
 
     /**
-     * REST APIs for managing Organizations (speakeasy L1 Tenancy construct)
-     */
-    private final Organizations organizations;
-
-    /**
-     * REST APIs for managing reports (lint reports, change reports, etc)
-     */
-    private final Reports reports;
-
-    /**
-     * REST APIs for managing short URLs
-     */
-    private final ShortURLs shortURLs;
-
-    /**
-     * REST APIs for managing subscriptions
-     */
-    private final Subscriptions subscriptions;
-
-    /**
-     * REST APIs for managing LLM OAS suggestions
-     */
-    private final Suggest suggest;
-
-    /**
-     * REST APIs for managing Workspaces (speakeasy tenancy)
-     */
-    private final Workspaces workspaces;
-
-    /**
-     * REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
+     * REST APIs for capturing event data
      */
     private final Events events;
 
     /**
-     * REST APIs for working with Registry artifacts
+     * REST APIs for managing Api entities
      */
-    public Artifacts artifacts() {
-        return artifacts;
+    public Apis apis() {
+        return apis;
+    }
+
+    /**
+     * REST APIs for managing ApiEndpoint entities
+     */
+    public ApiEndpoints apiEndpoints() {
+        return apiEndpoints;
+    }
+
+    /**
+     * REST APIs for managing Version Metadata entities
+     */
+    public Metadata metadata() {
+        return metadata;
+    }
+
+    /**
+     * REST APIs for managing Schema entities
+     */
+    public Schemas schemas() {
+        return schemas;
     }
 
     /**
@@ -116,63 +122,21 @@ public class RyanTest {
     }
 
     /**
-     * REST APIs for retrieving Code Samples
+     * REST APIs for retrieving request information
      */
-    public CodeSamples codeSamples() {
-        return codeSamples;
+    public Requests requests() {
+        return requests;
     }
 
     /**
-     * REST APIs for managing the github integration
+     * REST APIs for managing embeds
      */
-    public Github github() {
-        return github;
+    public Embeds embeds() {
+        return embeds;
     }
 
     /**
-     * REST APIs for managing Organizations (speakeasy L1 Tenancy construct)
-     */
-    public Organizations organizations() {
-        return organizations;
-    }
-
-    /**
-     * REST APIs for managing reports (lint reports, change reports, etc)
-     */
-    public Reports reports() {
-        return reports;
-    }
-
-    /**
-     * REST APIs for managing short URLs
-     */
-    public ShortURLs shortURLs() {
-        return shortURLs;
-    }
-
-    /**
-     * REST APIs for managing subscriptions
-     */
-    public Subscriptions subscriptions() {
-        return subscriptions;
-    }
-
-    /**
-     * REST APIs for managing LLM OAS suggestions
-     */
-    public Suggest suggest() {
-        return suggest;
-    }
-
-    /**
-     * REST APIs for managing Workspaces (speakeasy tenancy)
-     */
-    public Workspaces workspaces() {
-        return workspaces;
-    }
-
-    /**
-     * REST APIs for managing events captured by a speakeasy binary (CLI, GitHub Action etc)
+     * REST APIs for capturing event data
      */
     public Events events() {
         return events;
@@ -268,17 +232,17 @@ public class RyanTest {
             return this;
         }
         /**
-         * Allows setting the workspaceId parameter for all supported operations.
+         * Allows setting the workspaceID parameter for all supported operations.
          *
-         * @param workspaceId The value to set.
+         * @param workspaceID The value to set.
          * @return The builder instance.
          */
-        public Builder workspaceId(String workspaceId) {
+        public Builder workspaceID(String workspaceID) {
             if (!this.sdkConfiguration.globals.get("parameters").containsKey("pathParam")) {
                 this.sdkConfiguration.globals.get("parameters").put("pathParam", new HashMap<>());
             }
 
-            this.sdkConfiguration.globals.get("parameters").get("pathParam").put("workspaceId", workspaceId);
+            this.sdkConfiguration.globals.get("parameters").get("pathParam").put("workspaceID", workspaceID);
 
             return this;
         }
@@ -315,16 +279,13 @@ public class RyanTest {
 
     private RyanTest(SDKConfiguration sdkConfiguration) {
         this.sdkConfiguration = sdkConfiguration;
-        this.artifacts = new Artifacts(sdkConfiguration);
+        this.apis = new Apis(sdkConfiguration);
+        this.apiEndpoints = new ApiEndpoints(sdkConfiguration);
+        this.metadata = new Metadata(sdkConfiguration);
+        this.schemas = new Schemas(sdkConfiguration);
         this.auth = new Auth(sdkConfiguration);
-        this.codeSamples = new CodeSamples(sdkConfiguration);
-        this.github = new Github(sdkConfiguration);
-        this.organizations = new Organizations(sdkConfiguration);
-        this.reports = new Reports(sdkConfiguration);
-        this.shortURLs = new ShortURLs(sdkConfiguration);
-        this.subscriptions = new Subscriptions(sdkConfiguration);
-        this.suggest = new Suggest(sdkConfiguration);
-        this.workspaces = new Workspaces(sdkConfiguration);
+        this.requests = new Requests(sdkConfiguration);
+        this.embeds = new Embeds(sdkConfiguration);
         this.events = new Events(sdkConfiguration);
         this.sdkConfiguration.initialize();
     }}

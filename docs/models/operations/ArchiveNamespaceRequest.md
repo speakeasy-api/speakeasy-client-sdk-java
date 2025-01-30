@@ -1,9 +1,0 @@
-# ArchiveNamespaceRequest
-
-
-## Fields
-
-| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
-| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
-| `requestBody`                                                                                    | [Optional\<ArchiveNamespaceRequestBody>](../../models/operations/ArchiveNamespaceRequestBody.md) | :heavy_minus_sign:                                                                               | Archived status                                                                                  |
-| `namespaceName`                                                                                  | *String*                                                                                         | :heavy_check_mark:                                                                               | N/A                                                                                              |

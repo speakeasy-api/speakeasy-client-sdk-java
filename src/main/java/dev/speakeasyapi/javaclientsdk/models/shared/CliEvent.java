@@ -31,13 +31,6 @@ public class CliEvent {
     private Optional<String> commitHead;
 
     /**
-     * Name of the CI environment.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("continuous_integration_environment")
-    private Optional<String> continuousIntegrationEnvironment;
-
-    /**
      * Timestamp when the event was created in the database.
      */
     @JsonProperty("created_at")
@@ -51,20 +44,13 @@ public class CliEvent {
     private Optional<Long> durationMs;
 
     /**
-     * Error message if the event was not successful.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("error")
-    private Optional<String> error;
-
-    /**
      * Unique identifier for each execution of the CLI.
      */
     @JsonProperty("execution_id")
     private String executionId;
 
     /**
-     * Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_bump_type")
@@ -85,7 +71,7 @@ public class CliEvent {
     private Optional<String> generateConfigPostRaw;
 
     /**
-     * The version of the customer's SDK that we just generated
+     * Version of the generated target (post generation)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_config_post_version")
@@ -106,18 +92,11 @@ public class CliEvent {
     private Optional<String> generateConfigPreRaw;
 
     /**
-     * The version of the customer's SDK before we generated
+     * Version of the generated target (prior to generation)
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_config_pre_version")
     private Optional<String> generateConfigPreVersion;
-
-    /**
-     * Eligible feature set during generation
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_eligible_features")
-    private Optional<String> generateEligibleFeatures;
 
     /**
      * gen.lock ID (expected to be a uuid).
@@ -132,13 +111,6 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_gen_lock_post_features")
     private Optional<String> generateGenLockPostFeatures;
-
-    /**
-     * Blob digest of the Previous Generation
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_gen_lock_pre_blob_digest")
-    private Optional<String> generateGenLockPreBlobDigest;
 
     /**
      * Checksum of the Previous Rendered OpenAPI document (prior to generation, via gen lock)
@@ -162,46 +134,11 @@ public class CliEvent {
     private Optional<String> generateGenLockPreFeatures;
 
     /**
-     * Namespace name of the Previous Generation
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_gen_lock_pre_namespace_name")
-    private Optional<String> generateGenLockPreNamespaceName;
-
-    /**
-     * Revision digest of the Previous Generation
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_gen_lock_pre_revision_digest")
-    private Optional<String> generateGenLockPreRevisionDigest;
-
-    /**
      * Artifact version for the Previous Generation
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("generate_gen_lock_pre_version")
     private Optional<String> generateGenLockPreVersion;
-
-    /**
-     * The number of operations ignored in generation.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_number_of_operations_ignored")
-    private Optional<Long> generateNumberOfOperationsIgnored;
-
-    /**
-     * The number of operations used in generation.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_number_of_operations_used")
-    private Optional<Long> generateNumberOfOperationsUsed;
-
-    /**
-     * The number of terraform resources used in generation.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_number_of_terraform_resources")
-    private Optional<Long> generateNumberOfTerraformResources;
 
     /**
      * Indicates whether tests were output.
@@ -232,13 +169,6 @@ public class CliEvent {
     private Optional<String> generateTarget;
 
     /**
-     * The workflow name of the target.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generate_target_name")
-    private Optional<String> generateTargetName;
-
-    /**
      * The version of the target.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -260,13 +190,6 @@ public class CliEvent {
     private Optional<String> ghActionOrganization;
 
     /**
-     * GitHub Action ref value.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("gh_action_ref")
-    private Optional<String> ghActionRef;
-
-    /**
      * GitHub repository of the action.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -286,20 +209,6 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("gh_action_version")
     private Optional<String> ghActionVersion;
-
-    /**
-     * Whether or not changes were committed from generation in the Github Action.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("gh_changes_committed")
-    private Optional<Boolean> ghChangesCommitted;
-
-    /**
-     * The reference to a created pull request URL.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("gh_pull_request")
-    private Optional<String> ghPullRequest;
 
     /**
      * Current working directory relative to the git root.
@@ -330,7 +239,7 @@ public class CliEvent {
     private Optional<String> gitUserEmail;
 
     /**
-     * User's name from git configuration. (not GitHub username)
+     * User name from git configuration.
      */
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("git_user_name")
@@ -354,41 +263,6 @@ public class CliEvent {
      */
     @JsonProperty("interaction_type")
     private InteractionType interactionType;
-
-    /**
-     * The last step of the event.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("last_step")
-    private Optional<String> lastStep;
-
-    /**
-     * The checksum of the lint report.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("lint_report_digest")
-    private Optional<String> lintReportDigest;
-
-    /**
-     * The number of errors in the lint report.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("lint_report_error_count")
-    private Optional<Long> lintReportErrorCount;
-
-    /**
-     * The number of info messages in the lint report.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("lint_report_info_count")
-    private Optional<Long> lintReportInfoCount;
-
-    /**
-     * The number of warnings in the lint report.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("lint_report_warning_count")
-    private Optional<Long> lintReportWarningCount;
 
     /**
      * Timestamp when the event completed, in local time.
@@ -418,83 +292,6 @@ public class CliEvent {
     private Optional<String> managementDocVersion;
 
     /**
-     * Mermaid diagram
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("mermaid_diagram")
-    private Optional<String> mermaidDiagram;
-
-    /**
-     * The blob digest of the base source.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("openapi_diff_base_source_blob_digest")
-    private Optional<String> openapiDiffBaseSourceBlobDigest;
-
-    /**
-     * The namespace name of the base source.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("openapi_diff_base_source_namespace_name")
-    private Optional<String> openapiDiffBaseSourceNamespaceName;
-
-    /**
-     * The revision digest of the base source.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("openapi_diff_base_source_revision_digest")
-    private Optional<String> openapiDiffBaseSourceRevisionDigest;
-
-    /**
-     * The number of breaking changes in the openapi diff report.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("openapi_diff_breaking_changes_count")
-    private Optional<Long> openapiDiffBreakingChangesCount;
-
-    /**
-     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("openapi_diff_bump_type")
-    private Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType;
-
-    /**
-     * The checksum of the openapi diff report.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("openapi_diff_report_digest")
-    private Optional<String> openapiDiffReportDigest;
-
-    /**
-     * Name of the published package.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("publish_package_name")
-    private Optional<String> publishPackageName;
-
-    /**
-     * Name of the registry where the package was published.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("publish_package_registry_name")
-    private Optional<String> publishPackageRegistryName;
-
-    /**
-     * URL of the published package.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("publish_package_url")
-    private Optional<String> publishPackageUrl;
-
-    /**
-     * Version of the published package.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("publish_package_version")
-    private Optional<String> publishPackageVersion;
-
-    /**
      * Full CLI command.
      */
     @JsonInclude(Include.NON_ABSENT)
@@ -507,27 +304,6 @@ public class CliEvent {
     @JsonInclude(Include.NON_ABSENT)
     @JsonProperty("repo_label")
     private Optional<String> repoLabel;
-
-    /**
-     * The blob digest of the source.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("source_blob_digest")
-    private Optional<String> sourceBlobDigest;
-
-    /**
-     * The namespace name of the source.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("source_namespace_name")
-    private Optional<String> sourceNamespaceName;
-
-    /**
-     * The revision digest of the source.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("source_revision_digest")
-    private Optional<String> sourceRevisionDigest;
 
     /**
      * Identifier of the Speakeasy API key.
@@ -548,34 +324,6 @@ public class CliEvent {
     private boolean success;
 
     /**
-     * Workflow lock file (post execution)
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("workflow_lock_post_raw")
-    private Optional<String> workflowLockPostRaw;
-
-    /**
-     * Workflow lock file (prior to execution)
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("workflow_lock_pre_raw")
-    private Optional<String> workflowLockPreRaw;
-
-    /**
-     * Workflow file (post execution)
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("workflow_post_raw")
-    private Optional<String> workflowPostRaw;
-
-    /**
-     * Workflow file (prior to execution)
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("workflow_pre_raw")
-    private Optional<String> workflowPreRaw;
-
-    /**
      * Identifier of the workspace.
      */
     @JsonProperty("workspace_id")
@@ -584,10 +332,8 @@ public class CliEvent {
     @JsonCreator
     public CliEvent(
             @JsonProperty("commit_head") Optional<String> commitHead,
-            @JsonProperty("continuous_integration_environment") Optional<String> continuousIntegrationEnvironment,
             @JsonProperty("created_at") OffsetDateTime createdAt,
             @JsonProperty("duration_ms") Optional<Long> durationMs,
-            @JsonProperty("error") Optional<String> error,
             @JsonProperty("execution_id") String executionId,
             @JsonProperty("generate_bump_type") Optional<? extends GenerateBumpType> generateBumpType,
             @JsonProperty("generate_config_post_checksum") Optional<String> generateConfigPostChecksum,
@@ -596,33 +342,22 @@ public class CliEvent {
             @JsonProperty("generate_config_pre_checksum") Optional<String> generateConfigPreChecksum,
             @JsonProperty("generate_config_pre_raw") Optional<String> generateConfigPreRaw,
             @JsonProperty("generate_config_pre_version") Optional<String> generateConfigPreVersion,
-            @JsonProperty("generate_eligible_features") Optional<String> generateEligibleFeatures,
             @JsonProperty("generate_gen_lock_id") Optional<String> generateGenLockId,
             @JsonProperty("generate_gen_lock_post_features") Optional<String> generateGenLockPostFeatures,
-            @JsonProperty("generate_gen_lock_pre_blob_digest") Optional<String> generateGenLockPreBlobDigest,
             @JsonProperty("generate_gen_lock_pre_doc_checksum") Optional<String> generateGenLockPreDocChecksum,
             @JsonProperty("generate_gen_lock_pre_doc_version") Optional<String> generateGenLockPreDocVersion,
             @JsonProperty("generate_gen_lock_pre_features") Optional<String> generateGenLockPreFeatures,
-            @JsonProperty("generate_gen_lock_pre_namespace_name") Optional<String> generateGenLockPreNamespaceName,
-            @JsonProperty("generate_gen_lock_pre_revision_digest") Optional<String> generateGenLockPreRevisionDigest,
             @JsonProperty("generate_gen_lock_pre_version") Optional<String> generateGenLockPreVersion,
-            @JsonProperty("generate_number_of_operations_ignored") Optional<Long> generateNumberOfOperationsIgnored,
-            @JsonProperty("generate_number_of_operations_used") Optional<Long> generateNumberOfOperationsUsed,
-            @JsonProperty("generate_number_of_terraform_resources") Optional<Long> generateNumberOfTerraformResources,
             @JsonProperty("generate_output_tests") Optional<Boolean> generateOutputTests,
             @JsonProperty("generate_published") Optional<Boolean> generatePublished,
             @JsonProperty("generate_repo_url") Optional<String> generateRepoUrl,
             @JsonProperty("generate_target") Optional<String> generateTarget,
-            @JsonProperty("generate_target_name") Optional<String> generateTargetName,
             @JsonProperty("generate_target_version") Optional<String> generateTargetVersion,
             @JsonProperty("generate_version") Optional<String> generateVersion,
             @JsonProperty("gh_action_organization") Optional<String> ghActionOrganization,
-            @JsonProperty("gh_action_ref") Optional<String> ghActionRef,
             @JsonProperty("gh_action_repository") Optional<String> ghActionRepository,
             @JsonProperty("gh_action_run_link") Optional<String> ghActionRunLink,
             @JsonProperty("gh_action_version") Optional<String> ghActionVersion,
-            @JsonProperty("gh_changes_committed") Optional<Boolean> ghChangesCommitted,
-            @JsonProperty("gh_pull_request") Optional<String> ghPullRequest,
             @JsonProperty("git_relative_cwd") Optional<String> gitRelativeCwd,
             @JsonProperty("git_remote_default_owner") Optional<String> gitRemoteDefaultOwner,
             @JsonProperty("git_remote_default_repo") Optional<String> gitRemoteDefaultRepo,
@@ -631,44 +366,19 @@ public class CliEvent {
             @JsonProperty("hostname") Optional<String> hostname,
             @JsonProperty("id") String id,
             @JsonProperty("interaction_type") InteractionType interactionType,
-            @JsonProperty("last_step") Optional<String> lastStep,
-            @JsonProperty("lint_report_digest") Optional<String> lintReportDigest,
-            @JsonProperty("lint_report_error_count") Optional<Long> lintReportErrorCount,
-            @JsonProperty("lint_report_info_count") Optional<Long> lintReportInfoCount,
-            @JsonProperty("lint_report_warning_count") Optional<Long> lintReportWarningCount,
             @JsonProperty("local_completed_at") Optional<OffsetDateTime> localCompletedAt,
             @JsonProperty("local_started_at") OffsetDateTime localStartedAt,
             @JsonProperty("management_doc_checksum") Optional<String> managementDocChecksum,
             @JsonProperty("management_doc_version") Optional<String> managementDocVersion,
-            @JsonProperty("mermaid_diagram") Optional<String> mermaidDiagram,
-            @JsonProperty("openapi_diff_base_source_blob_digest") Optional<String> openapiDiffBaseSourceBlobDigest,
-            @JsonProperty("openapi_diff_base_source_namespace_name") Optional<String> openapiDiffBaseSourceNamespaceName,
-            @JsonProperty("openapi_diff_base_source_revision_digest") Optional<String> openapiDiffBaseSourceRevisionDigest,
-            @JsonProperty("openapi_diff_breaking_changes_count") Optional<Long> openapiDiffBreakingChangesCount,
-            @JsonProperty("openapi_diff_bump_type") Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType,
-            @JsonProperty("openapi_diff_report_digest") Optional<String> openapiDiffReportDigest,
-            @JsonProperty("publish_package_name") Optional<String> publishPackageName,
-            @JsonProperty("publish_package_registry_name") Optional<String> publishPackageRegistryName,
-            @JsonProperty("publish_package_url") Optional<String> publishPackageUrl,
-            @JsonProperty("publish_package_version") Optional<String> publishPackageVersion,
             @JsonProperty("raw_command") Optional<String> rawCommand,
             @JsonProperty("repo_label") Optional<String> repoLabel,
-            @JsonProperty("source_blob_digest") Optional<String> sourceBlobDigest,
-            @JsonProperty("source_namespace_name") Optional<String> sourceNamespaceName,
-            @JsonProperty("source_revision_digest") Optional<String> sourceRevisionDigest,
             @JsonProperty("speakeasy_api_key_name") String speakeasyApiKeyName,
             @JsonProperty("speakeasy_version") String speakeasyVersion,
             @JsonProperty("success") boolean success,
-            @JsonProperty("workflow_lock_post_raw") Optional<String> workflowLockPostRaw,
-            @JsonProperty("workflow_lock_pre_raw") Optional<String> workflowLockPreRaw,
-            @JsonProperty("workflow_post_raw") Optional<String> workflowPostRaw,
-            @JsonProperty("workflow_pre_raw") Optional<String> workflowPreRaw,
             @JsonProperty("workspace_id") String workspaceId) {
         Utils.checkNotNull(commitHead, "commitHead");
-        Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
         Utils.checkNotNull(createdAt, "createdAt");
         Utils.checkNotNull(durationMs, "durationMs");
-        Utils.checkNotNull(error, "error");
         Utils.checkNotNull(executionId, "executionId");
         Utils.checkNotNull(generateBumpType, "generateBumpType");
         Utils.checkNotNull(generateConfigPostChecksum, "generateConfigPostChecksum");
@@ -677,33 +387,22 @@ public class CliEvent {
         Utils.checkNotNull(generateConfigPreChecksum, "generateConfigPreChecksum");
         Utils.checkNotNull(generateConfigPreRaw, "generateConfigPreRaw");
         Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
-        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
         Utils.checkNotNull(generateGenLockId, "generateGenLockId");
         Utils.checkNotNull(generateGenLockPostFeatures, "generateGenLockPostFeatures");
-        Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
         Utils.checkNotNull(generateGenLockPreDocChecksum, "generateGenLockPreDocChecksum");
         Utils.checkNotNull(generateGenLockPreDocVersion, "generateGenLockPreDocVersion");
         Utils.checkNotNull(generateGenLockPreFeatures, "generateGenLockPreFeatures");
-        Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
-        Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
-        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
-        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
-        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
         Utils.checkNotNull(generateOutputTests, "generateOutputTests");
         Utils.checkNotNull(generatePublished, "generatePublished");
         Utils.checkNotNull(generateRepoUrl, "generateRepoUrl");
         Utils.checkNotNull(generateTarget, "generateTarget");
-        Utils.checkNotNull(generateTargetName, "generateTargetName");
         Utils.checkNotNull(generateTargetVersion, "generateTargetVersion");
         Utils.checkNotNull(generateVersion, "generateVersion");
         Utils.checkNotNull(ghActionOrganization, "ghActionOrganization");
-        Utils.checkNotNull(ghActionRef, "ghActionRef");
         Utils.checkNotNull(ghActionRepository, "ghActionRepository");
         Utils.checkNotNull(ghActionRunLink, "ghActionRunLink");
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
-        Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
-        Utils.checkNotNull(ghPullRequest, "ghPullRequest");
         Utils.checkNotNull(gitRelativeCwd, "gitRelativeCwd");
         Utils.checkNotNull(gitRemoteDefaultOwner, "gitRemoteDefaultOwner");
         Utils.checkNotNull(gitRemoteDefaultRepo, "gitRemoteDefaultRepo");
@@ -712,44 +411,19 @@ public class CliEvent {
         Utils.checkNotNull(hostname, "hostname");
         Utils.checkNotNull(id, "id");
         Utils.checkNotNull(interactionType, "interactionType");
-        Utils.checkNotNull(lastStep, "lastStep");
-        Utils.checkNotNull(lintReportDigest, "lintReportDigest");
-        Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
-        Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
-        Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
         Utils.checkNotNull(localCompletedAt, "localCompletedAt");
         Utils.checkNotNull(localStartedAt, "localStartedAt");
         Utils.checkNotNull(managementDocChecksum, "managementDocChecksum");
         Utils.checkNotNull(managementDocVersion, "managementDocVersion");
-        Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
-        Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
-        Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
-        Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
-        Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
-        Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
-        Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
-        Utils.checkNotNull(publishPackageName, "publishPackageName");
-        Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
-        Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
-        Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
         Utils.checkNotNull(rawCommand, "rawCommand");
         Utils.checkNotNull(repoLabel, "repoLabel");
-        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
-        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
-        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
         Utils.checkNotNull(speakeasyApiKeyName, "speakeasyApiKeyName");
         Utils.checkNotNull(speakeasyVersion, "speakeasyVersion");
         Utils.checkNotNull(success, "success");
-        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
-        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
-        Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
-        Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.commitHead = commitHead;
-        this.continuousIntegrationEnvironment = continuousIntegrationEnvironment;
         this.createdAt = createdAt;
         this.durationMs = durationMs;
-        this.error = error;
         this.executionId = executionId;
         this.generateBumpType = generateBumpType;
         this.generateConfigPostChecksum = generateConfigPostChecksum;
@@ -758,33 +432,22 @@ public class CliEvent {
         this.generateConfigPreChecksum = generateConfigPreChecksum;
         this.generateConfigPreRaw = generateConfigPreRaw;
         this.generateConfigPreVersion = generateConfigPreVersion;
-        this.generateEligibleFeatures = generateEligibleFeatures;
         this.generateGenLockId = generateGenLockId;
         this.generateGenLockPostFeatures = generateGenLockPostFeatures;
-        this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
         this.generateGenLockPreDocChecksum = generateGenLockPreDocChecksum;
         this.generateGenLockPreDocVersion = generateGenLockPreDocVersion;
         this.generateGenLockPreFeatures = generateGenLockPreFeatures;
-        this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
-        this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
         this.generateGenLockPreVersion = generateGenLockPreVersion;
-        this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
-        this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
-        this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
         this.generateOutputTests = generateOutputTests;
         this.generatePublished = generatePublished;
         this.generateRepoUrl = generateRepoUrl;
         this.generateTarget = generateTarget;
-        this.generateTargetName = generateTargetName;
         this.generateTargetVersion = generateTargetVersion;
         this.generateVersion = generateVersion;
         this.ghActionOrganization = ghActionOrganization;
-        this.ghActionRef = ghActionRef;
         this.ghActionRepository = ghActionRepository;
         this.ghActionRunLink = ghActionRunLink;
         this.ghActionVersion = ghActionVersion;
-        this.ghChangesCommitted = ghChangesCommitted;
-        this.ghPullRequest = ghPullRequest;
         this.gitRelativeCwd = gitRelativeCwd;
         this.gitRemoteDefaultOwner = gitRemoteDefaultOwner;
         this.gitRemoteDefaultRepo = gitRemoteDefaultRepo;
@@ -793,38 +456,15 @@ public class CliEvent {
         this.hostname = hostname;
         this.id = id;
         this.interactionType = interactionType;
-        this.lastStep = lastStep;
-        this.lintReportDigest = lintReportDigest;
-        this.lintReportErrorCount = lintReportErrorCount;
-        this.lintReportInfoCount = lintReportInfoCount;
-        this.lintReportWarningCount = lintReportWarningCount;
         this.localCompletedAt = localCompletedAt;
         this.localStartedAt = localStartedAt;
         this.managementDocChecksum = managementDocChecksum;
         this.managementDocVersion = managementDocVersion;
-        this.mermaidDiagram = mermaidDiagram;
-        this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
-        this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
-        this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
-        this.openapiDiffBreakingChangesCount = openapiDiffBreakingChangesCount;
-        this.openapiDiffBumpType = openapiDiffBumpType;
-        this.openapiDiffReportDigest = openapiDiffReportDigest;
-        this.publishPackageName = publishPackageName;
-        this.publishPackageRegistryName = publishPackageRegistryName;
-        this.publishPackageUrl = publishPackageUrl;
-        this.publishPackageVersion = publishPackageVersion;
         this.rawCommand = rawCommand;
         this.repoLabel = repoLabel;
-        this.sourceBlobDigest = sourceBlobDigest;
-        this.sourceNamespaceName = sourceNamespaceName;
-        this.sourceRevisionDigest = sourceRevisionDigest;
         this.speakeasyApiKeyName = speakeasyApiKeyName;
         this.speakeasyVersion = speakeasyVersion;
         this.success = success;
-        this.workflowLockPostRaw = workflowLockPostRaw;
-        this.workflowLockPreRaw = workflowLockPreRaw;
-        this.workflowPostRaw = workflowPostRaw;
-        this.workflowPreRaw = workflowPreRaw;
         this.workspaceId = workspaceId;
     }
     
@@ -838,7 +478,7 @@ public class CliEvent {
             String speakeasyVersion,
             boolean success,
             String workspaceId) {
-        this(Optional.empty(), Optional.empty(), createdAt, Optional.empty(), Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), workspaceId);
+        this(Optional.empty(), createdAt, Optional.empty(), executionId, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), id, interactionType, Optional.empty(), localStartedAt, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty(), speakeasyApiKeyName, speakeasyVersion, success, workspaceId);
     }
 
     /**
@@ -847,14 +487,6 @@ public class CliEvent {
     @JsonIgnore
     public Optional<String> commitHead() {
         return commitHead;
-    }
-
-    /**
-     * Name of the CI environment.
-     */
-    @JsonIgnore
-    public Optional<String> continuousIntegrationEnvironment() {
-        return continuousIntegrationEnvironment;
     }
 
     /**
@@ -874,14 +506,6 @@ public class CliEvent {
     }
 
     /**
-     * Error message if the event was not successful.
-     */
-    @JsonIgnore
-    public Optional<String> error() {
-        return error;
-    }
-
-    /**
      * Unique identifier for each execution of the CLI.
      */
     @JsonIgnore
@@ -890,7 +514,7 @@ public class CliEvent {
     }
 
     /**
-     * Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
     @SuppressWarnings("unchecked")
     @JsonIgnore
@@ -915,7 +539,7 @@ public class CliEvent {
     }
 
     /**
-     * The version of the customer's SDK that we just generated
+     * Version of the generated target (post generation)
      */
     @JsonIgnore
     public Optional<String> generateConfigPostVersion() {
@@ -939,19 +563,11 @@ public class CliEvent {
     }
 
     /**
-     * The version of the customer's SDK before we generated
+     * Version of the generated target (prior to generation)
      */
     @JsonIgnore
     public Optional<String> generateConfigPreVersion() {
         return generateConfigPreVersion;
-    }
-
-    /**
-     * Eligible feature set during generation
-     */
-    @JsonIgnore
-    public Optional<String> generateEligibleFeatures() {
-        return generateEligibleFeatures;
     }
 
     /**
@@ -968,14 +584,6 @@ public class CliEvent {
     @JsonIgnore
     public Optional<String> generateGenLockPostFeatures() {
         return generateGenLockPostFeatures;
-    }
-
-    /**
-     * Blob digest of the Previous Generation
-     */
-    @JsonIgnore
-    public Optional<String> generateGenLockPreBlobDigest() {
-        return generateGenLockPreBlobDigest;
     }
 
     /**
@@ -1003,51 +611,11 @@ public class CliEvent {
     }
 
     /**
-     * Namespace name of the Previous Generation
-     */
-    @JsonIgnore
-    public Optional<String> generateGenLockPreNamespaceName() {
-        return generateGenLockPreNamespaceName;
-    }
-
-    /**
-     * Revision digest of the Previous Generation
-     */
-    @JsonIgnore
-    public Optional<String> generateGenLockPreRevisionDigest() {
-        return generateGenLockPreRevisionDigest;
-    }
-
-    /**
      * Artifact version for the Previous Generation
      */
     @JsonIgnore
     public Optional<String> generateGenLockPreVersion() {
         return generateGenLockPreVersion;
-    }
-
-    /**
-     * The number of operations ignored in generation.
-     */
-    @JsonIgnore
-    public Optional<Long> generateNumberOfOperationsIgnored() {
-        return generateNumberOfOperationsIgnored;
-    }
-
-    /**
-     * The number of operations used in generation.
-     */
-    @JsonIgnore
-    public Optional<Long> generateNumberOfOperationsUsed() {
-        return generateNumberOfOperationsUsed;
-    }
-
-    /**
-     * The number of terraform resources used in generation.
-     */
-    @JsonIgnore
-    public Optional<Long> generateNumberOfTerraformResources() {
-        return generateNumberOfTerraformResources;
     }
 
     /**
@@ -1083,14 +651,6 @@ public class CliEvent {
     }
 
     /**
-     * The workflow name of the target.
-     */
-    @JsonIgnore
-    public Optional<String> generateTargetName() {
-        return generateTargetName;
-    }
-
-    /**
      * The version of the target.
      */
     @JsonIgnore
@@ -1115,14 +675,6 @@ public class CliEvent {
     }
 
     /**
-     * GitHub Action ref value.
-     */
-    @JsonIgnore
-    public Optional<String> ghActionRef() {
-        return ghActionRef;
-    }
-
-    /**
      * GitHub repository of the action.
      */
     @JsonIgnore
@@ -1144,22 +696,6 @@ public class CliEvent {
     @JsonIgnore
     public Optional<String> ghActionVersion() {
         return ghActionVersion;
-    }
-
-    /**
-     * Whether or not changes were committed from generation in the Github Action.
-     */
-    @JsonIgnore
-    public Optional<Boolean> ghChangesCommitted() {
-        return ghChangesCommitted;
-    }
-
-    /**
-     * The reference to a created pull request URL.
-     */
-    @JsonIgnore
-    public Optional<String> ghPullRequest() {
-        return ghPullRequest;
     }
 
     /**
@@ -1195,7 +731,7 @@ public class CliEvent {
     }
 
     /**
-     * User's name from git configuration. (not GitHub username)
+     * User name from git configuration.
      */
     @JsonIgnore
     public Optional<String> gitUserName() {
@@ -1224,46 +760,6 @@ public class CliEvent {
     @JsonIgnore
     public InteractionType interactionType() {
         return interactionType;
-    }
-
-    /**
-     * The last step of the event.
-     */
-    @JsonIgnore
-    public Optional<String> lastStep() {
-        return lastStep;
-    }
-
-    /**
-     * The checksum of the lint report.
-     */
-    @JsonIgnore
-    public Optional<String> lintReportDigest() {
-        return lintReportDigest;
-    }
-
-    /**
-     * The number of errors in the lint report.
-     */
-    @JsonIgnore
-    public Optional<Long> lintReportErrorCount() {
-        return lintReportErrorCount;
-    }
-
-    /**
-     * The number of info messages in the lint report.
-     */
-    @JsonIgnore
-    public Optional<Long> lintReportInfoCount() {
-        return lintReportInfoCount;
-    }
-
-    /**
-     * The number of warnings in the lint report.
-     */
-    @JsonIgnore
-    public Optional<Long> lintReportWarningCount() {
-        return lintReportWarningCount;
     }
 
     /**
@@ -1299,95 +795,6 @@ public class CliEvent {
     }
 
     /**
-     * Mermaid diagram
-     */
-    @JsonIgnore
-    public Optional<String> mermaidDiagram() {
-        return mermaidDiagram;
-    }
-
-    /**
-     * The blob digest of the base source.
-     */
-    @JsonIgnore
-    public Optional<String> openapiDiffBaseSourceBlobDigest() {
-        return openapiDiffBaseSourceBlobDigest;
-    }
-
-    /**
-     * The namespace name of the base source.
-     */
-    @JsonIgnore
-    public Optional<String> openapiDiffBaseSourceNamespaceName() {
-        return openapiDiffBaseSourceNamespaceName;
-    }
-
-    /**
-     * The revision digest of the base source.
-     */
-    @JsonIgnore
-    public Optional<String> openapiDiffBaseSourceRevisionDigest() {
-        return openapiDiffBaseSourceRevisionDigest;
-    }
-
-    /**
-     * The number of breaking changes in the openapi diff report.
-     */
-    @JsonIgnore
-    public Optional<Long> openapiDiffBreakingChangesCount() {
-        return openapiDiffBreakingChangesCount;
-    }
-
-    /**
-     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
-     */
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<OpenapiDiffBumpType> openapiDiffBumpType() {
-        return (Optional<OpenapiDiffBumpType>) openapiDiffBumpType;
-    }
-
-    /**
-     * The checksum of the openapi diff report.
-     */
-    @JsonIgnore
-    public Optional<String> openapiDiffReportDigest() {
-        return openapiDiffReportDigest;
-    }
-
-    /**
-     * Name of the published package.
-     */
-    @JsonIgnore
-    public Optional<String> publishPackageName() {
-        return publishPackageName;
-    }
-
-    /**
-     * Name of the registry where the package was published.
-     */
-    @JsonIgnore
-    public Optional<String> publishPackageRegistryName() {
-        return publishPackageRegistryName;
-    }
-
-    /**
-     * URL of the published package.
-     */
-    @JsonIgnore
-    public Optional<String> publishPackageUrl() {
-        return publishPackageUrl;
-    }
-
-    /**
-     * Version of the published package.
-     */
-    @JsonIgnore
-    public Optional<String> publishPackageVersion() {
-        return publishPackageVersion;
-    }
-
-    /**
      * Full CLI command.
      */
     @JsonIgnore
@@ -1401,30 +808,6 @@ public class CliEvent {
     @JsonIgnore
     public Optional<String> repoLabel() {
         return repoLabel;
-    }
-
-    /**
-     * The blob digest of the source.
-     */
-    @JsonIgnore
-    public Optional<String> sourceBlobDigest() {
-        return sourceBlobDigest;
-    }
-
-    /**
-     * The namespace name of the source.
-     */
-    @JsonIgnore
-    public Optional<String> sourceNamespaceName() {
-        return sourceNamespaceName;
-    }
-
-    /**
-     * The revision digest of the source.
-     */
-    @JsonIgnore
-    public Optional<String> sourceRevisionDigest() {
-        return sourceRevisionDigest;
     }
 
     /**
@@ -1449,38 +832,6 @@ public class CliEvent {
     @JsonIgnore
     public boolean success() {
         return success;
-    }
-
-    /**
-     * Workflow lock file (post execution)
-     */
-    @JsonIgnore
-    public Optional<String> workflowLockPostRaw() {
-        return workflowLockPostRaw;
-    }
-
-    /**
-     * Workflow lock file (prior to execution)
-     */
-    @JsonIgnore
-    public Optional<String> workflowLockPreRaw() {
-        return workflowLockPreRaw;
-    }
-
-    /**
-     * Workflow file (post execution)
-     */
-    @JsonIgnore
-    public Optional<String> workflowPostRaw() {
-        return workflowPostRaw;
-    }
-
-    /**
-     * Workflow file (prior to execution)
-     */
-    @JsonIgnore
-    public Optional<String> workflowPreRaw() {
-        return workflowPreRaw;
     }
 
     /**
@@ -1514,24 +865,6 @@ public class CliEvent {
     }
 
     /**
-     * Name of the CI environment.
-     */
-    public CliEvent withContinuousIntegrationEnvironment(String continuousIntegrationEnvironment) {
-        Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
-        this.continuousIntegrationEnvironment = Optional.ofNullable(continuousIntegrationEnvironment);
-        return this;
-    }
-
-    /**
-     * Name of the CI environment.
-     */
-    public CliEvent withContinuousIntegrationEnvironment(Optional<String> continuousIntegrationEnvironment) {
-        Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
-        this.continuousIntegrationEnvironment = continuousIntegrationEnvironment;
-        return this;
-    }
-
-    /**
      * Timestamp when the event was created in the database.
      */
     public CliEvent withCreatedAt(OffsetDateTime createdAt) {
@@ -1559,24 +892,6 @@ public class CliEvent {
     }
 
     /**
-     * Error message if the event was not successful.
-     */
-    public CliEvent withError(String error) {
-        Utils.checkNotNull(error, "error");
-        this.error = Optional.ofNullable(error);
-        return this;
-    }
-
-    /**
-     * Error message if the event was not successful.
-     */
-    public CliEvent withError(Optional<String> error) {
-        Utils.checkNotNull(error, "error");
-        this.error = error;
-        return this;
-    }
-
-    /**
      * Unique identifier for each execution of the CLI.
      */
     public CliEvent withExecutionId(String executionId) {
@@ -1586,7 +901,7 @@ public class CliEvent {
     }
 
     /**
-     * Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
     public CliEvent withGenerateBumpType(GenerateBumpType generateBumpType) {
         Utils.checkNotNull(generateBumpType, "generateBumpType");
@@ -1595,7 +910,7 @@ public class CliEvent {
     }
 
     /**
-     * Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
      */
     public CliEvent withGenerateBumpType(Optional<? extends GenerateBumpType> generateBumpType) {
         Utils.checkNotNull(generateBumpType, "generateBumpType");
@@ -1640,7 +955,7 @@ public class CliEvent {
     }
 
     /**
-     * The version of the customer's SDK that we just generated
+     * Version of the generated target (post generation)
      */
     public CliEvent withGenerateConfigPostVersion(String generateConfigPostVersion) {
         Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
@@ -1649,7 +964,7 @@ public class CliEvent {
     }
 
     /**
-     * The version of the customer's SDK that we just generated
+     * Version of the generated target (post generation)
      */
     public CliEvent withGenerateConfigPostVersion(Optional<String> generateConfigPostVersion) {
         Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
@@ -1694,7 +1009,7 @@ public class CliEvent {
     }
 
     /**
-     * The version of the customer's SDK before we generated
+     * Version of the generated target (prior to generation)
      */
     public CliEvent withGenerateConfigPreVersion(String generateConfigPreVersion) {
         Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
@@ -1703,29 +1018,11 @@ public class CliEvent {
     }
 
     /**
-     * The version of the customer's SDK before we generated
+     * Version of the generated target (prior to generation)
      */
     public CliEvent withGenerateConfigPreVersion(Optional<String> generateConfigPreVersion) {
         Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
         this.generateConfigPreVersion = generateConfigPreVersion;
-        return this;
-    }
-
-    /**
-     * Eligible feature set during generation
-     */
-    public CliEvent withGenerateEligibleFeatures(String generateEligibleFeatures) {
-        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
-        this.generateEligibleFeatures = Optional.ofNullable(generateEligibleFeatures);
-        return this;
-    }
-
-    /**
-     * Eligible feature set during generation
-     */
-    public CliEvent withGenerateEligibleFeatures(Optional<String> generateEligibleFeatures) {
-        Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
-        this.generateEligibleFeatures = generateEligibleFeatures;
         return this;
     }
 
@@ -1762,24 +1059,6 @@ public class CliEvent {
     public CliEvent withGenerateGenLockPostFeatures(Optional<String> generateGenLockPostFeatures) {
         Utils.checkNotNull(generateGenLockPostFeatures, "generateGenLockPostFeatures");
         this.generateGenLockPostFeatures = generateGenLockPostFeatures;
-        return this;
-    }
-
-    /**
-     * Blob digest of the Previous Generation
-     */
-    public CliEvent withGenerateGenLockPreBlobDigest(String generateGenLockPreBlobDigest) {
-        Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
-        this.generateGenLockPreBlobDigest = Optional.ofNullable(generateGenLockPreBlobDigest);
-        return this;
-    }
-
-    /**
-     * Blob digest of the Previous Generation
-     */
-    public CliEvent withGenerateGenLockPreBlobDigest(Optional<String> generateGenLockPreBlobDigest) {
-        Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
-        this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
         return this;
     }
 
@@ -1838,42 +1117,6 @@ public class CliEvent {
     }
 
     /**
-     * Namespace name of the Previous Generation
-     */
-    public CliEvent withGenerateGenLockPreNamespaceName(String generateGenLockPreNamespaceName) {
-        Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
-        this.generateGenLockPreNamespaceName = Optional.ofNullable(generateGenLockPreNamespaceName);
-        return this;
-    }
-
-    /**
-     * Namespace name of the Previous Generation
-     */
-    public CliEvent withGenerateGenLockPreNamespaceName(Optional<String> generateGenLockPreNamespaceName) {
-        Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
-        this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
-        return this;
-    }
-
-    /**
-     * Revision digest of the Previous Generation
-     */
-    public CliEvent withGenerateGenLockPreRevisionDigest(String generateGenLockPreRevisionDigest) {
-        Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
-        this.generateGenLockPreRevisionDigest = Optional.ofNullable(generateGenLockPreRevisionDigest);
-        return this;
-    }
-
-    /**
-     * Revision digest of the Previous Generation
-     */
-    public CliEvent withGenerateGenLockPreRevisionDigest(Optional<String> generateGenLockPreRevisionDigest) {
-        Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
-        this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
-        return this;
-    }
-
-    /**
      * Artifact version for the Previous Generation
      */
     public CliEvent withGenerateGenLockPreVersion(String generateGenLockPreVersion) {
@@ -1888,60 +1131,6 @@ public class CliEvent {
     public CliEvent withGenerateGenLockPreVersion(Optional<String> generateGenLockPreVersion) {
         Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
         this.generateGenLockPreVersion = generateGenLockPreVersion;
-        return this;
-    }
-
-    /**
-     * The number of operations ignored in generation.
-     */
-    public CliEvent withGenerateNumberOfOperationsIgnored(long generateNumberOfOperationsIgnored) {
-        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
-        this.generateNumberOfOperationsIgnored = Optional.ofNullable(generateNumberOfOperationsIgnored);
-        return this;
-    }
-
-    /**
-     * The number of operations ignored in generation.
-     */
-    public CliEvent withGenerateNumberOfOperationsIgnored(Optional<Long> generateNumberOfOperationsIgnored) {
-        Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
-        this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
-        return this;
-    }
-
-    /**
-     * The number of operations used in generation.
-     */
-    public CliEvent withGenerateNumberOfOperationsUsed(long generateNumberOfOperationsUsed) {
-        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
-        this.generateNumberOfOperationsUsed = Optional.ofNullable(generateNumberOfOperationsUsed);
-        return this;
-    }
-
-    /**
-     * The number of operations used in generation.
-     */
-    public CliEvent withGenerateNumberOfOperationsUsed(Optional<Long> generateNumberOfOperationsUsed) {
-        Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
-        this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
-        return this;
-    }
-
-    /**
-     * The number of terraform resources used in generation.
-     */
-    public CliEvent withGenerateNumberOfTerraformResources(long generateNumberOfTerraformResources) {
-        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
-        this.generateNumberOfTerraformResources = Optional.ofNullable(generateNumberOfTerraformResources);
-        return this;
-    }
-
-    /**
-     * The number of terraform resources used in generation.
-     */
-    public CliEvent withGenerateNumberOfTerraformResources(Optional<Long> generateNumberOfTerraformResources) {
-        Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
-        this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
         return this;
     }
 
@@ -2018,24 +1207,6 @@ public class CliEvent {
     }
 
     /**
-     * The workflow name of the target.
-     */
-    public CliEvent withGenerateTargetName(String generateTargetName) {
-        Utils.checkNotNull(generateTargetName, "generateTargetName");
-        this.generateTargetName = Optional.ofNullable(generateTargetName);
-        return this;
-    }
-
-    /**
-     * The workflow name of the target.
-     */
-    public CliEvent withGenerateTargetName(Optional<String> generateTargetName) {
-        Utils.checkNotNull(generateTargetName, "generateTargetName");
-        this.generateTargetName = generateTargetName;
-        return this;
-    }
-
-    /**
      * The version of the target.
      */
     public CliEvent withGenerateTargetVersion(String generateTargetVersion) {
@@ -2090,24 +1261,6 @@ public class CliEvent {
     }
 
     /**
-     * GitHub Action ref value.
-     */
-    public CliEvent withGhActionRef(String ghActionRef) {
-        Utils.checkNotNull(ghActionRef, "ghActionRef");
-        this.ghActionRef = Optional.ofNullable(ghActionRef);
-        return this;
-    }
-
-    /**
-     * GitHub Action ref value.
-     */
-    public CliEvent withGhActionRef(Optional<String> ghActionRef) {
-        Utils.checkNotNull(ghActionRef, "ghActionRef");
-        this.ghActionRef = ghActionRef;
-        return this;
-    }
-
-    /**
      * GitHub repository of the action.
      */
     public CliEvent withGhActionRepository(String ghActionRepository) {
@@ -2158,42 +1311,6 @@ public class CliEvent {
     public CliEvent withGhActionVersion(Optional<String> ghActionVersion) {
         Utils.checkNotNull(ghActionVersion, "ghActionVersion");
         this.ghActionVersion = ghActionVersion;
-        return this;
-    }
-
-    /**
-     * Whether or not changes were committed from generation in the Github Action.
-     */
-    public CliEvent withGhChangesCommitted(boolean ghChangesCommitted) {
-        Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
-        this.ghChangesCommitted = Optional.ofNullable(ghChangesCommitted);
-        return this;
-    }
-
-    /**
-     * Whether or not changes were committed from generation in the Github Action.
-     */
-    public CliEvent withGhChangesCommitted(Optional<Boolean> ghChangesCommitted) {
-        Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
-        this.ghChangesCommitted = ghChangesCommitted;
-        return this;
-    }
-
-    /**
-     * The reference to a created pull request URL.
-     */
-    public CliEvent withGhPullRequest(String ghPullRequest) {
-        Utils.checkNotNull(ghPullRequest, "ghPullRequest");
-        this.ghPullRequest = Optional.ofNullable(ghPullRequest);
-        return this;
-    }
-
-    /**
-     * The reference to a created pull request URL.
-     */
-    public CliEvent withGhPullRequest(Optional<String> ghPullRequest) {
-        Utils.checkNotNull(ghPullRequest, "ghPullRequest");
-        this.ghPullRequest = ghPullRequest;
         return this;
     }
 
@@ -2270,7 +1387,7 @@ public class CliEvent {
     }
 
     /**
-     * User's name from git configuration. (not GitHub username)
+     * User name from git configuration.
      */
     public CliEvent withGitUserName(String gitUserName) {
         Utils.checkNotNull(gitUserName, "gitUserName");
@@ -2279,7 +1396,7 @@ public class CliEvent {
     }
 
     /**
-     * User's name from git configuration. (not GitHub username)
+     * User name from git configuration.
      */
     public CliEvent withGitUserName(Optional<String> gitUserName) {
         Utils.checkNotNull(gitUserName, "gitUserName");
@@ -2320,96 +1437,6 @@ public class CliEvent {
     public CliEvent withInteractionType(InteractionType interactionType) {
         Utils.checkNotNull(interactionType, "interactionType");
         this.interactionType = interactionType;
-        return this;
-    }
-
-    /**
-     * The last step of the event.
-     */
-    public CliEvent withLastStep(String lastStep) {
-        Utils.checkNotNull(lastStep, "lastStep");
-        this.lastStep = Optional.ofNullable(lastStep);
-        return this;
-    }
-
-    /**
-     * The last step of the event.
-     */
-    public CliEvent withLastStep(Optional<String> lastStep) {
-        Utils.checkNotNull(lastStep, "lastStep");
-        this.lastStep = lastStep;
-        return this;
-    }
-
-    /**
-     * The checksum of the lint report.
-     */
-    public CliEvent withLintReportDigest(String lintReportDigest) {
-        Utils.checkNotNull(lintReportDigest, "lintReportDigest");
-        this.lintReportDigest = Optional.ofNullable(lintReportDigest);
-        return this;
-    }
-
-    /**
-     * The checksum of the lint report.
-     */
-    public CliEvent withLintReportDigest(Optional<String> lintReportDigest) {
-        Utils.checkNotNull(lintReportDigest, "lintReportDigest");
-        this.lintReportDigest = lintReportDigest;
-        return this;
-    }
-
-    /**
-     * The number of errors in the lint report.
-     */
-    public CliEvent withLintReportErrorCount(long lintReportErrorCount) {
-        Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
-        this.lintReportErrorCount = Optional.ofNullable(lintReportErrorCount);
-        return this;
-    }
-
-    /**
-     * The number of errors in the lint report.
-     */
-    public CliEvent withLintReportErrorCount(Optional<Long> lintReportErrorCount) {
-        Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
-        this.lintReportErrorCount = lintReportErrorCount;
-        return this;
-    }
-
-    /**
-     * The number of info messages in the lint report.
-     */
-    public CliEvent withLintReportInfoCount(long lintReportInfoCount) {
-        Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
-        this.lintReportInfoCount = Optional.ofNullable(lintReportInfoCount);
-        return this;
-    }
-
-    /**
-     * The number of info messages in the lint report.
-     */
-    public CliEvent withLintReportInfoCount(Optional<Long> lintReportInfoCount) {
-        Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
-        this.lintReportInfoCount = lintReportInfoCount;
-        return this;
-    }
-
-    /**
-     * The number of warnings in the lint report.
-     */
-    public CliEvent withLintReportWarningCount(long lintReportWarningCount) {
-        Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
-        this.lintReportWarningCount = Optional.ofNullable(lintReportWarningCount);
-        return this;
-    }
-
-    /**
-     * The number of warnings in the lint report.
-     */
-    public CliEvent withLintReportWarningCount(Optional<Long> lintReportWarningCount) {
-        Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
-        this.lintReportWarningCount = lintReportWarningCount;
         return this;
     }
 
@@ -2477,204 +1504,6 @@ public class CliEvent {
     }
 
     /**
-     * Mermaid diagram
-     */
-    public CliEvent withMermaidDiagram(String mermaidDiagram) {
-        Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
-        this.mermaidDiagram = Optional.ofNullable(mermaidDiagram);
-        return this;
-    }
-
-    /**
-     * Mermaid diagram
-     */
-    public CliEvent withMermaidDiagram(Optional<String> mermaidDiagram) {
-        Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
-        this.mermaidDiagram = mermaidDiagram;
-        return this;
-    }
-
-    /**
-     * The blob digest of the base source.
-     */
-    public CliEvent withOpenapiDiffBaseSourceBlobDigest(String openapiDiffBaseSourceBlobDigest) {
-        Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
-        this.openapiDiffBaseSourceBlobDigest = Optional.ofNullable(openapiDiffBaseSourceBlobDigest);
-        return this;
-    }
-
-    /**
-     * The blob digest of the base source.
-     */
-    public CliEvent withOpenapiDiffBaseSourceBlobDigest(Optional<String> openapiDiffBaseSourceBlobDigest) {
-        Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
-        this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
-        return this;
-    }
-
-    /**
-     * The namespace name of the base source.
-     */
-    public CliEvent withOpenapiDiffBaseSourceNamespaceName(String openapiDiffBaseSourceNamespaceName) {
-        Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
-        this.openapiDiffBaseSourceNamespaceName = Optional.ofNullable(openapiDiffBaseSourceNamespaceName);
-        return this;
-    }
-
-    /**
-     * The namespace name of the base source.
-     */
-    public CliEvent withOpenapiDiffBaseSourceNamespaceName(Optional<String> openapiDiffBaseSourceNamespaceName) {
-        Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
-        this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
-        return this;
-    }
-
-    /**
-     * The revision digest of the base source.
-     */
-    public CliEvent withOpenapiDiffBaseSourceRevisionDigest(String openapiDiffBaseSourceRevisionDigest) {
-        Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
-        this.openapiDiffBaseSourceRevisionDigest = Optional.ofNullable(openapiDiffBaseSourceRevisionDigest);
-        return this;
-    }
-
-    /**
-     * The revision digest of the base source.
-     */
-    public CliEvent withOpenapiDiffBaseSourceRevisionDigest(Optional<String> openapiDiffBaseSourceRevisionDigest) {
-        Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
-        this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
-        return this;
-    }
-
-    /**
-     * The number of breaking changes in the openapi diff report.
-     */
-    public CliEvent withOpenapiDiffBreakingChangesCount(long openapiDiffBreakingChangesCount) {
-        Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
-        this.openapiDiffBreakingChangesCount = Optional.ofNullable(openapiDiffBreakingChangesCount);
-        return this;
-    }
-
-    /**
-     * The number of breaking changes in the openapi diff report.
-     */
-    public CliEvent withOpenapiDiffBreakingChangesCount(Optional<Long> openapiDiffBreakingChangesCount) {
-        Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
-        this.openapiDiffBreakingChangesCount = openapiDiffBreakingChangesCount;
-        return this;
-    }
-
-    /**
-     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
-     */
-    public CliEvent withOpenapiDiffBumpType(OpenapiDiffBumpType openapiDiffBumpType) {
-        Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
-        this.openapiDiffBumpType = Optional.ofNullable(openapiDiffBumpType);
-        return this;
-    }
-
-    /**
-     * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
-     */
-    public CliEvent withOpenapiDiffBumpType(Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType) {
-        Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
-        this.openapiDiffBumpType = openapiDiffBumpType;
-        return this;
-    }
-
-    /**
-     * The checksum of the openapi diff report.
-     */
-    public CliEvent withOpenapiDiffReportDigest(String openapiDiffReportDigest) {
-        Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
-        this.openapiDiffReportDigest = Optional.ofNullable(openapiDiffReportDigest);
-        return this;
-    }
-
-    /**
-     * The checksum of the openapi diff report.
-     */
-    public CliEvent withOpenapiDiffReportDigest(Optional<String> openapiDiffReportDigest) {
-        Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
-        this.openapiDiffReportDigest = openapiDiffReportDigest;
-        return this;
-    }
-
-    /**
-     * Name of the published package.
-     */
-    public CliEvent withPublishPackageName(String publishPackageName) {
-        Utils.checkNotNull(publishPackageName, "publishPackageName");
-        this.publishPackageName = Optional.ofNullable(publishPackageName);
-        return this;
-    }
-
-    /**
-     * Name of the published package.
-     */
-    public CliEvent withPublishPackageName(Optional<String> publishPackageName) {
-        Utils.checkNotNull(publishPackageName, "publishPackageName");
-        this.publishPackageName = publishPackageName;
-        return this;
-    }
-
-    /**
-     * Name of the registry where the package was published.
-     */
-    public CliEvent withPublishPackageRegistryName(String publishPackageRegistryName) {
-        Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
-        this.publishPackageRegistryName = Optional.ofNullable(publishPackageRegistryName);
-        return this;
-    }
-
-    /**
-     * Name of the registry where the package was published.
-     */
-    public CliEvent withPublishPackageRegistryName(Optional<String> publishPackageRegistryName) {
-        Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
-        this.publishPackageRegistryName = publishPackageRegistryName;
-        return this;
-    }
-
-    /**
-     * URL of the published package.
-     */
-    public CliEvent withPublishPackageUrl(String publishPackageUrl) {
-        Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
-        this.publishPackageUrl = Optional.ofNullable(publishPackageUrl);
-        return this;
-    }
-
-    /**
-     * URL of the published package.
-     */
-    public CliEvent withPublishPackageUrl(Optional<String> publishPackageUrl) {
-        Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
-        this.publishPackageUrl = publishPackageUrl;
-        return this;
-    }
-
-    /**
-     * Version of the published package.
-     */
-    public CliEvent withPublishPackageVersion(String publishPackageVersion) {
-        Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
-        this.publishPackageVersion = Optional.ofNullable(publishPackageVersion);
-        return this;
-    }
-
-    /**
-     * Version of the published package.
-     */
-    public CliEvent withPublishPackageVersion(Optional<String> publishPackageVersion) {
-        Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
-        this.publishPackageVersion = publishPackageVersion;
-        return this;
-    }
-
-    /**
      * Full CLI command.
      */
     public CliEvent withRawCommand(String rawCommand) {
@@ -2711,60 +1540,6 @@ public class CliEvent {
     }
 
     /**
-     * The blob digest of the source.
-     */
-    public CliEvent withSourceBlobDigest(String sourceBlobDigest) {
-        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
-        this.sourceBlobDigest = Optional.ofNullable(sourceBlobDigest);
-        return this;
-    }
-
-    /**
-     * The blob digest of the source.
-     */
-    public CliEvent withSourceBlobDigest(Optional<String> sourceBlobDigest) {
-        Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
-        this.sourceBlobDigest = sourceBlobDigest;
-        return this;
-    }
-
-    /**
-     * The namespace name of the source.
-     */
-    public CliEvent withSourceNamespaceName(String sourceNamespaceName) {
-        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
-        this.sourceNamespaceName = Optional.ofNullable(sourceNamespaceName);
-        return this;
-    }
-
-    /**
-     * The namespace name of the source.
-     */
-    public CliEvent withSourceNamespaceName(Optional<String> sourceNamespaceName) {
-        Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
-        this.sourceNamespaceName = sourceNamespaceName;
-        return this;
-    }
-
-    /**
-     * The revision digest of the source.
-     */
-    public CliEvent withSourceRevisionDigest(String sourceRevisionDigest) {
-        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
-        this.sourceRevisionDigest = Optional.ofNullable(sourceRevisionDigest);
-        return this;
-    }
-
-    /**
-     * The revision digest of the source.
-     */
-    public CliEvent withSourceRevisionDigest(Optional<String> sourceRevisionDigest) {
-        Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
-        this.sourceRevisionDigest = sourceRevisionDigest;
-        return this;
-    }
-
-    /**
      * Identifier of the Speakeasy API key.
      */
     public CliEvent withSpeakeasyApiKeyName(String speakeasyApiKeyName) {
@@ -2792,78 +1567,6 @@ public class CliEvent {
     }
 
     /**
-     * Workflow lock file (post execution)
-     */
-    public CliEvent withWorkflowLockPostRaw(String workflowLockPostRaw) {
-        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
-        this.workflowLockPostRaw = Optional.ofNullable(workflowLockPostRaw);
-        return this;
-    }
-
-    /**
-     * Workflow lock file (post execution)
-     */
-    public CliEvent withWorkflowLockPostRaw(Optional<String> workflowLockPostRaw) {
-        Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
-        this.workflowLockPostRaw = workflowLockPostRaw;
-        return this;
-    }
-
-    /**
-     * Workflow lock file (prior to execution)
-     */
-    public CliEvent withWorkflowLockPreRaw(String workflowLockPreRaw) {
-        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
-        this.workflowLockPreRaw = Optional.ofNullable(workflowLockPreRaw);
-        return this;
-    }
-
-    /**
-     * Workflow lock file (prior to execution)
-     */
-    public CliEvent withWorkflowLockPreRaw(Optional<String> workflowLockPreRaw) {
-        Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
-        this.workflowLockPreRaw = workflowLockPreRaw;
-        return this;
-    }
-
-    /**
-     * Workflow file (post execution)
-     */
-    public CliEvent withWorkflowPostRaw(String workflowPostRaw) {
-        Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
-        this.workflowPostRaw = Optional.ofNullable(workflowPostRaw);
-        return this;
-    }
-
-    /**
-     * Workflow file (post execution)
-     */
-    public CliEvent withWorkflowPostRaw(Optional<String> workflowPostRaw) {
-        Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
-        this.workflowPostRaw = workflowPostRaw;
-        return this;
-    }
-
-    /**
-     * Workflow file (prior to execution)
-     */
-    public CliEvent withWorkflowPreRaw(String workflowPreRaw) {
-        Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
-        this.workflowPreRaw = Optional.ofNullable(workflowPreRaw);
-        return this;
-    }
-
-    /**
-     * Workflow file (prior to execution)
-     */
-    public CliEvent withWorkflowPreRaw(Optional<String> workflowPreRaw) {
-        Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
-        this.workflowPreRaw = workflowPreRaw;
-        return this;
-    }
-
-    /**
      * Identifier of the workspace.
      */
     public CliEvent withWorkspaceId(String workspaceId) {
@@ -2883,10 +1586,8 @@ public class CliEvent {
         CliEvent other = (CliEvent) o;
         return 
             Objects.deepEquals(this.commitHead, other.commitHead) &&
-            Objects.deepEquals(this.continuousIntegrationEnvironment, other.continuousIntegrationEnvironment) &&
             Objects.deepEquals(this.createdAt, other.createdAt) &&
             Objects.deepEquals(this.durationMs, other.durationMs) &&
-            Objects.deepEquals(this.error, other.error) &&
             Objects.deepEquals(this.executionId, other.executionId) &&
             Objects.deepEquals(this.generateBumpType, other.generateBumpType) &&
             Objects.deepEquals(this.generateConfigPostChecksum, other.generateConfigPostChecksum) &&
@@ -2895,33 +1596,22 @@ public class CliEvent {
             Objects.deepEquals(this.generateConfigPreChecksum, other.generateConfigPreChecksum) &&
             Objects.deepEquals(this.generateConfigPreRaw, other.generateConfigPreRaw) &&
             Objects.deepEquals(this.generateConfigPreVersion, other.generateConfigPreVersion) &&
-            Objects.deepEquals(this.generateEligibleFeatures, other.generateEligibleFeatures) &&
             Objects.deepEquals(this.generateGenLockId, other.generateGenLockId) &&
             Objects.deepEquals(this.generateGenLockPostFeatures, other.generateGenLockPostFeatures) &&
-            Objects.deepEquals(this.generateGenLockPreBlobDigest, other.generateGenLockPreBlobDigest) &&
             Objects.deepEquals(this.generateGenLockPreDocChecksum, other.generateGenLockPreDocChecksum) &&
             Objects.deepEquals(this.generateGenLockPreDocVersion, other.generateGenLockPreDocVersion) &&
             Objects.deepEquals(this.generateGenLockPreFeatures, other.generateGenLockPreFeatures) &&
-            Objects.deepEquals(this.generateGenLockPreNamespaceName, other.generateGenLockPreNamespaceName) &&
-            Objects.deepEquals(this.generateGenLockPreRevisionDigest, other.generateGenLockPreRevisionDigest) &&
             Objects.deepEquals(this.generateGenLockPreVersion, other.generateGenLockPreVersion) &&
-            Objects.deepEquals(this.generateNumberOfOperationsIgnored, other.generateNumberOfOperationsIgnored) &&
-            Objects.deepEquals(this.generateNumberOfOperationsUsed, other.generateNumberOfOperationsUsed) &&
-            Objects.deepEquals(this.generateNumberOfTerraformResources, other.generateNumberOfTerraformResources) &&
             Objects.deepEquals(this.generateOutputTests, other.generateOutputTests) &&
             Objects.deepEquals(this.generatePublished, other.generatePublished) &&
             Objects.deepEquals(this.generateRepoUrl, other.generateRepoUrl) &&
             Objects.deepEquals(this.generateTarget, other.generateTarget) &&
-            Objects.deepEquals(this.generateTargetName, other.generateTargetName) &&
             Objects.deepEquals(this.generateTargetVersion, other.generateTargetVersion) &&
             Objects.deepEquals(this.generateVersion, other.generateVersion) &&
             Objects.deepEquals(this.ghActionOrganization, other.ghActionOrganization) &&
-            Objects.deepEquals(this.ghActionRef, other.ghActionRef) &&
             Objects.deepEquals(this.ghActionRepository, other.ghActionRepository) &&
             Objects.deepEquals(this.ghActionRunLink, other.ghActionRunLink) &&
             Objects.deepEquals(this.ghActionVersion, other.ghActionVersion) &&
-            Objects.deepEquals(this.ghChangesCommitted, other.ghChangesCommitted) &&
-            Objects.deepEquals(this.ghPullRequest, other.ghPullRequest) &&
             Objects.deepEquals(this.gitRelativeCwd, other.gitRelativeCwd) &&
             Objects.deepEquals(this.gitRemoteDefaultOwner, other.gitRemoteDefaultOwner) &&
             Objects.deepEquals(this.gitRemoteDefaultRepo, other.gitRemoteDefaultRepo) &&
@@ -2930,38 +1620,15 @@ public class CliEvent {
             Objects.deepEquals(this.hostname, other.hostname) &&
             Objects.deepEquals(this.id, other.id) &&
             Objects.deepEquals(this.interactionType, other.interactionType) &&
-            Objects.deepEquals(this.lastStep, other.lastStep) &&
-            Objects.deepEquals(this.lintReportDigest, other.lintReportDigest) &&
-            Objects.deepEquals(this.lintReportErrorCount, other.lintReportErrorCount) &&
-            Objects.deepEquals(this.lintReportInfoCount, other.lintReportInfoCount) &&
-            Objects.deepEquals(this.lintReportWarningCount, other.lintReportWarningCount) &&
             Objects.deepEquals(this.localCompletedAt, other.localCompletedAt) &&
             Objects.deepEquals(this.localStartedAt, other.localStartedAt) &&
             Objects.deepEquals(this.managementDocChecksum, other.managementDocChecksum) &&
             Objects.deepEquals(this.managementDocVersion, other.managementDocVersion) &&
-            Objects.deepEquals(this.mermaidDiagram, other.mermaidDiagram) &&
-            Objects.deepEquals(this.openapiDiffBaseSourceBlobDigest, other.openapiDiffBaseSourceBlobDigest) &&
-            Objects.deepEquals(this.openapiDiffBaseSourceNamespaceName, other.openapiDiffBaseSourceNamespaceName) &&
-            Objects.deepEquals(this.openapiDiffBaseSourceRevisionDigest, other.openapiDiffBaseSourceRevisionDigest) &&
-            Objects.deepEquals(this.openapiDiffBreakingChangesCount, other.openapiDiffBreakingChangesCount) &&
-            Objects.deepEquals(this.openapiDiffBumpType, other.openapiDiffBumpType) &&
-            Objects.deepEquals(this.openapiDiffReportDigest, other.openapiDiffReportDigest) &&
-            Objects.deepEquals(this.publishPackageName, other.publishPackageName) &&
-            Objects.deepEquals(this.publishPackageRegistryName, other.publishPackageRegistryName) &&
-            Objects.deepEquals(this.publishPackageUrl, other.publishPackageUrl) &&
-            Objects.deepEquals(this.publishPackageVersion, other.publishPackageVersion) &&
             Objects.deepEquals(this.rawCommand, other.rawCommand) &&
             Objects.deepEquals(this.repoLabel, other.repoLabel) &&
-            Objects.deepEquals(this.sourceBlobDigest, other.sourceBlobDigest) &&
-            Objects.deepEquals(this.sourceNamespaceName, other.sourceNamespaceName) &&
-            Objects.deepEquals(this.sourceRevisionDigest, other.sourceRevisionDigest) &&
             Objects.deepEquals(this.speakeasyApiKeyName, other.speakeasyApiKeyName) &&
             Objects.deepEquals(this.speakeasyVersion, other.speakeasyVersion) &&
             Objects.deepEquals(this.success, other.success) &&
-            Objects.deepEquals(this.workflowLockPostRaw, other.workflowLockPostRaw) &&
-            Objects.deepEquals(this.workflowLockPreRaw, other.workflowLockPreRaw) &&
-            Objects.deepEquals(this.workflowPostRaw, other.workflowPostRaw) &&
-            Objects.deepEquals(this.workflowPreRaw, other.workflowPreRaw) &&
             Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
@@ -2969,10 +1636,8 @@ public class CliEvent {
     public int hashCode() {
         return Objects.hash(
             commitHead,
-            continuousIntegrationEnvironment,
             createdAt,
             durationMs,
-            error,
             executionId,
             generateBumpType,
             generateConfigPostChecksum,
@@ -2981,33 +1646,22 @@ public class CliEvent {
             generateConfigPreChecksum,
             generateConfigPreRaw,
             generateConfigPreVersion,
-            generateEligibleFeatures,
             generateGenLockId,
             generateGenLockPostFeatures,
-            generateGenLockPreBlobDigest,
             generateGenLockPreDocChecksum,
             generateGenLockPreDocVersion,
             generateGenLockPreFeatures,
-            generateGenLockPreNamespaceName,
-            generateGenLockPreRevisionDigest,
             generateGenLockPreVersion,
-            generateNumberOfOperationsIgnored,
-            generateNumberOfOperationsUsed,
-            generateNumberOfTerraformResources,
             generateOutputTests,
             generatePublished,
             generateRepoUrl,
             generateTarget,
-            generateTargetName,
             generateTargetVersion,
             generateVersion,
             ghActionOrganization,
-            ghActionRef,
             ghActionRepository,
             ghActionRunLink,
             ghActionVersion,
-            ghChangesCommitted,
-            ghPullRequest,
             gitRelativeCwd,
             gitRemoteDefaultOwner,
             gitRemoteDefaultRepo,
@@ -3016,38 +1670,15 @@ public class CliEvent {
             hostname,
             id,
             interactionType,
-            lastStep,
-            lintReportDigest,
-            lintReportErrorCount,
-            lintReportInfoCount,
-            lintReportWarningCount,
             localCompletedAt,
             localStartedAt,
             managementDocChecksum,
             managementDocVersion,
-            mermaidDiagram,
-            openapiDiffBaseSourceBlobDigest,
-            openapiDiffBaseSourceNamespaceName,
-            openapiDiffBaseSourceRevisionDigest,
-            openapiDiffBreakingChangesCount,
-            openapiDiffBumpType,
-            openapiDiffReportDigest,
-            publishPackageName,
-            publishPackageRegistryName,
-            publishPackageUrl,
-            publishPackageVersion,
             rawCommand,
             repoLabel,
-            sourceBlobDigest,
-            sourceNamespaceName,
-            sourceRevisionDigest,
             speakeasyApiKeyName,
             speakeasyVersion,
             success,
-            workflowLockPostRaw,
-            workflowLockPreRaw,
-            workflowPostRaw,
-            workflowPreRaw,
             workspaceId);
     }
     
@@ -3055,10 +1686,8 @@ public class CliEvent {
     public String toString() {
         return Utils.toString(CliEvent.class,
                 "commitHead", commitHead,
-                "continuousIntegrationEnvironment", continuousIntegrationEnvironment,
                 "createdAt", createdAt,
                 "durationMs", durationMs,
-                "error", error,
                 "executionId", executionId,
                 "generateBumpType", generateBumpType,
                 "generateConfigPostChecksum", generateConfigPostChecksum,
@@ -3067,33 +1696,22 @@ public class CliEvent {
                 "generateConfigPreChecksum", generateConfigPreChecksum,
                 "generateConfigPreRaw", generateConfigPreRaw,
                 "generateConfigPreVersion", generateConfigPreVersion,
-                "generateEligibleFeatures", generateEligibleFeatures,
                 "generateGenLockId", generateGenLockId,
                 "generateGenLockPostFeatures", generateGenLockPostFeatures,
-                "generateGenLockPreBlobDigest", generateGenLockPreBlobDigest,
                 "generateGenLockPreDocChecksum", generateGenLockPreDocChecksum,
                 "generateGenLockPreDocVersion", generateGenLockPreDocVersion,
                 "generateGenLockPreFeatures", generateGenLockPreFeatures,
-                "generateGenLockPreNamespaceName", generateGenLockPreNamespaceName,
-                "generateGenLockPreRevisionDigest", generateGenLockPreRevisionDigest,
                 "generateGenLockPreVersion", generateGenLockPreVersion,
-                "generateNumberOfOperationsIgnored", generateNumberOfOperationsIgnored,
-                "generateNumberOfOperationsUsed", generateNumberOfOperationsUsed,
-                "generateNumberOfTerraformResources", generateNumberOfTerraformResources,
                 "generateOutputTests", generateOutputTests,
                 "generatePublished", generatePublished,
                 "generateRepoUrl", generateRepoUrl,
                 "generateTarget", generateTarget,
-                "generateTargetName", generateTargetName,
                 "generateTargetVersion", generateTargetVersion,
                 "generateVersion", generateVersion,
                 "ghActionOrganization", ghActionOrganization,
-                "ghActionRef", ghActionRef,
                 "ghActionRepository", ghActionRepository,
                 "ghActionRunLink", ghActionRunLink,
                 "ghActionVersion", ghActionVersion,
-                "ghChangesCommitted", ghChangesCommitted,
-                "ghPullRequest", ghPullRequest,
                 "gitRelativeCwd", gitRelativeCwd,
                 "gitRemoteDefaultOwner", gitRemoteDefaultOwner,
                 "gitRemoteDefaultRepo", gitRemoteDefaultRepo,
@@ -3102,38 +1720,15 @@ public class CliEvent {
                 "hostname", hostname,
                 "id", id,
                 "interactionType", interactionType,
-                "lastStep", lastStep,
-                "lintReportDigest", lintReportDigest,
-                "lintReportErrorCount", lintReportErrorCount,
-                "lintReportInfoCount", lintReportInfoCount,
-                "lintReportWarningCount", lintReportWarningCount,
                 "localCompletedAt", localCompletedAt,
                 "localStartedAt", localStartedAt,
                 "managementDocChecksum", managementDocChecksum,
                 "managementDocVersion", managementDocVersion,
-                "mermaidDiagram", mermaidDiagram,
-                "openapiDiffBaseSourceBlobDigest", openapiDiffBaseSourceBlobDigest,
-                "openapiDiffBaseSourceNamespaceName", openapiDiffBaseSourceNamespaceName,
-                "openapiDiffBaseSourceRevisionDigest", openapiDiffBaseSourceRevisionDigest,
-                "openapiDiffBreakingChangesCount", openapiDiffBreakingChangesCount,
-                "openapiDiffBumpType", openapiDiffBumpType,
-                "openapiDiffReportDigest", openapiDiffReportDigest,
-                "publishPackageName", publishPackageName,
-                "publishPackageRegistryName", publishPackageRegistryName,
-                "publishPackageUrl", publishPackageUrl,
-                "publishPackageVersion", publishPackageVersion,
                 "rawCommand", rawCommand,
                 "repoLabel", repoLabel,
-                "sourceBlobDigest", sourceBlobDigest,
-                "sourceNamespaceName", sourceNamespaceName,
-                "sourceRevisionDigest", sourceRevisionDigest,
                 "speakeasyApiKeyName", speakeasyApiKeyName,
                 "speakeasyVersion", speakeasyVersion,
                 "success", success,
-                "workflowLockPostRaw", workflowLockPostRaw,
-                "workflowLockPreRaw", workflowLockPreRaw,
-                "workflowPostRaw", workflowPostRaw,
-                "workflowPreRaw", workflowPreRaw,
                 "workspaceId", workspaceId);
     }
     
@@ -3141,13 +1736,9 @@ public class CliEvent {
  
         private Optional<String> commitHead = Optional.empty();
  
-        private Optional<String> continuousIntegrationEnvironment = Optional.empty();
- 
         private OffsetDateTime createdAt;
  
         private Optional<Long> durationMs = Optional.empty();
- 
-        private Optional<String> error = Optional.empty();
  
         private String executionId;
  
@@ -3165,13 +1756,9 @@ public class CliEvent {
  
         private Optional<String> generateConfigPreVersion = Optional.empty();
  
-        private Optional<String> generateEligibleFeatures = Optional.empty();
- 
         private Optional<String> generateGenLockId = Optional.empty();
  
         private Optional<String> generateGenLockPostFeatures = Optional.empty();
- 
-        private Optional<String> generateGenLockPreBlobDigest = Optional.empty();
  
         private Optional<String> generateGenLockPreDocChecksum = Optional.empty();
  
@@ -3179,17 +1766,7 @@ public class CliEvent {
  
         private Optional<String> generateGenLockPreFeatures = Optional.empty();
  
-        private Optional<String> generateGenLockPreNamespaceName = Optional.empty();
- 
-        private Optional<String> generateGenLockPreRevisionDigest = Optional.empty();
- 
         private Optional<String> generateGenLockPreVersion = Optional.empty();
- 
-        private Optional<Long> generateNumberOfOperationsIgnored = Optional.empty();
- 
-        private Optional<Long> generateNumberOfOperationsUsed = Optional.empty();
- 
-        private Optional<Long> generateNumberOfTerraformResources = Optional.empty();
  
         private Optional<Boolean> generateOutputTests = Optional.empty();
  
@@ -3199,25 +1776,17 @@ public class CliEvent {
  
         private Optional<String> generateTarget = Optional.empty();
  
-        private Optional<String> generateTargetName = Optional.empty();
- 
         private Optional<String> generateTargetVersion = Optional.empty();
  
         private Optional<String> generateVersion = Optional.empty();
  
         private Optional<String> ghActionOrganization = Optional.empty();
  
-        private Optional<String> ghActionRef = Optional.empty();
- 
         private Optional<String> ghActionRepository = Optional.empty();
  
         private Optional<String> ghActionRunLink = Optional.empty();
  
         private Optional<String> ghActionVersion = Optional.empty();
- 
-        private Optional<Boolean> ghChangesCommitted = Optional.empty();
- 
-        private Optional<String> ghPullRequest = Optional.empty();
  
         private Optional<String> gitRelativeCwd = Optional.empty();
  
@@ -3235,16 +1804,6 @@ public class CliEvent {
  
         private InteractionType interactionType;
  
-        private Optional<String> lastStep = Optional.empty();
- 
-        private Optional<String> lintReportDigest = Optional.empty();
- 
-        private Optional<Long> lintReportErrorCount = Optional.empty();
- 
-        private Optional<Long> lintReportInfoCount = Optional.empty();
- 
-        private Optional<Long> lintReportWarningCount = Optional.empty();
- 
         private Optional<OffsetDateTime> localCompletedAt = Optional.empty();
  
         private OffsetDateTime localStartedAt;
@@ -3253,51 +1812,15 @@ public class CliEvent {
  
         private Optional<String> managementDocVersion = Optional.empty();
  
-        private Optional<String> mermaidDiagram = Optional.empty();
- 
-        private Optional<String> openapiDiffBaseSourceBlobDigest = Optional.empty();
- 
-        private Optional<String> openapiDiffBaseSourceNamespaceName = Optional.empty();
- 
-        private Optional<String> openapiDiffBaseSourceRevisionDigest = Optional.empty();
- 
-        private Optional<Long> openapiDiffBreakingChangesCount = Optional.empty();
- 
-        private Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType = Optional.empty();
- 
-        private Optional<String> openapiDiffReportDigest = Optional.empty();
- 
-        private Optional<String> publishPackageName = Optional.empty();
- 
-        private Optional<String> publishPackageRegistryName = Optional.empty();
- 
-        private Optional<String> publishPackageUrl = Optional.empty();
- 
-        private Optional<String> publishPackageVersion = Optional.empty();
- 
         private Optional<String> rawCommand = Optional.empty();
  
         private Optional<String> repoLabel = Optional.empty();
- 
-        private Optional<String> sourceBlobDigest = Optional.empty();
- 
-        private Optional<String> sourceNamespaceName = Optional.empty();
- 
-        private Optional<String> sourceRevisionDigest = Optional.empty();
  
         private String speakeasyApiKeyName;
  
         private String speakeasyVersion;
  
         private Boolean success;
- 
-        private Optional<String> workflowLockPostRaw = Optional.empty();
- 
-        private Optional<String> workflowLockPreRaw = Optional.empty();
- 
-        private Optional<String> workflowPostRaw = Optional.empty();
- 
-        private Optional<String> workflowPreRaw = Optional.empty();
  
         private String workspaceId;  
         
@@ -3320,24 +1843,6 @@ public class CliEvent {
         public Builder commitHead(Optional<String> commitHead) {
             Utils.checkNotNull(commitHead, "commitHead");
             this.commitHead = commitHead;
-            return this;
-        }
-
-        /**
-         * Name of the CI environment.
-         */
-        public Builder continuousIntegrationEnvironment(String continuousIntegrationEnvironment) {
-            Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
-            this.continuousIntegrationEnvironment = Optional.ofNullable(continuousIntegrationEnvironment);
-            return this;
-        }
-
-        /**
-         * Name of the CI environment.
-         */
-        public Builder continuousIntegrationEnvironment(Optional<String> continuousIntegrationEnvironment) {
-            Utils.checkNotNull(continuousIntegrationEnvironment, "continuousIntegrationEnvironment");
-            this.continuousIntegrationEnvironment = continuousIntegrationEnvironment;
             return this;
         }
 
@@ -3369,24 +1874,6 @@ public class CliEvent {
         }
 
         /**
-         * Error message if the event was not successful.
-         */
-        public Builder error(String error) {
-            Utils.checkNotNull(error, "error");
-            this.error = Optional.ofNullable(error);
-            return this;
-        }
-
-        /**
-         * Error message if the event was not successful.
-         */
-        public Builder error(Optional<String> error) {
-            Utils.checkNotNull(error, "error");
-            this.error = error;
-            return this;
-        }
-
-        /**
          * Unique identifier for each execution of the CLI.
          */
         public Builder executionId(String executionId) {
@@ -3396,7 +1883,7 @@ public class CliEvent {
         }
 
         /**
-         * Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+         * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
          */
         public Builder generateBumpType(GenerateBumpType generateBumpType) {
             Utils.checkNotNull(generateBumpType, "generateBumpType");
@@ -3405,7 +1892,7 @@ public class CliEvent {
         }
 
         /**
-         * Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+         * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
          */
         public Builder generateBumpType(Optional<? extends GenerateBumpType> generateBumpType) {
             Utils.checkNotNull(generateBumpType, "generateBumpType");
@@ -3450,7 +1937,7 @@ public class CliEvent {
         }
 
         /**
-         * The version of the customer's SDK that we just generated
+         * Version of the generated target (post generation)
          */
         public Builder generateConfigPostVersion(String generateConfigPostVersion) {
             Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
@@ -3459,7 +1946,7 @@ public class CliEvent {
         }
 
         /**
-         * The version of the customer's SDK that we just generated
+         * Version of the generated target (post generation)
          */
         public Builder generateConfigPostVersion(Optional<String> generateConfigPostVersion) {
             Utils.checkNotNull(generateConfigPostVersion, "generateConfigPostVersion");
@@ -3504,7 +1991,7 @@ public class CliEvent {
         }
 
         /**
-         * The version of the customer's SDK before we generated
+         * Version of the generated target (prior to generation)
          */
         public Builder generateConfigPreVersion(String generateConfigPreVersion) {
             Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
@@ -3513,29 +2000,11 @@ public class CliEvent {
         }
 
         /**
-         * The version of the customer's SDK before we generated
+         * Version of the generated target (prior to generation)
          */
         public Builder generateConfigPreVersion(Optional<String> generateConfigPreVersion) {
             Utils.checkNotNull(generateConfigPreVersion, "generateConfigPreVersion");
             this.generateConfigPreVersion = generateConfigPreVersion;
-            return this;
-        }
-
-        /**
-         * Eligible feature set during generation
-         */
-        public Builder generateEligibleFeatures(String generateEligibleFeatures) {
-            Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
-            this.generateEligibleFeatures = Optional.ofNullable(generateEligibleFeatures);
-            return this;
-        }
-
-        /**
-         * Eligible feature set during generation
-         */
-        public Builder generateEligibleFeatures(Optional<String> generateEligibleFeatures) {
-            Utils.checkNotNull(generateEligibleFeatures, "generateEligibleFeatures");
-            this.generateEligibleFeatures = generateEligibleFeatures;
             return this;
         }
 
@@ -3572,24 +2041,6 @@ public class CliEvent {
         public Builder generateGenLockPostFeatures(Optional<String> generateGenLockPostFeatures) {
             Utils.checkNotNull(generateGenLockPostFeatures, "generateGenLockPostFeatures");
             this.generateGenLockPostFeatures = generateGenLockPostFeatures;
-            return this;
-        }
-
-        /**
-         * Blob digest of the Previous Generation
-         */
-        public Builder generateGenLockPreBlobDigest(String generateGenLockPreBlobDigest) {
-            Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
-            this.generateGenLockPreBlobDigest = Optional.ofNullable(generateGenLockPreBlobDigest);
-            return this;
-        }
-
-        /**
-         * Blob digest of the Previous Generation
-         */
-        public Builder generateGenLockPreBlobDigest(Optional<String> generateGenLockPreBlobDigest) {
-            Utils.checkNotNull(generateGenLockPreBlobDigest, "generateGenLockPreBlobDigest");
-            this.generateGenLockPreBlobDigest = generateGenLockPreBlobDigest;
             return this;
         }
 
@@ -3648,42 +2099,6 @@ public class CliEvent {
         }
 
         /**
-         * Namespace name of the Previous Generation
-         */
-        public Builder generateGenLockPreNamespaceName(String generateGenLockPreNamespaceName) {
-            Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
-            this.generateGenLockPreNamespaceName = Optional.ofNullable(generateGenLockPreNamespaceName);
-            return this;
-        }
-
-        /**
-         * Namespace name of the Previous Generation
-         */
-        public Builder generateGenLockPreNamespaceName(Optional<String> generateGenLockPreNamespaceName) {
-            Utils.checkNotNull(generateGenLockPreNamespaceName, "generateGenLockPreNamespaceName");
-            this.generateGenLockPreNamespaceName = generateGenLockPreNamespaceName;
-            return this;
-        }
-
-        /**
-         * Revision digest of the Previous Generation
-         */
-        public Builder generateGenLockPreRevisionDigest(String generateGenLockPreRevisionDigest) {
-            Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
-            this.generateGenLockPreRevisionDigest = Optional.ofNullable(generateGenLockPreRevisionDigest);
-            return this;
-        }
-
-        /**
-         * Revision digest of the Previous Generation
-         */
-        public Builder generateGenLockPreRevisionDigest(Optional<String> generateGenLockPreRevisionDigest) {
-            Utils.checkNotNull(generateGenLockPreRevisionDigest, "generateGenLockPreRevisionDigest");
-            this.generateGenLockPreRevisionDigest = generateGenLockPreRevisionDigest;
-            return this;
-        }
-
-        /**
          * Artifact version for the Previous Generation
          */
         public Builder generateGenLockPreVersion(String generateGenLockPreVersion) {
@@ -3698,60 +2113,6 @@ public class CliEvent {
         public Builder generateGenLockPreVersion(Optional<String> generateGenLockPreVersion) {
             Utils.checkNotNull(generateGenLockPreVersion, "generateGenLockPreVersion");
             this.generateGenLockPreVersion = generateGenLockPreVersion;
-            return this;
-        }
-
-        /**
-         * The number of operations ignored in generation.
-         */
-        public Builder generateNumberOfOperationsIgnored(long generateNumberOfOperationsIgnored) {
-            Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
-            this.generateNumberOfOperationsIgnored = Optional.ofNullable(generateNumberOfOperationsIgnored);
-            return this;
-        }
-
-        /**
-         * The number of operations ignored in generation.
-         */
-        public Builder generateNumberOfOperationsIgnored(Optional<Long> generateNumberOfOperationsIgnored) {
-            Utils.checkNotNull(generateNumberOfOperationsIgnored, "generateNumberOfOperationsIgnored");
-            this.generateNumberOfOperationsIgnored = generateNumberOfOperationsIgnored;
-            return this;
-        }
-
-        /**
-         * The number of operations used in generation.
-         */
-        public Builder generateNumberOfOperationsUsed(long generateNumberOfOperationsUsed) {
-            Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
-            this.generateNumberOfOperationsUsed = Optional.ofNullable(generateNumberOfOperationsUsed);
-            return this;
-        }
-
-        /**
-         * The number of operations used in generation.
-         */
-        public Builder generateNumberOfOperationsUsed(Optional<Long> generateNumberOfOperationsUsed) {
-            Utils.checkNotNull(generateNumberOfOperationsUsed, "generateNumberOfOperationsUsed");
-            this.generateNumberOfOperationsUsed = generateNumberOfOperationsUsed;
-            return this;
-        }
-
-        /**
-         * The number of terraform resources used in generation.
-         */
-        public Builder generateNumberOfTerraformResources(long generateNumberOfTerraformResources) {
-            Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
-            this.generateNumberOfTerraformResources = Optional.ofNullable(generateNumberOfTerraformResources);
-            return this;
-        }
-
-        /**
-         * The number of terraform resources used in generation.
-         */
-        public Builder generateNumberOfTerraformResources(Optional<Long> generateNumberOfTerraformResources) {
-            Utils.checkNotNull(generateNumberOfTerraformResources, "generateNumberOfTerraformResources");
-            this.generateNumberOfTerraformResources = generateNumberOfTerraformResources;
             return this;
         }
 
@@ -3828,24 +2189,6 @@ public class CliEvent {
         }
 
         /**
-         * The workflow name of the target.
-         */
-        public Builder generateTargetName(String generateTargetName) {
-            Utils.checkNotNull(generateTargetName, "generateTargetName");
-            this.generateTargetName = Optional.ofNullable(generateTargetName);
-            return this;
-        }
-
-        /**
-         * The workflow name of the target.
-         */
-        public Builder generateTargetName(Optional<String> generateTargetName) {
-            Utils.checkNotNull(generateTargetName, "generateTargetName");
-            this.generateTargetName = generateTargetName;
-            return this;
-        }
-
-        /**
          * The version of the target.
          */
         public Builder generateTargetVersion(String generateTargetVersion) {
@@ -3900,24 +2243,6 @@ public class CliEvent {
         }
 
         /**
-         * GitHub Action ref value.
-         */
-        public Builder ghActionRef(String ghActionRef) {
-            Utils.checkNotNull(ghActionRef, "ghActionRef");
-            this.ghActionRef = Optional.ofNullable(ghActionRef);
-            return this;
-        }
-
-        /**
-         * GitHub Action ref value.
-         */
-        public Builder ghActionRef(Optional<String> ghActionRef) {
-            Utils.checkNotNull(ghActionRef, "ghActionRef");
-            this.ghActionRef = ghActionRef;
-            return this;
-        }
-
-        /**
          * GitHub repository of the action.
          */
         public Builder ghActionRepository(String ghActionRepository) {
@@ -3968,42 +2293,6 @@ public class CliEvent {
         public Builder ghActionVersion(Optional<String> ghActionVersion) {
             Utils.checkNotNull(ghActionVersion, "ghActionVersion");
             this.ghActionVersion = ghActionVersion;
-            return this;
-        }
-
-        /**
-         * Whether or not changes were committed from generation in the Github Action.
-         */
-        public Builder ghChangesCommitted(boolean ghChangesCommitted) {
-            Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
-            this.ghChangesCommitted = Optional.ofNullable(ghChangesCommitted);
-            return this;
-        }
-
-        /**
-         * Whether or not changes were committed from generation in the Github Action.
-         */
-        public Builder ghChangesCommitted(Optional<Boolean> ghChangesCommitted) {
-            Utils.checkNotNull(ghChangesCommitted, "ghChangesCommitted");
-            this.ghChangesCommitted = ghChangesCommitted;
-            return this;
-        }
-
-        /**
-         * The reference to a created pull request URL.
-         */
-        public Builder ghPullRequest(String ghPullRequest) {
-            Utils.checkNotNull(ghPullRequest, "ghPullRequest");
-            this.ghPullRequest = Optional.ofNullable(ghPullRequest);
-            return this;
-        }
-
-        /**
-         * The reference to a created pull request URL.
-         */
-        public Builder ghPullRequest(Optional<String> ghPullRequest) {
-            Utils.checkNotNull(ghPullRequest, "ghPullRequest");
-            this.ghPullRequest = ghPullRequest;
             return this;
         }
 
@@ -4080,7 +2369,7 @@ public class CliEvent {
         }
 
         /**
-         * User's name from git configuration. (not GitHub username)
+         * User name from git configuration.
          */
         public Builder gitUserName(String gitUserName) {
             Utils.checkNotNull(gitUserName, "gitUserName");
@@ -4089,7 +2378,7 @@ public class CliEvent {
         }
 
         /**
-         * User's name from git configuration. (not GitHub username)
+         * User name from git configuration.
          */
         public Builder gitUserName(Optional<String> gitUserName) {
             Utils.checkNotNull(gitUserName, "gitUserName");
@@ -4130,96 +2419,6 @@ public class CliEvent {
         public Builder interactionType(InteractionType interactionType) {
             Utils.checkNotNull(interactionType, "interactionType");
             this.interactionType = interactionType;
-            return this;
-        }
-
-        /**
-         * The last step of the event.
-         */
-        public Builder lastStep(String lastStep) {
-            Utils.checkNotNull(lastStep, "lastStep");
-            this.lastStep = Optional.ofNullable(lastStep);
-            return this;
-        }
-
-        /**
-         * The last step of the event.
-         */
-        public Builder lastStep(Optional<String> lastStep) {
-            Utils.checkNotNull(lastStep, "lastStep");
-            this.lastStep = lastStep;
-            return this;
-        }
-
-        /**
-         * The checksum of the lint report.
-         */
-        public Builder lintReportDigest(String lintReportDigest) {
-            Utils.checkNotNull(lintReportDigest, "lintReportDigest");
-            this.lintReportDigest = Optional.ofNullable(lintReportDigest);
-            return this;
-        }
-
-        /**
-         * The checksum of the lint report.
-         */
-        public Builder lintReportDigest(Optional<String> lintReportDigest) {
-            Utils.checkNotNull(lintReportDigest, "lintReportDigest");
-            this.lintReportDigest = lintReportDigest;
-            return this;
-        }
-
-        /**
-         * The number of errors in the lint report.
-         */
-        public Builder lintReportErrorCount(long lintReportErrorCount) {
-            Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
-            this.lintReportErrorCount = Optional.ofNullable(lintReportErrorCount);
-            return this;
-        }
-
-        /**
-         * The number of errors in the lint report.
-         */
-        public Builder lintReportErrorCount(Optional<Long> lintReportErrorCount) {
-            Utils.checkNotNull(lintReportErrorCount, "lintReportErrorCount");
-            this.lintReportErrorCount = lintReportErrorCount;
-            return this;
-        }
-
-        /**
-         * The number of info messages in the lint report.
-         */
-        public Builder lintReportInfoCount(long lintReportInfoCount) {
-            Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
-            this.lintReportInfoCount = Optional.ofNullable(lintReportInfoCount);
-            return this;
-        }
-
-        /**
-         * The number of info messages in the lint report.
-         */
-        public Builder lintReportInfoCount(Optional<Long> lintReportInfoCount) {
-            Utils.checkNotNull(lintReportInfoCount, "lintReportInfoCount");
-            this.lintReportInfoCount = lintReportInfoCount;
-            return this;
-        }
-
-        /**
-         * The number of warnings in the lint report.
-         */
-        public Builder lintReportWarningCount(long lintReportWarningCount) {
-            Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
-            this.lintReportWarningCount = Optional.ofNullable(lintReportWarningCount);
-            return this;
-        }
-
-        /**
-         * The number of warnings in the lint report.
-         */
-        public Builder lintReportWarningCount(Optional<Long> lintReportWarningCount) {
-            Utils.checkNotNull(lintReportWarningCount, "lintReportWarningCount");
-            this.lintReportWarningCount = lintReportWarningCount;
             return this;
         }
 
@@ -4287,204 +2486,6 @@ public class CliEvent {
         }
 
         /**
-         * Mermaid diagram
-         */
-        public Builder mermaidDiagram(String mermaidDiagram) {
-            Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
-            this.mermaidDiagram = Optional.ofNullable(mermaidDiagram);
-            return this;
-        }
-
-        /**
-         * Mermaid diagram
-         */
-        public Builder mermaidDiagram(Optional<String> mermaidDiagram) {
-            Utils.checkNotNull(mermaidDiagram, "mermaidDiagram");
-            this.mermaidDiagram = mermaidDiagram;
-            return this;
-        }
-
-        /**
-         * The blob digest of the base source.
-         */
-        public Builder openapiDiffBaseSourceBlobDigest(String openapiDiffBaseSourceBlobDigest) {
-            Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
-            this.openapiDiffBaseSourceBlobDigest = Optional.ofNullable(openapiDiffBaseSourceBlobDigest);
-            return this;
-        }
-
-        /**
-         * The blob digest of the base source.
-         */
-        public Builder openapiDiffBaseSourceBlobDigest(Optional<String> openapiDiffBaseSourceBlobDigest) {
-            Utils.checkNotNull(openapiDiffBaseSourceBlobDigest, "openapiDiffBaseSourceBlobDigest");
-            this.openapiDiffBaseSourceBlobDigest = openapiDiffBaseSourceBlobDigest;
-            return this;
-        }
-
-        /**
-         * The namespace name of the base source.
-         */
-        public Builder openapiDiffBaseSourceNamespaceName(String openapiDiffBaseSourceNamespaceName) {
-            Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
-            this.openapiDiffBaseSourceNamespaceName = Optional.ofNullable(openapiDiffBaseSourceNamespaceName);
-            return this;
-        }
-
-        /**
-         * The namespace name of the base source.
-         */
-        public Builder openapiDiffBaseSourceNamespaceName(Optional<String> openapiDiffBaseSourceNamespaceName) {
-            Utils.checkNotNull(openapiDiffBaseSourceNamespaceName, "openapiDiffBaseSourceNamespaceName");
-            this.openapiDiffBaseSourceNamespaceName = openapiDiffBaseSourceNamespaceName;
-            return this;
-        }
-
-        /**
-         * The revision digest of the base source.
-         */
-        public Builder openapiDiffBaseSourceRevisionDigest(String openapiDiffBaseSourceRevisionDigest) {
-            Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
-            this.openapiDiffBaseSourceRevisionDigest = Optional.ofNullable(openapiDiffBaseSourceRevisionDigest);
-            return this;
-        }
-
-        /**
-         * The revision digest of the base source.
-         */
-        public Builder openapiDiffBaseSourceRevisionDigest(Optional<String> openapiDiffBaseSourceRevisionDigest) {
-            Utils.checkNotNull(openapiDiffBaseSourceRevisionDigest, "openapiDiffBaseSourceRevisionDigest");
-            this.openapiDiffBaseSourceRevisionDigest = openapiDiffBaseSourceRevisionDigest;
-            return this;
-        }
-
-        /**
-         * The number of breaking changes in the openapi diff report.
-         */
-        public Builder openapiDiffBreakingChangesCount(long openapiDiffBreakingChangesCount) {
-            Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
-            this.openapiDiffBreakingChangesCount = Optional.ofNullable(openapiDiffBreakingChangesCount);
-            return this;
-        }
-
-        /**
-         * The number of breaking changes in the openapi diff report.
-         */
-        public Builder openapiDiffBreakingChangesCount(Optional<Long> openapiDiffBreakingChangesCount) {
-            Utils.checkNotNull(openapiDiffBreakingChangesCount, "openapiDiffBreakingChangesCount");
-            this.openapiDiffBreakingChangesCount = openapiDiffBreakingChangesCount;
-            return this;
-        }
-
-        /**
-         * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
-         */
-        public Builder openapiDiffBumpType(OpenapiDiffBumpType openapiDiffBumpType) {
-            Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
-            this.openapiDiffBumpType = Optional.ofNullable(openapiDiffBumpType);
-            return this;
-        }
-
-        /**
-         * Bump type of the lock file (calculated semver delta, or a custom change (manual release))
-         */
-        public Builder openapiDiffBumpType(Optional<? extends OpenapiDiffBumpType> openapiDiffBumpType) {
-            Utils.checkNotNull(openapiDiffBumpType, "openapiDiffBumpType");
-            this.openapiDiffBumpType = openapiDiffBumpType;
-            return this;
-        }
-
-        /**
-         * The checksum of the openapi diff report.
-         */
-        public Builder openapiDiffReportDigest(String openapiDiffReportDigest) {
-            Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
-            this.openapiDiffReportDigest = Optional.ofNullable(openapiDiffReportDigest);
-            return this;
-        }
-
-        /**
-         * The checksum of the openapi diff report.
-         */
-        public Builder openapiDiffReportDigest(Optional<String> openapiDiffReportDigest) {
-            Utils.checkNotNull(openapiDiffReportDigest, "openapiDiffReportDigest");
-            this.openapiDiffReportDigest = openapiDiffReportDigest;
-            return this;
-        }
-
-        /**
-         * Name of the published package.
-         */
-        public Builder publishPackageName(String publishPackageName) {
-            Utils.checkNotNull(publishPackageName, "publishPackageName");
-            this.publishPackageName = Optional.ofNullable(publishPackageName);
-            return this;
-        }
-
-        /**
-         * Name of the published package.
-         */
-        public Builder publishPackageName(Optional<String> publishPackageName) {
-            Utils.checkNotNull(publishPackageName, "publishPackageName");
-            this.publishPackageName = publishPackageName;
-            return this;
-        }
-
-        /**
-         * Name of the registry where the package was published.
-         */
-        public Builder publishPackageRegistryName(String publishPackageRegistryName) {
-            Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
-            this.publishPackageRegistryName = Optional.ofNullable(publishPackageRegistryName);
-            return this;
-        }
-
-        /**
-         * Name of the registry where the package was published.
-         */
-        public Builder publishPackageRegistryName(Optional<String> publishPackageRegistryName) {
-            Utils.checkNotNull(publishPackageRegistryName, "publishPackageRegistryName");
-            this.publishPackageRegistryName = publishPackageRegistryName;
-            return this;
-        }
-
-        /**
-         * URL of the published package.
-         */
-        public Builder publishPackageUrl(String publishPackageUrl) {
-            Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
-            this.publishPackageUrl = Optional.ofNullable(publishPackageUrl);
-            return this;
-        }
-
-        /**
-         * URL of the published package.
-         */
-        public Builder publishPackageUrl(Optional<String> publishPackageUrl) {
-            Utils.checkNotNull(publishPackageUrl, "publishPackageUrl");
-            this.publishPackageUrl = publishPackageUrl;
-            return this;
-        }
-
-        /**
-         * Version of the published package.
-         */
-        public Builder publishPackageVersion(String publishPackageVersion) {
-            Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
-            this.publishPackageVersion = Optional.ofNullable(publishPackageVersion);
-            return this;
-        }
-
-        /**
-         * Version of the published package.
-         */
-        public Builder publishPackageVersion(Optional<String> publishPackageVersion) {
-            Utils.checkNotNull(publishPackageVersion, "publishPackageVersion");
-            this.publishPackageVersion = publishPackageVersion;
-            return this;
-        }
-
-        /**
          * Full CLI command.
          */
         public Builder rawCommand(String rawCommand) {
@@ -4521,60 +2522,6 @@ public class CliEvent {
         }
 
         /**
-         * The blob digest of the source.
-         */
-        public Builder sourceBlobDigest(String sourceBlobDigest) {
-            Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
-            this.sourceBlobDigest = Optional.ofNullable(sourceBlobDigest);
-            return this;
-        }
-
-        /**
-         * The blob digest of the source.
-         */
-        public Builder sourceBlobDigest(Optional<String> sourceBlobDigest) {
-            Utils.checkNotNull(sourceBlobDigest, "sourceBlobDigest");
-            this.sourceBlobDigest = sourceBlobDigest;
-            return this;
-        }
-
-        /**
-         * The namespace name of the source.
-         */
-        public Builder sourceNamespaceName(String sourceNamespaceName) {
-            Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
-            this.sourceNamespaceName = Optional.ofNullable(sourceNamespaceName);
-            return this;
-        }
-
-        /**
-         * The namespace name of the source.
-         */
-        public Builder sourceNamespaceName(Optional<String> sourceNamespaceName) {
-            Utils.checkNotNull(sourceNamespaceName, "sourceNamespaceName");
-            this.sourceNamespaceName = sourceNamespaceName;
-            return this;
-        }
-
-        /**
-         * The revision digest of the source.
-         */
-        public Builder sourceRevisionDigest(String sourceRevisionDigest) {
-            Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
-            this.sourceRevisionDigest = Optional.ofNullable(sourceRevisionDigest);
-            return this;
-        }
-
-        /**
-         * The revision digest of the source.
-         */
-        public Builder sourceRevisionDigest(Optional<String> sourceRevisionDigest) {
-            Utils.checkNotNull(sourceRevisionDigest, "sourceRevisionDigest");
-            this.sourceRevisionDigest = sourceRevisionDigest;
-            return this;
-        }
-
-        /**
          * Identifier of the Speakeasy API key.
          */
         public Builder speakeasyApiKeyName(String speakeasyApiKeyName) {
@@ -4602,78 +2549,6 @@ public class CliEvent {
         }
 
         /**
-         * Workflow lock file (post execution)
-         */
-        public Builder workflowLockPostRaw(String workflowLockPostRaw) {
-            Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
-            this.workflowLockPostRaw = Optional.ofNullable(workflowLockPostRaw);
-            return this;
-        }
-
-        /**
-         * Workflow lock file (post execution)
-         */
-        public Builder workflowLockPostRaw(Optional<String> workflowLockPostRaw) {
-            Utils.checkNotNull(workflowLockPostRaw, "workflowLockPostRaw");
-            this.workflowLockPostRaw = workflowLockPostRaw;
-            return this;
-        }
-
-        /**
-         * Workflow lock file (prior to execution)
-         */
-        public Builder workflowLockPreRaw(String workflowLockPreRaw) {
-            Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
-            this.workflowLockPreRaw = Optional.ofNullable(workflowLockPreRaw);
-            return this;
-        }
-
-        /**
-         * Workflow lock file (prior to execution)
-         */
-        public Builder workflowLockPreRaw(Optional<String> workflowLockPreRaw) {
-            Utils.checkNotNull(workflowLockPreRaw, "workflowLockPreRaw");
-            this.workflowLockPreRaw = workflowLockPreRaw;
-            return this;
-        }
-
-        /**
-         * Workflow file (post execution)
-         */
-        public Builder workflowPostRaw(String workflowPostRaw) {
-            Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
-            this.workflowPostRaw = Optional.ofNullable(workflowPostRaw);
-            return this;
-        }
-
-        /**
-         * Workflow file (post execution)
-         */
-        public Builder workflowPostRaw(Optional<String> workflowPostRaw) {
-            Utils.checkNotNull(workflowPostRaw, "workflowPostRaw");
-            this.workflowPostRaw = workflowPostRaw;
-            return this;
-        }
-
-        /**
-         * Workflow file (prior to execution)
-         */
-        public Builder workflowPreRaw(String workflowPreRaw) {
-            Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
-            this.workflowPreRaw = Optional.ofNullable(workflowPreRaw);
-            return this;
-        }
-
-        /**
-         * Workflow file (prior to execution)
-         */
-        public Builder workflowPreRaw(Optional<String> workflowPreRaw) {
-            Utils.checkNotNull(workflowPreRaw, "workflowPreRaw");
-            this.workflowPreRaw = workflowPreRaw;
-            return this;
-        }
-
-        /**
          * Identifier of the workspace.
          */
         public Builder workspaceId(String workspaceId) {
@@ -4685,10 +2560,8 @@ public class CliEvent {
         public CliEvent build() {
             return new CliEvent(
                 commitHead,
-                continuousIntegrationEnvironment,
                 createdAt,
                 durationMs,
-                error,
                 executionId,
                 generateBumpType,
                 generateConfigPostChecksum,
@@ -4697,33 +2570,22 @@ public class CliEvent {
                 generateConfigPreChecksum,
                 generateConfigPreRaw,
                 generateConfigPreVersion,
-                generateEligibleFeatures,
                 generateGenLockId,
                 generateGenLockPostFeatures,
-                generateGenLockPreBlobDigest,
                 generateGenLockPreDocChecksum,
                 generateGenLockPreDocVersion,
                 generateGenLockPreFeatures,
-                generateGenLockPreNamespaceName,
-                generateGenLockPreRevisionDigest,
                 generateGenLockPreVersion,
-                generateNumberOfOperationsIgnored,
-                generateNumberOfOperationsUsed,
-                generateNumberOfTerraformResources,
                 generateOutputTests,
                 generatePublished,
                 generateRepoUrl,
                 generateTarget,
-                generateTargetName,
                 generateTargetVersion,
                 generateVersion,
                 ghActionOrganization,
-                ghActionRef,
                 ghActionRepository,
                 ghActionRunLink,
                 ghActionVersion,
-                ghChangesCommitted,
-                ghPullRequest,
                 gitRelativeCwd,
                 gitRemoteDefaultOwner,
                 gitRemoteDefaultRepo,
@@ -4732,38 +2594,15 @@ public class CliEvent {
                 hostname,
                 id,
                 interactionType,
-                lastStep,
-                lintReportDigest,
-                lintReportErrorCount,
-                lintReportInfoCount,
-                lintReportWarningCount,
                 localCompletedAt,
                 localStartedAt,
                 managementDocChecksum,
                 managementDocVersion,
-                mermaidDiagram,
-                openapiDiffBaseSourceBlobDigest,
-                openapiDiffBaseSourceNamespaceName,
-                openapiDiffBaseSourceRevisionDigest,
-                openapiDiffBreakingChangesCount,
-                openapiDiffBumpType,
-                openapiDiffReportDigest,
-                publishPackageName,
-                publishPackageRegistryName,
-                publishPackageUrl,
-                publishPackageVersion,
                 rawCommand,
                 repoLabel,
-                sourceBlobDigest,
-                sourceNamespaceName,
-                sourceRevisionDigest,
                 speakeasyApiKeyName,
                 speakeasyVersion,
                 success,
-                workflowLockPostRaw,
-                workflowLockPreRaw,
-                workflowPostRaw,
-                workflowPreRaw,
                 workspaceId);
         }
     }

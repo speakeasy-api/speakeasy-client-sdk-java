@@ -10,15 +10,13 @@ import java.util.Objects;
 import java.util.Optional;
 
 /**
- * GenerateBumpType - Bump type of the lock file (calculated semver delta, custom change (manual release), or prerelease/graduate)
+ * GenerateBumpType - Bump type of the lock file (calculated semver delta, or a custom change (manual release))
  */
 public enum GenerateBumpType {
     MAJOR("major"),
     MINOR("minor"),
     PATCH("patch"),
     CUSTOM("custom"),
-    GRADUATE("graduate"),
-    PRERELEASE("prerelease"),
     NONE("none");
 
     @JsonValue

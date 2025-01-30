@@ -7,142 +7,23 @@ package dev.speakeasyapi.javaclientsdk.models.shared;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
-import java.lang.Boolean;
-import java.lang.Deprecated;
 import java.lang.Override;
 import java.lang.String;
-import java.lang.SuppressWarnings;
-import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 
 public class ApiKeyDetails {
 
-    @JsonProperty("account_type_v2")
-    private AccountType accountTypeV2;
-
-    @JsonProperty("enabled_features")
-    private List<String> enabledFeatures;
-
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("feature_flags")
-    @Deprecated
-    private Optional<? extends List<String>> featureFlags;
-
-    @JsonInclude(Include.NON_ABSENT)
-    @JsonProperty("generation_access_unlimited")
-    private Optional<Boolean> generationAccessUnlimited;
-
-    @JsonProperty("org_slug")
-    private String orgSlug;
-
-    @JsonProperty("telemetry_disabled")
-    private boolean telemetryDisabled;
-
-    /**
-     * Workspace creation timestamp.
-     */
-    @JsonProperty("workspace_created_at")
-    private OffsetDateTime workspaceCreatedAt;
-
     @JsonProperty("workspace_id")
     private String workspaceId;
 
-    @JsonProperty("workspace_slug")
-    private String workspaceSlug;
-
     @JsonCreator
     public ApiKeyDetails(
-            @JsonProperty("account_type_v2") AccountType accountTypeV2,
-            @JsonProperty("enabled_features") List<String> enabledFeatures,
-            @JsonProperty("feature_flags") Optional<? extends List<String>> featureFlags,
-            @JsonProperty("generation_access_unlimited") Optional<Boolean> generationAccessUnlimited,
-            @JsonProperty("org_slug") String orgSlug,
-            @JsonProperty("telemetry_disabled") boolean telemetryDisabled,
-            @JsonProperty("workspace_created_at") OffsetDateTime workspaceCreatedAt,
-            @JsonProperty("workspace_id") String workspaceId,
-            @JsonProperty("workspace_slug") String workspaceSlug) {
-        Utils.checkNotNull(accountTypeV2, "accountTypeV2");
-        Utils.checkNotNull(enabledFeatures, "enabledFeatures");
-        Utils.checkNotNull(featureFlags, "featureFlags");
-        Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
-        Utils.checkNotNull(orgSlug, "orgSlug");
-        Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
-        Utils.checkNotNull(workspaceCreatedAt, "workspaceCreatedAt");
+            @JsonProperty("workspace_id") String workspaceId) {
         Utils.checkNotNull(workspaceId, "workspaceId");
-        Utils.checkNotNull(workspaceSlug, "workspaceSlug");
-        this.accountTypeV2 = accountTypeV2;
-        this.enabledFeatures = enabledFeatures;
-        this.featureFlags = featureFlags;
-        this.generationAccessUnlimited = generationAccessUnlimited;
-        this.orgSlug = orgSlug;
-        this.telemetryDisabled = telemetryDisabled;
-        this.workspaceCreatedAt = workspaceCreatedAt;
         this.workspaceId = workspaceId;
-        this.workspaceSlug = workspaceSlug;
-    }
-    
-    public ApiKeyDetails(
-            AccountType accountTypeV2,
-            List<String> enabledFeatures,
-            String orgSlug,
-            boolean telemetryDisabled,
-            OffsetDateTime workspaceCreatedAt,
-            String workspaceId,
-            String workspaceSlug) {
-        this(accountTypeV2, enabledFeatures, Optional.empty(), Optional.empty(), orgSlug, telemetryDisabled, workspaceCreatedAt, workspaceId, workspaceSlug);
-    }
-
-    @JsonIgnore
-    public AccountType accountTypeV2() {
-        return accountTypeV2;
-    }
-
-    @JsonIgnore
-    public List<String> enabledFeatures() {
-        return enabledFeatures;
-    }
-
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    @SuppressWarnings("unchecked")
-    @JsonIgnore
-    public Optional<List<String>> featureFlags() {
-        return (Optional<List<String>>) featureFlags;
-    }
-
-    @JsonIgnore
-    public Optional<Boolean> generationAccessUnlimited() {
-        return generationAccessUnlimited;
-    }
-
-    @JsonIgnore
-    public String orgSlug() {
-        return orgSlug;
-    }
-
-    @JsonIgnore
-    public boolean telemetryDisabled() {
-        return telemetryDisabled;
-    }
-
-    /**
-     * Workspace creation timestamp.
-     */
-    @JsonIgnore
-    public OffsetDateTime workspaceCreatedAt() {
-        return workspaceCreatedAt;
     }
 
     @JsonIgnore
@@ -150,89 +31,13 @@ public class ApiKeyDetails {
         return workspaceId;
     }
 
-    @JsonIgnore
-    public String workspaceSlug() {
-        return workspaceSlug;
-    }
-
     public final static Builder builder() {
         return new Builder();
-    }
-
-    public ApiKeyDetails withAccountTypeV2(AccountType accountTypeV2) {
-        Utils.checkNotNull(accountTypeV2, "accountTypeV2");
-        this.accountTypeV2 = accountTypeV2;
-        return this;
-    }
-
-    public ApiKeyDetails withEnabledFeatures(List<String> enabledFeatures) {
-        Utils.checkNotNull(enabledFeatures, "enabledFeatures");
-        this.enabledFeatures = enabledFeatures;
-        return this;
-    }
-
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public ApiKeyDetails withFeatureFlags(List<String> featureFlags) {
-        Utils.checkNotNull(featureFlags, "featureFlags");
-        this.featureFlags = Optional.ofNullable(featureFlags);
-        return this;
-    }
-
-    /**
-     * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-     */
-    @Deprecated
-    public ApiKeyDetails withFeatureFlags(Optional<? extends List<String>> featureFlags) {
-        Utils.checkNotNull(featureFlags, "featureFlags");
-        this.featureFlags = featureFlags;
-        return this;
-    }
-
-    public ApiKeyDetails withGenerationAccessUnlimited(boolean generationAccessUnlimited) {
-        Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
-        this.generationAccessUnlimited = Optional.ofNullable(generationAccessUnlimited);
-        return this;
-    }
-
-    public ApiKeyDetails withGenerationAccessUnlimited(Optional<Boolean> generationAccessUnlimited) {
-        Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
-        this.generationAccessUnlimited = generationAccessUnlimited;
-        return this;
-    }
-
-    public ApiKeyDetails withOrgSlug(String orgSlug) {
-        Utils.checkNotNull(orgSlug, "orgSlug");
-        this.orgSlug = orgSlug;
-        return this;
-    }
-
-    public ApiKeyDetails withTelemetryDisabled(boolean telemetryDisabled) {
-        Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
-        this.telemetryDisabled = telemetryDisabled;
-        return this;
-    }
-
-    /**
-     * Workspace creation timestamp.
-     */
-    public ApiKeyDetails withWorkspaceCreatedAt(OffsetDateTime workspaceCreatedAt) {
-        Utils.checkNotNull(workspaceCreatedAt, "workspaceCreatedAt");
-        this.workspaceCreatedAt = workspaceCreatedAt;
-        return this;
     }
 
     public ApiKeyDetails withWorkspaceId(String workspaceId) {
         Utils.checkNotNull(workspaceId, "workspaceId");
         this.workspaceId = workspaceId;
-        return this;
-    }
-
-    public ApiKeyDetails withWorkspaceSlug(String workspaceSlug) {
-        Utils.checkNotNull(workspaceSlug, "workspaceSlug");
-        this.workspaceSlug = workspaceSlug;
         return this;
     }
     
@@ -246,133 +51,27 @@ public class ApiKeyDetails {
         }
         ApiKeyDetails other = (ApiKeyDetails) o;
         return 
-            Objects.deepEquals(this.accountTypeV2, other.accountTypeV2) &&
-            Objects.deepEquals(this.enabledFeatures, other.enabledFeatures) &&
-            Objects.deepEquals(this.featureFlags, other.featureFlags) &&
-            Objects.deepEquals(this.generationAccessUnlimited, other.generationAccessUnlimited) &&
-            Objects.deepEquals(this.orgSlug, other.orgSlug) &&
-            Objects.deepEquals(this.telemetryDisabled, other.telemetryDisabled) &&
-            Objects.deepEquals(this.workspaceCreatedAt, other.workspaceCreatedAt) &&
-            Objects.deepEquals(this.workspaceId, other.workspaceId) &&
-            Objects.deepEquals(this.workspaceSlug, other.workspaceSlug);
+            Objects.deepEquals(this.workspaceId, other.workspaceId);
     }
     
     @Override
     public int hashCode() {
         return Objects.hash(
-            accountTypeV2,
-            enabledFeatures,
-            featureFlags,
-            generationAccessUnlimited,
-            orgSlug,
-            telemetryDisabled,
-            workspaceCreatedAt,
-            workspaceId,
-            workspaceSlug);
+            workspaceId);
     }
     
     @Override
     public String toString() {
         return Utils.toString(ApiKeyDetails.class,
-                "accountTypeV2", accountTypeV2,
-                "enabledFeatures", enabledFeatures,
-                "featureFlags", featureFlags,
-                "generationAccessUnlimited", generationAccessUnlimited,
-                "orgSlug", orgSlug,
-                "telemetryDisabled", telemetryDisabled,
-                "workspaceCreatedAt", workspaceCreatedAt,
-                "workspaceId", workspaceId,
-                "workspaceSlug", workspaceSlug);
+                "workspaceId", workspaceId);
     }
     
     public final static class Builder {
  
-        private AccountType accountTypeV2;
- 
-        private List<String> enabledFeatures;
- 
-        @Deprecated
-        private Optional<? extends List<String>> featureFlags = Optional.empty();
- 
-        private Optional<Boolean> generationAccessUnlimited = Optional.empty();
- 
-        private String orgSlug;
- 
-        private Boolean telemetryDisabled;
- 
-        private OffsetDateTime workspaceCreatedAt;
- 
-        private String workspaceId;
- 
-        private String workspaceSlug;  
+        private String workspaceId;  
         
         private Builder() {
           // force use of static builder() method
-        }
-
-        public Builder accountTypeV2(AccountType accountTypeV2) {
-            Utils.checkNotNull(accountTypeV2, "accountTypeV2");
-            this.accountTypeV2 = accountTypeV2;
-            return this;
-        }
-
-        public Builder enabledFeatures(List<String> enabledFeatures) {
-            Utils.checkNotNull(enabledFeatures, "enabledFeatures");
-            this.enabledFeatures = enabledFeatures;
-            return this;
-        }
-
-        /**
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder featureFlags(List<String> featureFlags) {
-            Utils.checkNotNull(featureFlags, "featureFlags");
-            this.featureFlags = Optional.ofNullable(featureFlags);
-            return this;
-        }
-
-        /**
-         * @deprecated field: This will be removed in a future release, please migrate away from it as soon as possible.
-         */
-        @Deprecated
-        public Builder featureFlags(Optional<? extends List<String>> featureFlags) {
-            Utils.checkNotNull(featureFlags, "featureFlags");
-            this.featureFlags = featureFlags;
-            return this;
-        }
-
-        public Builder generationAccessUnlimited(boolean generationAccessUnlimited) {
-            Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
-            this.generationAccessUnlimited = Optional.ofNullable(generationAccessUnlimited);
-            return this;
-        }
-
-        public Builder generationAccessUnlimited(Optional<Boolean> generationAccessUnlimited) {
-            Utils.checkNotNull(generationAccessUnlimited, "generationAccessUnlimited");
-            this.generationAccessUnlimited = generationAccessUnlimited;
-            return this;
-        }
-
-        public Builder orgSlug(String orgSlug) {
-            Utils.checkNotNull(orgSlug, "orgSlug");
-            this.orgSlug = orgSlug;
-            return this;
-        }
-
-        public Builder telemetryDisabled(boolean telemetryDisabled) {
-            Utils.checkNotNull(telemetryDisabled, "telemetryDisabled");
-            this.telemetryDisabled = telemetryDisabled;
-            return this;
-        }
-
-        /**
-         * Workspace creation timestamp.
-         */
-        public Builder workspaceCreatedAt(OffsetDateTime workspaceCreatedAt) {
-            Utils.checkNotNull(workspaceCreatedAt, "workspaceCreatedAt");
-            this.workspaceCreatedAt = workspaceCreatedAt;
-            return this;
         }
 
         public Builder workspaceId(String workspaceId) {
@@ -380,24 +79,10 @@ public class ApiKeyDetails {
             this.workspaceId = workspaceId;
             return this;
         }
-
-        public Builder workspaceSlug(String workspaceSlug) {
-            Utils.checkNotNull(workspaceSlug, "workspaceSlug");
-            this.workspaceSlug = workspaceSlug;
-            return this;
-        }
         
         public ApiKeyDetails build() {
             return new ApiKeyDetails(
-                accountTypeV2,
-                enabledFeatures,
-                featureFlags,
-                generationAccessUnlimited,
-                orgSlug,
-                telemetryDisabled,
-                workspaceCreatedAt,
-                workspaceId,
-                workspaceSlug);
+                workspaceId);
         }
     }
 }

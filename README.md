@@ -3,7 +3,7 @@
 <!-- Start Summary [summary] -->
 ## Summary
 
-Speakeasy API: The Subscriptions API manages subscriptions for CLI and registry events
+Speakeasy API: The Speakeasy API allows teams to manage common operations with their APIs
 
 For more information about the API: [The Speakeasy Platform Documentation](/docs)
 <!-- End Summary [summary] -->
@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.24.1'
+implementation 'dev.speakeasyapi:javaclientsdk:7.25.0'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.24.1</version>
+    <version>7.25.0</version>
 </dependency>
 ```
 
@@ -70,17 +70,14 @@ gradlew.bat publishToMavenLocal -Pskip.signing
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -88,21 +85,16 @@ public class Application {
                     .build())
             .build();
 
-        RemoteSource req = RemoteSource.builder()
-                .inputs(List.of(
-                    RemoteDocument.builder()
-                        .registryUrl("https://productive-swine.net")
-                        .build()))
-                .output(RemoteDocument.builder()
-                    .registryUrl("https://spiteful-apricot.info")
-                    .build())
+        GetApisRequest req = GetApisRequest.builder()
                 .build();
 
-        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+        GetApisResponse res = sdk.apis().getApis()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.apis().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
@@ -114,103 +106,63 @@ public class Application {
 <details open>
 <summary>Available methods</summary>
 
-### [artifacts()](docs/sdks/artifacts/README.md)
+### [apiEndpoints()](docs/sdks/apiendpoints/README.md)
 
-* [createRemoteSource](docs/sdks/artifacts/README.md#createremotesource) - Configure a new remote source
-* [getBlob](docs/sdks/artifacts/README.md#getblob) - Get blob for a particular digest
-* [getManifest](docs/sdks/artifacts/README.md#getmanifest) - Get manifest for a particular reference
-* [getNamespaces](docs/sdks/artifacts/README.md#getnamespaces) - Each namespace contains many revisions.
-* [getRevisions](docs/sdks/artifacts/README.md#getrevisions)
-* [getTags](docs/sdks/artifacts/README.md#gettags)
-* [listRemoteSources](docs/sdks/artifacts/README.md#listremotesources) - Get remote sources attached to a particular namespace
-* [postTags](docs/sdks/artifacts/README.md#posttags) - Add tags to an existing revision
-* [preflight](docs/sdks/artifacts/README.md#preflight) - Get access token for communicating with OCI distribution endpoints
-* [setArchived](docs/sdks/artifacts/README.md#setarchived) - Set whether a namespace is archived
-* [setVisibility](docs/sdks/artifacts/README.md#setvisibility) - Set visibility of a namespace with an existing metadata entry
+* [deleteApiEndpoint](docs/sdks/apiendpoints/README.md#deleteapiendpoint) - Delete an ApiEndpoint.
+* [findApiEndpoint](docs/sdks/apiendpoints/README.md#findapiendpoint) - Find an ApiEndpoint via its displayName.
+* [generateOpenApiSpecForApiEndpoint](docs/sdks/apiendpoints/README.md#generateopenapispecforapiendpoint) - Generate an OpenAPI specification for a particular ApiEndpoint.
+* [generatePostmanCollectionForApiEndpoint](docs/sdks/apiendpoints/README.md#generatepostmancollectionforapiendpoint) - Generate a Postman collection for a particular ApiEndpoint.
+* [getAllApiEndpoints](docs/sdks/apiendpoints/README.md#getallapiendpoints) - Get all Api endpoints for a particular apiID.
+* [getAllForVersionApiEndpoints](docs/sdks/apiendpoints/README.md#getallforversionapiendpoints) - Get all ApiEndpoints for a particular apiID and versionID.
+* [getApiEndpoint](docs/sdks/apiendpoints/README.md#getapiendpoint) - Get an ApiEndpoint.
+* [upsertApiEndpoint](docs/sdks/apiendpoints/README.md#upsertapiendpoint) - Upsert an ApiEndpoint.
+
+### [apis()](docs/sdks/apis/README.md)
+
+* [deleteApi](docs/sdks/apis/README.md#deleteapi) - Delete an Api.
+* [generateOpenApiSpec](docs/sdks/apis/README.md#generateopenapispec) - Generate an OpenAPI specification for a particular Api.
+* [generatePostmanCollection](docs/sdks/apis/README.md#generatepostmancollection) - Generate a Postman collection for a particular Api.
+* [getAllApiVersions](docs/sdks/apis/README.md#getallapiversions) - Get all Api versions for a particular ApiEndpoint.
+* [getApis](docs/sdks/apis/README.md#getapis) - Get a list of Apis for a given workspace
+* [upsertApi](docs/sdks/apis/README.md#upsertapi) - Upsert an Api
 
 ### [auth()](docs/sdks/auth/README.md)
 
-* [getAccess](docs/sdks/auth/README.md#getaccess) - Get access allowances for a particular workspace
-* [getAccessToken](docs/sdks/auth/README.md#getaccesstoken) - Get or refresh an access token for the current workspace.
-* [getUser](docs/sdks/auth/README.md#getuser) - Get information about the current user.
 * [validateApiKey](docs/sdks/auth/README.md#validateapikey) - Validate the current api key.
 
-### [codeSamples()](docs/sdks/codesamples/README.md)
+### [embeds()](docs/sdks/embeds/README.md)
 
-* [generateCodeSamplePreview](docs/sdks/codesamples/README.md#generatecodesamplepreview) - Generate Code Sample previews from a file and configuration parameters.
-* [generateCodeSamplePreviewAsync](docs/sdks/codesamples/README.md#generatecodesamplepreviewasync) - Initiate asynchronous Code Sample preview generation from a file and configuration parameters, receiving an async JobID response for polling.
-* [getCodeSamplePreviewAsync](docs/sdks/codesamples/README.md#getcodesamplepreviewasync) - Poll for the result of an asynchronous Code Sample preview generation.
+* [getEmbedAccessToken](docs/sdks/embeds/README.md#getembedaccesstoken) - Get an embed access token for the current workspace.
+* [getValidEmbedAccessTokens](docs/sdks/embeds/README.md#getvalidembedaccesstokens) - Get all valid embed access tokens for the current workspace.
+* [revokeEmbedAccessToken](docs/sdks/embeds/README.md#revokeembedaccesstoken) - Revoke an embed access EmbedToken.
 
 ### [events()](docs/sdks/events/README.md)
 
-* [getEventsByTarget](docs/sdks/events/README.md#geteventsbytarget) - Load recent events for a particular workspace
-* [getTargets](docs/sdks/events/README.md#gettargets) - Load targets for a particular workspace
-* [getTargetsDeprecated](docs/sdks/events/README.md#gettargetsdeprecated) - Load targets for a particular workspace
-* [post](docs/sdks/events/README.md#post) - Post events for a specific workspace
-* [search](docs/sdks/events/README.md#search) - Search events for a particular workspace by any field
+* [postWorkspaceEvents](docs/sdks/events/README.md#postworkspaceevents) - Post events for a specific workspace
 
-### [github()](docs/sdks/github/README.md)
+### [metadata()](docs/sdks/metadata/README.md)
 
-* [checkAccess](docs/sdks/github/README.md#checkaccess)
-* [checkPublishingPRs](docs/sdks/github/README.md#checkpublishingprs)
-* [checkPublishingSecrets](docs/sdks/github/README.md#checkpublishingsecrets)
-* [configureCodeSamples](docs/sdks/github/README.md#configurecodesamples)
-* [configureMintlifyRepo](docs/sdks/github/README.md#configuremintlifyrepo)
-* [configureTarget](docs/sdks/github/README.md#configuretarget)
-* [getAction](docs/sdks/github/README.md#getaction)
-* [getSetup](docs/sdks/github/README.md#getsetup)
-* [linkGithub](docs/sdks/github/README.md#linkgithub)
-* [storePublishingSecrets](docs/sdks/github/README.md#storepublishingsecrets)
-* [triggerAction](docs/sdks/github/README.md#triggeraction)
+* [deleteVersionMetadata](docs/sdks/metadata/README.md#deleteversionmetadata) - Delete metadata for a particular apiID and versionID.
+* [getVersionMetadata](docs/sdks/metadata/README.md#getversionmetadata) - Get all metadata for a particular apiID and versionID.
+* [insertVersionMetadata](docs/sdks/metadata/README.md#insertversionmetadata) - Insert metadata for a particular apiID and versionID.
 
-### [organizations()](docs/sdks/organizations/README.md)
+### [requests()](docs/sdks/requests/README.md)
 
-* [create](docs/sdks/organizations/README.md#create) - Create an organization
-* [createFreeTrial](docs/sdks/organizations/README.md#createfreetrial) - Create a free trial for an organization
-* [get](docs/sdks/organizations/README.md#get) - Get organization
-* [getAll](docs/sdks/organizations/README.md#getall) - Get organizations for a user
-* [getUsage](docs/sdks/organizations/README.md#getusage) - Get billing usage summary for a particular organization
-
-### [reports()](docs/sdks/reports/README.md)
-
-* [getChangesReportSignedUrl](docs/sdks/reports/README.md#getchangesreportsignedurl) - Get the signed access url for the change reports for a particular document.
-* [getLintingReportSignedUrl](docs/sdks/reports/README.md#getlintingreportsignedurl) - Get the signed access url for the linting reports for a particular document.
-* [uploadReport](docs/sdks/reports/README.md#uploadreport) - Upload a report.
+* [generateRequestPostmanCollection](docs/sdks/requests/README.md#generaterequestpostmancollection) - Generate a Postman collection for a particular request.
+* [getRequestFromEventLog](docs/sdks/requests/README.md#getrequestfromeventlog) - Get information about a particular request.
+* [queryEventLog](docs/sdks/requests/README.md#queryeventlog) - Query the event log to retrieve a list of requests.
 
 
-### [shortURLs()](docs/sdks/shorturls/README.md)
+### [schemas()](docs/sdks/schemas/README.md)
 
-* [create](docs/sdks/shorturls/README.md#create) - Shorten a URL.
-
-### [subscriptions()](docs/sdks/subscriptions/README.md)
-
-* [activateSubscriptionNamespace](docs/sdks/subscriptions/README.md#activatesubscriptionnamespace) - Activate an ignored namespace for a subscription
-* [ignoreSubscriptionNamespace](docs/sdks/subscriptions/README.md#ignoresubscriptionnamespace) - Ignored a namespace for a subscription
-
-### [suggest()](docs/sdks/suggest/README.md)
-
-* [suggest](docs/sdks/suggest/README.md#suggest) - Generate suggestions for improving an OpenAPI document.
-* [suggestItems](docs/sdks/suggest/README.md#suggestitems) - Generate generic suggestions for a list of items.
-* [suggestOpenAPI](docs/sdks/suggest/README.md#suggestopenapi) - (DEPRECATED) Generate suggestions for improving an OpenAPI document.
-* [suggestOpenAPIRegistry](docs/sdks/suggest/README.md#suggestopenapiregistry) - Generate suggestions for improving an OpenAPI document stored in the registry.
-
-### [workspaces()](docs/sdks/workspaces/README.md)
-
-* [create](docs/sdks/workspaces/README.md#create) - Create a workspace
-* [createToken](docs/sdks/workspaces/README.md#createtoken) - Create a token for a particular workspace
-* [deleteToken](docs/sdks/workspaces/README.md#deletetoken) - Delete a token for a particular workspace
-* [get](docs/sdks/workspaces/README.md#get) - Get workspace by context
-* [getAll](docs/sdks/workspaces/README.md#getall) - Get workspaces for a user
-* [getByID](docs/sdks/workspaces/README.md#getbyid) - Get workspace
-* [getFeatureFlags](docs/sdks/workspaces/README.md#getfeatureflags) - Get workspace feature flags
-* [getSettings](docs/sdks/workspaces/README.md#getsettings) - Get workspace settings
-* [getTeam](docs/sdks/workspaces/README.md#getteam) - Get team members for a particular workspace
-* [getTokens](docs/sdks/workspaces/README.md#gettokens) - Get tokens for a particular workspace
-* [grantAccess](docs/sdks/workspaces/README.md#grantaccess) - Grant a user access to a particular workspace
-* [revokeAccess](docs/sdks/workspaces/README.md#revokeaccess) - Revoke a user's access to a particular workspace
-* [setFeatureFlags](docs/sdks/workspaces/README.md#setfeatureflags) - Set workspace feature flags
-* [update](docs/sdks/workspaces/README.md#update) - Update workspace details
-* [updateSettings](docs/sdks/workspaces/README.md#updatesettings) - Update workspace settings
+* [deleteSchema](docs/sdks/schemas/README.md#deleteschema) - Delete a particular schema revision for an Api.
+* [downloadSchema](docs/sdks/schemas/README.md#downloadschema) - Download the latest schema for a particular apiID.
+* [downloadSchemaRevision](docs/sdks/schemas/README.md#downloadschemarevision) - Download a particular schema revision for an Api.
+* [getSchema](docs/sdks/schemas/README.md#getschema) - Get information about the latest schema.
+* [getSchemaDiff](docs/sdks/schemas/README.md#getschemadiff) - Get a diff of two schema revisions for an Api.
+* [getSchemaRevision](docs/sdks/schemas/README.md#getschemarevision) - Get information about a particular schema revision for an Api.
+* [getSchemas](docs/sdks/schemas/README.md#getschemas) - Get information about all schemas associated with a particular apiID.
+* [registerSchema](docs/sdks/schemas/README.md#registerschema) - Register a schema.
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
@@ -234,17 +186,14 @@ You can override the default server globally using the `.server(AvailableServers
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .serverIndex(0)
@@ -253,17 +202,12 @@ public class Application {
                     .build())
             .build();
 
-        RemoteSource req = RemoteSource.builder()
-                .inputs(List.of(
-                    RemoteDocument.builder()
-                        .registryUrl("https://productive-swine.net")
-                        .build()))
-                .output(RemoteDocument.builder()
-                    .registryUrl("https://spiteful-apricot.info")
-                    .build())
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
@@ -279,17 +223,14 @@ The default server can also be overridden globally using the `.serverURL(String 
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .serverURL("https://api.prod.speakeasyapi.dev")
@@ -298,17 +239,12 @@ public class Application {
                     .build())
             .build();
 
-        RemoteSource req = RemoteSource.builder()
-                .inputs(List.of(
-                    RemoteDocument.builder()
-                        .registryUrl("https://productive-swine.net")
-                        .build()))
-                .output(RemoteDocument.builder()
-                    .registryUrl("https://spiteful-apricot.info")
-                    .build())
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
@@ -323,12 +259,12 @@ public class Application {
 
 Handling errors in this SDK should largely match your expectations. All operations return a response object or raise an exception.
 
-By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `createRemoteSource` method throws the following exceptions:
+By default, an API error will throw a `models/errors/SDKError` exception. When custom error responses are specified for an operation, the SDK may also throw their associated exception. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `postWorkspaceEvents` method throws the following exceptions:
 
 | Error Type             | Status Code | Content Type     |
 | ---------------------- | ----------- | ---------------- |
-| models/errors/Error    | 4XX         | application/json |
-| models/errors/SDKError | 5XX         | \*/\*            |
+| models/errors/Error    | 5XX         | application/json |
+| models/errors/SDKError | 4XX         | \*/\*            |
 
 ### Example
 
@@ -337,11 +273,13 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CliEvent;
+import dev.speakeasyapi.javaclientsdk.models.shared.InteractionType;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 public class Application {
@@ -354,17 +292,23 @@ public class Application {
                     .build())
             .build();
 
-        RemoteSource req = RemoteSource.builder()
-                .inputs(List.of(
-                    RemoteDocument.builder()
-                        .registryUrl("https://productive-swine.net")
+        PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
+                .requestBody(List.of(
+                    CliEvent.builder()
+                        .createdAt(OffsetDateTime.parse("2025-03-02T10:07:28.113Z"))
+                        .executionId("<id>")
+                        .id("<id>")
+                        .interactionType(InteractionType.TARGET_GENERATE)
+                        .localStartedAt(OffsetDateTime.parse("2025-08-12T17:54:17.538Z"))
+                        .speakeasyApiKeyName("<value>")
+                        .speakeasyVersion("<value>")
+                        .success(true)
+                        .workspaceId("<id>")
                         .build()))
-                .output(RemoteDocument.builder()
-                    .registryUrl("https://spiteful-apricot.info")
-                    .build())
+                .workspaceID("<id>")
                 .build();
 
-        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+        PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
                 .request(req)
                 .call();
 
@@ -379,30 +323,25 @@ public class Application {
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security schemes globally:
+This SDK supports the following security scheme globally:
 
-| Name                  | Type   | Scheme      |
-| --------------------- | ------ | ----------- |
-| `apiKey`              | apiKey | API key     |
-| `bearer`              | http   | HTTP Bearer |
-| `workspaceIdentifier` | apiKey | API key     |
+| Name     | Type   | Scheme  |
+| -------- | ------ | ------- |
+| `apiKey` | apiKey | API key |
 
-You can set the security parameters through the `security` builder method when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
+You can set the security parameters through the `security` builder method when initializing the SDK client instance. For example:
 ```java
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.DeleteApiResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -410,17 +349,12 @@ public class Application {
                     .build())
             .build();
 
-        RemoteSource req = RemoteSource.builder()
-                .inputs(List.of(
-                    RemoteDocument.builder()
-                        .registryUrl("https://productive-swine.net")
-                        .build()))
-                .output(RemoteDocument.builder()
-                    .registryUrl("https://spiteful-apricot.info")
-                    .build())
+        DeleteApiRequest req = DeleteApiRequest.builder()
+                .apiID("<id>")
+                .versionID("<id>")
                 .build();
 
-        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+        DeleteApiResponse res = sdk.apis().deleteApi()
                 .request(req)
                 .call();
 
@@ -435,7 +369,7 @@ public class Application {
 
 A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
 
-For example, you can set `workspace_id` to `"<id>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `getAccessToken`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
+For example, you can set `workspaceID` to `"<id>"` at SDK initialization and then you do not have to pass the same value on calls to operations like `postWorkspaceEvents`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
 
 
 ### Available Globals
@@ -444,7 +378,7 @@ The following global parameter is available.
 
 | Name        | Type             | Description                |
 | ----------- | ---------------- | -------------------------- |
-| workspaceId | java.lang.String | The workspaceId parameter. |
+| workspaceID | java.lang.String | The workspaceID parameter. |
 
 ### Example
 
@@ -453,28 +387,46 @@ package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
 import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetAccessTokenResponse;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CliEvent;
+import dev.speakeasyapi.javaclientsdk.models.shared.InteractionType;
+import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
+import java.util.List;
 
 public class Application {
 
     public static void main(String[] args) throws Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
+                .security(Security.builder()
+                    .apiKey("<YOUR_API_KEY_HERE>")
+                    .build())
             .build();
 
-        GetAccessTokenRequest req = GetAccessTokenRequest.builder()
-                .workspaceId("<id>")
+        PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
+                .requestBody(List.of(
+                    CliEvent.builder()
+                        .createdAt(OffsetDateTime.parse("2025-03-02T10:07:28.113Z"))
+                        .executionId("<id>")
+                        .id("<id>")
+                        .interactionType(InteractionType.TARGET_GENERATE)
+                        .localStartedAt(OffsetDateTime.parse("2025-08-12T17:54:17.538Z"))
+                        .speakeasyApiKeyName("<value>")
+                        .speakeasyVersion("<value>")
+                        .success(true)
+                        .workspaceId("<id>")
+                        .build()))
+                .workspaceID("<id>")
                 .build();
 
-        GetAccessTokenResponse res = sdk.auth().getAccessToken()
+        PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
                 .request(req)
                 .call();
 
-        if (res.accessToken().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -490,17 +442,22 @@ To change the default retry strategy for a single API call, you can provide a `R
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CliEvent;
+import dev.speakeasyapi.javaclientsdk.models.shared.InteractionType;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import dev.speakeasyapi.javaclientsdk.utils.BackoffStrategy;
 import dev.speakeasyapi.javaclientsdk.utils.RetryConfig;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -508,10 +465,23 @@ public class Application {
                     .build())
             .build();
 
-        GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
+        PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
+                .requestBody(List.of(
+                    CliEvent.builder()
+                        .createdAt(OffsetDateTime.parse("2025-03-02T10:07:28.113Z"))
+                        .executionId("<id>")
+                        .id("<id>")
+                        .interactionType(InteractionType.TARGET_GENERATE)
+                        .localStartedAt(OffsetDateTime.parse("2025-08-12T17:54:17.538Z"))
+                        .speakeasyApiKeyName("<value>")
+                        .speakeasyVersion("<value>")
+                        .success(true)
+                        .workspaceId("<id>")
+                        .build()))
+                .workspaceID("<id>")
                 .build();
 
-        GetWorkspaceAccessResponse res = sdk.auth().getAccess()
+        PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
                 .request(req)
                 .retryConfig(RetryConfig.builder()
                     .backoff(BackoffStrategy.builder()
@@ -525,9 +495,7 @@ public class Application {
                     .build())
                 .call();
 
-        if (res.accessDetails().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```
@@ -537,17 +505,22 @@ If you'd like to override the default retry strategy for all operations that sup
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessRequest;
-import dev.speakeasyapi.javaclientsdk.models.operations.GetWorkspaceAccessResponse;
+import dev.speakeasyapi.javaclientsdk.models.errors.Error;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.PostWorkspaceEventsResponse;
+import dev.speakeasyapi.javaclientsdk.models.shared.CliEvent;
+import dev.speakeasyapi.javaclientsdk.models.shared.InteractionType;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import dev.speakeasyapi.javaclientsdk.utils.BackoffStrategy;
 import dev.speakeasyapi.javaclientsdk.utils.RetryConfig;
 import java.lang.Exception;
+import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Application {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Error, Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .retryConfig(RetryConfig.builder()
@@ -565,16 +538,27 @@ public class Application {
                     .build())
             .build();
 
-        GetWorkspaceAccessRequest req = GetWorkspaceAccessRequest.builder()
+        PostWorkspaceEventsRequest req = PostWorkspaceEventsRequest.builder()
+                .requestBody(List.of(
+                    CliEvent.builder()
+                        .createdAt(OffsetDateTime.parse("2025-03-02T10:07:28.113Z"))
+                        .executionId("<id>")
+                        .id("<id>")
+                        .interactionType(InteractionType.TARGET_GENERATE)
+                        .localStartedAt(OffsetDateTime.parse("2025-08-12T17:54:17.538Z"))
+                        .speakeasyApiKeyName("<value>")
+                        .speakeasyVersion("<value>")
+                        .success(true)
+                        .workspaceId("<id>")
+                        .build()))
+                .workspaceID("<id>")
                 .build();
 
-        GetWorkspaceAccessResponse res = sdk.auth().getAccess()
+        PostWorkspaceEventsResponse res = sdk.events().postWorkspaceEvents()
                 .request(req)
                 .call();
 
-        if (res.accessDetails().isPresent()) {
-            // handle response
-        }
+        // handle response
     }
 }
 ```

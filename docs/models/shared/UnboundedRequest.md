@@ -1,0 +1,14 @@
+# UnboundedRequest
+
+An UnboundedRequest represents the HAR content capture by Speakeasy when logging a request.
+
+
+## Fields
+
+| Field                                                                                     | Type                                                                                      | Required                                                                                  | Description                                                                               |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `createdAt`                                                                               | [OffsetDateTime](https://docs.oracle.com/javase/8/docs/api/java/time/OffsetDateTime.html) | :heavy_check_mark:                                                                        | Creation timestamp.                                                                       |
+| `har`                                                                                     | *String*                                                                                  | :heavy_check_mark:                                                                        | The HAR content of the request.                                                           |
+| `harSizeBytes`                                                                            | *long*                                                                                    | :heavy_check_mark:                                                                        | The size of the HAR content in bytes.                                                     |
+| `requestId`                                                                               | *String*                                                                                  | :heavy_check_mark:                                                                        | The ID of this request.                                                                   |
+| `workspaceId`                                                                             | *String*                                                                                  | :heavy_check_mark:                                                                        | The workspace ID this request was made to.                                                |

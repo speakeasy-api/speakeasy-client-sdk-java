@@ -3,17 +3,14 @@
 package hello.world;
 
 import dev.speakeasyapi.javaclientsdk.RyanTest;
-import dev.speakeasyapi.javaclientsdk.models.errors.Error;
-import dev.speakeasyapi.javaclientsdk.models.operations.CreateRemoteSourceResponse;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteDocument;
-import dev.speakeasyapi.javaclientsdk.models.shared.RemoteSource;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetApisRequest;
+import dev.speakeasyapi.javaclientsdk.models.operations.GetApisResponse;
 import dev.speakeasyapi.javaclientsdk.models.shared.Security;
 import java.lang.Exception;
-import java.util.List;
 
 public class Application {
 
-    public static void main(String[] args) throws Error, Exception {
+    public static void main(String[] args) throws Exception {
 
         RyanTest sdk = RyanTest.builder()
                 .security(Security.builder()
@@ -21,21 +18,16 @@ public class Application {
                     .build())
             .build();
 
-        RemoteSource req = RemoteSource.builder()
-                .inputs(List.of(
-                    RemoteDocument.builder()
-                        .registryUrl("https://productive-swine.net")
-                        .build()))
-                .output(RemoteDocument.builder()
-                    .registryUrl("https://spiteful-apricot.info")
-                    .build())
+        GetApisRequest req = GetApisRequest.builder()
                 .build();
 
-        CreateRemoteSourceResponse res = sdk.artifacts().createRemoteSource()
+        GetApisResponse res = sdk.apis().getApis()
                 .request(req)
                 .call();
 
-        // handle response
+        if (res.apis().isPresent()) {
+            // handle response
+        }
     }
 }
 ```
