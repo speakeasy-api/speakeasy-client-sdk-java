@@ -4,6 +4,7 @@
 
 package dev.speakeasyapi.javaclientsdk.models.operations;
 
+import java.lang.Exception;
 
 public class ValidateApiKeyRequestBuilder {
 

@@ -3,10 +3,10 @@ id: 66f99777-b2f2-4e45-9581-501d199e5c0c
 management:
   docChecksum: 49078977a36fbb8b89ade4f3e68ff242
   docVersion: 0.4.0
-  speakeasyVersion: 1.478.1
-  generationVersion: 2.498.4
-  releaseVersion: 7.25.0
-  configChecksum: a5de23bbe8eaa223fbc63e3352cdd2a5
+  speakeasyVersion: 1.520.0
+  generationVersion: 2.555.1
+  releaseVersion: 7.26.0
+  configChecksum: e05aa65a8932040505e5f6094253014d
   repoURL: https://github.com/speakeasy-api/speakeasy-client-sdk-java.git
   repoSubDirectory: .
   published: true
@@ -14,10 +14,10 @@ features:
   java:
     acceptHeaders: 2.81.2
     additionalDependencies: 0.1.0
-    core: 3.33.6
+    core: 3.35.0
     downloadStreams: 0.1.1
     examples: 2.81.5
-    globalSecurity: 2.82.7
+    globalSecurity: 2.82.8
     globalSecurityCallbacks: 0.1.0
     globalServerURLs: 2.82.1
     globals: 2.82.1
@@ -131,6 +131,7 @@ generatedFiles:
   - docs/sdks/requests/README.md
   - docs/sdks/ryantest/README.md
   - docs/sdks/schemas/README.md
+  - gradle.properties
   - gradle/wrapper/gradle-wrapper.jar
   - gradle/wrapper/gradle-wrapper.properties
   - gradlew
@@ -293,13 +294,17 @@ generatedFiles:
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/JSON.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/LazySingletonValue.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Metadata.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Multipart.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/MultipartFormMetadata.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/NameValue.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/OneOfDeserializer.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Options.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/PathParamsMetadata.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryEncoding.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryParameter.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryParameters.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/QueryParamsMetadata.java
+  - src/main/java/dev/speakeasyapi/javaclientsdk/utils/RecordingClient.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/RequestBody.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/RequestMetadata.java
   - src/main/java/dev/speakeasyapi/javaclientsdk/utils/Response.java

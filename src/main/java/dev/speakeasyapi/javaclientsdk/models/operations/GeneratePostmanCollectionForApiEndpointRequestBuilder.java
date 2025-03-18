@@ -5,6 +5,7 @@
 package dev.speakeasyapi.javaclientsdk.models.operations;
 
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
+import java.lang.Exception;
 
 public class GeneratePostmanCollectionForApiEndpointRequestBuilder {
 

@@ -7,6 +7,7 @@ package dev.speakeasyapi.javaclientsdk.models.operations;
 import dev.speakeasyapi.javaclientsdk.utils.Options;
 import dev.speakeasyapi.javaclientsdk.utils.RetryConfig;
 import dev.speakeasyapi.javaclientsdk.utils.Utils;
+import java.lang.Exception;
 import java.util.Optional;
 
 public class PostWorkspaceEventsRequestBuilder {

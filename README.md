@@ -34,7 +34,7 @@ The samples below show how a published SDK artifact is used:
 
 Gradle:
 ```groovy
-implementation 'dev.speakeasyapi:javaclientsdk:7.25.0'
+implementation 'dev.speakeasyapi:javaclientsdk:7.26.0'
 ```
 
 Maven:
@@ -42,7 +42,7 @@ Maven:
 <dependency>
     <groupId>dev.speakeasyapi</groupId>
     <artifactId>javaclientsdk</artifactId>
-    <version>7.25.0</version>
+    <version>7.26.0</version>
 </dependency>
 ```
 
@@ -176,9 +176,9 @@ public class Application {
 
 You can override the default server globally using the `.server(AvailableServers server)` builder method when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
 
-| Name   | Server                              |
-| ------ | ----------------------------------- |
-| `prod` | `https://api.prod.speakeasyapi.dev` |
+| Name   | Server                              | Description |
+| ------ | ----------------------------------- | ----------- |
+| `prod` | `https://api.prod.speakeasyapi.dev` |             |
 
 #### Example
 
@@ -196,7 +196,7 @@ public class Application {
     public static void main(String[] args) throws Exception {
 
         RyanTest sdk = RyanTest.builder()
-                .serverIndex(0)
+                .server(RyanTest.AvailableServers.PROD)
                 .security(Security.builder()
                     .apiKey("<YOUR_API_KEY_HERE>")
                     .build())
